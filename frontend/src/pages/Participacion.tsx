@@ -149,7 +149,7 @@ export default function Participacion() {
     <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 lg:px-8">
       <header>
         <p className="text-sm font-medium text-tinta-tenue">Prueba local, la versión con servidor llega en la Fase 4</p>
-        <h1 className="mt-1 text-3xl font-bold [font-stretch:115%]">Reportar un problema</h1>
+        <h1 className="mt-1 text-3xl font-semibold [font-stretch:115%]">Reportar un problema</h1>
         <p className="mt-2 max-w-2xl text-tinta-suave">
           Andenes dañados, puntos peligrosos, barreras de acceso, parques deteriorados o conexiones que hacen falta. Los
           reportes servirán como insumo para el Presupuesto Participativo y las entidades, no como decisiones automáticas.
@@ -272,7 +272,7 @@ export default function Participacion() {
       </div>
 
       <section>
-        <h2 className="text-xl font-bold">Reportes guardados en este navegador</h2>
+        <h2 className="text-xl font-semibold">Reportes guardados en este navegador</h2>
         <p className="mt-1 text-sm text-tinta-suave">
           Estados de seguimiento previstos: {ESTADOS.join(", ").toLowerCase()}. En la Fase 4 un equipo moderador revisará y validará cada reporte.
         </p>

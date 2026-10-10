@@ -59,7 +59,7 @@ function Contenido({ r }: { r: Radar }) {
       </div>
 
       <Seccion id="t-r-tiempo" titulo="Cuándo aparece la comuna en las noticias" texto="Noticias relevantes por mes. Un pico casi siempre es una emergencia.">
-        <div className="rounded-3xl border border-nivel bg-superficie p-4 shadow-sm sm:p-5">
+        <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm sm:p-5">
           <div className="flex h-32 items-end gap-[3px]" role="img" aria-label="Noticias por mes">
             {meses.map(([k, n]) => (
               <div key={k} className="group relative flex h-full flex-1 items-end" title={`${k}: ${n}`}>
@@ -73,7 +73,7 @@ function Contenido({ r }: { r: Radar }) {
 
       <Seccion id="t-r-temas" titulo="Temas y barrios" texto="Toca un tema o un barrio para filtrar la lista de abajo.">
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-3xl border border-nivel bg-superficie p-4 shadow-sm">
+          <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm">
             <ul className="space-y-2">
               {Object.entries(r.por_tema).map(([t, n]) => (
                 <li key={t}>
@@ -87,7 +87,7 @@ function Contenido({ r }: { r: Radar }) {
               ))}
             </ul>
           </div>
-          <div className="rounded-3xl border border-nivel bg-superficie p-4 shadow-sm">
+          <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm">
             <div className="flex flex-wrap gap-2">
               {Object.entries(r.por_barrio).map(([b, n]) => (
                 <button key={b} type="button" onClick={() => setBarrio(barrio === b ? "" : b)} aria-pressed={barrio === b}
@@ -120,8 +120,8 @@ function Contenido({ r }: { r: Radar }) {
         </ul>
       </Seccion>
 
-      <section className="rounded-3xl border border-aviso-borde bg-aviso-fondo p-5 text-sm">
-        <h2 className="text-base font-bold">Qué hay que saber antes de usar esto</h2>
+      <section className="rounded-2xl border border-aviso-borde bg-aviso-fondo p-5 text-sm">
+        <h2 className="text-base font-semibold">Qué hay que saber antes de usar esto</h2>
         <ul className="mt-2 list-disc space-y-1.5 pl-5 text-tinta-suave">
           <li>{r.aviso}</li>
           <li>Que un tema salga mucho en noticias no quiere decir que sea el problema más grande: los medios cubren más lo que es llamativo.</li>

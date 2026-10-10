@@ -135,7 +135,7 @@ export default function Fuentes() {
         texto="Cada capa del mapa y cada indicador sale de una de estas fuentes. Se descargan con un programa que guarda la consulta exacta, la fecha y el número de registros. Lo que no se pudo verificar aparece como pendiente." />
 
       <section>
-        <h2 className="mb-3 text-xl font-bold">Fuentes verificadas</h2>
+        <h2 className="mb-3 text-xl font-semibold">Fuentes verificadas</h2>
         <ConDatos estado={fuentes}>{(f) => <Tabla fuentes={f} />}</ConDatos>
         <p className="mt-3 max-w-3xl text-sm text-tinta-suave">
           Condiciones de uso: los geoportales de la Alcaldía de Medellín y del DANE son públicos, pero antes de publicar la
@@ -144,7 +144,7 @@ export default function Fuentes() {
       </section>
 
       <section>
-        <h2 className="text-xl font-bold">Cómo se calcula cada indicador</h2>
+        <h2 className="text-xl font-semibold">Cómo se calcula cada indicador</h2>
         <p className="mt-1 max-w-3xl text-sm text-tinta-suave">
           Cada número de la plataforma dice de dónde sale y qué tan firme es: dato oficial publicado, dato descargado y
           procesado, cálculo derivado o estimación.
@@ -200,7 +200,7 @@ export default function Fuentes() {
         {(c) => (
           <>
             <section>
-              <h2 className="text-xl font-bold">Fuentes por verificar</h2>
+              <h2 className="text-xl font-semibold">Fuentes por verificar</h2>
               <ul className="mt-3 divide-y divide-nivel border-y border-nivel">
                 {c.por_verificar.map((p) => (
                   <li key={p.fuente} className="grid gap-1 py-3 md:grid-cols-[18rem_1fr] md:gap-6">
@@ -217,7 +217,7 @@ export default function Fuentes() {
               </ul>
             </section>
             <section>
-              <h2 className="text-xl font-bold">Notas de calidad</h2>
+              <h2 className="text-xl font-semibold">Notas de calidad</h2>
               <dl className="mt-3 grid gap-x-8 gap-y-4 md:grid-cols-2">
                 {c.notas.map((n) => (
                   <div key={n.tema}>

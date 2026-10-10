@@ -50,8 +50,8 @@ function Muestra({ hex, etiqueta, sub }: { hex: string; etiqueta: string; sub?: 
 
 const Par = ({ si, no }: { si: ReactNode; no: ReactNode }) => (
   <div className="grid gap-3 md:grid-cols-2">
-    <div className="rounded-2xl border border-[#2d9a5a]/50 bg-menta-2 p-4"><p className="text-xs font-bold uppercase tracking-wide text-[#2d9a5a]">Así sí</p><p className="mt-1">{si}</p></div>
-    <div className="rounded-2xl border border-[#c0583a]/50 bg-ladrillo-claro p-4"><p className="text-xs font-bold uppercase tracking-wide text-peligro">Así no</p><p className="mt-1">{no}</p></div>
+    <div className="rounded-2xl border border-[#2d9a5a]/50 bg-menta-2 p-4"><p className="text-xs font-semibold uppercase tracking-wide text-[#2d9a5a]">Así sí</p><p className="mt-1">{si}</p></div>
+    <div className="rounded-2xl border border-[#c0583a]/50 bg-ladrillo-claro p-4"><p className="text-xs font-semibold uppercase tracking-wide text-peligro">Así no</p><p className="mt-1">{no}</p></div>
   </div>
 );
 
@@ -74,7 +74,7 @@ export default function Identidad() {
           ].map(([t, x, col]) => (
             <Revelar key={t} className="h-full">
               <div className="vidrio h-full rounded-2xl p-4" style={{ ["--glow" as string]: col, borderTop: `4px solid ${col}` }}>
-                <h3 className="font-bold text-marca">{t}</h3><p className="mt-1.5 text-sm text-tinta-suave">{x}</p>
+                <h3 className="font-semibold text-marca">{t}</h3><p className="mt-1.5 text-sm text-tinta-suave">{x}</p>
               </div>
             </Revelar>
           ))}
@@ -91,20 +91,20 @@ export default function Identidad() {
           ))}
         </div>
         <div className="mt-3 grid gap-3 md:grid-cols-4">
-          <div className="vidrio rounded-2xl p-4 text-sm text-tinta-suave"><p className="font-bold text-tinta">Espacio libre</p><p>Deja alrededor del logo la mitad de su alto, sin texto ni bordes.</p></div>
-          <div className="vidrio rounded-2xl p-4 text-sm text-tinta-suave"><p className="font-bold text-tinta">Tamaño mínimo</p><p>24 px de alto en pantalla. Más pequeño se pierde la línea del cable.</p></div>
+          <div className="vidrio rounded-2xl p-4 text-sm text-tinta-suave"><p className="font-semibold text-tinta">Espacio libre</p><p>Deja alrededor del logo la mitad de su alto, sin texto ni bordes.</p></div>
+          <div className="vidrio rounded-2xl p-4 text-sm text-tinta-suave"><p className="font-semibold text-tinta">Tamaño mínimo</p><p>24 px de alto en pantalla. Más pequeño se pierde la línea del cable.</p></div>
           {[["Estirado", "scaleX(1.6)"], ["Otro color", "hue-rotate(150deg)"]].map(([t, f]) => (
             <div key={t} className="vidrio rounded-2xl p-4 text-sm text-tinta-suave">
               <div className="mb-1.5 flex h-10 items-center"><Logo className="h-9 w-9 origin-left" /><span className="mx-3 text-peligro" aria-hidden="true">✕</span><span style={{ display: "inline-block", filter: f.startsWith("hue") ? f : undefined, transform: f.startsWith("scale") ? f : undefined, transformOrigin: "left" }}><Logo className="h-9 w-9" /></span></div>
-              <p className="font-bold text-tinta">No: {t}</p>
+              <p className="font-semibold text-tinta">No: {t}</p>
             </div>
           ))}
         </div>
       </Seccion>
 
       <Seccion id="t-i-color" titulo="Color" texto="Se toca un color para copiar su código. Los de modo día y modo noche son pares: el mismo papel, otro tono.">
-        <div className="vidrio vidrio--quieto rounded-3xl p-4 sm:p-5">
-          <h3 className="font-bold text-marca">Base (cambia con el modo)</h3>
+        <div className="vidrio vidrio--quieto rounded-2xl p-4 sm:p-5">
+          <h3 className="font-semibold text-marca">Base (cambia con el modo)</h3>
           <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-4">
             {NEUTROS.map((n) => (
               <div key={n.nombre}>
@@ -115,7 +115,7 @@ export default function Identidad() {
               </div>
             ))}
           </div>
-          <h3 className="mt-6 font-bold text-marca">Contraste de los textos</h3>
+          <h3 className="mt-6 font-semibold text-marca">Contraste de los textos</h3>
           <div className="mt-2 overflow-x-auto">
             <table className="w-full min-w-[520px] text-sm">
               <thead><tr className="border-b border-nivel text-left text-tinta-suave"><th className="py-1.5 font-semibold">Texto sobre fondo</th><th className="py-1.5 font-semibold">Día</th><th className="py-1.5 font-semibold">Noche</th></tr></thead>
@@ -137,8 +137,8 @@ export default function Identidad() {
           <p className="mt-2 text-xs text-tinta-tenue">Calculado en esta página con la fórmula WCAG 2.1. Meta: 4,5 : 1 o más para texto normal.</p>
         </div>
 
-        <div className="vidrio vidrio--quieto mt-4 rounded-3xl p-4 sm:p-5">
-          <h3 className="font-bold text-marca">Un color por módulo</h3>
+        <div className="vidrio vidrio--quieto mt-4 rounded-2xl p-4 sm:p-5">
+          <h3 className="font-semibold text-marca">Un color por módulo</h3>
           <p className="mt-0.5 text-sm text-tinta-suave">Aparece en la cabecera, en el menú y en los detalles de ese módulo. Con eso sabes dónde estás sin leer.</p>
           <div className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-7">
             {Object.values(ACENTOS).map((a) => (
@@ -155,8 +155,8 @@ export default function Identidad() {
           <p className="mt-3 text-xs text-tinta-tenue">Ladera: Inicio, Mapa, Indicadores, Prioridades, Propuesta, Fuentes · Cable: Accesibilidad · Ámbar: Corredor 49 · Barro: Problemáticas · Agua: Radar · Uva: Mi barrio · Índigo: Mis datos.</p>
         </div>
 
-        <div className="vidrio vidrio--quieto mt-4 rounded-3xl p-4 sm:p-5">
-          <h3 className="font-bold text-marca">Semáforo único</h3>
+        <div className="vidrio vidrio--quieto mt-4 rounded-2xl p-4 sm:p-5">
+          <h3 className="font-semibold text-marca">Semáforo único</h3>
           <div className="mt-3 grid gap-3 sm:grid-cols-3">
             {([["Bien", SEMAFORO.bien, "Llega a la meta o la supera"], ["Ojo", SEMAFORO.ojo, "A medias o sin dato suficiente"], ["Mal", SEMAFORO.mal, "Lejos de la meta"]] as const).map(([t, c, x]) => (
               <div key={t} className="flex items-center gap-3"><span className="h-10 w-10 shrink-0 rounded-full" style={{ background: c }} /><div><p className="font-semibold">{t}</p><p className="text-xs text-tinta-suave">{x}</p></div></div>
@@ -167,11 +167,11 @@ export default function Identidad() {
       </Seccion>
 
       <Seccion id="t-i-tipo" titulo="Letra" texto="Una sola familia, Inter, con pesos y tamaños fijos.">
-        <div className="vidrio vidrio--quieto divide-y divide-nivel rounded-3xl px-4 sm:px-5">
+        <div className="vidrio vidrio--quieto divide-y divide-nivel rounded-2xl px-4 sm:px-5">
           {[
-            ["Título de página", "text-[2.4rem] font-bold leading-tight tracking-tight", "Lo que pasa en Santa Cruz", "38 px · Bold"],
-            ["Título de sección", "text-[1.56rem] font-bold tracking-tight text-marca", "Diferencias entre barrios", "25 px · Bold"],
-            ["Cifra grande", "text-[2.6rem] font-bold tabular-nums leading-none", "22,4 %", "42 px · Bold · números de ancho fijo"],
+            ["Título de página", "text-[2.4rem] font-semibold leading-tight tracking-tight", "Lo que pasa en Santa Cruz", "38 px · Bold"],
+            ["Título de sección", "text-[1.56rem] font-semibold tracking-tight text-marca", "Diferencias entre barrios", "25 px · Bold"],
+            ["Cifra grande", "text-[2.6rem] font-semibold tabular-nums leading-none", "22,4 %", "42 px · Bold · números de ancho fijo"],
             ["Texto", "text-base", "Minutos estimados que camina cada manzana hasta el lugar más cercano.", "16 px · Regular · línea de 1,6"],
             ["Nota y fuente", "text-xs text-tinta-tenue", "Fuente: Censo 2018, DANE. Descargado el 10 de octubre de 2026.", "13 px · Regular"],
           ].map(([t, cl, ej, d]) => (
@@ -190,7 +190,7 @@ export default function Identidad() {
       </Seccion>
 
       <Seccion id="t-i-comp" titulo="Componentes" texto="Lo que se ve en todas las páginas. Se construyen con las mismas piezas (components/Pagina.tsx).">
-        <div className="vidrio vidrio--quieto space-y-5 rounded-3xl p-4 sm:p-5">
+        <div className="vidrio vidrio--quieto space-y-5 rounded-2xl p-4 sm:p-5">
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <Kpi valor="22,4 %" texto="llegan al Metro en 10 min" tono="rojo" />
             <Kpi valor="85,2 %" texto="a 5 min de una parada" tono="verde" />
@@ -211,7 +211,7 @@ export default function Identidad() {
       </Seccion>
 
       <Seccion id="t-i-ico" titulo="Íconos" texto="Línea de 1,8 px, esquinas redondeadas, 24 px. Siempre con una palabra al lado.">
-        <div className="vidrio vidrio--quieto grid grid-cols-4 gap-3 rounded-3xl p-4 sm:grid-cols-7 sm:p-5">
+        <div className="vidrio vidrio--quieto grid grid-cols-4 gap-3 rounded-2xl p-4 sm:grid-cols-7 sm:p-5">
           {ICONOS.map((n) => (
             <div key={n} className="flex flex-col items-center gap-1.5 text-center">
               <span className="grid h-12 w-12 place-items-center rounded-xl bg-menta text-marca"><IconoNav nombre={n} className="h-6 w-6" trazo={1.8} /></span>
@@ -242,7 +242,7 @@ export default function Identidad() {
             ["Se puede revisar", "Cada cifra enlaza a su fuente, fecha y consulta (Fuentes y calidad). Los estados Hecho, Prototipo, Por validar y Propuesta dicen qué tan firme es cada cosa."],
             ["No se inventa", "Los datos del territorio salen solo de fuentes oficiales o de lo que sube la comunidad. Lo demás se marca como hipótesis."],
           ].map(([t, x], i) => (
-            <Revelar key={t} retraso={i * 40} className="h-full"><div className="vidrio h-full rounded-2xl p-4"><h3 className="font-bold text-marca">{t}</h3><p className="mt-1 text-sm text-tinta-suave">{x}</p></div></Revelar>
+            <Revelar key={t} retraso={i * 40} className="h-full"><div className="vidrio h-full rounded-2xl p-4"><h3 className="font-semibold text-marca">{t}</h3><p className="mt-1 text-sm text-tinta-suave">{x}</p></div></Revelar>
           ))}
         </div>
       </Seccion>

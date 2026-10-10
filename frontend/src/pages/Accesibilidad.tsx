@@ -21,7 +21,7 @@ function Calculadora() {
 
   return (
     <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm">
-      <h3 className="font-bold text-marca">Prueba la fórmula</h3>
+      <h3 className="font-semibold text-marca">Prueba la fórmula</h3>
       <p className="mt-0.5 text-sm text-tinta-suave">
         Mueve los controles para ver cómo cambia el tiempo de caminata con la pendiente. Es la misma fórmula del cálculo por
         la red de calles.
@@ -118,7 +118,7 @@ function Contenido({ d }: { d: Indicadores }) {
         titulo="Diferencias entre barrios"
         texto={<>Personas del barrio a {umbral} min o menos de {dsel.nombre.toLowerCase()}. Más verde = más gente con acceso.</>}
       >
-        <div className="rounded-3xl border border-nivel bg-superficie p-4 shadow-sm sm:p-5">
+        <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm sm:p-5">
           <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Destino">
             {DESTINOS.map((x) => (
               <button key={x.id} type="button" onClick={() => setDestino(x.id)} aria-pressed={destino === x.id}
@@ -137,7 +137,7 @@ function Contenido({ d }: { d: Indicadores }) {
           </div>
 
           <ul className="mt-4 space-y-2">
-            <li className="grid grid-cols-[7.5rem_1fr_3.2rem] items-center gap-3 text-sm font-bold sm:grid-cols-[10rem_1fr_3.6rem]">
+            <li className="grid grid-cols-[7.5rem_1fr_3.2rem] items-center gap-3 text-sm font-semibold sm:grid-cols-[10rem_1fr_3.6rem]">
               <span>Comuna 2</span>
               <span className="relative h-3 rounded-full bg-papel-hondo"><span className="absolute inset-y-0 left-0 rounded-full bg-[#1d2b2a]" style={{ width: `${cv ?? 0}%`, transition: "width 600ms ease" }} /></span>
               <span className="text-right tabular-nums">{pct(cv)}</span>
@@ -170,7 +170,7 @@ function Contenido({ d }: { d: Indicadores }) {
                 </thead>
                 <tbody>
                   {[...filas, c].map((f) => (
-                    <tr key={String(f.barrio)} className={`border-b border-nivel/70 ${f.barrio === "Comuna 2" ? "font-bold" : ""}`}>
+                    <tr key={String(f.barrio)} className={`border-b border-nivel/70 ${f.barrio === "Comuna 2" ? "font-semibold" : ""}`}>
                       <td className="px-3 py-1.5">{String(f.barrio)}</td>
                       {a.umbrales_min.map((u: number) => {
                         const v = f[`${destino}_${u}min_pct`] as number | null;
@@ -225,7 +225,7 @@ function Contenido({ d }: { d: Indicadores }) {
       <div className="grid gap-5 lg:grid-cols-2">
         <Calculadora />
         <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm">
-          <h3 className="font-bold text-marca">La red usada</h3>
+          <h3 className="font-semibold text-marca">La red usada</h3>
           <ul className="mt-2 divide-y divide-nivel/70 text-sm">
             {Object.entries(a.red.km_por_tipo as Record<string, number>).sort((x, y) => y[1] - x[1]).map(([t, km]) => (
               <li key={t} className="flex justify-between py-1.5"><span>{NOMBRE_TIPO[t] ?? t}</span><span className="tabular-nums">{dec(km)} km</span></li>

@@ -41,7 +41,7 @@ const CLASES_SINIESTRO: [string, string][] = [
 function Panel({ titulo, descripcion, children }: { titulo: string; descripcion?: string; children: ReactNode }) {
   return (
     <section className="rounded-lg border border-nivel bg-superficie p-4">
-      <h3 className="font-bold [font-stretch:108%]">{titulo}</h3>
+      <h3 className="font-semibold [font-stretch:108%]">{titulo}</h3>
       {descripcion && <p className="mt-0.5 text-sm text-tinta-suave">{descripcion}</p>}
       <div className="mt-3">{children}</div>
     </section>
@@ -51,7 +51,7 @@ function Panel({ titulo, descripcion, children }: { titulo: string; descripcion?
 function Cifra({ valor, etiqueta, nota, pendiente }: { valor: string; etiqueta: string; nota?: string; pendiente?: boolean }) {
   return (
     <div className={`rounded-lg p-3 ${pendiente ? "border border-dashed border-nivel" : "bg-papel-hondo"}`}>
-      <p className={`text-2xl font-bold tabular-nums [font-stretch:105%] ${pendiente ? "text-tinta-tenue" : ""}`}>{valor}</p>
+      <p className={`text-2xl font-semibold tabular-nums [font-stretch:105%] ${pendiente ? "text-tinta-tenue" : ""}`}>{valor}</p>
       <p className="text-sm">{etiqueta}</p>
       {nota && <p className="mt-0.5 text-xs text-tinta-tenue">{nota}</p>}
     </div>
@@ -321,7 +321,7 @@ function Contenido({ d }: { d: Ind }) {
       </Panel>
 
       <section className="rounded-lg border border-dashed border-nivel p-4">
-        <h2 className="font-bold">Indicadores que todavía no se pueden calcular</h2>
+        <h2 className="font-semibold">Indicadores que todavía no se pueden calcular</h2>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-tinta-suave">
           <li>Estado de los andenes: el inventario oficial trae códigos sin diccionario publicado.</li>
           <li>Costos de obra: no hay precios unitarios públicos confiables; se pueden registrar con su fuente en Prioridad de obras.</li>

@@ -150,14 +150,14 @@ function SubirDatos() {
         onDragOver={(e) => { e.preventDefault(); setArrastrando(true); }}
         onDragLeave={() => setArrastrando(false)}
         onDrop={(e) => { e.preventDefault(); setArrastrando(false); const f = e.dataTransfer.files[0]; if (f) void abrir(f); }}
-        className={`flex flex-col items-center rounded-3xl border-2 border-dashed px-6 py-12 text-center transition ${arrastrando ? "border-[#7a4e9b] bg-[#f3ecfa]" : "border-marca/35 bg-superficie/70"}`}
+        className={`flex flex-col items-center rounded-2xl border-2 border-dashed px-6 py-12 text-center transition ${arrastrando ? "border-[#7a4e9b] bg-[#f3ecfa]" : "border-marca/35 bg-superficie/70"}`}
       >
         <span className="grid h-16 w-16 place-items-center rounded-2xl bg-menta text-marca"><IconoNav nombre="subir" className="h-9 w-9" trazo={1.8} /></span>
-        <p className="mt-4 text-2xl font-bold">Arrastra aquí tu archivo</p>
+        <p className="mt-4 text-2xl font-semibold">Arrastra aquí tu archivo</p>
         <p className="mt-1 max-w-xl text-lg text-tinta-suave">CSV con columnas <code>lat</code> y <code>lon</code>, o un GeoJSON. Se lee en tu computador: no se manda a ningún servidor.</p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
-          <button type="button" onClick={() => input.current?.click()} className="rounded-2xl bg-acento px-6 py-3 text-lg font-bold text-white shadow-lg transition hover:-translate-y-0.5">Elegir archivo</button>
-          <a href={`data:text/csv;charset=utf-8,${encodeURIComponent(PLANTILLA)}`} download="plantilla-mis-datos.csv" className="rounded-2xl border-2 border-marca/40 px-6 py-3 text-lg font-bold text-marca transition hover:bg-menta">Bajar plantilla CSV</a>
+          <button type="button" onClick={() => input.current?.click()} className="rounded-2xl bg-acento px-6 py-3 text-lg font-semibold text-white shadow-sm transition ">Elegir archivo</button>
+          <a href={`data:text/csv;charset=utf-8,${encodeURIComponent(PLANTILLA)}`} download="plantilla-mis-datos.csv" className="rounded-2xl border-2 border-marca/40 px-6 py-3 text-lg font-semibold text-marca transition hover:bg-menta">Bajar plantilla CSV</a>
         </div>
         <input ref={input} type="file" accept=".csv,.txt,.json,.geojson,text/csv,application/json" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) void abrir(f); e.target.value = ""; }} />
       </div>
@@ -169,19 +169,19 @@ function SubirDatos() {
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1fr_1.1fr]">
           <MapaMuestra col={lectura.geojson} />
           <div>
-            <h3 className="text-2xl font-bold">{lectura.nombre}</h3>
+            <h3 className="text-2xl font-semibold">{lectura.nombre}</h3>
             <dl className="mt-4 grid grid-cols-3 gap-3">
               {[{ k: "Elementos", v: num(lectura.geojson.features.length) }, { k: "Dentro de la comuna", v: analisis ? num(analisis.dentro) : "…" }, { k: "Fuera", v: analisis ? num(analisis.fuera) : "…" }].map((x) => (
                 <div key={x.k} className="rounded-2xl bg-superficie p-4 shadow ring-1 ring-black/5">
                   <dt className="text-sm font-semibold text-tinta-suave">{x.k}</dt>
-                  <dd className="mt-1 text-3xl font-extrabold tabular-nums" style={{ color: VERDE }}>{x.v}</dd>
+                  <dd className="mt-1 text-3xl font-semibold tabular-nums" style={{ color: VERDE }}>{x.v}</dd>
                 </div>
               ))}
             </dl>
             {lectura.descartadas > 0 && <p className="mt-3 text-sm text-ladrillo">Se ignoraron {num(lectura.descartadas)} filas sin coordenadas válidas.</p>}
             {analisis && analisis.porBarrio.length > 0 && (
               <div className="mt-5">
-                <h4 className="font-bold">Por barrio</h4>
+                <h4 className="font-semibold">Por barrio</h4>
                 <ul className="mt-2 grid gap-x-6 sm:grid-cols-2">
                   {analisis.porBarrio.map(([b, n]) => (
                     <li key={b} className="flex justify-between border-b border-nivel/60 py-1.5"><span>{b}</span><strong className="tabular-nums">{num(n)}</strong></li>
@@ -191,7 +191,7 @@ function SubirDatos() {
             )}
             {analisis && analisis.numericos.length > 0 && (
               <div className="mt-5">
-                <label className="font-bold" htmlFor="campo-num">Resumir una columna numérica</label>
+                <label className="font-semibold" htmlFor="campo-num">Resumir una columna numérica</label>
                 <select id="campo-num" value={campoNum} onChange={(e) => setCampoNum(e.target.value)} className="mt-1 block w-full rounded-xl border border-nivel bg-superficie px-3 py-2 text-base">
                   <option value="">Elegir…</option>
                   {analisis.numericos.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -202,7 +202,7 @@ function SubirDatos() {
               </div>
             )}
             <div className="mt-6">
-              <h4 className="font-bold">Primeras filas</h4>
+              <h4 className="font-semibold">Primeras filas</h4>
               <div className="mt-2 overflow-x-auto rounded-xl ring-1 ring-black/10">
                 <table className="w-full min-w-[26rem] text-left text-sm">
                   <thead className="bg-papel-hondo"><tr>{lectura.campos.slice(0, 5).map((c) => <th key={c} className="px-3 py-2 font-semibold">{c}</th>)}</tr></thead>
@@ -215,8 +215,8 @@ function SubirDatos() {
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <button type="button" onClick={() => guardar(true)} className="inline-flex items-center gap-2 rounded-2xl bg-acento px-6 py-3 text-lg font-bold text-white shadow-lg transition hover:-translate-y-0.5"><IconoNav nombre="mapa" className="h-6 w-6" trazo={2} /> Guardar y verlo en el mapa</button>
-              <button type="button" onClick={() => guardar(false)} className="rounded-2xl border-2 border-marca/40 px-6 py-3 text-lg font-bold text-marca transition hover:bg-menta">Solo guardar</button>
+              <button type="button" onClick={() => guardar(true)} className="inline-flex items-center gap-2 rounded-2xl bg-acento px-6 py-3 text-lg font-semibold text-white shadow-sm transition "><IconoNav nombre="mapa" className="h-6 w-6" trazo={2} /> Guardar y verlo en el mapa</button>
+              <button type="button" onClick={() => guardar(false)} className="rounded-2xl border-2 border-marca/40 px-6 py-3 text-lg font-semibold text-marca transition hover:bg-menta">Solo guardar</button>
               <button type="button" onClick={() => setLectura(null)} className="rounded-2xl px-4 py-3 text-lg font-semibold text-tinta-suave hover:underline">Descartar</button>
             </div>
           </div>
@@ -225,13 +225,13 @@ function SubirDatos() {
 
       {guardados.length > 0 && (
         <div className="mt-10">
-          <h3 className="text-xl font-bold">Lo que ya guardaste en este navegador</h3>
+          <h3 className="text-xl font-semibold">Lo que ya guardaste en este navegador</h3>
           <ul className="mt-3 grid gap-3 md:grid-cols-2">
             {guardados.map((c) => (
               <li key={c.id} className="flex items-center justify-between gap-3 rounded-2xl bg-superficie p-4 shadow ring-1 ring-black/5">
-                <div><p className="font-bold">{c.nombre}</p><p className="text-sm text-tinta-suave">{num(c.filas)} elementos · {new Date(c.creado).toLocaleDateString("es-CO")}</p></div>
+                <div><p className="font-semibold">{c.nombre}</p><p className="text-sm text-tinta-suave">{num(c.filas)} elementos · {new Date(c.creado).toLocaleDateString("es-CO")}</p></div>
                 <div className="flex gap-2">
-                  <Link to="/mapa?capas=mis_datos" className="rounded-xl bg-menta px-3 py-2 text-sm font-bold text-marca">Ver en el mapa</Link>
+                  <Link to="/mapa?capas=mis_datos" className="rounded-xl bg-menta px-3 py-2 text-sm font-semibold text-marca">Ver en el mapa</Link>
                   <button type="button" onClick={() => borrar(c.id)} className="rounded-xl px-3 py-2 text-sm font-semibold text-ladrillo hover:bg-ladrillo-claro">Borrar</button>
                 </div>
               </li>
@@ -272,14 +272,14 @@ function Catalogo() {
     <div>
       <div className="grid gap-5 md:grid-cols-3">
         {[{ n: total, t: "capas y fuentes en la plataforma" }, { n: ok, t: "con datos cargados hoy" }, { n: POR_BAJAR.length, t: "más encontradas para bajar" }].map((x) => (
-          <div key={x.t} className="rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
-            <p className="text-[3rem] font-extrabold leading-none tabular-nums" style={{ color: VERDE }}>{x.n ?? "…"}</p>
+          <div key={x.t} className="rounded-2xl bg-superficie p-6 shadow-sm ring-1 ring-black/5">
+            <p className="text-[2.2rem] font-semibold leading-none tabular-nums" style={{ color: VERDE }}>{x.n ?? "…"}</p>
             <p className="mt-2 text-base font-semibold">{x.t}</p>
           </div>
         ))}
       </div>
       <p className="mt-4 text-lg text-tinta-suave">De cada capa que ya está, con fecha, número de registros y limitaciones, hay detalle en <Link to="/fuentes" className="font-semibold text-marca underline underline-offset-4">Fuentes y calidad</Link>.</p>
-      <div className="mt-8 overflow-x-auto rounded-2xl bg-superficie shadow-lg ring-1 ring-black/5">
+      <div className="mt-8 overflow-x-auto rounded-2xl bg-superficie shadow-sm ring-1 ring-black/5">
         <table className="w-full min-w-[46rem] text-left text-base">
           <thead className="border-b border-nivel text-sm text-tinta-suave">
             <tr><th className="px-5 py-3 font-semibold">Qué</th><th className="px-3 py-3 font-semibold">Dónde</th><th className="px-3 py-3 font-semibold">Para qué sirve</th><th className="px-5 py-3 font-semibold">Estado</th></tr>
@@ -291,7 +291,7 @@ function Catalogo() {
                 <td className="px-3 py-3 text-sm text-tinta-suave break-words">{r.donde}</td>
                 <td className="px-3 py-3 text-sm">{r.para}</td>
                 <td className="px-5 py-3">
-                  <span className={`inline-block whitespace-nowrap rounded-full px-3 py-1 text-xs font-bold ${r.estado === "comprobada" ? "bg-menta text-marca" : "bg-ambar-claro text-ambar-texto"}`}>
+                  <span className={`inline-block whitespace-nowrap rounded-full px-3 py-1 text-xs font-semibold ${r.estado === "comprobada" ? "bg-menta text-marca" : "bg-ambar-claro text-ambar-texto"}`}>
                     {r.estado === "comprobada" ? "Existe y responde" : "Por verificar"}
                   </span>
                 </td>
@@ -319,19 +319,19 @@ function ValleDeAburra() {
             { t: "Comparar entre municipios", d: "Con el mismo método se pueden poner lado a lado espacio público por habitante, tiempo al transporte masivo y atropellos por mil habitantes." },
           ].map((p, i) => (
             <li key={p.t} className="flex gap-4 rounded-2xl bg-superficie p-5 shadow ring-1 ring-black/5">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-acento text-lg font-bold text-white">{i + 1}</span>
-              <div><p className="text-lg font-bold">{p.t}</p><p className="mt-0.5 text-base text-tinta-suave">{p.d}</p></div>
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-acento text-lg font-semibold text-white">{i + 1}</span>
+              <div><p className="text-lg font-semibold">{p.t}</p><p className="mt-0.5 text-base text-tinta-suave">{p.d}</p></div>
             </li>
           ))}
         </ol>
         <div className="rounded-2xl border-l-4 border-marca bg-menta-2 p-6">
-          <h3 className="text-xl font-bold">Qué es el POT y por qué importa</h3>
+          <h3 className="text-xl font-semibold">Qué es el POT y por qué importa</h3>
           <p className="mt-2 text-base leading-relaxed">El Plan de Ordenamiento Territorial define qué se puede construir y dónde: usos del suelo, densidades, alturas, espacio público, vías y zonas de riesgo. En Medellín rige el Acuerdo 48 de 2014 y hoy está en revisión de mediano plazo.</p>
           <p className="mt-3 text-base leading-relaxed">Según la prensa y la Alcaldía, el 2 de junio de 2026 el Distrito y el Área Metropolitana firmaron el acta de concertación de las determinantes ambientales y metropolitanas, y el siguiente paso es la concertación rural con Corantioquia y la discusión en el Concejo. La revisión toca cerca del 78 % del articulado.</p>
           <p className="mt-3 text-base leading-relaxed">Cada municipio tiene su propio plan, y las determinantes metropolitanas son un marco común. Por eso un observatorio que cruce el POT con datos reales sirve en todo el Valle.</p>
         </div>
       </div>
-      <div className="mt-8 overflow-x-auto rounded-2xl bg-superficie shadow-lg ring-1 ring-black/5">
+      <div className="mt-8 overflow-x-auto rounded-2xl bg-superficie shadow-sm ring-1 ring-black/5">
         <table className="w-full min-w-[40rem] text-left text-base">
           <thead className="border-b border-nivel text-sm text-tinta-suave">
             <tr><th className="px-5 py-3 font-semibold">Municipio</th><th className="px-3 py-3 font-semibold">Censo 2018, OSM y relieve</th><th className="px-5 py-3 font-semibold">Datos locales (equipamientos, andenes, siniestros, POT)</th></tr>
@@ -340,8 +340,8 @@ function ValleDeAburra() {
             {MUNICIPIOS.map((m) => (
               <tr key={m} className="border-b border-nivel/60 last:border-0">
                 <td className="px-5 py-3 font-semibold">{m}</td>
-                <td className="px-3 py-3"><span className="rounded-full bg-ambar-claro px-3 py-1 text-xs font-bold text-ambar-texto">{m === "Medellín" ? "Descargado" : "Por verificar"}</span></td>
-                <td className="px-5 py-3"><span className={`rounded-full px-3 py-1 text-xs font-bold ${m === "Medellín" ? "bg-menta text-marca" : "bg-ambar-claro text-ambar-texto"}`}>{m === "Medellín" ? "Geoportal de la Alcaldía (ya integrado)" : "Por verificar"}</span></td>
+                <td className="px-3 py-3"><span className="rounded-full bg-ambar-claro px-3 py-1 text-xs font-semibold text-ambar-texto">{m === "Medellín" ? "Descargado" : "Por verificar"}</span></td>
+                <td className="px-5 py-3"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${m === "Medellín" ? "bg-menta text-marca" : "bg-ambar-claro text-ambar-texto"}`}>{m === "Medellín" ? "Geoportal de la Alcaldía (ya integrado)" : "Por verificar"}</span></td>
               </tr>
             ))}
           </tbody>
@@ -357,7 +357,7 @@ function Seccion({ id, titulo, texto, children }: { id: string; titulo: string; 
   return (
     <section className="mt-20 lg:mt-28" aria-labelledby={id}>
       <Revelar>
-        <h2 id={id} className="text-[2rem] font-bold leading-tight tracking-tight text-marca">{titulo}</h2>
+        <h2 id={id} className="text-[2rem] font-semibold leading-tight tracking-tight text-marca">{titulo}</h2>
         {texto && <p className="mt-2 max-w-3xl text-lg text-tinta-suave">{texto}</p>}
       </Revelar>
       <div className="mt-8">{children}</div>

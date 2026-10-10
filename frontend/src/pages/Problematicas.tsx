@@ -125,12 +125,12 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
       <div className="mt-12 grid gap-6 md:grid-cols-2">
         {problemas.map((p, i) => (
           <Revelar key={p.id} retraso={(i % 2) * 100}>
-            <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-4 bg-superficie p-7 shadow-lg ring-1 ring-black/5" style={{ borderTopColor: p.color }}>
+            <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-4 bg-superficie p-7 shadow-sm ring-1 ring-black/5" style={{ borderTopColor: p.color }}>
               <div className="flex items-center gap-3">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-white" style={{ background: p.color }}><IconoNav nombre={p.icono} className="h-7 w-7" trazo={1.9} /></span>
-                <h2 className="text-xl font-bold leading-snug">{p.titulo}</h2>
+                <h2 className="text-xl font-semibold leading-snug">{p.titulo}</h2>
               </div>
-              <p className="mt-5 text-[3.4rem] font-extrabold leading-none tabular-nums" style={{ color: p.color }}>
+              <p className="mt-5 text-[2.4rem] font-semibold leading-none tabular-nums" style={{ color: p.color }}>
                 <Cuenta hasta={p.numero} decimales={p.decimales ?? 0} activo />
               </p>
               <p className="mt-1 text-base font-semibold">{p.unidad}</p>
@@ -140,12 +140,12 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
                 <p className="text-sm text-tinta-tenue">Fuente: {p.fuente}. Reto: {p.reto}.</p>
                 <div className="mt-3 flex flex-wrap gap-3">
                   {p.mapa && (
-                    <Link to={`/mapa?capas=${p.mapa}`} className="inline-flex items-center gap-2 rounded-xl bg-menta px-4 py-2 text-base font-bold text-marca transition hover:brightness-95">
+                    <Link to={`/mapa?capas=${p.mapa}`} className="inline-flex items-center gap-2 rounded-xl bg-menta px-4 py-2 text-base font-semibold text-marca transition hover:brightness-95">
                       <IconoNav nombre="mapa" className="h-5 w-5" trazo={2} /> Verlo en el mapa
                     </Link>
                   )}
                   {p.enlace && (
-                    <Link to={p.enlace.a} className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-base font-bold text-marca underline underline-offset-4">
+                    <Link to={p.enlace.a} className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-base font-semibold text-marca underline underline-offset-4">
                       {p.enlace.texto} <IconoNav nombre="flecha" className="h-5 w-5" trazo={2} />
                     </Link>
                   )}
@@ -158,9 +158,9 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
 
       <Revelar className="mt-16">
         <div className="rounded-r-2xl border-l-4 border-marca bg-menta-2 px-6 py-8 sm:px-10">
-          <h2 className="text-2xl font-bold" style={{ color: VERDE }}>Y qué se hace con esto</h2>
+          <h2 className="text-2xl font-semibold" style={{ color: VERDE }}>Y qué se hace con esto</h2>
           <p className="mt-2 max-w-3xl text-lg">La plataforma convierte estas problemáticas en obras posibles, con cuánta gente ayuda cada una y cuánto cuesta. Los costos quedan en blanco hasta que se registre una fuente.</p>
-          <Link to="/prioridades" className="mt-4 inline-flex items-center gap-2 text-lg font-bold underline underline-offset-4" style={{ color: VERDE }}>
+          <Link to="/prioridades" className="mt-4 inline-flex items-center gap-2 text-lg font-semibold underline underline-offset-4" style={{ color: VERDE }}>
             Ver prioridad de obras <IconoNav nombre="flecha" className="h-5 w-5" trazo={2} />
           </Link>
         </div>
