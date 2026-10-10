@@ -14,8 +14,8 @@ type Radar = {
 };
 
 const COLOR_TEMA: Record<string, string> = {
-  "Basuras y aseo": "#7a8c3a", "Vías y huecos": "#a8683a", "Andenes y escaleras": "#b0893a", "Movilidad y transporte": "#2d6a9a",
-  "Seguridad": "#8a4a6a", "Riesgo y clima": "#c0583a", "Servicios públicos": "#3a8a8a", "Espacio público y comunidad": "#2d6a4f", Otros: "#7d8784",
+  "Basuras y aseo": "#6a7ae0", "Vías y huecos": "#b05ab0", "Andenes y escaleras": "#9a55d0", "Movilidad y transporte": "#2d6ae0",
+  "Seguridad": "#b04ac0", "Riesgo y clima": "#c0583a", "Servicios públicos": "#2a8ac8", "Espacio público y comunidad": "#6a4fe0", Otros: "#7d83a8",
 };
 
 function Contenido({ r }: { r: Radar }) {
@@ -63,7 +63,7 @@ function Contenido({ r }: { r: Radar }) {
           <div className="flex h-32 items-end gap-[3px]" role="img" aria-label="Noticias por mes">
             {meses.map(([k, n]) => (
               <div key={k} className="group relative flex h-full flex-1 items-end" title={`${k}: ${n}`}>
-                <span className="w-full rounded-t bg-[#2d6a4f] transition group-hover:bg-[#c0583a]" style={{ height: `${(n / maxMes) * 100}%`, minHeight: n ? 3 : 0 }} />
+                <span className="w-full rounded-t bg-[#6a4fe0] transition group-hover:bg-[#c0583a]" style={{ height: `${(n / maxMes) * 100}%`, minHeight: n ? 3 : 0 }} />
               </div>
             ))}
           </div>
@@ -80,7 +80,7 @@ function Contenido({ r }: { r: Radar }) {
                   <button type="button" onClick={() => setTema(tema === t ? "" : t)} aria-pressed={tema === t}
                     className={`grid w-full grid-cols-[9.5rem_1fr_1.8rem] items-center gap-2 rounded-lg px-1 py-0.5 text-left text-sm transition hover:bg-menta-2 ${tema === t ? "bg-menta font-semibold" : ""}`}>
                     <span className="truncate">{t}</span>
-                    <span className="h-2.5 rounded-full bg-papel-hondo"><span className="block h-full rounded-full" style={{ width: `${(n / maxTema) * 100}%`, background: COLOR_TEMA[t] ?? "#7d8784" }} /></span>
+                    <span className="h-2.5 rounded-full bg-papel-hondo"><span className="block h-full rounded-full" style={{ width: `${(n / maxTema) * 100}%`, background: COLOR_TEMA[t] ?? "#7d83a8" }} /></span>
                     <span className="text-right tabular-nums">{n}</span>
                   </button>
                 </li>
@@ -91,7 +91,7 @@ function Contenido({ r }: { r: Radar }) {
             <div className="flex flex-wrap gap-2">
               {Object.entries(r.por_barrio).map(([b, n]) => (
                 <button key={b} type="button" onClick={() => setBarrio(barrio === b ? "" : b)} aria-pressed={barrio === b}
-                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${barrio === b ? "bg-[#1a4d2e] text-white" : "bg-menta-2 hover:bg-menta"}`}>
+                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${barrio === b ? "bg-[#3a2d8f] text-white" : "bg-menta-2 hover:bg-menta"}`}>
                   {b === "Santa Cruz" ? "Santa Cruz (barrio o comuna)" : b} <span className="opacity-70">{n}</span>
                 </button>
               ))}
@@ -109,7 +109,7 @@ function Contenido({ r }: { r: Radar }) {
               <a href={n.enlace} target="_blank" rel="noopener noreferrer" className="fila-modulo block rounded-2xl border border-nivel bg-superficie p-4">
                 <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-tinta-suave">
                   <span className="font-semibold">{n.medio || "Medio sin nombre"}</span><span>·</span><span>{fecha(n.fecha)}</span>
-                  {n.temas.map((t) => <span key={t} className="rounded-full px-2 py-0.5 font-semibold text-white" style={{ background: COLOR_TEMA[t] ?? "#7d8784" }}>{t}</span>)}
+                  {n.temas.map((t) => <span key={t} className="rounded-full px-2 py-0.5 font-semibold text-white" style={{ background: COLOR_TEMA[t] ?? "#7d83a8" }}>{t}</span>)}
                   {n.barrios.map((b) => <span key={b} className="rounded-full bg-menta-2 px-2 py-0.5 font-medium text-tinta">{b}</span>)}
                 </span>
                 <span className="mt-1.5 block text-base font-semibold leading-snug">{n.titulo} <span aria-hidden="true" className="text-marca">↗</span></span>

@@ -123,7 +123,7 @@ function FichaComuna({ p, santaCruz, onVerSantaCruz }: { p: Props; santaCruz?: P
 /** Marca de "elegido": chulo blanco sobre círculo verde. */
 function Chulo() {
   return (
-    <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full bg-[#1a4d2e] text-white shadow">
+    <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full bg-[#3a2d8f] text-white shadow">
       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
         <path d="m5 12.5 4.5 4.5L19 7.5" />
       </svg>
@@ -345,9 +345,9 @@ export default function Mapa() {
       ? [{
           titulo: "Edificaciones en 3D (catastro)",
           items: [
-            { color: "#d1e7d1", etiqueta: "1 piso", forma: "area" as const },
-            { color: "#4a8c6f", etiqueta: "2 pisos", forma: "area" as const },
-            { color: "#1a4d2e", etiqueta: "3 pisos o más", forma: "area" as const },
+            { color: "#d9d4fb", etiqueta: "1 piso", forma: "area" as const },
+            { color: "#6a4fe0", etiqueta: "2 pisos", forma: "area" as const },
+            { color: "#3a2d8f", etiqueta: "3 pisos o más", forma: "area" as const },
           ],
           nota: "Altura = pisos × 3 m. Las sombras siguen la posición real del sol a la hora elegida. El relieve está exagerado 1,6 veces para que se note.",
         }]
@@ -446,7 +446,7 @@ export default function Mapa() {
               aria-pressed={solo}
               onClick={() => setSolo(true)}
               title="Esconder todo y ver solo el mapa (Esc para salir)"
-              className="flex items-center gap-2 rounded-2xl bg-[#1a4d2e] px-4 py-3 text-base font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+              className="flex items-center gap-2 rounded-2xl bg-[#3a2d8f] px-4 py-3 text-base font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
             >
               Solo Mapa <span aria-hidden="true" className="text-lg leading-none">⛶</span>
             </button>
@@ -470,11 +470,11 @@ export default function Mapa() {
             type="button"
             aria-expanded={panelAbierto}
             onClick={() => setPanelAbierto((v) => !v)}
-            className="flex w-full items-center justify-between gap-3 rounded-2xl bg-[#14301f]/90 px-4 py-3 text-left text-papel shadow-md backdrop-blur transition hover:bg-[#14301f]"
+            className="flex w-full items-center justify-between gap-3 rounded-2xl bg-[#1b1550]/90 px-4 py-3 text-left text-white shadow-md backdrop-blur transition hover:bg-[#1b1550]"
           >
             <span>
               <span className="block text-lg font-bold [font-stretch:110%]">¿Qué quiere ver?</span>
-              <span className="block text-sm text-papel/75">
+              <span className="block text-sm text-white/75">
                 {panelAbierto ? "Toque uno o varios. Se pueden combinar." : `${TEMAS.filter(temaActivo).length} temas encendidos`}
               </span>
             </span>
@@ -571,14 +571,14 @@ export default function Mapa() {
 
         {/* Avisos cortos (foto descargada, etc.) */}
         {aviso && (
-          <p role="status" className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-[#14301f] px-5 py-2.5 text-base font-semibold text-white shadow-xl">
+          <p role="status" className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-[#1b1550] px-5 py-2.5 text-base font-semibold text-white shadow-xl">
             {aviso}
           </p>
         )}
 
         {/* Leyenda compacta (computador), arriba a la derecha junto a los controles */}
         {leyenda.length > 0 && !ruteo && (
-          <div className={`absolute right-20 top-24 z-10 hidden w-64 rounded-2xl bg-superficie/95 shadow-lg backdrop-blur xl:block ${cromo}`}>
+          <div className={`absolute right-20 top-40 z-10 hidden w-64 rounded-2xl bg-superficie/95 shadow-lg backdrop-blur xl:block ${cromo}`}>
             <button
               type="button"
               aria-expanded={verLeyenda}
@@ -589,7 +589,7 @@ export default function Mapa() {
               <span className="text-sm font-medium text-tinta-suave">{verLeyenda ? "Ocultar" : "Mostrar"}</span>
             </button>
             {verLeyenda && (
-              <div className="max-h-[52vh] overflow-y-auto px-4 pb-4">
+              <div className="max-h-[46vh] overflow-y-auto px-4 pb-4">
                 <Leyenda bloques={leyenda} />
               </div>
             )}

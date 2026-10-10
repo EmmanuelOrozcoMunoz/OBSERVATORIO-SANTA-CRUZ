@@ -17,7 +17,7 @@ const ICONOS = {
 };
 
 const boton =
-  "grid h-12 w-12 place-items-center rounded-2xl bg-superficie/95 text-tinta shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-superficie focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1a4d2e] disabled:opacity-50";
+  "grid h-12 w-12 place-items-center rounded-2xl bg-superficie/95 text-tinta shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-superficie focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#3a2d8f] disabled:opacity-50";
 
 /** Sigue el giro y la inclinación del mapa para la brújula y el joystick. */
 function useCamara(mapa: MapaML | null) {
@@ -61,8 +61,8 @@ export async function capturarFoto(mapa: MapaML, noche: boolean): Promise<void> 
         salida.height = lienzo.height;
         const g = salida.getContext("2d")!;
         const fondo = g.createLinearGradient(0, 0, salida.width, salida.height);
-        fondo.addColorStop(0, noche ? "#0b1310" : "#f8f6f1");
-        fondo.addColorStop(1, noche ? "#12201a" : "#e8f0e8");
+        fondo.addColorStop(0, noche ? "#0a0d1f" : "#f6f6fc");
+        fondo.addColorStop(1, noche ? "#151a45" : "#ececf8");
         g.fillStyle = fondo;
         g.fillRect(0, 0, salida.width, salida.height);
         g.drawImage(lienzo, 0, 0); // dentro del evento "render" el buffer todavía tiene el cuadro
@@ -89,7 +89,7 @@ export async function capturarFoto(mapa: MapaML, noche: boolean): Promise<void> 
       if (x < 0 || y < 0 || x > W || y > H) return;
       g.shadowColor = noche ? "rgba(0,0,0,0.9)" : "rgba(255,255,255,1)";
       g.shadowBlur = 4 * k;
-      g.fillStyle = noche ? "#e8f3ec" : "#1a4d2e";
+      g.fillStyle = noche ? "#e6e9ff" : "#3a2d8f";
       for (let i = 0; i < 3; i++) g.fillText(el.textContent ?? "", x, y);
     });
     g.shadowBlur = 0;
@@ -97,7 +97,7 @@ export async function capturarFoto(mapa: MapaML, noche: boolean): Promise<void> 
     const pie = Math.round(13 * k);
     g.font = `600 ${Math.round(18 * k)}px Inter, Archivo, sans-serif`;
     g.textAlign = "left";
-    g.fillStyle = noche ? "rgba(232,243,236,0.92)" : "rgba(26,77,46,0.92)";
+    g.fillStyle = noche ? "rgba(232,243,236,0.92)" : "rgba(58,45,143,0.92)";
     g.fillText("Santa Cruz · Comuna 2, Medellín", 24 * k, H - 44 * k);
     g.font = `400 ${pie}px Inter, Archivo, sans-serif`;
     g.fillText(`Observatorio Santa Cruz · ${new Date().toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" })}`, 24 * k, H - 22 * k);
@@ -182,7 +182,7 @@ export function Joystick({ mapa, className = "" }: { mapa: MapaML | null; classN
         onPointerCancel={soltar}
         onDoubleClick={() => mapa?.easeTo({ bearing: 0, duration: 700 })}
         onKeyDown={teclado}
-        className="joystick relative grid h-[7.5rem] w-[7.5rem] touch-none select-none place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1a4d2e]"
+        className="joystick relative grid h-[7.5rem] w-[7.5rem] touch-none select-none place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#3a2d8f]"
       >
         {/* marcas de giro e inclinación */}
         <span aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-full border border-dashed border-marca/25" />
@@ -216,7 +216,7 @@ export function Brujula({ mapa }: { mapa: MapaML | null }) {
     >
       <svg viewBox="0 0 24 24" className="h-8 w-8" aria-hidden="true" style={{ transform: `rotate(${-cam.giro}deg)`, transition: "transform 80ms linear" }}>
         <path d="M12 2 15.5 12H8.5z" fill="#c2463a" />
-        <path d="M12 22 8.5 12h7z" fill="#1a4d2e" opacity="0.35" />
+        <path d="M12 22 8.5 12h7z" fill="#3a2d8f" opacity="0.35" />
         <text x="12" y="7.6" textAnchor="middle" fontSize="4.6" fontWeight="700" fill="#fff">N</text>
       </svg>
     </button>
@@ -263,7 +263,7 @@ export function BotonesCamara({
       </div>
       <Brujula mapa={mapa} />
       {conNoche && onNoche && (
-        <button type="button" className={`${boton} ${noche ? "!bg-[#16241d] !text-[#ffd66b]" : ""}`} aria-pressed={noche} aria-label={noche ? "Cambiar a día" : "Cambiar a noche"} title={noche ? "Ver de día" : "Ver de noche"} onClick={onNoche}>
+        <button type="button" className={`${boton} ${noche ? "!bg-[#141a38] !text-[#ffd66b]" : ""}`} aria-pressed={noche} aria-label={noche ? "Cambiar a día" : "Cambiar a noche"} title={noche ? "Ver de día" : "Ver de noche"} onClick={onNoche}>
           {noche ? ICONOS.luna : ICONOS.sol}
         </button>
       )}

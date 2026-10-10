@@ -52,15 +52,15 @@ interface Opciones {
 const ESTILO_BASE = "https://tiles.openfreemap.org/styles/positron";
 const DEM = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png";
 const FUENTE_NEGRITA = ["Noto Sans Bold"];
-const NIEBLA = "#eef2ea";
-const NIEBLA_NOCHE = "#0b1511";
-const VERDE_HONDO = "#1a4d2e";
+const NIEBLA = "#ecebf8";
+const NIEBLA_NOCHE = "#0a0d1f";
+const VERDE_HONDO = "#3a2d8f";
 /** Los nombres de barrio aparecen desde este zoom (60 % del zoom máximo de 22). */
 export const ZOOM_ETIQUETAS = 13.2;
 
 // Edificios: más pisos, verde más intenso
-const COLOR_PISOS: ExpressionSpecification = ["interpolate", ["linear"], ["get", "p"], 1, "#d1e7d1", 2, "#4a8c6f", 3, VERDE_HONDO];
-const COLOR_OSM: ExpressionSpecification = ["interpolate", ["linear"], ["coalesce", ["get", "render_height"], 6], 3, "#d1e7d1", 6, "#4a8c6f", 9, VERDE_HONDO];
+const COLOR_PISOS: ExpressionSpecification = ["interpolate", ["linear"], ["get", "p"], 1, "#d9d4fb", 2, "#8a6df0", 3, VERDE_HONDO];
+const COLOR_OSM: ExpressionSpecification = ["interpolate", ["linear"], ["coalesce", ["get", "render_height"], 6], 3, "#d9d4fb", 6, "#8a6df0", 9, VERDE_HONDO];
 const ALTURA = (barrio: string | null): ExpressionSpecification =>
   barrio ? ["+", ["*", ["get", "p"], 3], ["case", ["==", ["get", "b"], barrio], 5, 0]] : ["*", ["get", "p"], 3];
 
@@ -79,20 +79,20 @@ const PX_POR_METRO = (z: number) => (512 * 2 ** z) / (40075016.686 * Math.cos(6.
 /** Cielo con niebla de horizonte (solo se ve con el mapa inclinado). */
 const cielo = (noche: boolean) =>
   noche
-    ? { "sky-color": "#0a1420", "horizon-color": "#1b2a3a", "fog-color": "#0b1511", "sky-horizon-blend": 0.6, "horizon-fog-blend": 0.7, "fog-ground-blend": 0.35, "atmosphere-blend": 0.4 }
-    : { "sky-color": "#cfe0d6", "horizon-color": "#f8f6f1", "fog-color": "#eef2ea", "sky-horizon-blend": 0.55, "horizon-fog-blend": 0.75, "fog-ground-blend": 0.3, "atmosphere-blend": 0.5 };
+    ? { "sky-color": "#080b1e", "horizon-color": "#1f2560", "fog-color": "#0a0d1f", "sky-horizon-blend": 0.6, "horizon-fog-blend": 0.7, "fog-ground-blend": 0.35, "atmosphere-blend": 0.4 }
+    : { "sky-color": "#c4cdf5", "horizon-color": "#f6f6fc", "fog-color": "#ecebf8", "sky-horizon-blend": 0.55, "horizon-fog-blend": 0.75, "fog-ground-blend": 0.3, "atmosphere-blend": 0.5 };
 
 /** Colores de noche para las capas del mapa base, según el tipo de elemento. */
 function colorNoche(id: string, tipo: string): Record<string, string> | null {
   const t = id.toLowerCase();
-  if (tipo === "background") return { "background-color": "#0d1512" };
-  if (tipo === "symbol") return { "text-color": "#a9bdb2", "text-halo-color": "#0d1512" };
+  if (tipo === "background") return { "background-color": "#0a0d1f" };
+  if (tipo === "symbol") return { "text-color": "#b9c0f0", "text-halo-color": "#0a0d1f" };
   const agua = /water|ocean|river/.test(t);
   const verde = /park|landcover|wood|grass|forest|green/.test(t);
   const edificio = /building/.test(t);
   const via = /road|highway|tunnel|bridge|transport|rail|path|street|aeroway/.test(t);
   const limite = /boundary/.test(t);
-  const color = agua ? "#0e2233" : verde ? "#12251a" : edificio ? "#1b2520" : via ? "#2b3832" : limite ? "#3a4a43" : "#121b17";
+  const color = agua ? "#10244f" : verde ? "#151a45" : edificio ? "#1c2150" : via ? "#2b3170" : limite ? "#3a428a" : "#0f1334";
   if (tipo === "fill") return { "fill-color": color };
   if (tipo === "line") return { "line-color": color };
   return null;
@@ -104,14 +104,14 @@ function imagenVentanas(semilla: number): ImageData {
   const c = document.createElement("canvas");
   c.width = c.height = n;
   const g = c.getContext("2d")!;
-  g.fillStyle = "#16221c";
+  g.fillStyle = "#181d4a";
   g.fillRect(0, 0, n, n);
   let s = semilla * 9301 + 49297;
   const azar = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
   for (let y = 4; y < n; y += 10)
     for (let x = 3; x < n; x += 9) {
       const prendida = azar() < 0.55;
-      g.fillStyle = prendida ? (azar() < 0.3 ? "#ffe9a8" : "#ffc94d") : "#24322b";
+      g.fillStyle = prendida ? (azar() < 0.3 ? "#ffe9a8" : "#ffc94d") : "#262d66";
       g.fillRect(x, y, 4, 5);
     }
   return g.getImageData(0, 0, n, n);
@@ -203,33 +203,33 @@ function estilos(id: string): Capa[] {
         },
       ];
     case "paradas":
-      return [{ id, type: "circle", minzoom: 13, paint: { "circle-radius": radio(2.5, 7), "circle-color": "#4f86b8", "circle-stroke-color": "#ffffff", "circle-stroke-width": 1.5 } }];
+      return [{ id, type: "circle", minzoom: 13, paint: { "circle-radius": radio(2.5, 7), "circle-color": "#4a86e0", "circle-stroke-color": "#ffffff", "circle-stroke-width": 1.5 } }];
     case "andenes":
-      return [{ id, type: "line", paint: { "line-width": radio(1.5, 5), "line-color": ["step", ["coalesce", ["get", "ancho_m"], 0], "#a8452b", 1.2, "#d39b3a", 2, "#2d6a4f"] }, layout: { "line-cap": "round" } }];
+      return [{ id, type: "line", paint: { "line-width": radio(1.5, 5), "line-color": ["step", ["coalesce", ["get", "ancho_m"], 0], "#a8452b", 1.2, "#d39b3a", 2, "#6a4fe0"] }, layout: { "line-cap": "round" } }];
     case "escaleras_osm":
-      return [{ id, type: "line", paint: { "line-width": ["case", ["==", ["get", "tipo"], "steps"], 4, 2], "line-color": ["case", ["==", ["get", "tipo"], "steps"], "#7a4e9b", "#8a7656"], "line-dasharray": [1.2, 0.8] } }];
+      return [{ id, type: "line", paint: { "line-width": ["case", ["==", ["get", "tipo"], "steps"], 4, 2], "line-color": ["case", ["==", ["get", "tipo"], "steps"], "#7a4e9b", "#6a4fe0"], "line-dasharray": [1.2, 0.8] } }];
     case "red_ciclista":
-      return [{ id, type: "line", paint: { "line-width": 4, "line-color": "#16917f" }, layout: { "line-cap": "round" } }];
+      return [{ id, type: "line", paint: { "line-width": 4, "line-color": "#2a8ac8" }, layout: { "line-cap": "round" } }];
     case "red_peatonal_pot":
-      return [{ id, type: "line", paint: { "line-width": 3, "line-color": ["case", ["==", ["get", "estado"], "Proyectado"], "#a99bd0", "#5b4a8a"], "line-opacity": 0.85 } }];
+      return [{ id, type: "line", paint: { "line-width": 3, "line-color": ["case", ["==", ["get", "estado"], "Proyectado"], "#a99bd0", "#4a3fc0"], "line-opacity": 0.85 } }];
     case "rutas_bus":
-      return [{ id, type: "line", paint: { "line-color": "#4f86b8", "line-width": 2, "line-opacity": 0.45 } }];
+      return [{ id, type: "line", paint: { "line-color": "#4a86e0", "line-width": 2, "line-opacity": 0.45 } }];
     case "sedes_educativas":
-      return [{ id, type: "circle", paint: { "circle-radius": radio(4, 10), "circle-color": ["case", ["==", ["get", "sector"], "Oficial"], COLOR.cable, "#7fa6cc"], "circle-stroke-color": "#ffffff", "circle-stroke-width": 2 } }];
+      return [{ id, type: "circle", paint: { "circle-radius": radio(4, 10), "circle-color": ["case", ["==", ["get", "sector"], "Oficial"], COLOR.cable, "#8aa6f0"], "circle-stroke-color": "#ffffff", "circle-stroke-width": 2 } }];
     case "equipamientos":
       return [
-        { id, type: "fill", metadata: { variante: "2d" }, paint: { "fill-color": casar("grupo", GRUPOS_EQUIPAMIENTO, "#a3aba7"), "fill-opacity": 0.7, "fill-outline-color": "#ffffff" } },
-        { id: `${id}-3d`, type: "fill-extrusion", metadata: { variante: "3d" }, paint: { "fill-extrusion-color": casar("grupo", GRUPOS_EQUIPAMIENTO, "#a3aba7"), "fill-extrusion-height": 16, "fill-extrusion-opacity": 0.92 } },
+        { id, type: "fill", metadata: { variante: "2d" }, paint: { "fill-color": casar("grupo", GRUPOS_EQUIPAMIENTO, "#a5a9cc"), "fill-opacity": 0.7, "fill-outline-color": "#ffffff" } },
+        { id: `${id}-3d`, type: "fill-extrusion", metadata: { variante: "3d" }, paint: { "fill-extrusion-color": casar("grupo", GRUPOS_EQUIPAMIENTO, "#a5a9cc"), "fill-extrusion-height": 16, "fill-extrusion-opacity": 0.92 } },
       ];
     case "espacio_publico":
-      return [{ id, type: "fill", paint: { "fill-color": "#6fb388", "fill-opacity": 0.62, "fill-outline-color": COLOR.ladera } }];
+      return [{ id, type: "fill", paint: { "fill-color": "#8a9cf0", "fill-opacity": 0.62, "fill-outline-color": COLOR.ladera } }];
     case "escenarios_deportivos":
       return [{ id, type: "circle", paint: { "circle-radius": radio(3.5, 9), "circle-color": COLOR.ladera, "circle-stroke-color": "#ffffff", "circle-stroke-width": 2 } }];
     case "bibliotecas":
       return [{ id, type: "circle", paint: { "circle-radius": radio(6, 12), "circle-color": "#7a4e9b", "circle-stroke-color": "#ffffff", "circle-stroke-width": 3 } }];
     case "espacio_publico_proyectado":
       return [
-        { id, type: "fill", paint: { "fill-color": "#a8d5b9", "fill-opacity": 0.35 } },
+        { id, type: "fill", paint: { "fill-color": "#a9b8f5", "fill-opacity": 0.35 } },
         { id: `${id}-borde`, type: "line", paint: { "line-color": COLOR.laderaHondo, "line-width": 2.5, "line-dasharray": [2, 1.5] } },
       ];
     case "amenaza_movimiento_masa":
@@ -250,16 +250,16 @@ function estilos(id: string): Capa[] {
             "heatmap-color": ["interpolate", ["linear"], ["heatmap-density"], 0, "rgba(255,255,255,0)", 0.2, "#f6dfb4", 0.45, "#e2a865", 0.7, "#c2643c", 1, "#7f2a17"],
           },
         },
-        { id, type: "circle", minzoom: 14.5, paint: { "circle-radius": radio(3, 7), "circle-color": ["case", ["==", ["get", "clase"], "Atropello"], COLOR.ladrillo, "#8b9795"], "circle-stroke-color": "#ffffff", "circle-stroke-width": 1.2, "circle-opacity": 0.85 } },
+        { id, type: "circle", minzoom: 14.5, paint: { "circle-radius": radio(3, 7), "circle-color": ["case", ["==", ["get", "clase"], "Atropello"], COLOR.ladrillo, "#8a8fb8"], "circle-stroke-color": "#ffffff", "circle-stroke-width": 1.2, "circle-opacity": 0.85 } },
       ];
     case "tratamientos":
       return [{ id, type: "fill", paint: { "fill-color": casar("tratamiento", TRATAMIENTOS, "#bbbbbb"), "fill-opacity": 0.6, "fill-outline-color": "#ffffff" } }];
     case "instrumentos":
-      return [{ id, type: "line", paint: { "line-color": "#5b4a8a", "line-width": 2.5, "line-dasharray": [1, 2] } }];
+      return [{ id, type: "line", paint: { "line-color": "#4a3fc0", "line-width": 2.5, "line-dasharray": [1, 2] } }];
     case "jerarquia_vial_pot":
-      return [{ id, type: "line", paint: { "line-color": "#5b4a8a", "line-width": ["case", ["==", ["get", "jerarquia"], "Vía arteria"], 5, 3], "line-opacity": 0.8 } }];
+      return [{ id, type: "line", paint: { "line-color": "#4a3fc0", "line-width": ["case", ["==", ["get", "jerarquia"], "Vía arteria"], 5, 3], "line-opacity": 0.8 } }];
     case "manzanas": {
-      const color: ExpressionSpecification = ["step", ["coalesce", ["get", "densidad_hab_ha"], 0], "#dbe8e0", 250, "#a8cbb6", 500, "#6fa58a", 750, "#3d7a5d", 1000, "#1f4d39"];
+      const color: ExpressionSpecification = ["step", ["coalesce", ["get", "densidad_hab_ha"], 0], "#ecebfb", 250, "#c9c2ff", 500, "#8a7ae8", 750, "#4a3fc0", 1000, "#3a2d8f"];
       return [
         { id, type: "fill", metadata: { variante: "2d" }, paint: { "fill-color": color, "fill-opacity": 0.78, "fill-outline-color": "#ffffff" } },
         { id: `${id}-3d`, type: "fill-extrusion", metadata: { variante: "3d" }, paint: { "fill-extrusion-color": color, "fill-extrusion-height": ["min", ["*", ["coalesce", ["get", "densidad_hab_ha"], 0], 0.12], 260], "fill-extrusion-opacity": 0.9 } },
@@ -268,22 +268,22 @@ function estilos(id: string): Capa[] {
     case "mortalidad_vial":
       return [{ id, type: "circle", paint: { "circle-radius": radio(6, 12), "circle-color": "#7d2a18", "circle-stroke-color": "#ffffff", "circle-stroke-width": 2.5 } }];
     case "camaras_cctv":
-      return [{ id, type: "circle", paint: { "circle-radius": radio(4.5, 9), "circle-color": "#4a5958", "circle-stroke-color": "#ffffff", "circle-stroke-width": 2 } }];
+      return [{ id, type: "circle", paint: { "circle-radius": radio(4.5, 9), "circle-color": "#4a4d6e", "circle-stroke-color": "#ffffff", "circle-stroke-width": 2 } }];
     case "semaforos":
       return [{ id, type: "circle", paint: { "circle-radius": radio(5, 10), "circle-color": "#d08a1c", "circle-stroke-color": "#ffffff", "circle-stroke-width": 2.5 } }];
     case "eje49":
       return ([
         { id: `${id}-borde`, type: "line", paint: { "line-color": "#ffffff", "line-width": 11, "line-opacity": 0.95 }, layout: { "line-cap": "round", "line-join": "round" } },
-        { id, type: "line", filter: ["!=", ["get", "estado"], "Proyectado"], paint: { "line-color": "#1a4d2e", "line-width": 6 }, layout: { "line-cap": "round", "line-join": "round" } },
-        { id: `${id}-proyectado`, type: "line", filter: ["==", ["get", "estado"], "Proyectado"], paint: { "line-color": "#f5b82e", "line-width": 6, "line-dasharray": [1, 1.6] }, layout: { "line-join": "round" } },
+        { id, type: "line", filter: ["!=", ["get", "estado"], "Proyectado"], paint: { "line-color": "#3a2d8f", "line-width": 6 }, layout: { "line-cap": "round", "line-join": "round" } },
+        { id: `${id}-proyectado`, type: "line", filter: ["==", ["get", "estado"], "Proyectado"], paint: { "line-color": "#6ab7ff", "line-width": 6, "line-dasharray": [1, 1.6] }, layout: { "line-join": "round" } },
       ] as unknown) as Capa[];
     case "pot_centralidades":
       return [
         { id, type: "fill", paint: { "fill-color": "#8a6bbf", "fill-opacity": 0.35 } },
-        { id: `${id}-borde`, type: "line", paint: { "line-color": "#5b4a8a", "line-width": 2.5 } },
+        { id: `${id}-borde`, type: "line", paint: { "line-color": "#4a3fc0", "line-width": 2.5 } },
       ];
     case "pot_corredores_transporte":
-      return [{ id, type: "line", paint: { "line-color": "#24598a", "line-width": 3.5, "line-dasharray": [2, 1.5], "line-opacity": 0.85 } }];
+      return [{ id, type: "line", paint: { "line-color": "#1d4fa0", "line-width": 3.5, "line-dasharray": [2, 1.5], "line-opacity": 0.85 } }];
     case "pot_intervencion_estrategica":
       return [
         { id, type: "fill", paint: { "fill-color": "#c9b8e8", "fill-opacity": 0.28 } },
@@ -297,7 +297,7 @@ function estilos(id: string): Capa[] {
         { id, type: "circle", filter: ["any", ["==", ["geometry-type"], "Point"], ["==", ["geometry-type"], "MultiPoint"]], paint: { "circle-radius": radio(5, 11), "circle-color": "#7a4e9b", "circle-stroke-color": "#ffffff", "circle-stroke-width": 2.5 } },
       ] as unknown) as Capa[];
     case "oferta_inmobiliaria":
-      return [{ id, type: "circle", paint: { "circle-radius": radio(6, 11), "circle-color": ["case", ["==", ["get", "operacion"], "Venta"], COLOR.ambar, "#8a7656"], "circle-stroke-color": "#ffffff", "circle-stroke-width": 2.5 } }];
+      return [{ id, type: "circle", paint: { "circle-radius": radio(6, 11), "circle-color": ["case", ["==", ["get", "operacion"], "Venta"], COLOR.ambar, "#6a4fe0"], "circle-stroke-color": "#ffffff", "circle-stroke-width": 2.5 } }];
     default:
       return [];
   }
@@ -352,16 +352,16 @@ export default function MapaVivo(o: Opciones) {
       // Fondo transparente: debajo queda el degradado del contenedor
       const pintar = (capa: string, prop: string, valor: unknown) => m.getLayer(capa) && m.setPaintProperty(capa, prop, valor);
       pintar("background", "background-opacity", 0);
-      pintar("water", "fill-color", "#c5d8df");
-      pintar("park", "fill-color", "#d7e8d7");
-      pintar("landuse_residential", "fill-color", "#ecebe6");
+      pintar("water", "fill-color", "#bcd0f5");
+      pintar("park", "fill-color", "#dcdcf7");
+      pintar("landuse_residential", "fill-color", "#e4e3f6");
       pintar("landuse_residential", "fill-opacity", 0.35);
 
       // Relieve: sombras siempre, montaña real en 3D
       m.addSource("dem-sombra", { type: "raster-dem", tiles: [DEM], encoding: "terrarium", tileSize: 256, maxzoom: 14 });
       m.addSource("dem-terreno", { type: "raster-dem", tiles: [DEM], encoding: "terrarium", tileSize: 256, maxzoom: 14 });
       m.addLayer(
-        { id: "relieve", type: "hillshade", source: "dem-sombra", paint: { "hillshade-exaggeration": 0.45, "hillshade-shadow-color": "#5b6b66", "hillshade-highlight-color": "#ffffff", "hillshade-accent-color": "#7c8a84" } },
+        { id: "relieve", type: "hillshade", source: "dem-sombra", paint: { "hillshade-exaggeration": 0.45, "hillshade-shadow-color": "#4a4a8a", "hillshade-highlight-color": "#ffffff", "hillshade-accent-color": "#6a6cb0" } },
         m.getLayer("waterway") ? "waterway" : undefined,
       );
       m.addLayer(
@@ -410,8 +410,8 @@ export default function MapaVivo(o: Opciones) {
 
         // Toda la ciudad
         m.addLayer({ id: "comunas-relleno", type: "fill", source: "comunas", paint: { "fill-color": ["case", ["get", "es_santa_cruz"], COLOR.ladera, ["boolean", ["feature-state", "encima"], false], "#c9dccf", "#ffffff"], "fill-opacity": ["case", ["get", "es_santa_cruz"], 0.28, 0.25] } }, "ancla-poligonos");
-        m.addLayer({ id: "barrios-ciudad-borde", type: "line", source: "barrios-ciudad", minzoom: 13, paint: { "line-color": "#7d8c86", "line-width": 0.8, "line-opacity": 0.7 } }, "ancla-mascara");
-        m.addLayer({ id: "comunas-borde", type: "line", source: "comunas", paint: { "line-color": ["case", ["get", "es_santa_cruz"], COLOR.tinta, "#5d6b69"], "line-width": ["case", ["get", "es_santa_cruz"], 3.5, 1.6] } }, "ancla-mascara");
+        m.addLayer({ id: "barrios-ciudad-borde", type: "line", source: "barrios-ciudad", minzoom: 13, paint: { "line-color": "#8a8fc0", "line-width": 0.8, "line-opacity": 0.7 } }, "ancla-mascara");
+        m.addLayer({ id: "comunas-borde", type: "line", source: "comunas", paint: { "line-color": ["case", ["get", "es_santa_cruz"], COLOR.tinta, "#5a5f90"], "line-width": ["case", ["get", "es_santa_cruz"], 3.5, 1.6] } }, "ancla-mascara");
         m.addLayer({
           id: "comunas-nombre", type: "symbol", source: "comunas", maxzoom: 14.5,
           layout: { "text-field": ["get", "nombre"], "text-font": FUENTE_NEGRITA, "text-size": ["case", ["get", "es_santa_cruz"], 18, 14], "text-max-width": 8 },
@@ -422,7 +422,7 @@ export default function MapaVivo(o: Opciones) {
         m.addLayer({ id: "barrios-relleno", type: "fill", source: "barrios", paint: { "fill-color": "#ffffff", "fill-opacity": ["case", ["boolean", ["feature-state", "encima"], false], 0.35, 0.01] } }, "ancla-poligonos");
         // Borde doble: brillo exterior de 12 px + separación clara + línea interior de 3 px
         m.addLayer({ id: "comuna-halo", type: "line", source: "comuna", paint: { "line-color": VERDE_HONDO, "line-width": 12, "line-opacity": 0.32, "line-blur": 8 } }, "ancla-mascara");
-        m.addLayer({ id: "barrios-borde", type: "line", source: "barrios", paint: { "line-color": "#4a8c6f", "line-width": 1.2, "line-opacity": 0.7, "line-dasharray": [3, 2] } }, "ancla-mascara");
+        m.addLayer({ id: "barrios-borde", type: "line", source: "barrios", paint: { "line-color": "#6a4fe0", "line-width": 1.2, "line-opacity": 0.7, "line-dasharray": [3, 2] } }, "ancla-mascara");
         m.addLayer({ id: "comuna-separador", type: "line", source: "comuna", paint: { "line-color": "#ffffff", "line-width": 6, "line-opacity": 0.85 } }, "ancla-mascara");
         m.addLayer({ id: "comuna-borde", type: "line", source: "comuna", paint: { "line-color": VERDE_HONDO, "line-width": 3 } }, "ancla-mascara");
 
@@ -757,11 +757,11 @@ export default function MapaVivo(o: Opciones) {
     const pintar = (capa: string, prop: string, valor: unknown) => m.getLayer(capa) && m.setPaintProperty(capa, prop, valor);
     pintar("mascara", "fill-color", noche ? NIEBLA_NOCHE : NIEBLA);
     pintar("mascara-difuminado", "line-color", noche ? NIEBLA_NOCHE : NIEBLA);
-    pintar("relieve", "hillshade-shadow-color", noche ? "#000000" : "#5b6b66");
-    pintar("relieve", "hillshade-highlight-color", noche ? "#2c3d35" : "#ffffff");
-    pintar("comuna-borde", "line-color", noche ? "#9ad0ae" : VERDE_HONDO);
-    pintar("comuna-halo", "line-color", noche ? "#6fcf97" : VERDE_HONDO);
-    pintar("comuna-separador", "line-color", noche ? "#0b1511" : "#ffffff");
+    pintar("relieve", "hillshade-shadow-color", noche ? "#000010" : "#4a4a8a");
+    pintar("relieve", "hillshade-highlight-color", noche ? "#2a3070" : "#ffffff");
+    pintar("comuna-borde", "line-color", noche ? "#a99cff" : VERDE_HONDO);
+    pintar("comuna-halo", "line-color", noche ? "#7a6cff" : VERDE_HONDO);
+    pintar("comuna-separador", "line-color", noche ? "#0a0d1f" : "#ffffff");
     pintar("comunas-relleno", "fill-opacity", ["case", ["get", "es_santa_cruz"], noche ? 0.18 : 0.28, noche ? 0.06 : 0.25]);
     aplicarNocheEdificios(m, noche);
     m.setSky(cielo(noche));
@@ -860,7 +860,7 @@ function aplicarNocheEdificios(m: MapaML, noche: boolean) {
   for (const id of ["edificios-comuna", "edificios-3d"]) {
     if (!m.getLayer(id)) continue;
     m.setPaintProperty(id, "fill-extrusion-pattern", noche ? patron : undefined);
-    m.setPaintProperty(id, "fill-extrusion-color", noche ? "#1b2721" : id === "edificios-comuna" ? COLOR_PISOS : COLOR_OSM);
+    m.setPaintProperty(id, "fill-extrusion-color", noche ? "#1c2150" : id === "edificios-comuna" ? COLOR_PISOS : COLOR_OSM);
   }
 }
 

@@ -9,7 +9,7 @@ import type { Coleccion, Indicadores } from "../lib/tipos";
 import { Cabecera, Relacionados } from "../components/Pagina";
 
 const ROJO = "#c2301a";
-const VERDE = "#1a4d2e";
+const VERDE = "#3a2d8f";
 const AMBAR = "#b7791f";
 
 interface Seguridad {
@@ -84,7 +84,7 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
       id: "andenes", icono: "andenes", color: AMBAR, titulo: "Los andenes no alcanzan",
       numero: anchoMediano?.mediana ?? 0, decimales: 1, unidad: "m de ancho mediano del andén",
       explica: anchoMediano ? `${dec(anchoMediano.menores)} % de los ${num(anchoMediano.n)} tramos inventariados mide menos de 1,5 m. El estado y el material no se pueden leer: el inventario oficial no publica el diccionario de sus códigos.` : "Pendiente de datos",
-      donde: "En toda la comuna; el mapa los pinta rojo, amarillo y verde según su ancho.",
+      donde: "En toda la comuna; el mapa los pinta rojo, amarillo y violeta según su ancho.",
       fuente: "Inventario de andenes de la Secretaría de Movilidad (sin fecha de corte publicada)", mapa: "andenes", reto: "Infraestructura peatonal",
     },
     {

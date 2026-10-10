@@ -25,12 +25,13 @@ export function Logo({ className = "" }: { className?: string }) {
   // Curvas de nivel de una ladera con la línea de un cable aéreo encima.
   return (
     <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <rect width="40" height="40" rx="8" fill="#1a4d2e" />
-      <path d="M2 34 C12 30 18 22 38 20" stroke="#a8cbb6" strokeWidth="1.6" fill="none" />
-      <path d="M2 38 C14 34 22 28 38 27" stroke="#a8cbb6" strokeWidth="1.6" fill="none" />
-      <path d="M4 26 L36 8" stroke="#f5f6f2" strokeWidth="1.6" />
-      <rect x="17" y="15" width="6" height="5" rx="1" fill="#f5f6f2" />
-      <path d="M20 13.5 V15" stroke="#f5f6f2" strokeWidth="1.4" />
+      <defs><linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#6a4fe0" /><stop offset="1" stopColor="#1d4f9a" /></linearGradient></defs>
+      <rect width="40" height="40" rx="9" fill="url(#logo-g)" />
+      <path d="M2 34 C12 30 18 22 38 20" stroke="#c9c2ff" strokeWidth="1.6" fill="none" />
+      <path d="M2 38 C14 34 22 28 38 27" stroke="#c9c2ff" strokeWidth="1.6" fill="none" />
+      <path d="M4 26 L36 8" stroke="#f6f6fc" strokeWidth="1.6" />
+      <rect x="17" y="15" width="6" height="5" rx="1" fill="#f6f6fc" />
+      <path d="M20 13.5 V15" stroke="#f6f6fc" strokeWidth="1.4" />
     </svg>
   );
 }
@@ -60,7 +61,7 @@ function Navegacion({ onNavegar, compacta = false }: { onNavegar?: () => void; c
               {m.fase && !compacta && (
                 <span className={`rounded-full px-2 py-0.5 text-[0.7rem] font-semibold ${isActive ? "bg-superficie/20 text-white" : "bg-ambar-claro text-ambar-texto"}`}>{m.fase}</span>
               )}
-              {m.fase && compacta && <span aria-hidden="true" className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-[#f5b82e]" />}
+              {m.fase && compacta && <span aria-hidden="true" className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-[#6ab7ff]" />}
             </>
           )}
         </NavLink>

@@ -29,12 +29,12 @@ export const NOMBRE_TRAMO: Record<string, string> = {
 };
 
 export const DESTINOS_RUTEO: { tipo: string; nombre: string; color: string }[] = [
-  { tipo: "transporte_masivo", nombre: "Metro, Metrocable o Metroplús", color: "#24598a" },
-  { tipo: "parada_bus", nombre: "Parada de bus", color: "#4f86b8" },
+  { tipo: "transporte_masivo", nombre: "Metro, Metrocable o Metroplús", color: "#1d4fa0" },
+  { tipo: "parada_bus", nombre: "Parada de bus", color: "#4a86e0" },
   { tipo: "colegio", nombre: "Colegio", color: "#1f63a8" },
   { tipo: "salud", nombre: "Centro de salud", color: "#a8452b" },
-  { tipo: "parque", nombre: "Parque o espacio público", color: "#2d6a4f" },
-  { tipo: "deporte", nombre: "Cancha o escenario deportivo", color: "#16917f" },
+  { tipo: "parque", nombre: "Parque o espacio público", color: "#6a4fe0" },
+  { tipo: "deporte", nombre: "Cancha o escenario deportivo", color: "#2a8ac8" },
   { tipo: "biblioteca", nombre: "Biblioteca", color: "#7a4e9b" },
 ];
 

@@ -21,7 +21,7 @@ function Comparar({ titulo, barrio, comuna, unidad, mayorEsMalo = true, dec: d =
   return (
     <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm">
       <p className="text-sm font-semibold">{titulo}</p>
-      {[{ n: "Este barrio", v: barrio, c: peor ? "#c0583a" : "#2d6a4f" }, { n: "Toda la comuna", v: comuna, c: "#1d2b2a" }].map((r) => (
+      {[{ n: "Este barrio", v: barrio, c: peor ? "#c0583a" : "#6a4fe0" }, { n: "Toda la comuna", v: comuna, c: "#1b1d3a" }].map((r) => (
         <div key={r.n} className="mt-2 grid grid-cols-[6.5rem_1fr_auto] items-center gap-2 text-xs">
           <span className="text-tinta-suave">{r.n}</span>
           <span className="relative h-2.5 rounded-full bg-papel-hondo"><span className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${((r.v ?? 0) / max) * 100}%`, background: r.c, transition: "width 600ms ease" }} /></span>
@@ -58,7 +58,7 @@ function Contenido({ ind, seg, eje }: { ind: Indicadores; seg: Seguridad | null;
       <nav aria-label="Elegir barrio" className="flex flex-wrap gap-2">
         {ind.barrios.map((x) => (
           <button key={x.codigo} type="button" onClick={() => ir(`/barrios/${x.codigo}`)} aria-pressed={x.codigo === b.codigo}
-            className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${x.codigo === b.codigo ? "bg-[#1a4d2e] text-white shadow" : "bg-superficie text-tinta ring-1 ring-nivel hover:bg-menta"}`}>
+            className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${x.codigo === b.codigo ? "bg-[#3a2d8f] text-white shadow" : "bg-superficie text-tinta ring-1 ring-nivel hover:bg-menta"}`}>
             {x.nombre}
           </button>
         ))}

@@ -3,21 +3,22 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------- tokens de color (ver /identidad) */
+/* Marca: violeta y azul. Los colores de semáforo (verde, ámbar, rojo) solo se usan para datos, nunca para decorar. */
 :root {
-  --papel: 245 246 242; --papel-hondo: 236 238 231; --superficie: 255 255 255; --nivel: 212 217 207;
-  --tinta: 29 43 42; --tinta-suave: 74 89 88; --tinta-tenue: 93 106 104;
-  --marca: 26 77 46; --menta: 227 241 230; --menta-2: 238 243 236;
+  --papel: 246 246 252; --papel-hondo: 236 236 248; --superficie: 255 255 255; --nivel: 217 217 236;
+  --tinta: 27 29 58; --tinta-suave: 74 77 110; --tinta-tenue: 95 98 133;
+  --marca: 58 45 143; --menta: 233 231 252; --menta-2: 243 242 253;
   --aviso-fondo: 253 246 221; --aviso-borde: 232 217 168; --peligro: 194 48 26;
-  --ladera: 45 106 79; --ladera-hondo: 31 77 57; --ladera-claro: 216 232 221; --cable: 36 89 138; --cable-claro: 219 230 241;
+  --ladera: 74 60 192; --ladera-hondo: 58 45 143; --ladera-claro: 233 231 252; --cable: 29 78 170; --cable-claro: 222 232 252;
   --ladrillo: 168 69 43; --ladrillo-claro: 243 221 213; --ambar: 183 121 31; --ambar-claro: 246 231 200; --ambar-texto: 138 90 0;
   color-scheme: light;
 }
 html.noche {
-  --papel: 11 22 17; --papel-hondo: 22 38 30; --superficie: 19 36 28; --nivel: 44 68 57;
-  --tinta: 232 239 233; --tinta-suave: 169 187 178; --tinta-tenue: 138 160 149;
-  --marca: 143 208 168; --menta: 30 60 44; --menta-2: 25 47 36;
+  --papel: 10 13 31; --papel-hondo: 20 26 56; --superficie: 18 23 47; --nivel: 43 50 96;
+  --tinta: 233 235 255; --tinta-suave: 170 176 214; --tinta-tenue: 141 148 196;
+  --marca: 169 156 255; --menta: 35 31 85; --menta-2: 27 30 71;
   --aviso-fondo: 56 46 18; --aviso-borde: 98 80 34; --peligro: 255 140 114;
-  --ladera: 111 194 147; --ladera-hondo: 168 222 190; --ladera-claro: 30 60 44; --cable: 128 182 230; --cable-claro: 22 44 66;
+  --ladera: 154 168 255; --ladera-hondo: 190 200 255; --ladera-claro: 35 31 85; --cable: 128 170 255; --cable-claro: 22 36 78;
   --ladrillo: 236 146 118; --ladrillo-claro: 66 32 24; --ambar: 236 184 84; --ambar-claro: 62 46 16; --ambar-texto: 240 202 124;
   color-scheme: dark;
 }
@@ -37,7 +38,7 @@ html.noche {
     line-height: 1.6;
   }
   :focus-visible {
-    outline: 3px solid #24598a;
+    outline: 3px solid #1d4fa0;
     outline-offset: 2px;
   }
   .tabular-nums {
@@ -48,19 +49,19 @@ html.noche {
 /* Mapa: tipografía y detalles de Leaflet acordes con la interfaz */
 .leaflet-container {
   font-family: "Inter", system-ui, sans-serif;
-  background: #eceee7;
+  background: #ecebf8;
 }
 .leaflet-container a {
-  color: #24598a;
+  color: #1d4fa0;
 }
 .popup-mapa .maplibregl-popup-content {
   font-family: "Inter", system-ui, sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: #1d2b2a;
+  color: #1b1d3a;
   padding: 8px 12px;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(29, 43, 42, 0.18);
+  box-shadow: 0 6px 20px rgba(27, 29, 58, 0.18);
 }
 .popup-mapa .maplibregl-popup-tip {
   display: none;
@@ -69,7 +70,7 @@ html.noche {
   font-family: "Inter", system-ui, sans-serif;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(26, 77, 46, 0.18);
+  border: 1px solid rgba(58, 45, 143, 0.18);
 }
 .popup-tipo {
   display: block;
@@ -77,7 +78,7 @@ html.noche {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #4a8c6f;
+  color: #6a4fe0;
 }
 
 /* ------------------------------------------------------------ mapa inmersivo */
@@ -86,16 +87,16 @@ html.noche {
   transition: background 600ms ease;
 }
 .mapa-lienzo.es-noche {
-  background: linear-gradient(160deg, #0b1310 0%, #12201a 100%);
+  background: linear-gradient(160deg, #0a0d1f 0%, #151a45 100%);
 }
 /* Niebla radial en los cuatro bordes + viñeta suave */
 .mapa-vineta {
-  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 58%, rgba(232, 240, 232, 0.5) 86%, rgba(232, 240, 232, 0.82) 100%);
-  box-shadow: inset 0 0 140px rgba(26, 77, 46, 0.14);
+  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 58%, rgba(236, 235, 248, 0.5) 86%, rgba(236, 235, 248, 0.82) 100%);
+  box-shadow: inset 0 0 140px rgba(58, 45, 143, 0.14);
   transition: background 600ms ease, box-shadow 600ms ease;
 }
 .es-noche .mapa-vineta {
-  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgba(5, 10, 8, 0.45) 85%, rgba(5, 10, 8, 0.8) 100%);
+  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgba(8, 10, 28, 0.45) 85%, rgba(8, 10, 28, 0.8) 100%);
   box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.5);
 }
 /* Nombres de barrio: Inter 600 con halo blanco, aparecen al acercarse */
@@ -104,7 +105,7 @@ html.noche {
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.01em;
-  color: #1a4d2e;
+  color: #3a2d8f;
   text-shadow: 0 1px 4px #fff, 0 0 2px #fff, 0 0 8px rgba(255, 255, 255, 0.9);
   white-space: nowrap;
   pointer-events: none;
@@ -115,7 +116,7 @@ html.noche {
   opacity: 1;
 }
 .es-noche .etiqueta-barrio {
-  color: #e8f3ec;
+  color: #e6e9ff;
   text-shadow: 0 1px 4px #000, 0 0 10px rgba(0, 0, 0, 0.8);
 }
 /* Tarjetas de temas: suben 4 px al pasar el mouse */
@@ -124,27 +125,27 @@ html.noche {
 }
 .tarjeta-tema:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(20, 48, 31, 0.16);
+  box-shadow: 0 10px 24px rgba(27, 29, 58, 0.16);
 }
 .tarjeta-tema:active {
   transform: translateY(-1px) scale(0.98);
 }
 /* Joystick */
 .joystick {
-  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.97), rgba(232, 240, 232, 0.92));
-  box-shadow: 0 10px 28px rgba(20, 48, 31, 0.22), inset 0 -4px 10px rgba(26, 77, 46, 0.08);
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.97), rgba(236, 235, 248, 0.92));
+  box-shadow: 0 10px 28px rgba(27, 29, 58, 0.22), inset 0 -4px 10px rgba(58, 45, 143, 0.08);
   cursor: grab;
 }
 .joystick:active {
   cursor: grabbing;
 }
 .joystick-perilla {
-  background: radial-gradient(circle at 35% 30%, #5fa883, #1a4d2e 70%);
-  box-shadow: 0 6px 14px rgba(26, 77, 46, 0.45), inset 0 2px 3px rgba(255, 255, 255, 0.35);
+  background: radial-gradient(circle at 35% 30%, #5fa883, #3a2d8f 70%);
+  box-shadow: 0 6px 14px rgba(58, 45, 143, 0.45), inset 0 2px 3px rgba(255, 255, 255, 0.35);
 }
 /* Deslizadores verdes */
 .rango-verde {
-  accent-color: #1a4d2e;
+  accent-color: #3a2d8f;
   height: 1.5rem;
 }
 /* Modo Solo Mapa: el menú lateral y la barra del celular se desvanecen en 300 ms */
@@ -202,12 +203,12 @@ html.letra-grande {
   filter: grayscale(1) brightness(1.06) contrast(0.82);
 }
 .tooltip-mapa {
-  border: 1px solid #d4d9cf;
+  border: 1px solid #d9d9ec;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(29, 43, 42, 0.15);
+  box-shadow: 0 2px 8px rgba(27, 29, 58, 0.15);
   font-size: 13px;
   padding: 4px 8px;
-  color: #1d2b2a;
+  color: #1b1d3a;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -289,7 +290,7 @@ html.letra-grande {
 }
 .tarjeta-dato:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 44px -12px rgba(26, 77, 46, 0.28);
+  box-shadow: 0 24px 44px -12px rgba(58, 45, 143, 0.28);
 }
 /* Filas de módulos: se ponen verde clarito y aparece "Explorar" */
 .fila-modulo {
@@ -359,8 +360,8 @@ aside[data-cromo="lateral"][data-animar] {
 }
 .vidrio:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--glow, #2d6a4f) 55%, rgb(var(--nivel)));
-  box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--glow, #2d6a4f) 60%, transparent);
+  border-color: color-mix(in srgb, var(--glow, #6a4fe0) 55%, rgb(var(--nivel)));
+  box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--glow, #6a4fe0) 60%, transparent);
 }
 .vidrio--quieto:hover {
   transform: none;
@@ -375,8 +376,8 @@ html.noche .vidrio {
   backdrop-filter: blur(10px);
 }
 html.noche .vidrio:hover {
-  border-color: color-mix(in srgb, var(--glow, #6fc293) 65%, transparent);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--glow, #6fc293) 35%, transparent), 0 12px 40px -14px color-mix(in srgb, var(--glow, #6fc293) 70%, transparent);
+  border-color: color-mix(in srgb, var(--glow, #8a7ae8) 65%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--glow, #8a7ae8) 35%, transparent), 0 12px 40px -14px color-mix(in srgb, var(--glow, #8a7ae8) 70%, transparent);
 }
 html.noche .vidrio--quieto:hover {
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);

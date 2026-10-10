@@ -27,33 +27,33 @@ export interface DefCapa {
 }
 
 export const COLOR = {
-  tinta: "#1d2b2a",
-  tintaSuave: "#4a5958",
-  ladera: "#2d6a4f",
-  laderaHondo: "#1f4d39",
-  cable: "#24598a",
+  tinta: "#1b1d3a",
+  tintaSuave: "#4a4d6e",
+  ladera: "#6a4fe0",
+  laderaHondo: "#3a2d8f",
+  cable: "#1d4fa0",
   ladrillo: "#a8452b",
   ambar: "#b7791f",
-  nivel: "#d4d9cf",
-  papel: "#f5f6f2",
+  nivel: "#d9d9ec",
+  papel: "#f6f6fc",
 };
 
 export const GRUPOS_EQUIPAMIENTO: Record<string, string> = {
-  Educación: "#24598a",
+  Educación: "#1d4fa0",
   Salud: "#c2412d",
   "Primera infancia": "#d08a1c",
-  "Deporte y recreación": "#2d6a4f",
+  "Deporte y recreación": "#6a4fe0",
   Cultura: "#7a4e9b",
-  "Seguridad y justicia": "#4a5958",
-  Culto: "#8a7656",
-  Comunitario: "#2f8a83",
-  Transporte: "#1d2b2a",
-  "Infraestructura de servicios": "#9a8f80",
-  "Otro o sin nombre": "#a3aba7",
+  "Seguridad y justicia": "#4a4d6e",
+  Culto: "#6a4fe0",
+  Comunitario: "#2a8ac8",
+  Transporte: "#1b1d3a",
+  "Infraestructura de servicios": "#8f8fb0",
+  "Otro o sin nombre": "#a5a9cc",
 };
 
 export const TRATAMIENTOS: Record<string, string> = {
-  "Consolidación Nivel 2": "#7fb59a",
+  "Consolidación Nivel 2": "#9ab0f0",
   "Consolidación Nivel 3": "#c9a75d",
   "Renovación Urbana": "#b9706a",
   "Mejoramiento Integral en Suelo Urbano": "#8c6bb1",
@@ -63,17 +63,17 @@ export const TRATAMIENTOS: Record<string, string> = {
 export const AMENAZA: Record<string, string> = { Alta: "#a8452b", Media: "#d39b3a", Baja: "#efe2b0" };
 
 export const LINEAS_METRO: Record<string, string> = {
-  "Línea A": "#2d6a4f",
-  "Línea B": "#2d6a4f",
+  "Línea A": "#6a4fe0",
+  "Línea B": "#6a4fe0",
   "Línea K": "#c98a1a",
   "Línea J": "#c98a1a",
   "Línea H": "#c98a1a",
   "Línea M": "#c98a1a",
-  "Línea L": "#8a7656",
+  "Línea L": "#6a4fe0",
   "Línea P": "#7a4e9b",
-  "Línea 1": "#24598a",
-  "Línea 2": "#4f86b8",
-  "Línea O": "#2f8a83",
+  "Línea 1": "#1d4fa0",
+  "Línea 2": "#4a86e0",
+  "Línea O": "#2a8ac8",
   "Línea T-A": "#b03a5b",
 };
 
@@ -120,7 +120,7 @@ export const CAPAS: DefCapa[] = [
     geometria: "linea",
     titulo: (p) => `Ruta ${texto(p.codigo)}: ${texto(p.nombre)}`,
     campos: [["codigo", "Código"], ["tipo", "Tipo"], ["empresa", "Empresa"]],
-    leyenda: [{ color: "#4f86b8", etiqueta: "Ruta de bus", forma: "linea" }],
+    leyenda: [{ color: "#4a86e0", etiqueta: "Ruta de bus", forma: "linea" }],
   },
   {
     id: "paradas",
@@ -131,7 +131,7 @@ export const CAPAS: DefCapa[] = [
     geometria: "punto",
     titulo: (p) => `Parada: ${texto(p.direccion)}`,
     campos: [["direccion", "Dirección"], ["n_rutas", "Rutas que paran", (v) => num(v as number)], ["rutas", "Rutas"]],
-    leyenda: [{ color: "#4f86b8", etiqueta: "Parada de bus", forma: "punto" }],
+    leyenda: [{ color: "#4a86e0", etiqueta: "Parada de bus", forma: "punto" }],
   },
   // Caminar: andenes, escaleras y ciclorrutas
   {
@@ -152,7 +152,7 @@ export const CAPAS: DefCapa[] = [
     leyenda: [
       { color: "#a8452b", etiqueta: "Menos de 1,2 m", forma: "linea" },
       { color: "#d39b3a", etiqueta: "1,2 a 2 m", forma: "linea" },
-      { color: "#2d6a4f", etiqueta: "2 m o más", forma: "linea" },
+      { color: "#6a4fe0", etiqueta: "2 m o más", forma: "linea" },
     ],
     nota: "La fuente trae códigos de estado y material sin su significado publicado, por eso solo se usa el ancho.",
   },
@@ -167,7 +167,7 @@ export const CAPAS: DefCapa[] = [
     campos: [["tipo", "Tipo en OpenStreetMap"]],
     leyenda: [
       { color: "#7a4e9b", etiqueta: "Escaleras", forma: "linea" },
-      { color: "#8a7656", etiqueta: "Sendero o pasaje", forma: "linea" },
+      { color: "#6a4fe0", etiqueta: "Sendero o pasaje", forma: "linea" },
     ],
     nota: "Dato abierto de terceros (© colaboradores de OpenStreetMap, licencia ODbL). Puede estar incompleto.",
   },
@@ -180,7 +180,7 @@ export const CAPAS: DefCapa[] = [
     geometria: "linea",
     titulo: (p) => texto(p.nombre_ciclorruta),
     campos: [["tipologia_redciclista", "Tipología"], ["estado", "Estado"], ["anio_construido", "Año de construcción"]],
-    leyenda: [{ color: "#16917f", etiqueta: "Ciclorruta", forma: "linea" }],
+    leyenda: [{ color: "#2a8ac8", etiqueta: "Ciclorruta", forma: "linea" }],
   },
   {
     id: "red_peatonal_pot",
@@ -216,7 +216,7 @@ export const CAPAS: DefCapa[] = [
     ],
     leyenda: [
       { color: COLOR.cable, etiqueta: "Colegio oficial", forma: "punto" },
-      { color: "#7fa6cc", etiqueta: "Colegio no oficial", forma: "punto" },
+      { color: "#8aa6f0", etiqueta: "Colegio no oficial", forma: "punto" },
     ],
   },
   // Salud y comunidad
@@ -254,7 +254,7 @@ export const CAPAS: DefCapa[] = [
     geometria: "poligono",
     titulo: (p) => texto(p.nombre ?? p.categoria),
     campos: [["categoria", "Categoría"], ["subcategoria", "Subcategoría"], ["nivel", "Cobertura"], ["comuna", "Comuna"]],
-    leyenda: [{ color: "#5aa37c", etiqueta: "Parque o zona verde", forma: "area" }],
+    leyenda: [{ color: "#7a8cf0", etiqueta: "Parque o zona verde", forma: "area" }],
   },
   {
     id: "escenarios_deportivos",
@@ -331,7 +331,7 @@ export const CAPAS: DefCapa[] = [
     campos: [["clase", "Clase"], ["gravedad", "Gravedad"], ["anio", "Año"], ["barrio", "Barrio"]],
     leyenda: [
       { color: COLOR.ladrillo, etiqueta: "Atropello", forma: "punto" },
-      { color: "#8b9795", etiqueta: "Otro siniestro", forma: "punto" },
+      { color: "#8a8fb8", etiqueta: "Otro siniestro", forma: "punto" },
     ],
   },
   // Plan (POT)
@@ -396,11 +396,11 @@ export const CAPAS: DefCapa[] = [
       ["densidad_hab_ha", "Densidad", (v) => `${dec(v as number)} hab/ha`],
     ],
     leyenda: [
-      { color: "#dbe8e0", etiqueta: "Menos de 250 hab/ha", forma: "area" },
-      { color: "#a8cbb6", etiqueta: "250 a 500", forma: "area" },
-      { color: "#6fa58a", etiqueta: "500 a 750", forma: "area" },
-      { color: "#3d7a5d", etiqueta: "750 a 1.000", forma: "area" },
-      { color: "#1f4d39", etiqueta: "Más de 1.000", forma: "area" },
+      { color: "#ecebfb", etiqueta: "Menos de 250 hab/ha", forma: "area" },
+      { color: "#c9c2ff", etiqueta: "250 a 500", forma: "area" },
+      { color: "#8a7ae8", etiqueta: "500 a 750", forma: "area" },
+      { color: "#4a3fc0", etiqueta: "750 a 1.000", forma: "area" },
+      { color: "#3a2d8f", etiqueta: "Más de 1.000", forma: "area" },
     ],
   },
   // Vivienda
@@ -423,7 +423,7 @@ export const CAPAS: DefCapa[] = [
     ],
     leyenda: [
       { color: COLOR.ambar, etiqueta: "En venta", forma: "punto" },
-      { color: "#8a7656", etiqueta: "En arriendo", forma: "punto" },
+      { color: "#6a4fe0", etiqueta: "En arriendo", forma: "punto" },
     ],
     nota: "Es un precio pedido en internet, no un avalúo ni un precio de venta final.",
   },
@@ -448,7 +448,7 @@ export const CAPAS: DefCapa[] = [
     geometria: "punto",
     titulo: (p) => texto(p.tipo),
     campos: [["tipo", "Tipo"], ["estado", "Estado"], ["direccion", "Dirección"], ["barrio", "Barrio"]],
-    leyenda: [{ color: "#4a5958", etiqueta: "Cámara", forma: "punto" }],
+    leyenda: [{ color: "#4a4d6e", etiqueta: "Cámara", forma: "punto" }],
   },
   {
     id: "semaforos",
@@ -473,8 +473,8 @@ export const CAPAS: DefCapa[] = [
     titulo: (p) => texto(p.nombre),
     campos: [["jerarquia", "Jerarquía"], ["estado", "Estado"]],
     leyenda: [
-      { color: "#1a4d2e", etiqueta: "Existente", forma: "linea" },
-      { color: "#f5b82e", etiqueta: "Proyectado en el POT", forma: "linea" },
+      { color: "#3a2d8f", etiqueta: "Existente", forma: "linea" },
+      { color: "#6ab7ff", etiqueta: "Proyectado en el POT", forma: "linea" },
     ],
   },
   // POT complementario
@@ -498,7 +498,7 @@ export const CAPAS: DefCapa[] = [
     geometria: "linea",
     titulo: (p) => texto(p.tramo ?? p.nombre),
     campos: [["linea", "Línea"], ["tramo", "Tramo"], ["nombre", "Calle"]],
-    leyenda: [{ color: "#24598a", etiqueta: "Corredor de transporte", forma: "linea" }],
+    leyenda: [{ color: "#1d4fa0", etiqueta: "Corredor de transporte", forma: "linea" }],
   },
   {
     id: "pot_intervencion_estrategica",
@@ -537,14 +537,14 @@ export interface Tema {
 export const TEMAS: Tema[] = [
   { id: "transporte", nombre: "Metro y buses", ayuda: "Estaciones, líneas y rutas", color: COLOR.cable, capas: ["lineas_transporte", "estaciones", "paradas"] },
   { id: "caminar", nombre: "Andenes y escaleras", ayuda: "Ancho de andenes, escaleras, ciclorrutas", color: "#7a4e9b", capas: ["andenes", "escaleras_osm", "red_ciclista"] },
-  { id: "colegios", nombre: "Colegios", ayuda: "Sedes educativas", color: "#3b6fa8", capas: ["sedes_educativas"] },
+  { id: "colegios", nombre: "Colegios", ayuda: "Sedes educativas", color: "#3a6fd0", capas: ["sedes_educativas"] },
   { id: "comunidad", nombre: "Salud y comunidad", ayuda: "Centros de salud, sedes, policía", color: "#c2412d", capas: ["equipamientos"] },
   { id: "parques", nombre: "Parques y deporte", ayuda: "Zonas verdes, canchas, bibliotecas", color: COLOR.ladera, capas: ["espacio_publico", "escenarios_deportivos", "bibliotecas", "espacio_publico_proyectado"] },
-  { id: "personas", nombre: "Dónde vive la gente", ayuda: "Personas por manzana", color: "#3d7a5d", capas: ["manzanas"] },
+  { id: "personas", nombre: "Dónde vive la gente", ayuda: "Personas por manzana", color: "#4a3fc0", capas: ["manzanas"] },
   { id: "accidentes", nombre: "Atropellos", ayuda: "Siniestros viales 2019 a 2025", color: COLOR.ladrillo, capas: ["siniestros_viales"] },
   { id: "riesgo", nombre: "Riesgo de deslizamiento", ayuda: "Amenaza y zonas de riesgo", color: "#b8641f", capas: ["amenaza_movimiento_masa", "riesgo_no_mitigable"] },
   { id: "plan", nombre: "Plan de la ciudad (POT)", ayuda: "Tratamientos y planes parciales", color: "#5b4a8a", capas: ["tratamientos", "instrumentos", "jerarquia_vial_pot", "pot_centralidades", "pot_corredores_transporte", "pot_intervencion_estrategica"] },
-  { id: "corredor", nombre: "Carrera 49", ayuda: "El eje y su tramo proyectado", color: "#1a4d2e", capas: ["eje49"] },
+  { id: "corredor", nombre: "Carrera 49", ayuda: "El eje y su tramo proyectado", color: "#3a2d8f", capas: ["eje49"] },
   { id: "seguridad", nombre: "Seguridad y cruces", ayuda: "Muertes viales, cámaras, semáforos", color: "#7d2a18", capas: ["mortalidad_vial", "camaras_cctv", "semaforos"] },
   { id: "misdatos", nombre: "Mis datos", ayuda: "Lo que subiste", color: "#7a4e9b", capas: ["mis_datos"] },
   { id: "vivienda", nombre: "Precios de vivienda", ayuda: "Ofertas publicadas en 2023", color: COLOR.ambar, capas: ["oferta_inmobiliaria"] },
@@ -565,4 +565,4 @@ export const COLORES_BARRIO: { id: string; nombre: string; unidad: string; mayor
 ];
 
 /** Escala de 5 colores: claro = mejor situación, oscuro = peor situación. */
-export const ESCALA_ALERTA = ["#f3efe0", "#ecd3a4", "#d9a36a", "#bd6d45", "#8f3b25"];
+export const ESCALA_ALERTA = ["#f3effa", "#ecd3a4", "#d9a36a", "#bd6d45", "#8f3b25"];
