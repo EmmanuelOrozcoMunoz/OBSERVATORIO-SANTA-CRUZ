@@ -17,7 +17,7 @@ const ICONOS = {
 };
 
 const boton =
-  "grid h-12 w-12 place-items-center rounded-2xl bg-white/95 text-tinta shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1a4d2e] disabled:opacity-50";
+  "grid h-12 w-12 place-items-center rounded-2xl bg-superficie/95 text-tinta shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-superficie focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1a4d2e] disabled:opacity-50";
 
 /** Sigue el giro y la inclinación del mapa para la brújula y el joystick. */
 function useCamara(mapa: MapaML | null) {
@@ -185,17 +185,17 @@ export function Joystick({ mapa, className = "" }: { mapa: MapaML | null; classN
         className="joystick relative grid h-[7.5rem] w-[7.5rem] touch-none select-none place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#1a4d2e]"
       >
         {/* marcas de giro e inclinación */}
-        <span aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-full border border-dashed border-[#1a4d2e]/25" />
-        <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1 -translate-x-1/2 text-[10px] font-bold text-[#1a4d2e]/70">INCLINAR</span>
-        <span aria-hidden="true" className="pointer-events-none absolute left-1.5 top-1/2 -translate-y-1/2 text-base font-bold text-[#1a4d2e]/60">⟲</span>
-        <span aria-hidden="true" className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-base font-bold text-[#1a4d2e]/60">⟳</span>
+        <span aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-full border border-dashed border-marca/25" />
+        <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1 -translate-x-1/2 text-[10px] font-bold text-marca/70">INCLINAR</span>
+        <span aria-hidden="true" className="pointer-events-none absolute left-1.5 top-1/2 -translate-y-1/2 text-base font-bold text-marca/60">⟲</span>
+        <span aria-hidden="true" className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-base font-bold text-marca/60">⟳</span>
         <span
           aria-hidden="true"
           className="joystick-perilla pointer-events-none h-12 w-12 rounded-full"
           style={{ transform: `translate(${perilla.x}px, ${perilla.y}px)`, transition: empuje.current.activo ? "none" : "transform 220ms cubic-bezier(.2,1.4,.4,1)" }}
         />
       </div>
-      <p className="rounded-full bg-white/90 px-2.5 py-0.5 text-xs font-semibold tabular-nums text-tinta shadow">
+      <p className="rounded-full bg-superficie/90 px-2.5 py-0.5 text-xs font-semibold tabular-nums text-tinta shadow">
         {Math.round(((cam.giro % 360) + 360) % 360)}° · {Math.round(cam.inclinacion)}° incl.
       </p>
     </div>
@@ -252,7 +252,7 @@ export function BotonesCamara({
   };
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex flex-col overflow-hidden rounded-2xl bg-white/95 shadow-lg backdrop-blur">
+      <div className="flex flex-col overflow-hidden rounded-2xl bg-superficie/95 shadow-lg backdrop-blur">
         <button type="button" aria-label="Acercar" title="Acercar" disabled={!mapa} onClick={() => mapa?.zoomIn()} className="grid h-12 w-12 place-items-center text-tinta hover:bg-papel-hondo">
           {ICONOS.mas}
         </button>
@@ -268,7 +268,7 @@ export function BotonesCamara({
         </button>
       )}
       <button type="button" className={boton} aria-label="Capturar foto HD del mapa" title="Capturar foto HD (PNG 2K)" disabled={!mapa || tomando} onClick={foto}>
-        {tomando ? <span className="h-5 w-5 animate-spin rounded-full border-2 border-[#1a4d2e] border-t-transparent" /> : ICONOS.camara}
+        {tomando ? <span className="h-5 w-5 animate-spin rounded-full border-2 border-marca border-t-transparent" /> : ICONOS.camara}
       </button>
     </div>
   );
@@ -277,7 +277,7 @@ export function BotonesCamara({
 /** Deslizador de la hora del sol (mueve luz y sombras de los edificios). */
 export function HoraSol({ hora, onHora }: { hora: number; onHora: (h: number) => void }) {
   return (
-    <label className="flex items-center gap-2 rounded-2xl bg-white/95 px-3 py-2 text-sm font-semibold text-tinta shadow-lg backdrop-blur">
+    <label className="flex items-center gap-2 rounded-2xl bg-superficie/95 px-3 py-2 text-sm font-semibold text-tinta shadow-lg backdrop-blur">
       <span aria-hidden="true" className="text-[#c98a1a]">{ICONOS.sol}</span>
       <span className="w-[4.6rem] tabular-nums">{textoHora(hora)}</span>
       <input

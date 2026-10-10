@@ -5,13 +5,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        tinta: { DEFAULT: "#1d2b2a", suave: "#4a5958", tenue: "#6f7c7a" },
-        papel: { DEFAULT: "#f5f6f2", hondo: "#eceee7" },
-        nivel: "#d4d9cf",
-        ladera: { DEFAULT: "#2d6a4f", claro: "#d8e8dd", hondo: "#1f4d39" },
-        cable: { DEFAULT: "#24598a", claro: "#dbe6f1" },
-        ladrillo: { DEFAULT: "#a8452b", claro: "#f3ddd5" },
-        ambar: { DEFAULT: "#b7791f", claro: "#f6e7c8" },
+        // Todos los colores leen variables de index.css: así el modo noche cambia en todo el sitio.
+        tinta: { DEFAULT: "rgb(var(--tinta) / <alpha-value>)", suave: "rgb(var(--tinta-suave) / <alpha-value>)", tenue: "rgb(var(--tinta-tenue) / <alpha-value>)" },
+        papel: { DEFAULT: "rgb(var(--papel) / <alpha-value>)", hondo: "rgb(var(--papel-hondo) / <alpha-value>)" },
+        superficie: "rgb(var(--superficie) / <alpha-value>)",
+        nivel: "rgb(var(--nivel) / <alpha-value>)",
+        marca: "rgb(var(--marca) / <alpha-value>)",
+        menta: { DEFAULT: "rgb(var(--menta) / <alpha-value>)", 2: "rgb(var(--menta-2) / <alpha-value>)" },
+        aviso: { fondo: "rgb(var(--aviso-fondo) / <alpha-value>)", borde: "rgb(var(--aviso-borde) / <alpha-value>)" },
+        peligro: "rgb(var(--peligro) / <alpha-value>)",
+        ladera: { DEFAULT: "rgb(var(--ladera) / <alpha-value>)", claro: "rgb(var(--ladera-claro) / <alpha-value>)", hondo: "rgb(var(--ladera-hondo) / <alpha-value>)" },
+        cable: { DEFAULT: "rgb(var(--cable) / <alpha-value>)", claro: "rgb(var(--cable-claro) / <alpha-value>)" },
+        ladrillo: { DEFAULT: "rgb(var(--ladrillo) / <alpha-value>)", claro: "rgb(var(--ladrillo-claro) / <alpha-value>)" },
+        ambar: { DEFAULT: "rgb(var(--ambar) / <alpha-value>)", claro: "rgb(var(--ambar-claro) / <alpha-value>)", texto: "rgb(var(--ambar-texto) / <alpha-value>)" },
       },
       fontFamily: {
         sans: ['"Inter"', "system-ui", "sans-serif"],

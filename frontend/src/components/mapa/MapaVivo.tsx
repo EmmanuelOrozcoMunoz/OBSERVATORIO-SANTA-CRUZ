@@ -819,7 +819,7 @@ export default function MapaVivo(o: Opciones) {
       <div aria-hidden="true" className="mapa-vineta pointer-events-none absolute inset-0" />
       {!listo && !error && (
         <div className="absolute inset-0 grid place-items-center bg-papel/70">
-          <p className="rounded-full bg-white px-5 py-3 text-lg shadow">Preparando el mapa…</p>
+          <p className="rounded-full bg-superficie px-5 py-3 text-lg shadow">Preparando el mapa…</p>
         </div>
       )}
       {error && (

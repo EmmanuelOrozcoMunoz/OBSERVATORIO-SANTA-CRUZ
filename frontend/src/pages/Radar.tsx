@@ -59,7 +59,7 @@ function Contenido({ r }: { r: Radar }) {
       </div>
 
       <Seccion id="t-r-tiempo" titulo="Cuándo aparece la comuna en las noticias" texto="Noticias relevantes por mes. Un pico casi siempre es una emergencia.">
-        <div className="rounded-3xl border border-nivel bg-white p-4 shadow-sm sm:p-5">
+        <div className="rounded-3xl border border-nivel bg-superficie p-4 shadow-sm sm:p-5">
           <div className="flex h-32 items-end gap-[3px]" role="img" aria-label="Noticias por mes">
             {meses.map(([k, n]) => (
               <div key={k} className="group relative flex h-full flex-1 items-end" title={`${k}: ${n}`}>
@@ -73,25 +73,25 @@ function Contenido({ r }: { r: Radar }) {
 
       <Seccion id="t-r-temas" titulo="Temas y barrios" texto="Toca un tema o un barrio para filtrar la lista de abajo.">
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-3xl border border-nivel bg-white p-4 shadow-sm">
+          <div className="rounded-3xl border border-nivel bg-superficie p-4 shadow-sm">
             <ul className="space-y-2">
               {Object.entries(r.por_tema).map(([t, n]) => (
                 <li key={t}>
                   <button type="button" onClick={() => setTema(tema === t ? "" : t)} aria-pressed={tema === t}
-                    className={`grid w-full grid-cols-[9.5rem_1fr_1.8rem] items-center gap-2 rounded-lg px-1 py-0.5 text-left text-sm transition hover:bg-[#eef3ec] ${tema === t ? "bg-[#e3f1e6] font-semibold" : ""}`}>
+                    className={`grid w-full grid-cols-[9.5rem_1fr_1.8rem] items-center gap-2 rounded-lg px-1 py-0.5 text-left text-sm transition hover:bg-menta-2 ${tema === t ? "bg-menta font-semibold" : ""}`}>
                     <span className="truncate">{t}</span>
-                    <span className="h-2.5 rounded-full bg-[#eceee7]"><span className="block h-full rounded-full" style={{ width: `${(n / maxTema) * 100}%`, background: COLOR_TEMA[t] ?? "#7d8784" }} /></span>
+                    <span className="h-2.5 rounded-full bg-papel-hondo"><span className="block h-full rounded-full" style={{ width: `${(n / maxTema) * 100}%`, background: COLOR_TEMA[t] ?? "#7d8784" }} /></span>
                     <span className="text-right tabular-nums">{n}</span>
                   </button>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-3xl border border-nivel bg-white p-4 shadow-sm">
+          <div className="rounded-3xl border border-nivel bg-superficie p-4 shadow-sm">
             <div className="flex flex-wrap gap-2">
               {Object.entries(r.por_barrio).map(([b, n]) => (
                 <button key={b} type="button" onClick={() => setBarrio(barrio === b ? "" : b)} aria-pressed={barrio === b}
-                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${barrio === b ? "bg-[#1a4d2e] text-white" : "bg-[#eef3ec] hover:bg-[#dcebdf]"}`}>
+                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${barrio === b ? "bg-[#1a4d2e] text-white" : "bg-menta-2 hover:bg-menta"}`}>
                   {b === "Santa Cruz" ? "Santa Cruz (barrio o comuna)" : b} <span className="opacity-70">{n}</span>
                 </button>
               ))}
@@ -102,17 +102,17 @@ function Contenido({ r }: { r: Radar }) {
       </Seccion>
 
       <Seccion id="t-r-lista" titulo={`Titulares${tema || barrio ? " filtrados" : ""} (${lista.length})`}
-        derecha={(tema || barrio) ? <button type="button" className="text-sm font-semibold text-[#1a4d2e] underline" onClick={() => { setTema(""); setBarrio(""); }}>Quitar filtros</button> : undefined}>
+        derecha={(tema || barrio) ? <button type="button" className="text-sm font-semibold text-marca underline" onClick={() => { setTema(""); setBarrio(""); }}>Quitar filtros</button> : undefined}>
         <ul className="space-y-2">
           {lista.map((n) => (
             <li key={n.enlace}>
-              <a href={n.enlace} target="_blank" rel="noopener noreferrer" className="fila-modulo block rounded-2xl border border-nivel bg-white p-4">
+              <a href={n.enlace} target="_blank" rel="noopener noreferrer" className="fila-modulo block rounded-2xl border border-nivel bg-superficie p-4">
                 <span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-tinta-suave">
                   <span className="font-semibold">{n.medio || "Medio sin nombre"}</span><span>·</span><span>{fecha(n.fecha)}</span>
                   {n.temas.map((t) => <span key={t} className="rounded-full px-2 py-0.5 font-semibold text-white" style={{ background: COLOR_TEMA[t] ?? "#7d8784" }}>{t}</span>)}
-                  {n.barrios.map((b) => <span key={b} className="rounded-full bg-[#eef3ec] px-2 py-0.5 font-medium text-tinta">{b}</span>)}
+                  {n.barrios.map((b) => <span key={b} className="rounded-full bg-menta-2 px-2 py-0.5 font-medium text-tinta">{b}</span>)}
                 </span>
-                <span className="mt-1.5 block text-base font-semibold leading-snug">{n.titulo} <span aria-hidden="true" className="text-[#1a4d2e]">↗</span></span>
+                <span className="mt-1.5 block text-base font-semibold leading-snug">{n.titulo} <span aria-hidden="true" className="text-marca">↗</span></span>
               </a>
             </li>
           ))}
@@ -120,13 +120,13 @@ function Contenido({ r }: { r: Radar }) {
         </ul>
       </Seccion>
 
-      <section className="rounded-3xl border border-[#e8d9a8] bg-[#fdf6dd] p-5 text-sm">
+      <section className="rounded-3xl border border-aviso-borde bg-aviso-fondo p-5 text-sm">
         <h2 className="text-base font-bold">Qué hay que saber antes de usar esto</h2>
         <ul className="mt-2 list-disc space-y-1.5 pl-5 text-tinta-suave">
           <li>{r.aviso}</li>
           <li>Que un tema salga mucho en noticias no quiere decir que sea el problema más grande: los medios cubren más lo que es llamativo.</li>
           <li>Se guarda solo el titular, el medio, la fecha y el enlace. El texto de la noticia es de cada medio y se lee en su sitio.</li>
-          <li>No se recolecta nada de TikTok, Facebook ni otras redes sociales, ni datos de personas. Por qué, en <a className="font-semibold text-[#1a4d2e] underline" href="#/propuesta">la propuesta</a>.</li>
+          <li>No se recolecta nada de TikTok, Facebook ni otras redes sociales, ni datos de personas. Por qué, en <a className="font-semibold text-marca underline" href="#/propuesta">la propuesta</a>.</li>
           <li>Se actualiza corriendo <code>python data-pipeline/radar.py</code>; después hay que volver a subir el archivo generado.</li>
         </ul>
       </section>

@@ -84,7 +84,7 @@ function MapaEje({ tipo }: { tipo: string }) {
 
   return (
     <div className="relative">
-      <svg viewBox={`0 0 ${ANCHO} ${ALTO}`} className="h-auto w-full rounded-2xl bg-[#eef3ee]" role="img" aria-label="Mapa de la comuna con la Carrera 49 y los minutos extra de ir por ella">
+      <svg viewBox={`0 0 ${ANCHO} ${ALTO}`} className="h-auto w-full rounded-2xl bg-menta-2" role="img" aria-label="Mapa de la comuna con la Carrera 49 y los minutos extra de ir por ella">
         {proy.items.map((b) => (
           <path key={b.codigo} d={b.d} fill="#ffffff" stroke="#b9c7bb" strokeWidth="1" strokeLinejoin="round" />
         ))}
@@ -142,7 +142,7 @@ function Seccion({ id, titulo, texto, children }: { id: string; titulo: string; 
   return (
     <section className="mt-20 lg:mt-28" aria-labelledby={id}>
       <Revelar>
-        <h2 id={id} className="text-[2rem] font-bold leading-tight tracking-tight text-[#1a4d2e]">{titulo}</h2>
+        <h2 id={id} className="text-[2rem] font-bold leading-tight tracking-tight text-marca">{titulo}</h2>
         {texto && <p className="mt-2 max-w-3xl text-lg text-tinta-suave">{texto}</p>}
       </Revelar>
       <div className="mt-8">{children}</div>
@@ -171,20 +171,20 @@ function Contenido({ d }: { d: Eje49 }) {
       {/* ------------------------------------------------------------------ resumen */}
       <Revelar className="mt-10">
         <div className="grid gap-5 md:grid-cols-3">
-          <div className="rounded-2xl border-l-4 border-[#1a4d2e] bg-[#f0f7f0] p-6">
+          <div className="rounded-2xl border-l-4 border-marca bg-menta-2 p-6">
             <p className="text-sm font-semibold uppercase tracking-wider text-ladera">Para toda la comuna</p>
             <p className="mt-2 text-lg">
               Al Metro, la ruta más rápida toma <strong>{dec(metro.minutos_ruta_rapida)} min</strong>. Obligando a caminar por la 49 sube a <strong>{dec(metro.minutos_por_la_49)} min</strong>.
             </p>
           </div>
-          <div className="rounded-2xl border-l-4 border-[#f5b82e] bg-[#fff8e4] p-6">
-            <p className="text-sm font-semibold uppercase tracking-wider text-[#8a5a00]">Para quién sí sirve</p>
+          <div className="rounded-2xl border-l-4 border-[#f5b82e] bg-aviso-fondo p-6">
+            <p className="text-sm font-semibold uppercase tracking-wider text-ambar-texto">Para quién sí sirve</p>
             <p className="mt-2 text-lg">
               Le queda de camino al Metro a {mejores.map((b, i) => `${dec(b.pct_49_en_el_camino)} % de ${b.barrio}${i < mejores.length - 2 ? ", " : i === mejores.length - 2 ? " y " : ""}`).join("")}.
             </p>
           </div>
-          <div className="rounded-2xl border-l-4 border-[#c2301a] bg-[#fdf0ed] p-6">
-            <p className="text-sm font-semibold uppercase tracking-wider text-[#c2301a]">Lo que sí es seguro</p>
+          <div className="rounded-2xl border-l-4 border-[#c2301a] bg-ladrillo-claro p-6">
+            <p className="text-sm font-semibold uppercase tracking-wider text-peligro">Lo que sí es seguro</p>
             <p className="mt-2 text-lg">
               {veces ? <>Tiene <strong>{dec(veces)} veces</strong> los siniestros por kilómetro del promedio de las calles de la comuna.</> : "Concentra muchos siniestros viales."}
             </p>
@@ -198,7 +198,7 @@ function Contenido({ d }: { d: Eje49 }) {
           {ORDEN.filter((o) => d.destinos[o.id]).map((o) => (
             <button
               key={o.id} role="tab" aria-selected={tipo === o.id} onClick={() => setTipo(o.id)}
-              className={`flex items-center gap-2 rounded-full px-4 py-2 text-base font-semibold transition ${tipo === o.id ? "bg-[#1a4d2e] text-white shadow-md" : "bg-white text-tinta ring-1 ring-black/10 hover:bg-[#e3f1e6]"}`}
+              className={`flex items-center gap-2 rounded-full px-4 py-2 text-base font-semibold transition ${tipo === o.id ? "bg-[#1a4d2e] text-white shadow-md" : "bg-superficie text-tinta ring-1 ring-black/10 hover:bg-menta"}`}
             >
               <IconoNav nombre={o.icono} className="h-5 w-5" />
               {o.corto}
@@ -214,7 +214,7 @@ function Contenido({ d }: { d: Eje49 }) {
                 { k: "Ruta más rápida", v: dest.minutos_ruta_rapida, u: "min", c: VERDE },
                 { k: "Obligando la 49", v: dest.minutos_por_la_49, u: "min", c: "#c2301a" },
               ].map((x) => (
-                <div key={x.k} className="rounded-2xl bg-white p-5 shadow-lg ring-1 ring-black/5">
+                <div key={x.k} className="rounded-2xl bg-superficie p-5 shadow-lg ring-1 ring-black/5">
                   <dt className="text-sm font-semibold text-tinta-suave">{x.k}</dt>
                   <dd className="mt-1 text-[2.6rem] font-extrabold leading-none tabular-nums" style={{ color: x.c }}>
                     <Cuenta hasta={x.v} decimales={1} activo duracion={900} /> <span className="text-lg font-bold">{x.u}</span>
@@ -237,7 +237,7 @@ function Contenido({ d }: { d: Eje49 }) {
 
       {/* ------------------------------------------------------------------ tabla por barrio */}
       <Seccion id="t-barrios" titulo="Barrio por barrio" texto={`Minutos promedio hacia ${dest.nombre.toLowerCase()}, ponderados por las personas de cada manzana.`}>
-        <div className="overflow-x-auto rounded-2xl bg-white shadow-lg ring-1 ring-black/5">
+        <div className="overflow-x-auto rounded-2xl bg-superficie shadow-lg ring-1 ring-black/5">
           <table className="w-full min-w-[40rem] text-left text-base">
             <thead className="border-b border-nivel text-sm text-tinta-suave">
               <tr>
@@ -279,7 +279,7 @@ function Contenido({ d }: { d: Eje49 }) {
             { n: e.paradas_cerca, t: "paradas de bus a menos de 40 m", c: VERDE },
           ].map((x) => (
             <Revelar key={x.t}>
-              <div className="h-full rounded-2xl bg-white p-6 shadow-lg ring-1 ring-black/5">
+              <div className="h-full rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
                 <p className="text-[3rem] font-extrabold leading-none tabular-nums" style={{ color: x.c }}><Cuenta hasta={x.n} activo /></p>
                 <p className="mt-2 text-base font-semibold">{x.t}</p>
               </div>
@@ -289,11 +289,11 @@ function Contenido({ d }: { d: Eje49 }) {
 
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
           <Revelar>
-            <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-black/5">
+            <div className="rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
               <h3 className="text-lg font-bold">Siniestros por kilómetro</h3>
               <div className="mt-4 space-y-4">
                 <div>
-                  <div className="flex justify-between text-base"><span className="font-semibold">Carrera 49</span><span className="tabular-nums font-bold text-[#c2301a]">{dec(e.siniestros_por_km)}</span></div>
+                  <div className="flex justify-between text-base"><span className="font-semibold">Carrera 49</span><span className="tabular-nums font-bold text-peligro">{dec(e.siniestros_por_km)}</span></div>
                   <Barra valor={e.siniestros_por_km} max={anchoMax} color="#c2301a" />
                 </div>
                 {e.siniestros_por_km_comuna != null && (
@@ -307,11 +307,11 @@ function Contenido({ d }: { d: Eje49 }) {
             </div>
           </Revelar>
           <Revelar retraso={120}>
-            <div className="h-full rounded-2xl bg-white p-6 shadow-lg ring-1 ring-black/5">
+            <div className="h-full rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
               <h3 className="text-lg font-bold">Andenes de la 49</h3>
               {e.ancho_andén_mediana_m != null ? (
                 <>
-                  <p className="mt-3 text-[3rem] font-extrabold leading-none tabular-nums text-[#c2301a]">{dec(e.ancho_andén_mediana_m)} m</p>
+                  <p className="mt-3 text-[3rem] font-extrabold leading-none tabular-nums text-peligro">{dec(e.ancho_andén_mediana_m)} m</p>
                   <p className="mt-1 text-base font-semibold">ancho mediano del andén</p>
                   <p className="mt-3 text-lg"><strong>{dec(e.andenes_menores_1_5_m_pct)} %</strong> de los {num(e.andenes_tramos)} tramos miden menos de 1,5 m.</p>
                 </>
@@ -324,7 +324,7 @@ function Contenido({ d }: { d: Eje49 }) {
         </div>
 
         <Revelar className="mt-8">
-          <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-black/5">
+          <div className="rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
             <h3 className="text-lg font-bold">Líneas de bus que recorren la 49 (más de 200 m)</h3>
             <ul className="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
               {e.rutas_de_bus_sobre_el_eje.map((r) => (
@@ -343,7 +343,7 @@ function Contenido({ d }: { d: Eje49 }) {
       <Seccion id="t-sigue" titulo="Qué dice esto y qué falta">
         <div className="grid gap-6 lg:grid-cols-2">
           <Revelar>
-            <div className="h-full rounded-2xl border-l-4 border-[#1a4d2e] bg-[#f0f7f0] p-6">
+            <div className="h-full rounded-2xl border-l-4 border-marca bg-menta-2 p-6">
               <h3 className="text-lg font-bold">Lo que podemos afirmar</h3>
               <ul className="mt-3 list-disc space-y-2 pl-5 text-lg">
                 <li>A pie, la 49 no es la ruta más rápida para la comuna entera: a la mayoría de las manzanas no les queda de camino hacia ningún destino.</li>
@@ -353,20 +353,20 @@ function Contenido({ d }: { d: Eje49 }) {
             </div>
           </Revelar>
           <Revelar retraso={120}>
-            <div className="h-full rounded-2xl border-l-4 border-[#f5b82e] bg-[#fff8e4] p-6">
+            <div className="h-full rounded-2xl border-l-4 border-[#f5b82e] bg-aviso-fondo p-6">
               <h3 className="text-lg font-bold">Lo que todavía no podemos afirmar</h3>
               <ul className="mt-3 list-disc space-y-2 pl-5 text-lg">
                 <li>Cuánto se demora un bus o un carro por la 49: no hay datos abiertos de velocidades reales.</li>
                 <li>El estado de los andenes (código sin diccionario) y la iluminación.</li>
                 <li>Cuánta gente la usa de verdad: haría falta aforo peatonal o la Encuesta Origen Destino.</li>
               </ul>
-              <Link to="/datos" className="mt-4 inline-flex items-center gap-2 font-semibold text-[#1a4d2e] underline underline-offset-4">
+              <Link to="/datos" className="mt-4 inline-flex items-center gap-2 font-semibold text-marca underline underline-offset-4">
                 Ver qué datos se pueden bajar <IconoNav nombre="flecha" className="h-5 w-5" trazo={2} />
               </Link>
             </div>
           </Revelar>
         </div>
-        <details className="mt-8 rounded-2xl bg-white p-5 shadow ring-1 ring-black/5">
+        <details className="mt-8 rounded-2xl bg-superficie p-5 shadow ring-1 ring-black/5">
           <summary className="cursor-pointer text-lg font-semibold">Cómo se calculó (supuestos)</summary>
           <ul className="mt-3 list-disc space-y-1.5 pl-5 text-base text-tinta-suave">
             {d.supuestos.map((s) => <li key={s}>{s}</li>)}
@@ -388,7 +388,7 @@ export default function Corredor49() {
   const estado = useDatos<Eje49>("eje49.json");
   return (
     <div className="relative isolate overflow-hidden">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#f8f6f1] to-[#f5f6f2]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-papel" />
       <div className="mx-auto max-w-6xl px-4 pb-24 pt-6 lg:px-8 lg:pt-8">
         <ConDatos estado={estado}>{(d) => <Contenido d={d} />}</ConDatos>
       </div>

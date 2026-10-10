@@ -27,7 +27,7 @@ export default function PanelCapas(p: Props) {
             id="color-barrios"
             value={p.colorBarrios}
             onChange={(e) => p.onColorBarrios(e.target.value)}
-            className="mt-1.5 w-full rounded-xl border border-nivel bg-white px-3 py-2.5"
+            className="mt-1.5 w-full rounded-xl border border-nivel bg-superficie px-3 py-2.5"
           >
             <option value="">No pintar (solo límites)</option>
             {COLORES_BARRIO.map((c) => (
@@ -65,7 +65,7 @@ export default function PanelCapas(p: Props) {
                         <select
                           value={p.filtroSiniestros.clase}
                           onChange={(e) => p.onFiltroSiniestros({ ...p.filtroSiniestros, clase: e.target.value as FiltroSiniestros["clase"] })}
-                          className="mt-0.5 w-full rounded-lg border border-nivel bg-white px-2 py-2"
+                          className="mt-0.5 w-full rounded-lg border border-nivel bg-superficie px-2 py-2"
                         >
                           <option value="Atropello">Solo atropellos</option>
                           <option value="Todas">Todos los siniestros</option>
@@ -76,7 +76,7 @@ export default function PanelCapas(p: Props) {
                         <select
                           value={p.filtroSiniestros.anio}
                           onChange={(e) => p.onFiltroSiniestros({ ...p.filtroSiniestros, anio: e.target.value })}
-                          className="mt-0.5 w-full rounded-lg border border-nivel bg-white px-2 py-2"
+                          className="mt-0.5 w-full rounded-lg border border-nivel bg-superficie px-2 py-2"
                         >
                           {ANIOS.map((a) => (
                             <option key={a}>{a}</option>

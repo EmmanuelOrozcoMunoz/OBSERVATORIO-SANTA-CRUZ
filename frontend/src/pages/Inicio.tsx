@@ -9,9 +9,10 @@ import { Cuenta, Revelar, useVisto } from "../components/Animacion";
 import { useProyeccion } from "../lib/proyeccion";
 import type { Coleccion, Indicadores } from "../lib/tipos";
 import { useResumen } from "../lib/resumen";
+import { acentoDeRuta } from "../lib/marca";
 
-const VERDE = "#1a4d2e";
-const ROJO = "#c2301a";
+const VERDE = "rgb(var(--marca))";
+const ROJO = "rgb(var(--peligro))";
 const REFERENCIA_M2 = 15; // m² de espacio público por habitante, referencia nacional
 
 // ------------------------------------------------------------------ animaciones al hacer scroll
@@ -44,8 +45,8 @@ const CONTORNOS: string[] = (() => {
 
 function FondoHero() {
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, #f8f6f1 0%, #f5f6f2 100%)" }}>
-      <div className="absolute inset-x-0 top-0 h-[900px]" style={{ background: "radial-gradient(ellipse 62% 70% at 76% 34%, #d8e8dd 0%, rgba(216,232,221,0.5) 42%, transparent 75%)" }} />
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10" style={{ background: "rgb(var(--papel))" }}>
+      <div className="absolute inset-x-0 top-0 h-[900px]" style={{ background: "radial-gradient(ellipse 62% 70% at 76% 34%, rgb(var(--menta)) 0%, rgb(var(--menta) / 0.5) 42%, transparent 75%)" }} />
       <svg viewBox="0 0 1200 3600" preserveAspectRatio="xMidYMin slice" className="absolute inset-0 h-full w-full" style={{ opacity: 0.09 }}>
         {CONTORNOS.map((d, i) => (
           <path key={i} d={d} fill="none" stroke={VERDE} strokeWidth="2" />
@@ -121,7 +122,7 @@ function DibujoComuna({ stats }: { stats: Stats }) {
           </filter>
         </defs>
         <g clipPath="url(#marco)">
-          <rect width={ANCHO} height={ALTO} fill="#e9eee6" />
+          <rect width={ANCHO} height={ALTO} fill="rgb(var(--papel-hondo))" />
           {extras.trazos.map((t) => (
             <path key={t.clave} d={t.d} stroke={t.color} strokeWidth="4" fill="none" strokeLinecap="round" opacity={t.animada ? 0.3 : 0.8} />
           ))}
@@ -129,7 +130,7 @@ function DibujoComuna({ stats }: { stats: Stats }) {
             <path
               key={b.codigo}
               d={b.d}
-              fill="#ffffff"
+              fill="rgb(var(--superficie))"
               fillOpacity="0.92"
               stroke={VERDE}
               strokeOpacity="0.55"
@@ -162,8 +163,8 @@ function DibujoComuna({ stats }: { stats: Stats }) {
               className="pointer-events-none select-none"
               fontSize="13"
               fontWeight="600"
-              fill={encima === b.codigo ? "#ffffff" : "#1d2b2a"}
-              stroke={encima === b.codigo ? VERDE : "#ffffff"}
+              fill={encima === b.codigo ? "rgb(var(--superficie))" : "rgb(var(--tinta))"}
+              stroke={encima === b.codigo ? VERDE : "rgb(var(--superficie))"}
               strokeWidth="3"
               paintOrder="stroke"
             >
@@ -175,7 +176,7 @@ function DibujoComuna({ stats }: { stats: Stats }) {
               <circle cx={p.x} cy={p.y} r="7" fill={LINEAS_METRO[p.linea] ?? "#24598a"} className="pulso-estacion" style={{ animationDelay: `${(i % 4) * 0.55}s` }} />
               <circle cx={p.x} cy={p.y} r="7" fill={LINEAS_METRO[p.linea] ?? "#24598a"} stroke="#fff" strokeWidth="2.5" />
               {p.etiqueta && (
-                <text x={p.x + 11} y={p.y + 4} fontSize="12.5" fontWeight="600" fill="#1d2b2a" stroke="#e9eee6" strokeWidth="3" paintOrder="stroke" className="select-none">
+                <text x={p.x + 11} y={p.y + 4} fontSize="12.5" fontWeight="600" fill="rgb(var(--tinta))" stroke="rgb(var(--papel-hondo))" strokeWidth="3" paintOrder="stroke" className="select-none">
                   {p.nombre}
                 </text>
               )}
@@ -203,7 +204,7 @@ function Tarjeta({ retraso = 0, tono, children }: { retraso?: number; tono: stri
   const [ref, visto] = useVisto<HTMLDivElement>(0.2);
   return (
     <div ref={ref} className={`revelar h-full ${visto ? "visto" : ""}`} style={{ transitionDelay: `${retraso}ms` }}>
-      <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-4 bg-white p-6 shadow-lg ring-1 ring-black/5 lg:p-7" style={{ borderTopColor: tono }}>
+      <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-4 bg-superficie p-6 shadow-lg ring-1 ring-black/5 lg:p-7" style={{ borderTopColor: tono }}>
         {children(visto)}
       </article>
     </div>
@@ -240,7 +241,7 @@ function PuntosHectarea({ n, activo }: { n: number; activo: boolean }) {
   }, [n]);
   return (
     <figure className="shrink-0">
-      <svg viewBox="0 0 100 100" className="h-[8.5rem] w-[8.5rem] rounded-lg bg-[#f0f7f0] ring-2 ring-[#1a4d2e]/30" role="img" aria-label={`Una hectárea con ${num(Math.round(n))} puntos, uno por cada persona`}>
+      <svg viewBox="0 0 100 100" className="h-[8.5rem] w-[8.5rem] rounded-lg bg-menta-2 ring-2 ring-marca/30" role="img" aria-label={`Una hectárea con ${num(Math.round(n))} puntos, uno por cada persona`}>
         {[0, 1, 2, 3].map((gr) => (
           <g key={gr} style={{ opacity: activo ? 1 : 0, transition: "opacity 700ms ease", transitionDelay: `${300 + gr * 260}ms` }}>
             {puntos
@@ -258,7 +259,7 @@ function PuntosHectarea({ n, activo }: { n: number; activo: boolean }) {
 
 function Barra({ pct, color, activo, retraso = 0 }: { pct: number; color: string; activo: boolean; retraso?: number }) {
   return (
-    <div className="mt-2 h-8 w-full overflow-hidden rounded-full bg-[#eceee7]">
+    <div className="mt-2 h-8 w-full overflow-hidden rounded-full bg-papel-hondo">
       <div
         className="h-full rounded-full"
         style={{ width: activo ? `${Math.max(pct, 1.8)}%` : "0%", background: color, transition: "width 1.5s cubic-bezier(.2,.8,.2,1)", transitionDelay: `${400 + retraso}ms` }}
@@ -279,7 +280,7 @@ function MiniCalor({ valores }: { valores: Record<string, { nombre: string; n: n
         {proy.items.map((b) => {
           const v = valores[b.codigo];
           return (
-            <path key={b.codigo} d={b.d} fill={escala[Math.min(4, Math.floor(((v?.n ?? 0) / max) * 5))]} stroke="#ffffff" strokeWidth="1.2" strokeLinejoin="round">
+            <path key={b.codigo} d={b.d} fill={escala[Math.min(4, Math.floor(((v?.n ?? 0) / max) * 5))]} stroke="rgb(var(--superficie))" strokeWidth="1.2" strokeLinejoin="round">
               <title>{`${b.nombre}: ${v?.n ?? 0} atropellos`}</title>
             </path>
           );
@@ -322,7 +323,7 @@ function PulsoComuna() {
             <h2 id="t-pulso" className="text-3xl font-bold tracking-tight">El pulso de la comuna</h2>
             <p className="mt-3 max-w-2xl text-lg text-tinta-suave">Una cifra de cada módulo. Toca una y te lleva a ver cómo se calculó.</p>
           </div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-tinta-suave ring-1 ring-nivel" title={r.origen === "api" ? "Los datos llegaron de la API" : "La API no está encendida, se leyó el archivo inicio.json"}>
+          <span className="inline-flex items-center gap-2 rounded-full bg-superficie px-3 py-1.5 text-xs font-semibold text-tinta-suave ring-1 ring-nivel" title={r.origen === "api" ? "Los datos llegaron de la API" : "La API no está encendida, se leyó el archivo inicio.json"}>
             <span className={`h-2 w-2 rounded-full ${r.origen === "api" ? "bg-[#2d9a5a]" : "bg-[#e0a526]"}`} aria-hidden="true" />
             {r.origen === "api" ? "En vivo desde la API" : "Desde archivo local"}
           </span>
@@ -331,12 +332,12 @@ function PulsoComuna() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {r.datos.pulso.map((p, i) => (
           <Revelar key={p.clave} retraso={(i % 3) * 70}>
-            <Link to={p.ruta} className="fila-modulo group flex h-full flex-col rounded-2xl border border-nivel bg-white p-5">
-              <span className="text-xs font-semibold uppercase tracking-wider text-ladera">{p.modulo}</span>
-              <span className="mt-2 text-4xl font-bold tabular-nums text-[#1a4d2e]">{p.valor == null ? "—" : String(p.valor).replace(".", ",")}</span>
+            <Link to={p.ruta} className="vidrio group flex h-full flex-col rounded-2xl p-5" style={{ ["--glow" as string]: acentoDeRuta(p.ruta).vivo }}>
+              <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-tinta-suave"><span className="h-2.5 w-2.5 rounded-full" style={{ background: acentoDeRuta(p.ruta).vivo }} />{p.modulo}</span>
+              <span className="mt-2 text-4xl font-bold tabular-nums text-marca">{p.valor == null ? "—" : String(p.valor).replace(".", ",")}</span>
               <span className="mt-2 text-base leading-snug text-tinta-suave">{p.texto}</span>
               {p.nota && <span className="mt-1 text-xs text-tinta-tenue">{p.nota}</span>}
-              <span className="mt-auto pt-3 text-sm font-semibold text-[#1a4d2e] opacity-70 transition group-hover:opacity-100">Ver más →</span>
+              <span className="mt-auto pt-3 text-sm font-semibold text-marca opacity-70 transition group-hover:opacity-100">Ver más →</span>
             </Link>
           </Revelar>
         ))}
@@ -368,7 +369,7 @@ export default function Inicio() {
         <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pb-28 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:px-8 lg:pt-16">
           <div>
             <Revelar>
-              <p className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-sm font-semibold text-[#1a4d2e] shadow-sm ring-1 ring-[#1a4d2e]/15">
+              <p className="inline-flex items-center gap-2 rounded-full bg-superficie/80 px-4 py-1.5 text-sm font-semibold text-marca shadow-sm ring-1 ring-marca/15">
                 <span className="h-2 w-2 rounded-full bg-[#f5b82e]" /> Territorio INN 2026 · Reto #4
               </p>
             </Revelar>
@@ -400,12 +401,12 @@ export default function Inicio() {
                 </Link>
                 <Link
                   to="/indicadores"
-                  className="inline-flex items-center gap-2 rounded-2xl border-2 border-[#1a4d2e]/40 bg-white/40 px-6 py-3.5 text-lg font-semibold text-[#1a4d2e] transition hover:border-[#1a4d2e] hover:bg-[#1a4d2e]/5"
+                  className="inline-flex items-center gap-2 rounded-2xl border-2 border-marca/40 bg-superficie/40 px-6 py-3.5 text-lg font-semibold text-marca transition hover:border-marca hover:bg-[#1a4d2e]/5"
                 >
                   Ver indicadores
                 </Link>
               </div>
-              <Link to="/mapa?3d=1" className="mt-5 inline-flex items-center gap-2 text-base font-medium text-tinta-suave transition hover:text-[#1a4d2e]">
+              <Link to="/mapa?3d=1" className="mt-5 inline-flex items-center gap-2 text-base font-medium text-tinta-suave transition hover:text-marca">
                 <IconoNav nombre="cubo" className="h-5 w-5" /> Explora los 11 barrios en 3D
               </Link>
             </Revelar>
@@ -417,7 +418,7 @@ export default function Inicio() {
             </Revelar>
           </div>
           <Revelar retraso={200}>
-            <figure className="rounded-3xl bg-white/70 p-3 shadow-xl ring-1 ring-black/5 backdrop-blur">
+            <figure className="rounded-3xl bg-superficie/70 p-3 shadow-xl ring-1 ring-black/5 backdrop-blur">
               <DibujoComuna stats={stats} />
               <figcaption className="px-2 pb-1 pt-3 text-sm text-tinta-suave">
                 <strong className="text-tinta">Pase el mouse o toque un barrio.</strong> Las líneas que se mueven son el Metrocable y los
@@ -489,7 +490,7 @@ export default function Inicio() {
                       <div className="mt-6">
                         <div className="flex items-baseline justify-between gap-2">
                           <span className="font-semibold">Referencia nacional</span>
-                          <span className="text-[2.6rem] font-extrabold leading-none tabular-nums text-[#2d6a4f]">
+                          <span className="text-[2.6rem] font-extrabold leading-none tabular-nums text-ladera">
                             <Cuenta hasta={REFERENCIA_M2} activo={v} /> <span className="text-lg font-bold">m²</span>
                           </span>
                         </div>
@@ -528,8 +529,8 @@ export default function Inicio() {
 
               <div className="mt-8 grid gap-4 md:grid-cols-3">
                 <Revelar>
-                  <div className="flex h-full gap-4 rounded-2xl bg-white/70 p-5 ring-1 ring-black/5">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#e3f1e6] text-[#1a4d2e]"><IconoNav nombre="tren" className="h-6 w-6" /></span>
+                  <div className="flex h-full gap-4 rounded-2xl bg-superficie/70 p-5 ring-1 ring-black/5">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-menta text-marca"><IconoNav nombre="tren" className="h-6 w-6" /></span>
                     <p className="text-base text-tinta-suave">
                       <strong className="text-tinta">{c.estaciones_en_comuna.length === 1 ? "Una sola estación" : `${c.estaciones_en_comuna.length} estaciones`}</strong> del sistema Metro queda dentro de la comuna ({c.estaciones_en_comuna.join(", ")}). Acevedo y Tricentenario, de la línea A, quedan fuera.
                     </p>
@@ -537,8 +538,8 @@ export default function Inicio() {
                 </Revelar>
                 {imcv && (
                   <Revelar retraso={100}>
-                    <div className="flex h-full gap-4 rounded-2xl bg-white/70 p-5 ring-1 ring-black/5">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#e3f1e6] text-[#1a4d2e]"><IconoNav nombre="corazon" className="h-6 w-6" /></span>
+                    <div className="flex h-full gap-4 rounded-2xl bg-superficie/70 p-5 ring-1 ring-black/5">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-menta text-marca"><IconoNav nombre="corazon" className="h-6 w-6" /></span>
                       <p className="text-base text-tinta-suave">
                         En calidad de vida (IMCV {imcv.ultimo_anio}) Santa Cruz ocupa el <strong className="text-tinta">puesto {imcv.posicion} de {imcv.de}</strong> comunas y corregimientos de Medellín.
                       </p>
@@ -547,8 +548,8 @@ export default function Inicio() {
                 )}
                 {andenes && (
                   <Revelar retraso={200}>
-                    <div className="flex h-full gap-4 rounded-2xl bg-white/70 p-5 ring-1 ring-black/5">
-                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-[#e3f1e6] text-[#1a4d2e]"><IconoNav nombre="andenes" className="h-6 w-6" /></span>
+                    <div className="flex h-full gap-4 rounded-2xl bg-superficie/70 p-5 ring-1 ring-black/5">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-menta text-marca"><IconoNav nombre="andenes" className="h-6 w-6" /></span>
                       <p className="text-base text-tinta-suave">
                         <strong className="text-tinta">La Alcaldía sí tiene un inventario de andenes:</strong> {dec(andenes.km)} km en la comuna, con un ancho típico de {dec(andenes.ancho_mediano_m)} m. Con él se calcula cuánto camina de verdad cada manzana.
                       </p>
@@ -576,9 +577,9 @@ export default function Inicio() {
                 <Revelar retraso={i * 70}>
                   <Link
                     to={m.ruta}
-                    className="fila-modulo group flex items-center gap-4 rounded-2xl border border-nivel bg-white px-4 py-4 shadow-sm sm:gap-5 sm:px-6 sm:py-5"
+                    className="fila-modulo group flex items-center gap-4 rounded-2xl border border-nivel bg-superficie px-4 py-4 shadow-sm sm:gap-5 sm:px-6 sm:py-5"
                   >
-                    <span className="fila-modulo-icono grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-[#e3f1e6] text-[#1a4d2e] sm:h-16 sm:w-16">
+                    <span className="fila-modulo-icono grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-menta text-marca sm:h-16 sm:w-16">
                       <IconoNav nombre={m.icono} className="h-8 w-8" trazo={1.7} />
                     </span>
                     <span className="min-w-0 flex-1">
@@ -586,15 +587,15 @@ export default function Inicio() {
                       <span className="mt-0.5 block text-base text-tinta-suave">{m.texto}</span>
                     </span>
                     {m.pronto ? (
-                      <span className="hidden shrink-0 items-center gap-2 rounded-full bg-[#fdf1c7] px-3.5 py-1.5 text-sm font-semibold text-[#8a5a00] sm:inline-flex">
+                      <span className="hidden shrink-0 items-center gap-2 rounded-full bg-ambar-claro px-3.5 py-1.5 text-sm font-semibold text-ambar-texto sm:inline-flex">
                         <span className="h-2.5 w-2.5 rounded-full bg-[#f5b82e]" /> Próximamente
                       </span>
                     ) : (
-                      <span className="hidden shrink-0 items-center gap-2 rounded-full bg-[#e3f1e6] px-3.5 py-1.5 text-sm font-semibold text-[#1a4d2e] sm:inline-flex">
+                      <span className="hidden shrink-0 items-center gap-2 rounded-full bg-menta px-3.5 py-1.5 text-sm font-semibold text-marca sm:inline-flex">
                         <span className="punto-vivo" /> Disponible
                       </span>
                     )}
-                    <span className="hidden w-28 shrink-0 items-center justify-end gap-1.5 text-base font-semibold text-[#1a4d2e] opacity-0 transition duration-200 group-hover:translate-x-0 group-hover:opacity-100 md:flex md:translate-x-2">
+                    <span className="hidden w-28 shrink-0 items-center justify-end gap-1.5 text-base font-semibold text-marca opacity-0 transition duration-200 group-hover:translate-x-0 group-hover:opacity-100 md:flex md:translate-x-2">
                       Explorar <IconoNav nombre="flecha" className="h-5 w-5" trazo={2.2} />
                     </span>
                   </Link>
@@ -607,16 +608,16 @@ export default function Inicio() {
         {/* ------------------------------------------------------------------ FUENTES */}
         <section className="mt-28 lg:mt-36" aria-labelledby="t-fuentes">
           <Revelar>
-            <aside className="relative rounded-r-2xl border-l-4 border-[#1a4d2e] bg-[#f0f7f0] px-6 py-8 sm:px-10">
-              <span aria-hidden="true" className="absolute right-6 top-2 select-none text-[6rem] font-bold leading-none text-[#1a4d2e]/10">”</span>
-              <h2 id="t-fuentes" className="text-sm font-bold uppercase tracking-widest text-[#1a4d2e]">
+            <aside className="relative rounded-r-2xl border-l-4 border-marca bg-menta-2 px-6 py-8 sm:px-10">
+              <span aria-hidden="true" className="absolute right-6 top-2 select-none text-[6rem] font-bold leading-none text-marca/10">”</span>
+              <h2 id="t-fuentes" className="text-sm font-bold uppercase tracking-widest text-marca">
                 Fuentes y calidad
               </h2>
               <p className="mt-3 max-w-3xl text-xl font-medium leading-relaxed text-tinta">
                 Todos los datos de esta versión vienen de la Alcaldía de Medellín y del DANE. Nada está inventado: lo que todavía no se
                 sabe aparece marcado como pendiente.
               </p>
-              <Link to="/fuentes" className="mt-5 inline-flex items-center gap-2 text-base font-semibold text-[#1a4d2e] underline-offset-4 hover:underline">
+              <Link to="/fuentes" className="mt-5 inline-flex items-center gap-2 text-base font-semibold text-marca underline-offset-4 hover:underline">
                 Ver fuentes y calidad <IconoNav nombre="flecha" className="h-5 w-5" trazo={2.2} />
               </Link>
             </aside>

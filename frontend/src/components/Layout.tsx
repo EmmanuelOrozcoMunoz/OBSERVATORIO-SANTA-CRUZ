@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import IconoNav from "./IconosNav";
 import Paleta from "./Paleta";
+import { acentoDeRuta } from "../lib/marca";
 
 const MODULOS: { ruta: string; nombre: string; icono: string; fase?: string }[] = [
   { ruta: "/", nombre: "Inicio", icono: "inicio" },
@@ -17,6 +18,7 @@ const MODULOS: { ruta: string; nombre: string; icono: string; fase?: string }[] 
   { ruta: "/datos", nombre: "Mis datos", icono: "subir" },
   { ruta: "/propuesta", nombre: "Propuesta de valor", icono: "corazon" },
   { ruta: "/fuentes", nombre: "Fuentes y calidad", icono: "fuentes" },
+  { ruta: "/identidad", nombre: "Manual de identidad", icono: "paleta" },
 ];
 
 export function Logo({ className = "" }: { className?: string }) {
@@ -44,9 +46,10 @@ function Navegacion({ onNavegar, compacta = false }: { onNavegar?: () => void; c
           onClick={onNavegar}
           title={compacta ? m.nombre : undefined}
           aria-label={m.nombre}
+          style={({ isActive }) => (isActive ? { backgroundImage: `linear-gradient(135deg, ${acentoDeRuta(m.ruta).medio}, ${acentoDeRuta(m.ruta).vivo})` } : undefined)}
           className={({ isActive }) =>
             `group relative flex items-center rounded-xl text-base transition-colors ${compacta ? "justify-center px-0 py-3" : "gap-3 px-3 py-2.5"} ${
-              isActive ? "bg-[#1a4d2e] text-white shadow-md" : "text-tinta hover:bg-[#e3f1e6]"
+              isActive ? "text-white shadow-md" : "text-tinta hover:bg-menta"
             }`
           }
         >
@@ -55,7 +58,7 @@ function Navegacion({ onNavegar, compacta = false }: { onNavegar?: () => void; c
               <IconoNav nombre={m.icono} className="h-7 w-7 shrink-0" trazo={isActive ? 2 : 1.7} />
               {!compacta && <span className={`flex-1 ${isActive ? "font-semibold" : ""}`}>{m.nombre}</span>}
               {m.fase && !compacta && (
-                <span className={`rounded-full px-2 py-0.5 text-[0.7rem] font-semibold ${isActive ? "bg-white/20 text-white" : "bg-[#fdf1c7] text-[#8a5a00]"}`}>{m.fase}</span>
+                <span className={`rounded-full px-2 py-0.5 text-[0.7rem] font-semibold ${isActive ? "bg-superficie/20 text-white" : "bg-ambar-claro text-ambar-texto"}`}>{m.fase}</span>
               )}
               {m.fase && compacta && <span aria-hidden="true" className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-[#f5b82e]" />}
             </>
@@ -63,6 +66,43 @@ function Navegacion({ onNavegar, compacta = false }: { onNavegar?: () => void; c
         </NavLink>
       ))}
     </nav>
+  );
+}
+
+// ------------------------------------------------------------------ modo noche
+const CLAVE_TEMA = "observatorio-santa-cruz:tema";
+
+/** Claro por defecto (se lee mejor al sol y al imprimir); el modo noche es una opción y se recuerda. */
+export function useTema() {
+  const [noche, setNoche] = useState(() => {
+    try {
+      return localStorage.getItem(CLAVE_TEMA) === "noche";
+    } catch {
+      return false;
+    }
+  });
+  useEffect(() => {
+    const html = document.documentElement;
+    html.classList.add("cambiando-tema");
+    html.classList.toggle("noche", noche);
+    const t = setTimeout(() => html.classList.remove("cambiando-tema"), 400);
+    try {
+      localStorage.setItem(CLAVE_TEMA, noche ? "noche" : "dia");
+    } catch {
+      /* sin almacenamiento */
+    }
+    return () => clearTimeout(t);
+  }, [noche]);
+  return [noche, setNoche] as const;
+}
+
+function BotonTema({ noche, onCambiar, compacta = false }: { noche: boolean; onCambiar: () => void; compacta?: boolean }) {
+  return (
+    <button type="button" onClick={onCambiar} aria-pressed={noche} title={noche ? "Cambiar a modo día" : "Cambiar a modo noche"}
+      className={`flex w-full items-center rounded-xl py-2.5 text-base font-medium text-tinta-suave transition hover:bg-menta hover:text-tinta ${compacta ? "justify-center" : "gap-3 px-3"}`}>
+      <IconoNav nombre={noche ? "sol" : "luna"} className="h-6 w-6 shrink-0" trazo={2} />
+      {!compacta && (noche ? "Modo día" : "Modo noche")}
+    </button>
   );
 }
 
@@ -98,7 +138,7 @@ function useLetra() {
 
 /** Botones A- y A+. Flotante en casi todas las páginas; dentro del menú en el mapa, donde esa esquina está ocupada. */
 function LetraTamano({ nivel, onNivel, variante }: { nivel: number; onNivel: (n: number) => void; variante: "flotante" | "barra" }) {
-  const base = "grid place-items-center rounded-full font-bold transition hover:bg-[#e3f1e6] disabled:opacity-35 disabled:hover:bg-transparent";
+  const base = "grid place-items-center rounded-full font-bold transition hover:bg-menta disabled:opacity-35 disabled:hover:bg-transparent";
   const botones = (
     <>
       <button type="button" aria-label="Hacer la letra más pequeña" title="Letra más pequeña" disabled={nivel === 0} onClick={() => onNivel(nivel - 1)} className={`${base} h-11 w-11 text-base`}>
@@ -111,13 +151,13 @@ function LetraTamano({ nivel, onNivel, variante }: { nivel: number; onNivel: (n:
   );
   if (variante === "barra")
     return (
-      <div role="group" aria-label="Tamaño de la letra" className="flex items-center justify-between rounded-2xl border border-nivel bg-white px-3 py-1">
+      <div role="group" aria-label="Tamaño de la letra" className="flex items-center justify-between rounded-2xl border border-nivel bg-superficie px-3 py-1">
         <span className="text-sm font-semibold text-tinta-suave">Letra</span>
         <div className="flex items-center gap-1">{botones}</div>
       </div>
     );
   return (
-    <div role="group" aria-label="Tamaño de la letra" className="fixed bottom-4 right-4 z-[1200] flex items-center gap-1 rounded-full bg-white/95 py-1 pl-4 pr-1.5 shadow-lg ring-1 ring-black/10 backdrop-blur">
+    <div role="group" aria-label="Tamaño de la letra" className="fixed bottom-4 right-4 z-[1200] flex items-center gap-1 rounded-full bg-superficie/95 py-1 pl-4 pr-1.5 shadow-lg ring-1 ring-black/10 backdrop-blur">
       <span className="mr-1 text-sm font-semibold text-tinta-suave">Letra</span>
       {botones}
     </div>
@@ -140,6 +180,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   }, []);
   const esMapa = pathname === "/mapa";
   const [nivel, setNivel] = useLetra();
+  const [noche, setNoche] = useTema();
   const [colapsada, setColapsada] = useState(() => {
     try {
       return localStorage.getItem(CLAVE_BARRA) === "1";
@@ -179,20 +220,21 @@ export default function Layout({ children }: { children: ReactNode }) {
           )}
         </div>
         <button type="button" onClick={() => setBuscar(true)} title="Buscar (Ctrl + K)" aria-label="Buscar un módulo o barrio"
-          className={`mb-3 flex items-center rounded-xl border border-nivel bg-white py-2 text-sm text-tinta-suave transition hover:border-[#1a4d2e] hover:text-tinta ${colapsada ? "justify-center px-0" : "gap-2 px-3"}`}>
+          className={`mb-3 flex items-center rounded-xl border border-nivel bg-superficie py-2 text-sm text-tinta-suave transition hover:border-marca hover:text-tinta ${colapsada ? "justify-center px-0" : "gap-2 px-3"}`}>
           <IconoNav nombre="lupa" className="h-5 w-5 shrink-0" trazo={2} />
           {!colapsada && <><span className="flex-1 text-left">Buscar…</span><kbd className="rounded bg-papel px-1.5 py-0.5 text-[0.7rem] font-semibold">Ctrl K</kbd></>}
         </button>
         <Navegacion compacta={colapsada} />
         <div className="mt-auto space-y-2 pt-4">
           {esMapa && !colapsada && <LetraTamano nivel={nivel} onNivel={setNivel} variante="barra" />}
+          <BotonTema noche={noche} onCambiar={() => setNoche((v) => !v)} compacta={colapsada} />
           <button
             type="button"
             onClick={() => setColapsada((v) => !v)}
             aria-expanded={!colapsada}
             aria-label={colapsada ? "Mostrar el menú completo" : "Contraer el menú"}
             title={colapsada ? "Mostrar el menú completo" : "Contraer el menú"}
-            className={`flex w-full items-center rounded-xl py-2.5 text-base font-medium text-tinta-suave transition hover:bg-[#e3f1e6] hover:text-tinta ${colapsada ? "justify-center" : "gap-3 px-3"}`}
+            className={`flex w-full items-center rounded-xl py-2.5 text-base font-medium text-tinta-suave transition hover:bg-menta hover:text-tinta ${colapsada ? "justify-center" : "gap-3 px-3"}`}
           >
             <IconoNav nombre={colapsada ? "derecha" : "izquierda"} className="h-6 w-6 shrink-0" trazo={2} />
             {!colapsada && "Contraer menú"}
@@ -221,7 +263,8 @@ export default function Layout({ children }: { children: ReactNode }) {
         {menuAbierto && (
           <div id="menu-movil" className="absolute inset-x-0 top-full border-b border-nivel bg-papel p-3 shadow-lg">
             <Navegacion onNavegar={() => setMenuAbierto(false)} />
-            <div className="mt-3">
+            <div className="mt-3 space-y-2">
+              <BotonTema noche={noche} onCambiar={() => setNoche((v) => !v)} />
               <LetraTamano nivel={nivel} onNivel={setNivel} variante="barra" />
             </div>
           </div>

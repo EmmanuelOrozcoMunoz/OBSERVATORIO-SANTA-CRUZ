@@ -138,10 +138,10 @@ function BotonTema({ t, activo, soloComuna, onClick }: { t: Tema; activo: boolea
       aria-pressed={activo}
       onClick={onClick}
       className={`tarjeta-tema group flex w-full min-w-[11.5rem] items-center gap-3 rounded-2xl border-2 px-3 py-2.5 text-left ${
-        activo ? "border-[#1a4d2e] bg-white text-tinta shadow-lg" : "border-transparent bg-white/90 text-tinta"
+        activo ? "border-marca bg-superficie text-tinta shadow-lg" : "border-transparent bg-superficie/90 text-tinta"
       }`}
     >
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl" style={{ background: activo ? t.color : `${t.color}1f`, color: activo ? "#fff" : t.color }}>
+      <span className="icono-tema grid h-11 w-11 shrink-0 place-items-center rounded-xl" style={{ background: activo ? t.color : `${t.color}1f`, color: activo ? "#fff" : t.color }}>
         <Icono nombre={t.id} className="h-7 w-7" />
       </span>
       <span className="leading-tight">
@@ -162,12 +162,12 @@ function TemaCuadro({ t, activo, soloComuna, onClick }: { t: Tema; activo: boole
       title={t.ayuda}
       onClick={onClick}
       className={`tarjeta-tema flex min-h-[5.6rem] flex-col items-start justify-between rounded-2xl border-2 p-3 text-left ${
-        activo ? "border-[#1a4d2e] bg-white text-tinta shadow-lg" : "border-transparent bg-white/90 text-tinta shadow-sm"
+        activo ? "border-marca bg-superficie text-tinta shadow-lg" : "border-transparent bg-superficie/90 text-tinta shadow-sm"
       }`}
       style={activo ? { backgroundImage: `linear-gradient(160deg, ${t.color}1a, transparent 70%)` } : undefined}
     >
       <span className="flex w-full items-center justify-between">
-        <span className="grid h-9 w-9 place-items-center rounded-xl transition-colors" style={{ background: activo ? t.color : `${t.color}1a`, color: activo ? "#fff" : t.color }}>
+        <span className="icono-tema grid h-9 w-9 place-items-center rounded-xl transition-colors" style={{ background: activo ? t.color : `${t.color}1a`, color: activo ? "#fff" : t.color }}>
           <Icono nombre={t.id} className="h-6 w-6" />
         </span>
         {activo && <Chulo />}
@@ -400,7 +400,7 @@ export default function Mapa() {
 
         {/* Barra superior: modo, búsqueda y vista */}
         <div className={`pointer-events-none absolute inset-x-3 top-3 z-10 flex flex-wrap items-start gap-2 md:inset-x-4 md:top-4 md:gap-3 ${cromo}`}>
-          <div role="radiogroup" aria-label="Qué parte de la ciudad ver" className={`flex rounded-2xl bg-white/95 p-1.5 shadow-lg backdrop-blur ${solo ? "" : "pointer-events-auto"}`}>
+          <div role="radiogroup" aria-label="Qué parte de la ciudad ver" className={`flex rounded-2xl bg-superficie/95 p-1.5 shadow-lg backdrop-blur ${solo ? "" : "pointer-events-auto"}`}>
             {(
               [
                 ["comuna", "Santa Cruz"],
@@ -436,7 +436,7 @@ export default function Mapa() {
               type="button"
               aria-pressed={vista3d}
               onClick={() => setVista3d((v) => !v)}
-              className={`flex items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg ${vista3d ? "bg-ladera text-papel" : "bg-white/95 text-tinta"}`}
+              className={`flex items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg ${vista3d ? "bg-ladera text-papel" : "bg-superficie/95 text-tinta"}`}
             >
               <Icono nombre="3d" className="h-6 w-6" />
               {vista3d ? "Ver en plano" : "Ver en 3D"}
@@ -453,7 +453,7 @@ export default function Mapa() {
             <button
               type="button"
               onClick={() => (recorrido ? setRecorrido(false) : iniciarRecorrido())}
-              className={`hidden items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg sm:flex ${recorrido ? "bg-ambar text-white" : "bg-white/95 text-tinta"}`}
+              className={`hidden items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg sm:flex ${recorrido ? "bg-ambar text-white" : "bg-superficie/95 text-tinta"}`}
             >
               <Icono nombre="giro" className="h-6 w-6" />
               <span className="sr-only 2xl:not-sr-only">{recorrido ? "Detener recorrido" : "Recorrido"}</span>
@@ -496,7 +496,7 @@ export default function Mapa() {
               />
             ))}
           </div>
-          <label className="block rounded-2xl bg-white/90 px-4 py-3 shadow-sm">
+          <label className="block rounded-2xl bg-superficie/90 px-4 py-3 shadow-sm">
             <span className="flex items-baseline justify-between text-sm font-semibold">
               Opacidad de las capas
               <span className="tabular-nums text-tinta-suave">{opacidad}%</span>
@@ -516,7 +516,7 @@ export default function Mapa() {
           <button
             type="button"
             onClick={() => setMasOpciones(true)}
-            className="flex items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-tinta/25 bg-white/85 px-3 py-3 text-base font-semibold hover:bg-white"
+            className="flex items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-tinta/25 bg-superficie/85 px-3 py-3 text-base font-semibold hover:bg-superficie"
           >
             <Icono nombre="capas" className="h-5 w-5" />
             Más opciones y leyenda
@@ -527,7 +527,7 @@ export default function Mapa() {
 
         {/* Temas en celular y tableta: fila deslizable abajo. Deslizar hacia arriba = Solo Mapa */}
         <div {...deslizarArriba} className={`absolute inset-x-0 bottom-0 z-10 lg:hidden ${ruteo ? "hidden" : ""} ${cromo}`}>
-          <div className="mx-auto mb-1 flex w-fit items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold text-tinta-suave shadow">
+          <div className="mx-auto mb-1 flex w-fit items-center gap-2 rounded-full bg-superficie/85 px-3 py-1 text-xs font-semibold text-tinta-suave shadow">
             <span aria-hidden="true" className="h-1 w-8 rounded-full bg-tinta/30" />
             Deslice hacia arriba para ver solo el mapa
           </div>
@@ -560,7 +560,7 @@ export default function Mapa() {
             <button
               type="button"
               onClick={() => setSolo(false)}
-              className="salida-limpia absolute left-4 top-4 z-20 flex items-center gap-2 rounded-2xl bg-white/95 px-4 py-3 text-base font-semibold text-tinta shadow-lg backdrop-blur hover:bg-white"
+              className="salida-limpia absolute left-4 top-4 z-20 flex items-center gap-2 rounded-2xl bg-superficie/95 px-4 py-3 text-base font-semibold text-tinta shadow-lg backdrop-blur hover:bg-superficie"
             >
               <span aria-hidden="true" className="text-xl leading-none">✕</span> Salir del modo limpio
             </button>
@@ -578,7 +578,7 @@ export default function Mapa() {
 
         {/* Leyenda compacta (computador), arriba a la derecha junto a los controles */}
         {leyenda.length > 0 && !ruteo && (
-          <div className={`absolute right-20 top-24 z-10 hidden w-64 rounded-2xl bg-white/95 shadow-lg backdrop-blur xl:block ${cromo}`}>
+          <div className={`absolute right-20 top-24 z-10 hidden w-64 rounded-2xl bg-superficie/95 shadow-lg backdrop-blur xl:block ${cromo}`}>
             <button
               type="button"
               aria-expanded={verLeyenda}
@@ -598,7 +598,7 @@ export default function Mapa() {
 
         {/* Ayuda la primera vez */}
         {ayuda && !solo && (
-          <div role="dialog" aria-label="Cómo usar el mapa" className="absolute left-1/2 top-1/2 z-20 w-[min(92%,30rem)] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white p-6 shadow-2xl">
+          <div role="dialog" aria-label="Cómo usar el mapa" className="absolute left-1/2 top-1/2 z-20 w-[min(92%,30rem)] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-superficie p-6 shadow-2xl">
             <h2 className="text-2xl font-bold [font-stretch:110%]">Así se usa el mapa</h2>
             <ol className="mt-4 space-y-3 text-lg">
               <li><strong>1.</strong> Elija qué quiere ver con los botones grandes: Metro, colegios, parques…</li>
@@ -616,7 +616,7 @@ export default function Mapa() {
           <aside aria-label="Más opciones del mapa" className="absolute inset-y-0 left-0 z-30 w-full max-w-sm overflow-y-auto bg-papel p-5 shadow-2xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-2xl font-bold [font-stretch:110%]">Más opciones</h2>
-              <button type="button" onClick={() => setMasOpciones(false)} className="flex items-center gap-1 rounded-xl border border-nivel bg-white px-3 py-2 text-base font-medium">
+              <button type="button" onClick={() => setMasOpciones(false)} className="flex items-center gap-1 rounded-xl border border-nivel bg-superficie px-3 py-2 text-base font-medium">
                 <Icono nombre="cerrar" className="h-5 w-5" /> Cerrar
               </button>
             </div>
@@ -634,7 +634,7 @@ export default function Mapa() {
               <h3 className="mb-2 text-lg font-bold">Leyenda</h3>
               <Leyenda bloques={leyenda} />
             </section>
-            <button type="button" onClick={() => setReencuadre((n) => n + 1)} className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-nivel bg-white px-4 py-3 text-base font-semibold">
+            <button type="button" onClick={() => setReencuadre((n) => n + 1)} className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-nivel bg-superficie px-4 py-3 text-base font-semibold">
               <Icono nombre="inicio" className="h-5 w-5" /> Centrar el mapa otra vez
             </button>
           </aside>
@@ -658,7 +658,7 @@ export default function Mapa() {
           className={`absolute inset-x-0 bottom-0 z-40 max-h-[62%] overflow-y-auto rounded-t-3xl bg-papel p-5 shadow-2xl md:static md:z-auto md:max-h-none md:w-[26rem] md:shrink-0 md:rounded-none md:border-l md:border-nivel md:shadow-none ${solo ? "!hidden" : ""}`}
         >
           <div className="mb-3 flex justify-end">
-            <button type="button" onClick={cerrarFicha} className="flex items-center gap-1 rounded-xl border border-nivel bg-white px-3 py-2 text-base font-medium hover:bg-papel-hondo">
+            <button type="button" onClick={cerrarFicha} className="flex items-center gap-1 rounded-xl border border-nivel bg-superficie px-3 py-2 text-base font-medium hover:bg-papel-hondo">
               <Icono nombre="cerrar" className="h-5 w-5" /> Cerrar
             </button>
           </div>

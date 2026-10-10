@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------- tokens de color (ver /identidad) */
+:root {
+  --papel: 245 246 242; --papel-hondo: 236 238 231; --superficie: 255 255 255; --nivel: 212 217 207;
+  --tinta: 29 43 42; --tinta-suave: 74 89 88; --tinta-tenue: 93 106 104;
+  --marca: 26 77 46; --menta: 227 241 230; --menta-2: 238 243 236;
+  --aviso-fondo: 253 246 221; --aviso-borde: 232 217 168; --peligro: 194 48 26;
+  --ladera: 45 106 79; --ladera-hondo: 31 77 57; --ladera-claro: 216 232 221; --cable: 36 89 138; --cable-claro: 219 230 241;
+  --ladrillo: 168 69 43; --ladrillo-claro: 243 221 213; --ambar: 183 121 31; --ambar-claro: 246 231 200; --ambar-texto: 138 90 0;
+  color-scheme: light;
+}
+html.noche {
+  --papel: 11 22 17; --papel-hondo: 22 38 30; --superficie: 19 36 28; --nivel: 44 68 57;
+  --tinta: 232 239 233; --tinta-suave: 169 187 178; --tinta-tenue: 138 160 149;
+  --marca: 143 208 168; --menta: 30 60 44; --menta-2: 25 47 36;
+  --aviso-fondo: 56 46 18; --aviso-borde: 98 80 34; --peligro: 255 140 114;
+  --ladera: 111 194 147; --ladera-hondo: 168 222 190; --ladera-claro: 30 60 44; --cable: 128 182 230; --cable-claro: 22 44 66;
+  --ladrillo: 236 146 118; --ladrillo-claro: 66 32 24; --ambar: 236 184 84; --ambar-claro: 62 46 16; --ambar-texto: 240 202 124;
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     font-family: "Inter", system-ui, sans-serif;
@@ -62,7 +82,7 @@
 
 /* ------------------------------------------------------------ mapa inmersivo */
 .mapa-lienzo {
-  background: linear-gradient(160deg, #f8f6f1 0%, #e8f0e8 100%);
+  background: linear-gradient(160deg, rgb(var(--papel)) 0%, rgb(var(--papel-hondo)) 100%);
   transition: background 600ms ease;
 }
 .mapa-lienzo.es-noche {
@@ -277,16 +297,16 @@ html.letra-grande {
 }
 .fila-modulo:hover,
 .fila-modulo:focus-visible {
-  background-color: #f0f7f0;
-  border-color: #1a4d2e;
-  box-shadow: 0 10px 24px -10px rgba(26, 77, 46, 0.3);
+  background-color: rgb(var(--menta-2));
+  border-color: rgb(var(--marca));
+  box-shadow: 0 10px 24px -10px rgb(var(--marca) / 0.35);
 }
 .fila-modulo-icono {
   transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
 }
 .fila-modulo:hover .fila-modulo-icono {
-  background-color: #1a4d2e;
-  color: #ffffff;
+  background-color: rgb(var(--marca));
+  color: rgb(var(--papel));
   transform: scale(1.06);
 }
 /* Punto verde que late dentro de la insignia "Disponible" */
@@ -328,4 +348,45 @@ aside[data-cromo="lateral"][data-animar] {
 }
 @media (prefers-reduced-motion: reduce) {
   .pulso-estacion, .punto-vivo::after, .flujo-linea { animation: none; }
+}
+
+/* Tarjeta "vidrio": borde fino y, al pasar el mouse, un brillo del color de su dato. En modo noche es translúcida. */
+.vidrio {
+  background: rgb(var(--superficie) / 0.94);
+  border: 1px solid rgb(var(--nivel));
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+.vidrio:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--glow, #2d6a4f) 55%, rgb(var(--nivel)));
+  box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--glow, #2d6a4f) 60%, transparent);
+}
+.vidrio--quieto:hover {
+  transform: none;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  border-color: rgb(var(--nivel));
+}
+html.noche .vidrio {
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.02)), rgb(var(--superficie) / 0.8);
+  border-color: rgb(255 255 255 / 0.09);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+html.noche .vidrio:hover {
+  border-color: color-mix(in srgb, var(--glow, #6fc293) 65%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--glow, #6fc293) 35%, transparent), 0 12px 40px -14px color-mix(in srgb, var(--glow, #6fc293) 70%, transparent);
+}
+html.noche .vidrio--quieto:hover {
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+  border-color: rgb(255 255 255 / 0.09);
+}
+/* El cambio de tema se desliza en vez de saltar */
+html.cambiando-tema *, html.cambiando-tema *::before, html.cambiando-tema *::after {
+  transition: background-color 350ms ease, color 350ms ease, border-color 350ms ease !important;
+}
+/* Íconos de color fijo (capas del mapa): en modo noche se aclaran para que se lean */
+html.noche .icono-tema {
+  filter: brightness(1.55) saturate(1.1);
 }

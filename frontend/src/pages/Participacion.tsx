@@ -166,7 +166,7 @@ export default function Participacion() {
       </header>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
-        <form onSubmit={enviar} noValidate className="space-y-4 rounded-lg border border-nivel bg-white p-4">
+        <form onSubmit={enviar} noValidate className="space-y-4 rounded-lg border border-nivel bg-superficie p-4">
           <div>
             <label htmlFor="categoria" className="block font-semibold">
               Tipo de problema
@@ -180,7 +180,7 @@ export default function Participacion() {
               }}
               aria-invalid={!!errores.categoria}
               aria-describedby={errores.categoria ? "e-categoria" : undefined}
-              className="mt-1 w-full rounded-md border border-nivel bg-white px-2 py-2"
+              className="mt-1 w-full rounded-md border border-nivel bg-superficie px-2 py-2"
             >
               <option value="">Elija una opción</option>
               {Object.entries(CATEGORIAS).map(([id, n]) => (

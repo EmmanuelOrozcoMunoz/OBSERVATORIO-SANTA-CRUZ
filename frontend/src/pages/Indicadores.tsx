@@ -40,7 +40,7 @@ const CLASES_SINIESTRO: [string, string][] = [
 
 function Panel({ titulo, descripcion, children }: { titulo: string; descripcion?: string; children: ReactNode }) {
   return (
-    <section className="rounded-lg border border-nivel bg-white p-4">
+    <section className="rounded-lg border border-nivel bg-superficie p-4">
       <h3 className="font-bold [font-stretch:108%]">{titulo}</h3>
       {descripcion && <p className="mt-0.5 text-sm text-tinta-suave">{descripcion}</p>}
       <div className="mt-3">{children}</div>
@@ -141,7 +141,7 @@ function Contenido({ d }: { d: Ind }) {
       <div className="flex justify-end">
         <label className="text-sm">
           <span className="block font-semibold">Resaltar un barrio</span>
-          <select value={sel} onChange={(e) => setSel(e.target.value)} className="mt-1 rounded-md border border-nivel bg-white px-2 py-1.5">
+          <select value={sel} onChange={(e) => setSel(e.target.value)} className="mt-1 rounded-md border border-nivel bg-superficie px-2 py-1.5">
             <option value="">Toda la comuna</option>
             {barrios.map((b) => (
               <option key={b.codigo} value={b.codigo}>
@@ -176,7 +176,7 @@ function Contenido({ d }: { d: Ind }) {
       </section>
 
       {ficha && (
-        <section className="rounded-lg border border-nivel bg-white p-4">
+        <section className="rounded-lg border border-nivel bg-superficie p-4">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm text-tinta-suave">Ficha del barrio seleccionado</p>
             <Link to={`/mapa?barrio=${ficha.codigo}`} className="rounded-md bg-ladera px-3 py-1.5 text-sm text-papel">

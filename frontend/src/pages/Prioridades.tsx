@@ -147,7 +147,7 @@ function calcular(escenarios: Escenario[], precios: Record<string, Precio>, peso
 
 function Formula({ letra, nombre, formula, unidad, nota }: { letra: string; nombre: string; formula: string; unidad: string; nota: string }) {
   return (
-    <div className="rounded-xl border border-nivel bg-white p-4">
+    <div className="rounded-xl border border-nivel bg-superficie p-4">
       <p className="text-sm font-semibold text-tinta-suave">{letra}</p>
       <h3 className="font-bold">{nombre}</h3>
       <p className="mt-2 rounded bg-papel-hondo px-2 py-1.5 font-mono text-[0.8rem]">{formula}</p>
@@ -203,7 +203,7 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
         </div>
       </section>
 
-      <section aria-labelledby="t-precios" className="rounded-2xl border border-nivel bg-white p-5">
+      <section aria-labelledby="t-precios" className="rounded-2xl border border-nivel bg-superficie p-5">
         <h2 id="t-precios" className="text-xl font-bold">Precios unitarios</h2>
         <p className="mt-1 max-w-3xl text-sm text-tinta-suave">
           La plataforma no trae precios porque no se encontró una fuente pública confiable para estas obras en Medellín. Si el equipo
@@ -219,21 +219,21 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
                 <legend className="font-semibold">{t.nombre}</legend>
                 <label className="block text-sm">
                   Precio unitario ({t.unidad})
-                  <input type="number" min={0} inputMode="numeric" value={p.valor ?? ""} onChange={(e) => cambiarPrecio(t.id, "valor", e.target.value)} className="mt-1 w-full rounded-lg border border-nivel bg-white px-3 py-2 text-base" placeholder="Pendiente de datos" />
+                  <input type="number" min={0} inputMode="numeric" value={p.valor ?? ""} onChange={(e) => cambiarPrecio(t.id, "valor", e.target.value)} className="mt-1 w-full rounded-lg border border-nivel bg-superficie px-3 py-2 text-base" placeholder="Pendiente de datos" />
                 </label>
                 <label className="block text-sm">
                   Fuente del precio (obligatoria)
-                  <input type="text" value={p.fuente} onChange={(e) => cambiarPrecio(t.id, "fuente", e.target.value)} className={`mt-1 w-full rounded-lg border bg-white px-3 py-2 text-base ${sinFuente ? "border-ladrillo" : "border-nivel"}`} placeholder="Ej.: licitación SIF 2025, ítem 3.2" />
+                  <input type="text" value={p.fuente} onChange={(e) => cambiarPrecio(t.id, "fuente", e.target.value)} className={`mt-1 w-full rounded-lg border bg-superficie px-3 py-2 text-base ${sinFuente ? "border-ladrillo" : "border-nivel"}`} placeholder="Ej.: licitación SIF 2025, ítem 3.2" />
                 </label>
                 {sinFuente && <p className="text-sm text-ladrillo">Sin fuente no se calcula el costo.</p>}
                 <div className="grid grid-cols-2 gap-2">
                   <label className="block text-sm">
                     Fecha del precio
-                    <input type="month" value={p.fecha} onChange={(e) => cambiarPrecio(t.id, "fecha", e.target.value)} className="mt-1 w-full rounded-lg border border-nivel bg-white px-3 py-2" />
+                    <input type="month" value={p.fecha} onChange={(e) => cambiarPrecio(t.id, "fecha", e.target.value)} className="mt-1 w-full rounded-lg border border-nivel bg-superficie px-3 py-2" />
                   </label>
                   <label className="block text-sm">
                     Costos indirectos (%)
-                    <input type="number" min={0} max={100} value={p.aiu ?? ""} onChange={(e) => cambiarPrecio(t.id, "aiu", e.target.value)} className="mt-1 w-full rounded-lg border border-nivel bg-white px-3 py-2" placeholder="Opcional" />
+                    <input type="number" min={0} max={100} value={p.aiu ?? ""} onChange={(e) => cambiarPrecio(t.id, "aiu", e.target.value)} className="mt-1 w-full rounded-lg border border-nivel bg-superficie px-3 py-2" placeholder="Opcional" />
                   </label>
                 </div>
               </fieldset>
@@ -242,7 +242,7 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
         </div>
       </section>
 
-      <section aria-labelledby="t-pesos" className="rounded-2xl border border-nivel bg-white p-5">
+      <section aria-labelledby="t-pesos" className="rounded-2xl border border-nivel bg-superficie p-5">
         <h2 id="t-pesos" className="text-xl font-bold">Pesos del modelo</h2>
         <p className="mt-1 max-w-3xl text-sm text-tinta-suave">
           Son pesos propuestos por el equipo, no oficiales. Cámbielos y la lista se reordena. Cada criterio se normaliza de 0 a 1 antes
@@ -277,13 +277,13 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
           </div>
           <div role="group" aria-label="Filtrar por tipo" className="flex gap-2">
             {(["todos", "espacio_publico", "andenes"] as const).map((f) => (
-              <button key={f} type="button" aria-pressed={filtro === f} onClick={() => setFiltro(f)} className={`rounded-full border px-3 py-1.5 text-sm ${filtro === f ? "border-ladera bg-ladera text-papel" : "border-nivel bg-white"}`}>
+              <button key={f} type="button" aria-pressed={filtro === f} onClick={() => setFiltro(f)} className={`rounded-full border px-3 py-1.5 text-sm ${filtro === f ? "border-ladera bg-ladera text-papel" : "border-nivel bg-superficie"}`}>
                 {f === "todos" ? "Todos" : f === "espacio_publico" ? "Espacio público" : "Andenes"}
               </button>
             ))}
           </div>
         </div>
-        <div className="mt-3 overflow-x-auto rounded-2xl border border-nivel bg-white">
+        <div className="mt-3 overflow-x-auto rounded-2xl border border-nivel bg-superficie">
           <table className="w-full min-w-[980px] text-sm">
             <thead>
               <tr className="border-b border-nivel text-left text-tinta-suave">

@@ -112,14 +112,14 @@ export default function Buscador({ onElegir, modo = "comuna" }: { onElegir: (r: 
           if (e.key === "Enter" && resultados[activo]) elegir(resultados[activo]);
           if (e.key === "Escape") setAbierto(false);
         }}
-        className="w-full rounded-2xl border border-nivel bg-white/95 px-4 py-3 text-base shadow-lg backdrop-blur placeholder:text-tinta-tenue"
+        className="w-full rounded-2xl border border-nivel bg-superficie/95 px-4 py-3 text-base shadow-lg backdrop-blur placeholder:text-tinta-tenue"
       />
       {error && <p className="mt-1 text-xs text-ladrillo">La búsqueda no está disponible: {error}</p>}
       {abierto && consulta.trim().length >= 2 && indice && (
         <ul
           id="resultados-busqueda"
           role="listbox"
-          className="absolute z-[1200] mt-1 max-h-80 w-full overflow-auto rounded-2xl border border-nivel bg-white py-1 shadow-xl"
+          className="absolute z-[1200] mt-1 max-h-80 w-full overflow-auto rounded-2xl border border-nivel bg-superficie py-1 shadow-xl"
         >
           {resultados.length === 0 && <li className="px-3 py-2 text-sm text-tinta-suave">No hay resultados en la comuna.</li>}
           {resultados.map((r, i) => (

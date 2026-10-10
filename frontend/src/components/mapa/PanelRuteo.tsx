@@ -21,7 +21,7 @@ const minutos = (s: number) => {
 function Detalle({ r, titulo }: { r: Ruta; titulo: string }) {
   const tipos = Object.entries(r.porTipo).sort((a, b) => b[1] - a[1]);
   return (
-    <div className="rounded-2xl bg-white p-4 shadow-sm">
+    <div className="rounded-2xl bg-superficie p-4 shadow-sm">
       <p className="text-sm text-tinta-suave">{titulo}</p>
       <p className="mt-1 text-3xl font-bold tabular-nums [font-stretch:110%]">{minutos(r.segundos)}</p>
       <p className="text-base">
@@ -133,7 +133,7 @@ export default function PanelRuteo({ clic, onGeo, onEncuadrar, onCerrar }: Props
                 : "Toque en el mapa el punto de partida, por ejemplo su casa."}
           </p>
         </div>
-        <button type="button" onClick={onCerrar} className="shrink-0 rounded-xl border border-nivel bg-white px-3 py-2 text-base font-medium">
+        <button type="button" onClick={onCerrar} className="shrink-0 rounded-xl border border-nivel bg-superficie px-3 py-2 text-base font-medium">
           Salir
         </button>
       </div>
@@ -154,7 +154,7 @@ export default function PanelRuteo({ clic, onGeo, onEncuadrar, onCerrar }: Props
                     type="button"
                     aria-pressed={sel}
                     onClick={() => setTipoActivo(r.tipo)}
-                    className={`flex w-full items-center gap-3 rounded-2xl border-2 px-3 py-2.5 text-left ${sel ? "border-tinta bg-white shadow" : "border-transparent bg-white/80 hover:bg-white"}`}
+                    className={`flex w-full items-center gap-3 rounded-2xl border-2 px-3 py-2.5 text-left ${sel ? "border-tinta bg-superficie shadow" : "border-transparent bg-superficie/80 hover:bg-superficie"}`}
                   >
                     <span className="h-4 w-4 shrink-0 rounded-full" style={{ background: d.color }} />
                     <span className="min-w-0 flex-1">
@@ -187,7 +187,7 @@ export default function PanelRuteo({ clic, onGeo, onEncuadrar, onCerrar }: Props
             {elegirB ? "Esperando el destino…" : "Elegir un destino en el mapa"}
           </button>
           {destinoB && (
-            <button type="button" onClick={() => setDestinoB(null)} className="rounded-xl border border-nivel bg-white px-4 py-2.5 text-base font-medium">
+            <button type="button" onClick={() => setDestinoB(null)} className="rounded-xl border border-nivel bg-superficie px-4 py-2.5 text-base font-medium">
               Ver lugares cercanos
             </button>
           )}

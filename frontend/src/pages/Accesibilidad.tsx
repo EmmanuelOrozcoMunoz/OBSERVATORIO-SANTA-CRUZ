@@ -20,10 +20,10 @@ function Calculadora() {
   const minutosPlano = distancia / ((vPlano * 1000) / 60);
 
   return (
-    <div className="rounded-2xl border border-nivel bg-white p-4 shadow-sm">
-      <h3 className="font-bold text-[#1a4d2e]">Pruebe la fórmula</h3>
+    <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm">
+      <h3 className="font-bold text-marca">Prueba la fórmula</h3>
       <p className="mt-0.5 text-sm text-tinta-suave">
-        Mueva los controles para ver cómo cambia el tiempo de caminata con la pendiente. Es la misma fórmula del cálculo por
+        Mueve los controles para ver cómo cambia el tiempo de caminata con la pendiente. Es la misma fórmula del cálculo por
         la red de calles.
       </p>
       <div className="mt-4 grid gap-4">
@@ -40,7 +40,7 @@ function Calculadora() {
           <input type="range" min={-30} max={30} step={1} value={pendiente} onChange={(e) => setPendiente(+e.target.value)} className="mt-2 w-full accent-[#2d6a4f]" />
         </label>
       </div>
-      <p className="mt-4 rounded-xl bg-[#e3f1e6] px-3 py-2 text-base" aria-live="polite">
+      <p className="mt-4 rounded-xl bg-menta px-3 py-2 text-base" aria-live="polite">
         <strong className="tabular-nums">{dec(minutos)} minutos</strong> a {dec(v)} km/h.{" "}
         <span className="text-tinta-suave">En plano serían {dec(minutosPlano)} minutos.</span>
       </p>
@@ -118,19 +118,19 @@ function Contenido({ d }: { d: Indicadores }) {
         titulo="Diferencias entre barrios"
         texto={<>Personas del barrio a {umbral} min o menos de {dsel.nombre.toLowerCase()}. Más verde = más gente con acceso.</>}
       >
-        <div className="rounded-3xl border border-nivel bg-white p-4 shadow-sm sm:p-5">
+        <div className="rounded-3xl border border-nivel bg-superficie p-4 shadow-sm sm:p-5">
           <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Destino">
             {DESTINOS.map((x) => (
               <button key={x.id} type="button" onClick={() => setDestino(x.id)} aria-pressed={destino === x.id}
-                className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${destino === x.id ? "bg-[#1a4d2e] text-white shadow" : "bg-[#eef3ec] text-tinta hover:bg-[#dcebdf]"}`}>
+                className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${destino === x.id ? "bg-[#1a4d2e] text-white shadow" : "bg-menta-2 text-tinta hover:bg-menta"}`}>
                 {x.nombre.split(",")[0].replace("Metro", "Metro / Metrocable")}
               </button>
             ))}
           </div>
-          <div className="mt-3 inline-flex rounded-full bg-[#eef3ec] p-1" role="group" aria-label="Tiempo">
+          <div className="mt-3 inline-flex rounded-full bg-menta-2 p-1" role="group" aria-label="Tiempo">
             {a.umbrales_min.map((u: number) => (
               <button key={u} type="button" onClick={() => setUmbral(u)} aria-pressed={umbral === u}
-                className={`rounded-full px-3.5 py-1 text-sm font-semibold transition ${umbral === u ? "bg-white text-[#1a4d2e] shadow" : "text-tinta-suave"}`}>
+                className={`rounded-full px-3.5 py-1 text-sm font-semibold transition ${umbral === u ? "bg-superficie text-marca shadow" : "text-tinta-suave"}`}>
                 {u} min
               </button>
             ))}
@@ -139,7 +139,7 @@ function Contenido({ d }: { d: Indicadores }) {
           <ul className="mt-4 space-y-2">
             <li className="grid grid-cols-[7.5rem_1fr_3.2rem] items-center gap-3 text-sm font-bold sm:grid-cols-[10rem_1fr_3.6rem]">
               <span>Comuna 2</span>
-              <span className="relative h-3 rounded-full bg-[#eceee7]"><span className="absolute inset-y-0 left-0 rounded-full bg-[#1d2b2a]" style={{ width: `${cv ?? 0}%`, transition: "width 600ms ease" }} /></span>
+              <span className="relative h-3 rounded-full bg-papel-hondo"><span className="absolute inset-y-0 left-0 rounded-full bg-[#1d2b2a]" style={{ width: `${cv ?? 0}%`, transition: "width 600ms ease" }} /></span>
               <span className="text-right tabular-nums">{pct(cv)}</span>
             </li>
             {orden.map((f) => {
@@ -147,7 +147,7 @@ function Contenido({ d }: { d: Indicadores }) {
               return (
                 <li key={String(f.barrio)} className="grid grid-cols-[7.5rem_1fr_3.2rem] items-center gap-3 text-sm sm:grid-cols-[10rem_1fr_3.6rem]">
                   <span className="truncate" title={String(f.barrio)}>{String(f.barrio)}</span>
-                  <span className="relative h-3 rounded-full bg-[#eceee7]">
+                  <span className="relative h-3 rounded-full bg-papel-hondo">
                     <span className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${v ?? 0}%`, background: COLOR_BARRA(v), transition: "width 600ms ease" }} />
                   </span>
                   <span className="text-right tabular-nums">{pct(v)}</span>
@@ -157,7 +157,7 @@ function Contenido({ d }: { d: Indicadores }) {
           </ul>
 
           <details className="mt-4 text-sm">
-            <summary className="cursor-pointer font-semibold text-[#1a4d2e]">Ver la tabla completa (todos los umbrales)</summary>
+            <summary className="cursor-pointer font-semibold text-marca">Ver la tabla completa (todos los umbrales)</summary>
             <div className="mt-2 overflow-x-auto rounded-xl border border-nivel">
               <table className="w-full min-w-[620px] text-sm">
                 <thead>
@@ -196,8 +196,8 @@ function Contenido({ d }: { d: Indicadores }) {
             <Kpi valor={pct(infra.andenes.angostos_pct)} texto={<>del largo es más angosto que {dec(infra.andenes.umbral_angosto_m)} m</>} tono="rojo" />
             <Kpi valor={num(infra.paradas_en_comuna)} texto="paradas de bus" nota={`${dec2(infra.ciclorrutas_km_en_comuna)} km de ciclorruta`} />
           </div>
-          <details className="mt-3 rounded-2xl border border-nivel bg-white p-4 text-sm">
-            <summary className="cursor-pointer font-semibold text-[#1a4d2e]">Andenes por barrio</summary>
+          <details className="mt-3 rounded-2xl border border-nivel bg-superficie p-4 text-sm">
+            <summary className="cursor-pointer font-semibold text-marca">Andenes por barrio</summary>
             <div className="mt-2 overflow-x-auto">
               <table className="w-full min-w-[560px] text-sm">
                 <thead><tr className="border-b border-nivel text-left text-tinta-suave">
@@ -224,8 +224,8 @@ function Contenido({ d }: { d: Indicadores }) {
 
       <div className="grid gap-5 lg:grid-cols-2">
         <Calculadora />
-        <div className="rounded-2xl border border-nivel bg-white p-4 shadow-sm">
-          <h3 className="font-bold text-[#1a4d2e]">La red usada</h3>
+        <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm">
+          <h3 className="font-bold text-marca">La red usada</h3>
           <ul className="mt-2 divide-y divide-nivel/70 text-sm">
             {Object.entries(a.red.km_por_tipo as Record<string, number>).sort((x, y) => y[1] - x[1]).map(([t, km]) => (
               <li key={t} className="flex justify-between py-1.5"><span>{NOMBRE_TIPO[t] ?? t}</span><span className="tabular-nums">{dec(km)} km</span></li>
@@ -235,7 +235,7 @@ function Contenido({ d }: { d: Indicadores }) {
             {num(a.red.nodos)} cruces y {num(a.red.tramos)} tramos en la comuna y 1,3 km alrededor. {num(a.red.nodos_fuera_componente_principal)} puntos quedaron sueltos y no se usan para rutas.
           </p>
           <details className="mt-3 text-sm">
-            <summary className="cursor-pointer font-semibold text-[#1a4d2e]">Supuestos del cálculo</summary>
+            <summary className="cursor-pointer font-semibold text-marca">Supuestos del cálculo</summary>
             <ul className="mt-2 list-disc space-y-1.5 pl-5 text-xs text-tinta-suave">
               {Object.values(a.supuestos as Record<string, string>).map((t) => <li key={t}>{t}</li>)}
               {infra?.validacion_pendiente && (

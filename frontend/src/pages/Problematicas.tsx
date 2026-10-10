@@ -63,7 +63,7 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
       id: "ep", icono: "arbol", color: ROJO, titulo: "Casi no hay dónde estar afuera",
       numero: c.espacio_publico_m2_hab ?? 0, decimales: 2, unidad: "m² de espacio público por persona",
       explica: `La referencia nacional es de 15 m². En ${peorEP.nombre} son ${dec(peorEP.espacio_publico_m2_hab)} m²: prácticamente nada.`,
-      donde: `Peor: ${peorEP.nombre}, ${barrios.filter((b) => (b.espacio_publico_m2_hab ?? 99) < 0.5).map((b) => b.nombre).slice(0, 4).join(", ")}.`,
+      donde: `Peor: ${peorEP.nombre}, ${barrios.filter((b) => b.codigo !== peorEP.codigo && (b.espacio_publico_m2_hab ?? 99) < 0.5).map((b) => b.nombre).slice(0, 4).join(", ")}.`,
       fuente: "Alcaldía de Medellín, espacio público existente y Censo 2018 (DANE)", mapa: "espacio_publico", reto: "Espacio público",
     },
     {
@@ -125,7 +125,7 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
       <div className="mt-12 grid gap-6 md:grid-cols-2">
         {problemas.map((p, i) => (
           <Revelar key={p.id} retraso={(i % 2) * 100}>
-            <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-4 bg-white p-7 shadow-lg ring-1 ring-black/5" style={{ borderTopColor: p.color }}>
+            <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-4 bg-superficie p-7 shadow-lg ring-1 ring-black/5" style={{ borderTopColor: p.color }}>
               <div className="flex items-center gap-3">
                 <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-white" style={{ background: p.color }}><IconoNav nombre={p.icono} className="h-7 w-7" trazo={1.9} /></span>
                 <h2 className="text-xl font-bold leading-snug">{p.titulo}</h2>
@@ -140,12 +140,12 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
                 <p className="text-sm text-tinta-tenue">Fuente: {p.fuente}. Reto: {p.reto}.</p>
                 <div className="mt-3 flex flex-wrap gap-3">
                   {p.mapa && (
-                    <Link to={`/mapa?capas=${p.mapa}`} className="inline-flex items-center gap-2 rounded-xl bg-[#e3f1e6] px-4 py-2 text-base font-bold text-[#1a4d2e] transition hover:bg-[#cfe6d4]">
+                    <Link to={`/mapa?capas=${p.mapa}`} className="inline-flex items-center gap-2 rounded-xl bg-menta px-4 py-2 text-base font-bold text-marca transition hover:brightness-95">
                       <IconoNav nombre="mapa" className="h-5 w-5" trazo={2} /> Verlo en el mapa
                     </Link>
                   )}
                   {p.enlace && (
-                    <Link to={p.enlace.a} className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-base font-bold text-[#1a4d2e] underline underline-offset-4">
+                    <Link to={p.enlace.a} className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-base font-bold text-marca underline underline-offset-4">
                       {p.enlace.texto} <IconoNav nombre="flecha" className="h-5 w-5" trazo={2} />
                     </Link>
                   )}
@@ -157,7 +157,7 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
       </div>
 
       <Revelar className="mt-16">
-        <div className="rounded-r-2xl border-l-4 border-[#1a4d2e] bg-[#f0f7f0] px-6 py-8 sm:px-10">
+        <div className="rounded-r-2xl border-l-4 border-marca bg-menta-2 px-6 py-8 sm:px-10">
           <h2 className="text-2xl font-bold" style={{ color: VERDE }}>Y qué se hace con esto</h2>
           <p className="mt-2 max-w-3xl text-lg">La plataforma convierte estas problemáticas en obras posibles, con cuánta gente ayuda cada una y cuánto cuesta. Los costos quedan en blanco hasta que se registre una fuente.</p>
           <Link to="/prioridades" className="mt-4 inline-flex items-center gap-2 text-lg font-bold underline underline-offset-4" style={{ color: VERDE }}>
@@ -177,7 +177,7 @@ export default function Problematicas() {
   const and = useDatos<Coleccion>("andenes.geojson");
   return (
     <div className="relative isolate overflow-hidden">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#f8f6f1] to-[#f5f6f2]" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-papel" />
       <div className="mx-auto max-w-6xl px-4 pb-24 pt-6 lg:px-8 lg:pt-8">
         <ConDatos estado={ind}>
           {(i) => <ConDatos estado={seg}>{(s) => <ConDatos estado={eje}>{(e) => <Contenido ind={i} seg={s} eje={e} andenes={and.estado === "listo" ? and.datos : null} />}</ConDatos>}</ConDatos>}

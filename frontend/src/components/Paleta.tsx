@@ -16,6 +16,7 @@ const FIJAS: Opcion[] = [
   { id: "prioridades", nombre: "Prioridad de obras", detalle: "Dónde intervenir primero", icono: "prioridades", ruta: "/prioridades" },
   { id: "radar", nombre: "Radar de noticias", detalle: "Lo que dicen los medios", icono: "radar", ruta: "/radar" },
   { id: "propuesta", nombre: "Propuesta de valor", detalle: "Por qué existe el observatorio", icono: "corazon", ruta: "/propuesta" },
+  { id: "identidad", nombre: "Manual de identidad", detalle: "Colores, letras, voz y reglas", icono: "paleta", ruta: "/identidad" },
   { id: "datos", nombre: "Mis datos", detalle: "Sube y mira tus datos", icono: "subir", ruta: "/datos" },
   { id: "fuentes", nombre: "Fuentes y calidad", detalle: "De dónde sale cada dato", icono: "fuentes", ruta: "/fuentes" },
   { id: "m-seg", nombre: "Mapa: seguridad", detalle: "Atajo a las capas de seguridad", icono: "mapa", ruta: "/mapa?capas=mortalidad_vial,camaras_cctv,semaforos" },
@@ -57,7 +58,7 @@ export default function Paleta({ abierta, onCerrar }: { abierta: boolean; onCerr
 
   return (
     <div className="fixed inset-0 z-[3000] flex items-start justify-center bg-[#0f2a1a]/45 px-4 pt-[12vh] backdrop-blur-sm" onMouseDown={onCerrar} role="presentation">
-      <div role="dialog" aria-modal="true" aria-label="Buscar en el observatorio" className="w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10" onMouseDown={(e) => e.stopPropagation()}>
+      <div role="dialog" aria-modal="true" aria-label="Buscar en el observatorio" className="w-full max-w-lg overflow-hidden rounded-2xl bg-superficie shadow-2xl ring-1 ring-black/10" onMouseDown={(e) => e.stopPropagation()}>
         <input
           ref={input}
           value={q}
@@ -77,8 +78,8 @@ export default function Paleta({ abierta, onCerrar }: { abierta: boolean; onCerr
           {lista.map((o, i) => (
             <li key={o.id}>
               <button type="button" onMouseEnter={() => setSel(i)} onClick={() => abrir(o)}
-                className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left ${i === sel ? "bg-[#e3f1e6]" : ""}`}>
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#1a4d2e]/10 text-[#1a4d2e]"><IconoNav nombre={o.icono} className="h-5 w-5" trazo={1.8} /></span>
+                className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left ${i === sel ? "bg-menta" : ""}`}>
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#1a4d2e]/10 text-marca"><IconoNav nombre={o.icono} className="h-5 w-5" trazo={1.8} /></span>
                 <span className="min-w-0"><span className="block font-semibold leading-tight">{o.nombre}</span><span className="block text-sm text-tinta-suave">{o.detalle}</span></span>
               </button>
             </li>

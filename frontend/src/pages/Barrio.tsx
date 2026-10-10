@@ -19,12 +19,12 @@ function Comparar({ titulo, barrio, comuna, unidad, mayorEsMalo = true, dec: d =
   const f = (v: number | null) => (v == null ? "Sin dato" : v.toLocaleString("es-CO", { maximumFractionDigits: d }));
   const peor = barrio != null && comuna != null && (mayorEsMalo ? barrio > comuna : barrio < comuna);
   return (
-    <div className="rounded-2xl border border-nivel bg-white p-4 shadow-sm">
+    <div className="rounded-2xl border border-nivel bg-superficie p-4 shadow-sm">
       <p className="text-sm font-semibold">{titulo}</p>
       {[{ n: "Este barrio", v: barrio, c: peor ? "#c0583a" : "#2d6a4f" }, { n: "Toda la comuna", v: comuna, c: "#1d2b2a" }].map((r) => (
         <div key={r.n} className="mt-2 grid grid-cols-[6.5rem_1fr_auto] items-center gap-2 text-xs">
           <span className="text-tinta-suave">{r.n}</span>
-          <span className="relative h-2.5 rounded-full bg-[#eceee7]"><span className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${((r.v ?? 0) / max) * 100}%`, background: r.c, transition: "width 600ms ease" }} /></span>
+          <span className="relative h-2.5 rounded-full bg-papel-hondo"><span className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${((r.v ?? 0) / max) * 100}%`, background: r.c, transition: "width 600ms ease" }} /></span>
           <span className="min-w-[3.5rem] text-right font-semibold tabular-nums">{f(r.v)} {unidad}</span>
         </div>
       ))}
@@ -58,7 +58,7 @@ function Contenido({ ind, seg, eje }: { ind: Indicadores; seg: Seguridad | null;
       <nav aria-label="Elegir barrio" className="flex flex-wrap gap-2">
         {ind.barrios.map((x) => (
           <button key={x.codigo} type="button" onClick={() => ir(`/barrios/${x.codigo}`)} aria-pressed={x.codigo === b.codigo}
-            className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${x.codigo === b.codigo ? "bg-[#1a4d2e] text-white shadow" : "bg-white text-tinta ring-1 ring-nivel hover:bg-[#e3f1e6]"}`}>
+            className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${x.codigo === b.codigo ? "bg-[#1a4d2e] text-white shadow" : "bg-superficie text-tinta ring-1 ring-nivel hover:bg-menta"}`}>
             {x.nombre}
           </button>
         ))}
@@ -92,7 +92,7 @@ function Contenido({ ind, seg, eje }: { ind: Indicadores; seg: Seguridad | null;
           <Kpi valor={num(b.atropellos)} texto="atropellos registrados (2019 a 2025)" nota={`${num(b.siniestros_viales)} siniestros en total`} tono="rojo" />
         </div>
         <p className="mt-3 text-sm">
-          <Link className="font-semibold text-[#1a4d2e] underline underline-offset-2" to="/corredor-49">Ver el análisis completo de la Carrera 49</Link>
+          <Link className="font-semibold text-marca underline underline-offset-2" to="/corredor-49">Ver el análisis completo de la Carrera 49</Link>
         </p>
       </Seccion>
 

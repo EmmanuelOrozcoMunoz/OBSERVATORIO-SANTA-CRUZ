@@ -48,3 +48,12 @@ Resultado: 14 capas nuevas probadas desde el PC (ver `fuentes.py`).
 - Radar de noticias (data-pipeline/radar.py): Google News RSS (público, solo titular, fuente, fecha y enlace; no se copia el artículo), consultas por comuna y por barrio, filtro de relevancia (menciona Medellín/Antioquia y el barrio o la comuna), clasificación por palabras clave en 7 temas, barrios detectados. Salida frontend/public/data/radar.json.
 - Redes sociales: no se hace scraping de TikTok/Facebook (términos de servicio y Ley 1581 de datos personales). Alternativas documentadas: reportes ciudadanos con foto, ReportesMED, imágenes a nivel de calle (por verificar), APIs oficiales para investigación (por verificar).
 - Páginas nuevas: /radar y /propuesta (necesidades, qué existe, qué falta, qué lo hace distinto, quién pagaría, datos, cómo detectamos aceras/huecos/basura, qué NO afirmamos).
+
+## Ronda 5: identidad visual y modo noche
+Referencias del usuario: dashboards oscuros con degradados índigo, tarjetas tipo vidrio, bento, gráficas con brillo, tarjetas de color.
+Decisión: claro por defecto (legibilidad para la comunidad, sol, impresión) y modo noche opcional con botón; no es "solo oscuro".
+- Tokens: colores como variables CSS (index.css :root y .noche) y en tailwind.config con alpha. `bg-white` -> `bg-superficie`, textos verdes fijos -> `text-marca`, fondos menta -> variables.
+- Color por módulo (lib/marca.ts): la Cabecera, el menú activo y los chips toman el acento de la ruta.
+- Tarjetas: clase `.vidrio` (borde fino, brillo al pasar el mouse, desenfoque en noche), Kpi con acento y variante grande.
+- Manual de identidad como página /identidad (concepto, logo, paleta con contraste calculado, tipografía, componentes, íconos, voz, reglas de datos y accesibilidad).
+- Se verifica con capturas en claro y noche, escritorio y celular.
