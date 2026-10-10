@@ -93,7 +93,27 @@ export function useTema() {
     }
     return () => clearTimeout(t);
   }, [noche]);
+  // Otras pantallas (el mapa) piden cambiar el tema con este evento, para que el sitio y el mapa siempre coincidan.
+  useEffect(() => {
+    const alternar = () => setNoche((v) => !v);
+    window.addEventListener("alternar-tema", alternar);
+    return () => window.removeEventListener("alternar-tema", alternar);
+  }, []);
   return [noche, setNoche] as const;
+}
+
+/** Dice si el sitio está en modo noche, sin importar quién lo cambió. */
+export function useNocheActiva() {
+  const [noche, setNoche] = useState(() => document.documentElement.classList.contains("noche"));
+  useEffect(() => {
+    const html = document.documentElement;
+    const leer = () => setNoche(html.classList.contains("noche"));
+    leer();
+    const o = new MutationObserver(leer);
+    o.observe(html, { attributes: true, attributeFilter: ["class"] });
+    return () => o.disconnect();
+  }, []);
+  return noche;
 }
 
 function BotonTema({ noche, onCambiar, compacta = false }: { noche: boolean; onCambiar: () => void; compacta?: boolean }) {

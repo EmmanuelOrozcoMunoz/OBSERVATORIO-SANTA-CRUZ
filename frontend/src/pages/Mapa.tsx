@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import type { Map as MapaML } from "maplibre-gl";
 import MapaVivo, { type FiltroSiniestros, type Modo } from "../components/mapa/MapaVivo";
 import { BotonesCamara, HoraSol } from "../components/mapa/ControlesMapa";
+import { useNocheActiva } from "../components/Layout";
 import { horaColombia } from "../lib/sol";
 import PanelCapas from "../components/mapa/PanelCapas";
 import PanelRuteo from "../components/mapa/PanelRuteo";
@@ -20,7 +21,6 @@ import type { Coleccion, Elemento, FichaBarrio as Ficha, Indicadores, Props } fr
 const CLAVE_AYUDA = "observatorio-santa-cruz:ayuda-mapa-vista";
 const CLAVE_SOLO = "observatorio-santa-cruz:solo-mapa";
 const CLAVE_PANEL = "observatorio-santa-cruz:panel-temas-abierto";
-const CLAVE_NOCHE = "observatorio-santa-cruz:mapa-noche";
 
 function leerAyuda() {
   try {
@@ -224,7 +224,7 @@ export default function Mapa() {
   const [mapaML, setMapaML] = useState<MapaML | null>(null);
   const [solo, setSolo] = usePreferencia(CLAVE_SOLO, false);
   const [panelAbierto, setPanelAbierto] = usePreferencia(CLAVE_PANEL, true);
-  const [noche, setNoche] = usePreferencia(CLAVE_NOCHE, false);
+  const noche = useNocheActiva(); // el mapa sigue el tema del sitio: un solo botón día/noche
   const [hora, setHora] = useState(() => Math.min(17.5, Math.max(6.5, horaColombia())));
   const [opacidad, setOpacidad] = useState(100);
   const [aviso, setAviso] = useState<string | null>(null);
@@ -559,7 +559,7 @@ export default function Mapa() {
 
         {/* Controles de cámara: zoom, brújula, día/noche, foto HD */}
         <div className={`absolute right-3 z-10 md:right-4 ${solo ? "top-4" : "top-[17rem] md:top-40 xl:top-[4.75rem]"}`}>
-          <BotonesCamara mapa={mapaML} noche={noche} onNoche={() => setNoche((v) => !v)} conNoche={!solo} onAviso={setAviso} />
+          <BotonesCamara mapa={mapaML} noche={noche} onNoche={() => window.dispatchEvent(new Event("alternar-tema"))} conNoche={!solo} onAviso={setAviso} />
         </div>
 
         {/* Abajo a la derecha: hora del sol (3D de día) y leyenda plegada */}

@@ -79,13 +79,13 @@ const PX_POR_METRO = (z: number) => (512 * 2 ** z) / (40075016.686 * Math.cos(6.
 /** Cielo con niebla de horizonte (solo se ve con el mapa inclinado). */
 const cielo = (noche: boolean) =>
   noche
-    ? { "sky-color": "#0a0d24", "horizon-color": "#1f2652", "fog-color": "#0c0e2c", "sky-horizon-blend": 0.6, "horizon-fog-blend": 0.7, "fog-ground-blend": 0.35, "atmosphere-blend": 0.4 }
+    ? { "sky-color": "#060a18", "horizon-color": "#142046", "fog-color": "#0c0e2c", "sky-horizon-blend": 0.6, "horizon-fog-blend": 0.7, "fog-ground-blend": 0.35, "atmosphere-blend": 0.4 }
     : { "sky-color": "#cfe0d6", "horizon-color": "#f8f6f1", "fog-color": "#eceaf7", "sky-horizon-blend": 0.55, "horizon-fog-blend": 0.75, "fog-ground-blend": 0.3, "atmosphere-blend": 0.5 };
 
 /** Colores de noche para las capas del mapa base. Calles y etiquetas claras sobre un fondo azul marino profundo. */
 const NOCHE = {
-  fondo: "#0e1124", agua: "#16264d", verde: "#13283a", suelo: "#12162f", edificio: "#1d2247",
-  via: "#3b4274", viaMayor: "#5a63a6", limite: "#4a5290", texto: "#dfe2fa", halo: "#0e1124",
+  fondo: "#070c1a", agua: "#0e1a36", verde: "#0a1427", suelo: "#0a1021", edificio: "#111a35",
+  via: "#1c2a4d", viaMayor: "#2a3d73", limite: "#2b3b6c", texto: "#9db0e0", halo: "#070c1a",
 };
 function colorNoche(id: string, tipo: string): Record<string, string> | null {
   const t = id.toLowerCase();
@@ -98,7 +98,7 @@ function colorNoche(id: string, tipo: string): Record<string, string> | null {
   const via = /road|highway|tunnel|bridge|transport|rail|path|street|aeroway/.test(t);
   const limite = /boundary/.test(t);
   const color = agua ? NOCHE.agua : verde ? NOCHE.verde : edificio ? NOCHE.edificio : mayor ? NOCHE.viaMayor : via ? NOCHE.via : limite ? NOCHE.limite : NOCHE.suelo;
-  if (tipo === "fill") return { "fill-color": color };
+  if (tipo === "fill") return edificio ? { "fill-color": color, "fill-outline-color": NOCHE.via } : { "fill-color": color };
   if (tipo === "line") return { "line-color": /casing/.test(t) ? NOCHE.fondo : color };
   return null;
 }
@@ -109,14 +109,14 @@ function imagenVentanas(semilla: number): ImageData {
   const c = document.createElement("canvas");
   c.width = c.height = n;
   const g = c.getContext("2d")!;
-  g.fillStyle = "#1a1f42";
+  g.fillStyle = "#101831";
   g.fillRect(0, 0, n, n);
   let s = semilla * 9301 + 49297;
   const azar = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
   for (let y = 4; y < n; y += 10)
     for (let x = 3; x < n; x += 9) {
       const prendida = azar() < 0.55;
-      g.fillStyle = prendida ? (azar() < 0.3 ? "#ffe9a8" : "#ffc94d") : "#2b3160";
+      g.fillStyle = prendida ? (azar() < 0.3 ? "#ffe9a8" : "#ffc94d") : "#1a2448";
       g.fillRect(x, y, 4, 5);
     }
   return g.getImageData(0, 0, n, n);
@@ -763,11 +763,22 @@ export default function MapaVivo(o: Opciones) {
     const pintar = (capa: string, prop: string, valor: unknown) => m.getLayer(capa) && m.setPaintProperty(capa, prop, valor);
     pintar("mascara", "fill-color", noche ? NIEBLA_NOCHE : NIEBLA);
     pintar("mascara-difuminado", "line-color", noche ? NIEBLA_NOCHE : NIEBLA);
-    pintar("relieve", "hillshade-shadow-color", noche ? "#05061a" : "#5b6b66");
-    pintar("relieve", "hillshade-highlight-color", noche ? "#2d3466" : "#ffffff");
+    pintar("relieve", "hillshade-shadow-color", noche ? "#030612" : "#5b6b66");
+    pintar("relieve", "hillshade-highlight-color", noche ? "#1c2a55" : "#ffffff");
     pintar("comuna-borde", "line-color", noche ? "#b4a8ff" : VERDE_HONDO);
     pintar("comuna-halo", "line-color", noche ? "#9a86ff" : VERDE_HONDO);
     pintar("comuna-separador", "line-color", noche ? "#0c0e2c" : "#ffffff");
+    // Contornos blancos de día: de noche se vuelven del color del fondo para no ensuciar el mapa
+    pintar("equipamientos", "fill-outline-color", noche ? "#070c1a" : "#ffffff");
+    pintar("lineas_transporte-borde", "line-color", noche ? "#070c1a" : "#ffffff");
+    // Rutas y puntos: de noche brillan como neón sobre la base oscura
+    pintar("rutas-borde", "line-color", noche ? ["get", "color"] : "#ffffff");
+    pintar("rutas-borde", "line-blur", noche ? 6 : 0);
+    pintar("rutas-borde", "line-opacity", noche ? ["case", ["get", "activa"], 0.6, 0.3] : ["case", ["get", "activa"], 0.95, 0.6]);
+    pintar("puntos-ruta", "circle-stroke-color", noche ? "#070c1a" : "#ffffff");
+    pintar("puntos-ruta", "circle-color", ["case", ["==", ["get", "rol"], "origen"], noche ? "#ffb347" : COLOR.tinta, ["coalesce", ["get", "color"], COLOR.cable]]);
+    pintar("puntos-ruta-texto", "text-color", noche ? "#e6eaff" : COLOR.tinta);
+    pintar("puntos-ruta-texto", "text-halo-color", noche ? "#070c1a" : "#ffffff");
     pintar("comunas-relleno", "fill-opacity", ["case", ["get", "es_santa_cruz"], noche ? 0.18 : 0.28, noche ? 0.06 : 0.25]);
     aplicarNocheEdificios(m, noche);
     m.setSky(cielo(noche));
@@ -873,7 +884,7 @@ function aplicarNocheEdificios(m: MapaML, noche: boolean) {
   for (const id of ["edificios-comuna", "edificios-3d"]) {
     if (!m.getLayer(id)) continue;
     m.setPaintProperty(id, "fill-extrusion-pattern", noche ? patron : undefined);
-    m.setPaintProperty(id, "fill-extrusion-color", noche ? "#232954" : id === "edificios-comuna" ? COLOR_PISOS : COLOR_OSM);
+    m.setPaintProperty(id, "fill-extrusion-color", noche ? "#16203f" : id === "edificios-comuna" ? COLOR_PISOS : COLOR_OSM);
   }
 }
 
