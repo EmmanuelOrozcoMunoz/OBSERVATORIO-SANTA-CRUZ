@@ -50,7 +50,7 @@ export default function PanelCapas(p: Props) {
               return (
                 <li key={c.id}>
                   <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded-lg px-2 hover:bg-papel-hondo">
-                    <input type="checkbox" checked={activa} onChange={() => p.onCambiar(c.id)} className="h-5 w-5 shrink-0 accent-[#2d6a4f]" />
+                    <input type="checkbox" checked={activa} onChange={() => p.onCambiar(c.id)} className="h-5 w-5 shrink-0 accent-[#6a4fe0]" />
                     <span className="flex-1 leading-snug">
                       {c.nombre}
                       {soloComuna && <span className="block text-sm text-tinta-tenue">Solo hay datos para Santa Cruz</span>}

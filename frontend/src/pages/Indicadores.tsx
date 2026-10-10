@@ -22,11 +22,11 @@ import type { FichaBarrio as Ficha, Indicadores as Ind } from "../lib/tipos";
 import { BotonCabecera, Cabecera, Kpi, Relacionados, Seccion } from "../components/Pagina";
 
 const C = {
-  barra: "#2d6a4f",
-  resaltada: "#1d2b2a",
-  apagada: "#a8cbb6",
+  barra: "#6a4fe0",
+  resaltada: "#1b1d3a",
+  apagada: "#c9c2ff",
   rejilla: "#e2e5de",
-  eje: "#6f7c7a",
+  eje: "#6b6f9e",
 };
 
 // Paleta categórica validada (luz, contraste y daltonismo) para las clases de siniestro.
@@ -35,7 +35,7 @@ const CLASES_SINIESTRO: [string, string][] = [
   ["Choque", "#1f63a8"],
   ["Caida ocupante", "#b7791f"],
   ["Volcamiento", "#7a4e9b"],
-  ["Otro", "#16917f"],
+  ["Otro", "#2a8ac8"],
 ];
 
 function Panel({ titulo, descripcion, children }: { titulo: string; descripcion?: string; children: ReactNode }) {
@@ -49,8 +49,8 @@ function Panel({ titulo, descripcion, children }: { titulo: string; descripcion?
 }
 
 const estiloTooltip = {
-  contentStyle: { borderRadius: 6, border: "1px solid #d4d9cf", fontSize: 13, fontFamily: "Archivo, sans-serif" },
-  cursor: { fill: "rgba(45,106,79,0.08)" },
+  contentStyle: { borderRadius: 6, border: "1px solid #d9d9ec", fontSize: 13, fontFamily: "Archivo, sans-serif" },
+  cursor: { fill: "rgba(106,79,224,0.08)" },
 };
 
 function BarrasBarrio({
@@ -79,14 +79,14 @@ function BarrasBarrio({
         <BarChart data={filas} layout="vertical" margin={{ left: 8, right: 28, top: 22, bottom: 4 }} barCategoryGap={4}>
           <CartesianGrid horizontal={false} stroke={C.rejilla} />
           <XAxis type="number" tick={{ fontSize: 12, fill: C.eje }} axisLine={false} tickLine={false} tickFormatter={(v: number) => dec2(v)} />
-          <YAxis type="category" dataKey="nombre" width={150} tick={{ fontSize: 12, fill: "#1d2b2a" }} axisLine={false} tickLine={false} />
+          <YAxis type="category" dataKey="nombre" width={150} tick={{ fontSize: 12, fill: "#1b1d3a" }} axisLine={false} tickLine={false} />
           <Tooltip {...estiloTooltip} formatter={(v: number) => [`${formato(v)} ${unidad}`.trim(), ""]} separator="" />
           {referencia != null && (
             <ReferenceLine
               x={referencia}
-              stroke="#1d2b2a"
+              stroke="#1b1d3a"
               strokeDasharray="4 3"
-              label={{ value: referenciaEtiqueta, position: "top", fontSize: 11, fill: "#1d2b2a" }}
+              label={{ value: referenciaEtiqueta, position: "top", fontSize: 11, fill: "#1b1d3a" }}
             />
           )}
           <Bar dataKey="valor" radius={[0, 4, 4, 0]} isAnimationActive={false}>
@@ -263,8 +263,8 @@ function Contenido({ d }: { d: Ind }) {
                   tickLine={false}
                   width={40}
                 />
-                <Tooltip {...estiloTooltip} formatter={(v: number) => [dec(v), "IMCV"]} cursor={{ stroke: "#6f7c7a", strokeDasharray: "3 3" }} />
-                <Line type="monotone" dataKey="valor" stroke="#2d6a4f" strokeWidth={2} dot={{ r: 4, fill: "#2d6a4f", stroke: "#fff", strokeWidth: 2 }} isAnimationActive={false} />
+                <Tooltip {...estiloTooltip} formatter={(v: number) => [dec(v), "IMCV"]} cursor={{ stroke: "#6b6f9e", strokeDasharray: "3 3" }} />
+                <Line type="monotone" dataKey="valor" stroke="#6a4fe0" strokeWidth={2} dot={{ r: 4, fill: "#6a4fe0", stroke: "#fff", strokeWidth: 2 }} isAnimationActive={false} />
               </LineChart>
             </ResponsiveContainer>
           </div>

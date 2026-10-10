@@ -257,7 +257,7 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
                 </span>
                 <span className="tabular-nums">{totalPesos ? Math.round((pesos[c.id] / totalPesos) * 100) : 0} %</span>
               </span>
-              <input type="range" min={0} max={50} value={pesos[c.id]} onChange={(e) => setPesos((p) => ({ ...p, [c.id]: +e.target.value }))} className="mt-1 w-full accent-[#2d6a4f]" />
+              <input type="range" min={0} max={50} value={pesos[c.id]} onChange={(e) => setPesos((p) => ({ ...p, [c.id]: +e.target.value }))} className="mt-1 w-full accent-[#6a4fe0]" />
               <span className="block text-sm text-tinta-suave">{c.explicacion}</span>
             </label>
           ))}

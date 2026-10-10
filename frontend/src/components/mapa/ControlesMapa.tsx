@@ -19,6 +19,7 @@ const ICONOS = {
 // Botones planos dentro de una sola barra: sin sombra propia ni saltos al pasar el mouse
 const boton =
   "grid h-11 w-11 place-items-center text-tinta transition-[background-color,transform] duration-150 ease-out enabled:active:scale-[0.96] hover:bg-acento/10 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-acento disabled:opacity-50";
+  "grid h-12 w-12 place-items-center rounded-2xl bg-superficie/95 text-tinta shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-superficie focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#3a2d8f] disabled:opacity-50";
 
 /** Sigue el giro y la inclinación del mapa para la brújula. */
 function useCamara(mapa: MapaML | null) {
@@ -62,8 +63,8 @@ export async function capturarFoto(mapa: MapaML, noche: boolean): Promise<void> 
         salida.height = lienzo.height;
         const g = salida.getContext("2d")!;
         const fondo = g.createLinearGradient(0, 0, salida.width, salida.height);
-        fondo.addColorStop(0, noche ? "#0b1310" : "#f8f6f1");
-        fondo.addColorStop(1, noche ? "#12201a" : "#e8f0e8");
+        fondo.addColorStop(0, noche ? "#0a0d1f" : "#f6f6fc");
+        fondo.addColorStop(1, noche ? "#151a45" : "#ececf8");
         g.fillStyle = fondo;
         g.fillRect(0, 0, salida.width, salida.height);
         g.drawImage(lienzo, 0, 0); // dentro del evento "render" el buffer todavía tiene el cuadro
@@ -91,6 +92,7 @@ export async function capturarFoto(mapa: MapaML, noche: boolean): Promise<void> 
       g.shadowColor = noche ? "rgba(0,0,0,0.9)" : "rgba(255,255,255,1)";
       g.shadowBlur = 4 * k;
       g.fillStyle = noche ? "#e8e6fb" : "#3d2fa8";
+      g.fillStyle = noche ? "#e6e9ff" : "#3a2d8f";
       for (let i = 0; i < 3; i++) g.fillText(el.textContent ?? "", x, y);
     });
     g.shadowBlur = 0;
@@ -98,7 +100,7 @@ export async function capturarFoto(mapa: MapaML, noche: boolean): Promise<void> 
     const pie = Math.round(13 * k);
     g.font = `600 ${Math.round(18 * k)}px Inter, Archivo, sans-serif`;
     g.textAlign = "left";
-    g.fillStyle = noche ? "rgba(232,243,236,0.92)" : "rgba(26,77,46,0.92)";
+    g.fillStyle = noche ? "rgba(232,243,236,0.92)" : "rgba(58,45,143,0.92)";
     g.fillText("Santa Cruz · Comuna 2, Medellín", 24 * k, H - 44 * k);
     g.font = `400 ${pie}px Inter, Archivo, sans-serif`;
     g.fillText(`Observatorio Santa Cruz · ${new Date().toLocaleDateString("es-CO", { day: "numeric", month: "long", year: "numeric" })}`, 24 * k, H - 22 * k);
@@ -119,6 +121,89 @@ export async function capturarFoto(mapa: MapaML, noche: boolean): Promise<void> 
   }
 }
 
+// --------------------------------------------------------------------- joystick
+/**
+ * Control 3D: mover la perilla a los lados gira el mapa (360°, sin tope) y arriba/abajo lo inclina
+ * de 0° a 60°. Mientras se sostiene, la cámara sigue moviéndose. Doble clic vuelve al norte.
+ */
+export function Joystick({ mapa, className = "" }: { mapa: MapaML | null; className?: string }) {
+  const base = useRef<HTMLDivElement>(null);
+  const [perilla, setPerilla] = useState({ x: 0, y: 0 });
+  const empuje = useRef({ x: 0, y: 0, activo: false });
+  const cam = useCamara(mapa);
+  const R = 40;
+
+  useEffect(() => {
+    if (!mapa) return;
+    let id = 0;
+    const paso = () => {
+      const e = empuje.current;
+      if (e.activo && (e.x || e.y)) {
+        const giro = mapa.getBearing() + (e.x / R) * 2.4;
+        const inclinacion = Math.max(0, Math.min(60, mapa.getPitch() - (e.y / R) * 1.4));
+        mapa.jumpTo({ bearing: giro, pitch: inclinacion });
+      }
+      id = requestAnimationFrame(paso);
+    };
+    id = requestAnimationFrame(paso);
+    return () => cancelAnimationFrame(id);
+  }, [mapa]);
+
+  const mover = (cx: number, cy: number) => {
+    const r = base.current!.getBoundingClientRect();
+    let x = cx - (r.left + r.width / 2), y = cy - (r.top + r.height / 2);
+    const d = Math.hypot(x, y);
+    if (d > R) { x = (x / d) * R; y = (y / d) * R; }
+    empuje.current = { x, y, activo: true };
+    setPerilla({ x, y });
+  };
+  const soltar = () => {
+    empuje.current = { x: 0, y: 0, activo: false };
+    setPerilla({ x: 0, y: 0 });
+  };
+  const teclado = (e: React.KeyboardEvent) => {
+    if (!mapa) return;
+    const t: Record<string, () => void> = {
+      ArrowLeft: () => mapa.easeTo({ bearing: mapa.getBearing() - 15, duration: 300 }),
+      ArrowRight: () => mapa.easeTo({ bearing: mapa.getBearing() + 15, duration: 300 }),
+      ArrowUp: () => mapa.easeTo({ pitch: Math.min(60, mapa.getPitch() + 10), duration: 300 }),
+      ArrowDown: () => mapa.easeTo({ pitch: Math.max(0, mapa.getPitch() - 10), duration: 300 }),
+    };
+    if (t[e.key]) { e.preventDefault(); t[e.key](); }
+  };
+
+  return (
+    <div className={`flex flex-col items-center gap-1.5 ${className}`}>
+      <div
+        ref={base}
+        role="application"
+        tabIndex={0}
+        aria-label={`Control 3D. Giro ${Math.round(((cam.giro % 360) + 360) % 360)} grados, inclinación ${Math.round(cam.inclinacion)} grados. Use las flechas del teclado. Doble clic vuelve al norte.`}
+        onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); mover(e.clientX, e.clientY); }}
+        onPointerMove={(e) => empuje.current.activo && mover(e.clientX, e.clientY)}
+        onPointerUp={soltar}
+        onPointerCancel={soltar}
+        onDoubleClick={() => mapa?.easeTo({ bearing: 0, duration: 700 })}
+        onKeyDown={teclado}
+        className="joystick relative grid h-[7.5rem] w-[7.5rem] touch-none select-none place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#3a2d8f]"
+      >
+        {/* marcas de giro e inclinación */}
+        <span aria-hidden="true" className="pointer-events-none absolute inset-2 rounded-full border border-dashed border-marca/25" />
+        <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1 -translate-x-1/2 text-[10px] font-bold text-marca/70">INCLINAR</span>
+        <span aria-hidden="true" className="pointer-events-none absolute left-1.5 top-1/2 -translate-y-1/2 text-base font-bold text-marca/60">⟲</span>
+        <span aria-hidden="true" className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-base font-bold text-marca/60">⟳</span>
+        <span
+          aria-hidden="true"
+          className="joystick-perilla pointer-events-none h-12 w-12 rounded-full"
+          style={{ transform: `translate(${perilla.x}px, ${perilla.y}px)`, transition: empuje.current.activo ? "none" : "transform 220ms cubic-bezier(.2,1.4,.4,1)" }}
+        />
+      </div>
+      <p className="rounded-full bg-superficie/90 px-2.5 py-0.5 text-xs font-semibold tabular-nums text-tinta shadow">
+        {Math.round(((cam.giro % 360) + 360) % 360)}° · {Math.round(cam.inclinacion)}° incl.
+      </p>
+    </div>
+  );
+}
 
 // --------------------------------------------------------------------- columna de botones
 export function Brujula({ mapa }: { mapa: MapaML | null }) {
@@ -136,6 +221,10 @@ export function Brujula({ mapa }: { mapa: MapaML | null }) {
         <path d="M12 2 15.5 12H8.5z" className="fill-peligro" />
         <path d="M12 22 8.5 12h7z" className="fill-marca" opacity="0.45" />
         <text x="12" y="7.6" textAnchor="middle" fontSize="4.6" fontWeight="700" className="fill-white">N</text>
+      <svg viewBox="0 0 24 24" className="h-8 w-8" aria-hidden="true" style={{ transform: `rotate(${-cam.giro}deg)`, transition: "transform 80ms linear" }}>
+        <path d="M12 2 15.5 12H8.5z" fill="#c2463a" />
+        <path d="M12 22 8.5 12h7z" fill="#3a2d8f" opacity="0.35" />
+        <text x="12" y="7.6" textAnchor="middle" fontSize="4.6" fontWeight="700" fill="#fff">N</text>
       </svg>
     </button>
   );
@@ -181,12 +270,9 @@ export function BotonesCamara({
       {raya}
       <Brujula mapa={mapa} />
       {conNoche && onNoche && (
-        <>
-          {raya}
-          <button type="button" className={boton} aria-pressed={noche} aria-label={noche ? "Cambiar a día" : "Cambiar a noche"} title={noche ? "Ver de día" : "Ver de noche"} onClick={onNoche}>
-            {noche ? ICONOS.luna : ICONOS.sol}
-          </button>
-        </>
+        <button type="button" className={`${boton} ${noche ? "!bg-[#141a38] !text-[#ffd66b]" : ""}`} aria-pressed={noche} aria-label={noche ? "Cambiar a día" : "Cambiar a noche"} title={noche ? "Ver de día" : "Ver de noche"} onClick={onNoche}>
+          {noche ? ICONOS.luna : ICONOS.sol}
+        </button>
       )}
       {raya}
       <button type="button" className={boton} aria-label="Capturar foto HD del mapa" title="Capturar foto HD (PNG 2K)" disabled={!mapa || tomando} onClick={foto}>

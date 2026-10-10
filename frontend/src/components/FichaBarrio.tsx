@@ -108,7 +108,7 @@ export default function FichaBarrio({ ficha, indicadores }: { ficha: Ficha; indi
                 <span>{g}</span>
                 <span className="tabular-nums">{v}</span>
                 <span className="col-span-2">
-                  <Barra valor={v} maximo={maxGrupo} color={GRUPOS_EQUIPAMIENTO[g] ?? "#a3aba7"} />
+                  <Barra valor={v} maximo={maxGrupo} color={GRUPOS_EQUIPAMIENTO[g] ?? "#a5a9cc"} />
                 </span>
               </li>
             ))}

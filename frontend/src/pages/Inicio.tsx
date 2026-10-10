@@ -83,7 +83,7 @@ function DibujoComuna({ stats }: { stats: Stats }) {
             const partes = g.type === "LineString" ? [g.coordinates] : g.type === "MultiLineString" ? g.coordinates : [];
             return partes.map((ps, i) => ({
               clave: `${nombre}-${i}`,
-              color: LINEAS_METRO[nombre] ?? "#24598a",
+              color: LINEAS_METRO[nombre] ?? "#1d4fa0",
               animada,
               inverso: animada && n++ % 2 === 1,
               d: "M" + ps.map((p) => xy(p).map((v) => v.toFixed(1)).join(",")).join("L"),
@@ -118,7 +118,7 @@ function DibujoComuna({ stats }: { stats: Stats }) {
             <rect width={ANCHO} height={ALTO} rx="20" />
           </clipPath>
           <filter id="brillo" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#3d2fa8" floodOpacity="0.45" />
+            <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#3a2d8f" floodOpacity="0.45" />
           </filter>
         </defs>
         <g clipPath="url(#marco)">
@@ -148,7 +148,7 @@ function DibujoComuna({ stats }: { stats: Stats }) {
             />
           ))}
           {/* El barrio bajo el mouse se enciende en verde y se levanta */}
-          {activo && <path d={activo.d} fill="#3f9a6b" fillOpacity="0.9" stroke={VERDE} strokeWidth="2.4" filter="url(#brillo)" className="barrio-resalte pointer-events-none" />}
+          {activo && <path d={activo.d} fill="#8a7bff" fillOpacity="0.9" stroke={VERDE} strokeWidth="2.4" filter="url(#brillo)" className="barrio-resalte pointer-events-none" />}
           {extras.trazos
             .filter((t) => t.animada)
             .map((t) => (
@@ -173,8 +173,8 @@ function DibujoComuna({ stats }: { stats: Stats }) {
           ))}
           {extras.puntos.map((p, i) => (
             <g key={`${p.nombre}-${p.linea}`} className="pointer-events-none">
-              <circle cx={p.x} cy={p.y} r="7" fill={LINEAS_METRO[p.linea] ?? "#24598a"} className="pulso-estacion" style={{ animationDelay: `${(i % 4) * 0.55}s` }} />
-              <circle cx={p.x} cy={p.y} r="7" fill={LINEAS_METRO[p.linea] ?? "#24598a"} stroke="#fff" strokeWidth="2.5" />
+              <circle cx={p.x} cy={p.y} r="7" fill={LINEAS_METRO[p.linea] ?? "#1d4fa0"} className="pulso-estacion" style={{ animationDelay: `${(i % 4) * 0.55}s` }} />
+              <circle cx={p.x} cy={p.y} r="7" fill={LINEAS_METRO[p.linea] ?? "#1d4fa0"} stroke="#fff" strokeWidth="2.5" />
               {p.etiqueta && (
                 <text x={p.x + 11} y={p.y + 4} fontSize="12.5" fontWeight="600" fill="rgb(var(--tinta))" stroke="rgb(var(--papel-hondo))" strokeWidth="3" paintOrder="stroke" className="select-none">
                   {p.nombre}
@@ -185,14 +185,14 @@ function DibujoComuna({ stats }: { stats: Stats }) {
         </g>
       </svg>
       {activo && (
-        <div role="status" className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[135%] whitespace-nowrap rounded-xl bg-acento-hondo px-4 py-2.5 text-white shadow-sm" style={{ left: `${izq}%`, top: `${(activo.centro[1] / ALTO) * 100}%` }}>
-          <p className="text-base font-semibold leading-tight">{activo.nombre}</p>
+        <div role="status" className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[135%] whitespace-nowrap rounded-xl bg-[#1b1550] px-4 py-2.5 text-white shadow-xl" style={{ left: `${izq}%`, top: `${(activo.centro[1] / ALTO) * 100}%` }}>
+          <p className="text-base font-bold leading-tight">{activo.nombre}</p>
           {st && (
             <p className="text-sm text-white/80">
               {st.poblacion != null ? num(st.poblacion) : "Sin dato de"} personas · {num(Math.round(st.densidad))} por hectárea
             </p>
           )}
-          <span aria-hidden="true" className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 -translate-y-1.5 rotate-45 bg-acento-hondo" />
+          <span aria-hidden="true" className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 -translate-y-1.5 rotate-45 bg-[#1b1550]" />
         </div>
       )}
     </div>
@@ -370,7 +370,7 @@ export default function Inicio() {
           <div>
             <Revelar>
               <p className="inline-flex items-center gap-2 rounded-full bg-superficie/80 px-4 py-1.5 text-sm font-semibold text-marca shadow-sm ring-1 ring-marca/15">
-                <span className="h-2 w-2 rounded-full bg-[#f5b82e]" /> Territorio INN 2026 · Reto #4
+                <span className="h-2 w-2 rounded-full bg-[#6ab7ff]" /> Territorio INN 2026 · Reto #4
               </p>
             </Revelar>
             <Revelar retraso={80}>
@@ -379,7 +379,7 @@ export default function Inicio() {
                 <span className="relative mt-1 inline-block text-[2.1rem] font-semibold leading-[1.1] tracking-tight sm:text-[3rem]" style={{ color: VERDE }}>
                   Santa Cruz?
                   <svg viewBox="0 0 330 18" className="subrayado absolute -bottom-3 left-0 w-full" aria-hidden="true">
-                    <path d="M3 12 C 50 3, 105 17, 170 8 S 280 4, 327 11" fill="none" stroke="#f5b82e" strokeWidth="6" strokeLinecap="round" pathLength="1" />
+                    <path d="M3 12 C 50 3, 105 17, 170 8 S 280 4, 327 11" fill="none" stroke="#6ab7ff" strokeWidth="6" strokeLinecap="round" pathLength="1" />
                   </svg>
                 </span>
               </h1>
@@ -394,14 +394,14 @@ export default function Inicio() {
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <Link
                   to="/mapa"
-                  className="group inline-flex items-center gap-3 rounded-2xl bg-acento px-8 py-4 text-xl font-semibold text-white shadow-sm shadow-acento/30 transition duration-200  hover:bg-acento-hondo hover:shadow-sm"
+                  className="group inline-flex items-center gap-3 rounded-2xl bg-[#3a2d8f] px-8 py-4 text-xl font-semibold text-white shadow-lg shadow-[#3a2d8f]/30 transition duration-200 hover:scale-105 hover:bg-[#1b1550] hover:shadow-xl"
                 >
                   <IconoNav nombre="mapa" className="h-7 w-7 transition-transform group-hover:-rotate-6" trazo={2} />
                   Abrir el mapa
                 </Link>
                 <Link
                   to="/indicadores"
-                  className="inline-flex items-center gap-2 rounded-2xl border-2 border-marca/40 bg-superficie/40 px-6 py-3.5 text-lg font-semibold text-marca transition hover:border-marca hover:bg-acento/5"
+                  className="inline-flex items-center gap-2 rounded-2xl border-2 border-marca/40 bg-superficie/40 px-6 py-3.5 text-lg font-semibold text-marca transition hover:border-marca hover:bg-[#3a2d8f]/5"
                 >
                   Ver indicadores
                 </Link>
@@ -411,7 +411,7 @@ export default function Inicio() {
               </Link>
             </Revelar>
             <Revelar retraso={320}>
-              <p className="mt-9 max-w-xl border-l-2 border-[#f5b82e] pl-4 text-sm italic text-tinta-suave">
+              <p className="mt-9 max-w-xl border-l-2 border-[#6ab7ff] pl-4 text-sm italic text-tinta-suave">
                 Pregunta del reto: ¿cómo optimizar la infraestructura vial, peatonal y de acceso, facilitando la conexión interna de la
                 comuna 2 Santa Cruz con el resto de Medellín?
               </p>
@@ -494,7 +494,7 @@ export default function Inicio() {
                             <Cuenta hasta={REFERENCIA_M2} activo={v} /> <span className="text-lg font-semibold">m²</span>
                           </span>
                         </div>
-                        <Barra pct={100} color="#2d6a4f" activo={v} retraso={250} />
+                        <Barra pct={100} color="#6a4fe0" activo={v} retraso={250} />
                       </div>
                       <p className="mt-6 rounded-xl bg-ladrillo-claro px-4 py-3 text-base font-semibold text-ladrillo">
                         Faltan unos {dec(REFERENCIA_M2 - ep)} m² por persona: la referencia es casi{" "}
@@ -588,7 +588,7 @@ export default function Inicio() {
                     </span>
                     {m.pronto ? (
                       <span className="hidden shrink-0 items-center gap-2 rounded-full bg-ambar-claro px-3.5 py-1.5 text-sm font-semibold text-ambar-texto sm:inline-flex">
-                        <span className="h-2.5 w-2.5 rounded-full bg-[#f5b82e]" /> Próximamente
+                        <span className="h-2.5 w-2.5 rounded-full bg-[#6ab7ff]" /> Próximamente
                       </span>
                     ) : (
                       <span className="hidden shrink-0 items-center gap-2 rounded-full bg-menta px-3.5 py-1.5 text-sm font-semibold text-marca sm:inline-flex">

@@ -224,7 +224,7 @@ export default function Participacion() {
                 {duplicado.descripcion.length > 80 ? "…" : ""}”.
               </p>
               <label className="mt-2 flex items-center gap-2">
-                <input type="checkbox" checked={confirmarDuplicado} onChange={(e) => setConfirmarDuplicado(e.target.checked)} className="accent-[#2d6a4f]" />
+                <input type="checkbox" checked={confirmarDuplicado} onChange={(e) => setConfirmarDuplicado(e.target.checked)} className="accent-[#6a4fe0]" />
                 Es un problema distinto
               </label>
               {errores.duplicado && <p className="mt-1 text-ladrillo">{errores.duplicado}</p>}
@@ -250,13 +250,13 @@ export default function Participacion() {
               className="base-clara"
             />
             {barrios.estado === "listo" && (
-              <GeoJSON data={barrios.datos} interactive={false} style={{ color: "#1f4d39", weight: 1, fillOpacity: 0.03 }} />
+              <GeoJSON data={barrios.datos} interactive={false} style={{ color: "#3a2d8f", weight: 1, fillOpacity: 0.03 }} />
             )}
             {comuna.estado === "listo" && (
-              <GeoJSON data={comuna.datos} interactive={false} style={{ color: "#1d2b2a", weight: 2.5, dashArray: "8 5", fillOpacity: 0 }} />
+              <GeoJSON data={comuna.datos} interactive={false} style={{ color: "#1b1d3a", weight: 2.5, dashArray: "8 5", fillOpacity: 0 }} />
             )}
             {reportes.map((r) => (
-              <CircleMarker key={r.id} center={[r.lat, r.lon]} radius={6} pathOptions={{ color: "#fff", weight: 1.5, fillColor: "#24598a", fillOpacity: 1 }} />
+              <CircleMarker key={r.id} center={[r.lat, r.lon]} radius={6} pathOptions={{ color: "#fff", weight: 1.5, fillColor: "#1d4fa0", fillOpacity: 1 }} />
             ))}
             {punto && (
               <CircleMarker center={[punto.lat, punto.lon]} radius={9} pathOptions={{ color: "#fff", weight: 2.5, fillColor: "#a8452b", fillOpacity: 1 }} />

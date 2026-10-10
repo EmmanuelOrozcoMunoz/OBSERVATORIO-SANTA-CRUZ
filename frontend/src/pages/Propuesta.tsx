@@ -6,7 +6,7 @@ import { BotonCabecera, Cabecera, Relacionados, Seccion } from "../components/Pa
 import { Revelar } from "../components/Animacion";
 
 type Estado = "Hecho" | "Prototipo" | "Por validar" | "Propuesta";
-const COLOR: Record<Estado, string> = { Hecho: "#2d6a4f", Prototipo: "#2d6a9a", "Por validar": "#b0893a", Propuesta: "#7d8784" };
+const COLOR: Record<Estado, string> = { Hecho: "#6a4fe0", Prototipo: "#2d6ae0", "Por validar": "#9a55d0", Propuesta: "#7d83a8" };
 const Chip = ({ e }: { e: Estado }) => <span className="whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold text-white" style={{ background: COLOR[e] }}>{e}</span>;
 
 const Tarjeta = ({ titulo, children, tono }: { titulo: string; children: ReactNode; tono?: string }) => (
@@ -42,12 +42,12 @@ function Contenido({ ind }: { ind: Indicadores }) {
       <Seccion id="t-p-nec" titulo="Qué necesita la comuna" texto="Las cifras salen de los datos oficiales que ya están en el observatorio.">
         <div className="grid gap-3 md:grid-cols-3">
           {[
-            ["Espacio público", `${dec(c.espacio_publico_m2_hab)} m² por habitante frente a los 15 m² de referencia nacional. Casi no hay dónde estar, jugar o caminar sin estorbos.`, "#2d6a4f"],
-            ["Llegar caminando", `Solo ${pct(acc?.transporte_masivo_10min_pct)} de las personas llega al Metro o Metrocable en 10 minutos caminando. La ladera alarga el camino.`, "#2d6a9a"],
-            ["Andenes que sirvan", `${pct(an?.angostos_pct)} del andén inventariado mide menos de 1,2 m. Con coches, bastones o sillas, no caben.`, "#b0893a"],
+            ["Espacio público", `${dec(c.espacio_publico_m2_hab)} m² por habitante frente a los 15 m² de referencia nacional. Casi no hay dónde estar, jugar o caminar sin estorbos.`, "#6a4fe0"],
+            ["Llegar caminando", `Solo ${pct(acc?.transporte_masivo_10min_pct)} de las personas llega al Metro o Metrocable en 10 minutos caminando. La ladera alarga el camino.`, "#2d6ae0"],
+            ["Andenes que sirvan", `${pct(an?.angostos_pct)} del andén inventariado mide menos de 1,2 m. Con coches, bastones o sillas, no caben.`, "#9a55d0"],
             ["Seguridad vial", `${num(atropellos)} atropellos registrados entre 2019 y 2025 en los barrios de la comuna.`, "#c0583a"],
             ["Ladera y agua", `${pct(c.amenaza_pct?.Alta)} de la superficie tiene amenaza alta por movimiento en masa. En noviembre de 2024 una emergencia por un tubo del acueducto dejó cientos de damnificados.`, "#8a4a6a"],
-            ["Decidir con datos", "Hoy las decisiones de obra, presupuesto participativo y proyectos privados se apoyan en datos repartidos en muchas oficinas y formatos.", "#3a8a8a"],
+            ["Decidir con datos", "Hoy las decisiones de obra, presupuesto participativo y proyectos privados se apoyan en datos repartidos en muchas oficinas y formatos.", "#2a8ac8"],
           ].map(([t, x, col], i) => (
             <Revelar key={t} retraso={i * 40} className="h-full"><Tarjeta titulo={t} tono={col}><p>{x}</p></Tarjeta></Revelar>
           ))}
@@ -112,7 +112,7 @@ function Contenido({ ind }: { ind: Indicadores }) {
             <p>No sacamos información de TikTok, Facebook o Instagram con programas automáticos. Esas plataformas lo prohíben en sus términos de servicio, y lo que publica una persona sigue siendo un dato personal protegido por la Ley 1581 de 2012 (habeas data) aunque sea visible.</p>
             <p>Además, un proyecto que gana un reto y luego tiene un problema legal por esto pierde más de lo que gana.</p>
           </Tarjeta>
-          <Tarjeta titulo="Lo que sí podemos hacer" tono="#2d6a4f">
+          <Tarjeta titulo="Lo que sí podemos hacer" tono="#6a4fe0">
             <p><strong className="text-tinta">1. Que el vecino nos cuente a nosotros:</strong> un formulario o un número de WhatsApp de la comuna donde manda la foto, la ubicación y acepta que se use. Es más limpio y más útil que raspar redes.</p>
             <p><strong className="text-tinta">2. Páginas públicas de organizaciones de la comuna,</strong> con su permiso, leídas por una persona o con su autorización.</p>
             <p><strong className="text-tinta">3. Programas oficiales para investigación</strong> de algunas plataformas, si aceptan al proyecto. No verificamos si están disponibles para Colombia: hay que revisarlo.</p>
@@ -135,7 +135,7 @@ function Contenido({ ind }: { ind: Indicadores }) {
 
       <Seccion id="t-p-gana" titulo="¿Ganará el reto?" texto="Nadie lo puede asegurar. Esto es lo que juega a favor y lo que hay que reforzar.">
         <div className="grid gap-3 md:grid-cols-2">
-          <Tarjeta titulo="A favor" tono="#2d6a4f">
+          <Tarjeta titulo="A favor" tono="#6a4fe0">
             <ul className="list-disc space-y-1 pl-5">
               <li>Funciona hoy, no es solo una idea: se puede probar en vivo.</li>
               <li>Responde directamente al reto (espacios públicos, equipamientos y movilidad).</li>

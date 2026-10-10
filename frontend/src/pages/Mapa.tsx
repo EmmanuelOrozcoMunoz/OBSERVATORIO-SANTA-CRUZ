@@ -123,7 +123,7 @@ function FichaComuna({ p, santaCruz, onVerSantaCruz }: { p: Props; santaCruz?: P
 /** Marca de "elegido": chulo blanco sobre círculo verde. */
 function Chulo() {
   return (
-    <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full bg-acento text-white shadow">
+    <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full bg-[#3a2d8f] text-white shadow">
       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
         <path d="m5 12.5 4.5 4.5L19 7.5" />
       </svg>
@@ -349,9 +349,9 @@ export default function Mapa() {
       ? [{
           titulo: "Edificaciones en 3D (catastro)",
           items: [
-            { color: "#d9d3f7", etiqueta: "1 piso", forma: "area" as const },
-            { color: "#7a5be0", etiqueta: "2 pisos", forma: "area" as const },
-            { color: "#3d2fa8", etiqueta: "3 pisos o más", forma: "area" as const },
+            { color: "#d9d4fb", etiqueta: "1 piso", forma: "area" as const },
+            { color: "#6a4fe0", etiqueta: "2 pisos", forma: "area" as const },
+            { color: "#3a2d8f", etiqueta: "3 pisos o más", forma: "area" as const },
           ],
           nota: "Altura = pisos × 3 m. Las sombras siguen la posición real del sol a la hora elegida. El relieve está exagerado 1,6 veces para que se note.",
         }]
@@ -467,7 +467,43 @@ export default function Mapa() {
           <div className={`order-last w-full md:order-none md:w-64 2xl:w-80 ${solo ? "" : "pointer-events-auto"}`}>
             <Buscador onElegir={elegirResultado} modo={modo} />
           </div>
-          <div className="ml-auto xl:hidden">{acciones}</div>
+          <div className={`ml-auto flex gap-2 ${solo ? "" : "pointer-events-auto"}`}>
+            <button
+              type="button"
+              aria-pressed={ruteo}
+              onClick={alternarRuteo}
+              className={`flex items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg ${ruteo ? "bg-ambar text-white" : "bg-tinta text-papel"}`}
+            >
+              <Icono nombre="ruta" className="h-6 w-6" />
+              {ruteo ? "Salir de rutas" : "¿Cómo llego?"}
+            </button>
+            <button
+              type="button"
+              aria-pressed={vista3d}
+              onClick={() => setVista3d((v) => !v)}
+              className={`flex items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg ${vista3d ? "bg-ladera text-papel" : "bg-superficie/95 text-tinta"}`}
+            >
+              <Icono nombre="3d" className="h-6 w-6" />
+              {vista3d ? "Ver en plano" : "Ver en 3D"}
+            </button>
+            <button
+              type="button"
+              aria-pressed={solo}
+              onClick={() => setSolo(true)}
+              title="Esconder todo y ver solo el mapa (Esc para salir)"
+              className="flex items-center gap-2 rounded-2xl bg-[#3a2d8f] px-4 py-3 text-base font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+            >
+              Solo Mapa <span aria-hidden="true" className="text-lg leading-none">⛶</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => (recorrido ? setRecorrido(false) : iniciarRecorrido())}
+              className={`hidden items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg sm:flex ${recorrido ? "bg-ambar text-white" : "bg-superficie/95 text-tinta"}`}
+            >
+              <Icono nombre="giro" className="h-6 w-6" />
+              <span className="sr-only 2xl:not-sr-only">{recorrido ? "Detener recorrido" : "Recorrido"}</span>
+            </button>
+          </div>
         </div>
 
         {/* Acciones arriba a la derecha (pantallas anchas): en una columna para que no se encimen con la leyenda ni los controles */}
@@ -478,16 +514,16 @@ export default function Mapa() {
           aria-label="Qué quiere ver en el mapa"
           className={`absolute left-4 top-[4.75rem] z-10 w-60 ${panelAbierto ? "bottom-4" : ""} ${ruteo ? "hidden" : "hidden lg:flex"} ${cromo}`}
         >
-          <div className="panel-mapa pointer-events-auto flex max-h-full min-h-0 w-full flex-col self-start overflow-hidden rounded-2xl">
-            <button
-              type="button"
-              aria-expanded={panelAbierto}
-              onClick={() => setPanelAbierto((v) => !v)}
-              className="flex w-full shrink-0 items-center justify-between gap-3 px-3.5 py-3 text-left transition-colors hover:bg-acento/10"
-            >
-              <span>
-                <span className="block text-base font-bold">¿Qué quiere ver?</span>
-                <span className="block text-xs text-tinta-suave">{panelAbierto ? "Toque para mostrar u ocultar" : `${TEMAS.filter(temaActivo).length} activos`}</span>
+          <button
+            type="button"
+            aria-expanded={panelAbierto}
+            onClick={() => setPanelAbierto((v) => !v)}
+            className="flex w-full items-center justify-between gap-3 rounded-2xl bg-[#1b1550]/90 px-4 py-3 text-left text-white shadow-md backdrop-blur transition hover:bg-[#1b1550]"
+          >
+            <span>
+              <span className="block text-lg font-bold [font-stretch:110%]">¿Qué quiere ver?</span>
+              <span className="block text-sm text-white/75">
+                {panelAbierto ? "Toque uno o varios. Se pueden combinar." : `${TEMAS.filter(temaActivo).length} temas encendidos`}
               </span>
               <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-5 w-5 shrink-0 text-tinta-suave transition-transform duration-200 ${panelAbierto ? "" : "rotate-180"}`} fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round">
                 <path d="m6 15 6-6 6 6" />
@@ -602,9 +638,29 @@ export default function Mapa() {
 
         {/* Avisos cortos (foto descargada, etc.) */}
         {aviso && (
-          <p role="status" className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-acento-hondo px-5 py-2.5 text-base font-semibold text-white shadow-xl">
+          <p role="status" className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-[#1b1550] px-5 py-2.5 text-base font-semibold text-white shadow-xl">
             {aviso}
           </p>
+        )}
+
+        {/* Leyenda compacta (computador), arriba a la derecha junto a los controles */}
+        {leyenda.length > 0 && !ruteo && (
+          <div className={`absolute right-20 top-40 z-10 hidden w-64 rounded-2xl bg-superficie/95 shadow-lg backdrop-blur xl:block ${cromo}`}>
+            <button
+              type="button"
+              aria-expanded={verLeyenda}
+              onClick={() => setVerLeyenda((v) => !v)}
+              className="flex w-full items-center justify-between px-4 py-3 text-base font-bold"
+            >
+              Leyenda
+              <span className="text-sm font-medium text-tinta-suave">{verLeyenda ? "Ocultar" : "Mostrar"}</span>
+            </button>
+            {verLeyenda && (
+              <div className="max-h-[46vh] overflow-y-auto px-4 pb-4">
+                <Leyenda bloques={leyenda} />
+              </div>
+            )}
+          </div>
         )}
 
         {/* Ayuda la primera vez */}
