@@ -25,7 +25,7 @@ function NoEncontrada() {
       <h1 className="text-2xl font-bold">Esta página no existe</h1>
       <p className="mt-2 text-tinta-suave">Puede volver al inicio o abrir el mapa.</p>
       <div className="mt-4 flex gap-3">
-        <Link to="/" className="rounded-md bg-ladera px-4 py-2 text-papel">
+        <Link to="/" className="rounded-md bg-acento px-4 py-2 text-white">
           Ir al inicio
         </Link>
         <Link to="/mapa" className="rounded-md border border-nivel px-4 py-2">

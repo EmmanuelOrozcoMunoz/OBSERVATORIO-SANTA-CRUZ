@@ -1,6 +1,7 @@
 /** Paleta "ladera": tomada del paisaje de la comuna (montaña, cable, ladrillo, curvas de nivel). */
 /** @type {import('tailwindcss').Config} */
 export default {
+  future: { hoverOnlyWhenSupported: true },
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
@@ -11,6 +12,7 @@ export default {
         superficie: "rgb(var(--superficie) / <alpha-value>)",
         nivel: "rgb(var(--nivel) / <alpha-value>)",
         marca: "rgb(var(--marca) / <alpha-value>)",
+        acento: { DEFAULT: "rgb(var(--acento) / <alpha-value>)", hondo: "rgb(var(--acento-hondo) / <alpha-value>)" },
         menta: { DEFAULT: "rgb(var(--menta) / <alpha-value>)", 2: "rgb(var(--menta-2) / <alpha-value>)" },
         aviso: { fondo: "rgb(var(--aviso-fondo) / <alpha-value>)", borde: "rgb(var(--aviso-borde) / <alpha-value>)" },
         peligro: "rgb(var(--peligro) / <alpha-value>)",
@@ -28,10 +30,10 @@ export default {
         sm: ["0.875rem", { lineHeight: "1.4rem" }],
         base: ["1rem", { lineHeight: "1.6rem" }],
         lg: ["1.25rem", { lineHeight: "2rem" }],
-        xl: ["1.563rem", { lineHeight: "2rem" }],
-        "2xl": ["1.953rem", { lineHeight: "2.3rem" }],
-        "3xl": ["2.441rem", { lineHeight: "2.7rem" }],
-        "4xl": ["3.052rem", { lineHeight: "3.2rem" }],
+        xl: ["1.35rem", { lineHeight: "1.9rem" }],
+        "2xl": ["1.6rem", { lineHeight: "2.1rem" }],
+        "3xl": ["2rem", { lineHeight: "2.4rem" }],
+        "4xl": ["2.5rem", { lineHeight: "2.8rem" }],
       },
     },
   },

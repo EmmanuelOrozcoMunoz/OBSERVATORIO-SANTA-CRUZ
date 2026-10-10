@@ -82,7 +82,11 @@ const cielo = (noche: boolean) =>
     ? { "sky-color": "#080b1e", "horizon-color": "#1f2560", "fog-color": "#0a0d1f", "sky-horizon-blend": 0.6, "horizon-fog-blend": 0.7, "fog-ground-blend": 0.35, "atmosphere-blend": 0.4 }
     : { "sky-color": "#c4cdf5", "horizon-color": "#f6f6fc", "fog-color": "#ecebf8", "sky-horizon-blend": 0.55, "horizon-fog-blend": 0.75, "fog-ground-blend": 0.3, "atmosphere-blend": 0.5 };
 
-/** Colores de noche para las capas del mapa base, según el tipo de elemento. */
+/** Colores de noche para las capas del mapa base. Calles y etiquetas claras sobre un fondo azul marino profundo. */
+const NOCHE = {
+  fondo: "#070c1a", agua: "#0e1a36", verde: "#0a1427", suelo: "#0a1021", edificio: "#111a35",
+  via: "#1c2a4d", viaMayor: "#2a3d73", limite: "#2b3b6c", texto: "#9db0e0", halo: "#070c1a",
+};
 function colorNoche(id: string, tipo: string): Record<string, string> | null {
   const t = id.toLowerCase();
   if (tipo === "background") return { "background-color": "#0a0d1f" };
@@ -90,6 +94,7 @@ function colorNoche(id: string, tipo: string): Record<string, string> | null {
   const agua = /water|ocean|river/.test(t);
   const verde = /park|landcover|wood|grass|forest|green/.test(t);
   const edificio = /building/.test(t);
+  const mayor = /motorway|trunk|primary|major/.test(t);
   const via = /road|highway|tunnel|bridge|transport|rail|path|street|aeroway/.test(t);
   const limite = /boundary/.test(t);
   const color = agua ? "#10244f" : verde ? "#151a45" : edificio ? "#1c2150" : via ? "#2b3170" : limite ? "#3a428a" : "#0f1334";
@@ -356,6 +361,12 @@ export default function MapaVivo(o: Opciones) {
       pintar("park", "fill-color", "#dcdcf7");
       pintar("landuse_residential", "fill-color", "#e4e3f6");
       pintar("landuse_residential", "fill-opacity", 0.35);
+      // Contraste de día: se pinta una vez aquí; el modo noche guarda estos valores y los devuelve al volver
+      for (const id of capasBase.current) {
+        const capa = m.getLayer(id);
+        if (!capa || id === "background" || id === "relieve" || id === "edificios-3d") continue;
+        for (const [prop, valor] of Object.entries(colorDia(id, capa.type) ?? {})) m.setPaintProperty(id, prop, valor);
+      }
 
       // Relieve: sombras siempre, montaña real en 3D
       m.addSource("dem-sombra", { type: "raster-dem", tiles: [DEM], encoding: "terrarium", tileSize: 256, maxzoom: 14 });
@@ -740,6 +751,7 @@ export default function MapaVivo(o: Opciones) {
     const m = mapa.current;
     if (!m || !listo) return;
     const noche = !!o.noche;
+    const aplicar = () => {
     for (const id of capasBase.current) {
       const capa = m.getLayer(id);
       if (!capa || id === "relieve" || id === "edificios-3d") continue;
@@ -765,6 +777,13 @@ export default function MapaVivo(o: Opciones) {
     pintar("comunas-relleno", "fill-opacity", ["case", ["get", "es_santa_cruz"], noche ? 0.18 : 0.28, noche ? 0.06 : 0.25]);
     aplicarNocheEdificios(m, noche);
     m.setSky(cielo(noche));
+    };
+    aplicar();
+    // Segunda pasada cuando el mapa queda quieto: así el modo noche guardado se ve igual desde la primera carga.
+    m.once("idle", aplicar);
+    return () => {
+      m.off("idle", aplicar);
+    };
   }, [o.noche, listo]);
 
   // Opacidad de las capas de datos ----------------------------------------------------

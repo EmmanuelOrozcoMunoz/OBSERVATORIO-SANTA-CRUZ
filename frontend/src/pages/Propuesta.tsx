@@ -11,7 +11,7 @@ const Chip = ({ e }: { e: Estado }) => <span className="whitespace-nowrap rounde
 
 const Tarjeta = ({ titulo, children, tono }: { titulo: string; children: ReactNode; tono?: string }) => (
   <div className="h-full rounded-2xl border border-nivel bg-superficie p-4 shadow-sm" style={tono ? { borderTopColor: tono, borderTopWidth: 4 } : undefined}>
-    <h3 className="font-bold text-marca">{titulo}</h3>
+    <h3 className="font-semibold text-marca">{titulo}</h3>
     <div className="mt-1.5 space-y-1.5 text-sm text-tinta-suave">{children}</div>
   </div>
 );
@@ -87,7 +87,7 @@ function Contenido({ ind }: { ind: Indicadores }) {
       </Seccion>
 
       <Seccion id="t-p-det" titulo="Cómo detectamos aceras, escaleras, huecos y basura" texto="Ningún canal alcanza solo. La idea es cruzar varios.">
-        <div className="overflow-x-auto rounded-3xl border border-nivel bg-superficie shadow-sm">
+        <div className="overflow-x-auto rounded-2xl border border-nivel bg-superficie shadow-sm">
           <table className="w-full min-w-[640px] text-sm">
             <thead><tr className="border-b border-nivel bg-papel text-left text-tinta-suave">
               <th className="px-4 py-2 font-semibold">Canal</th><th className="px-4 py-2 font-semibold">Qué detecta</th><th className="px-4 py-2 font-semibold">Estado</th><th className="px-4 py-2 font-semibold">Ojo con</th></tr></thead>

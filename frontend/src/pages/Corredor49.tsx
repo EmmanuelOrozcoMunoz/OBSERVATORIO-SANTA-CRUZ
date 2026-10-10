@@ -142,7 +142,7 @@ function Seccion({ id, titulo, texto, children }: { id: string; titulo: string; 
   return (
     <section className="mt-20 lg:mt-28" aria-labelledby={id}>
       <Revelar>
-        <h2 id={id} className="text-[2rem] font-bold leading-tight tracking-tight text-marca">{titulo}</h2>
+        <h2 id={id} className="text-[2rem] font-semibold leading-tight tracking-tight text-marca">{titulo}</h2>
         {texto && <p className="mt-2 max-w-3xl text-lg text-tinta-suave">{texto}</p>}
       </Revelar>
       <div className="mt-8">{children}</div>
@@ -172,7 +172,7 @@ function Contenido({ d }: { d: Eje49 }) {
       <Revelar className="mt-10">
         <div className="grid gap-5 md:grid-cols-3">
           <div className="rounded-2xl border-l-4 border-marca bg-menta-2 p-6">
-            <p className="text-sm font-semibold uppercase tracking-wider text-ladera">Para toda la comuna</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-marca">Para toda la comuna</p>
             <p className="mt-2 text-lg">
               Al Metro, la ruta más rápida toma <strong>{dec(metro.minutos_ruta_rapida)} min</strong>. Obligando a caminar por la 49 sube a <strong>{dec(metro.minutos_por_la_49)} min</strong>.
             </p>
@@ -208,16 +208,16 @@ function Contenido({ d }: { d: Eje49 }) {
         <div className="mt-6 grid items-start gap-8 lg:grid-cols-[1.1fr_1fr]">
           <MapaEje tipo={tipo} />
           <div>
-            <h3 className="text-xl font-bold">Hacia: {dest.nombre.toLowerCase()}</h3>
+            <h3 className="text-xl font-semibold">Hacia: {dest.nombre.toLowerCase()}</h3>
             <dl className="mt-4 grid grid-cols-2 gap-4">
               {[
                 { k: "Ruta más rápida", v: dest.minutos_ruta_rapida, u: "min", c: VERDE },
                 { k: "Obligando la 49", v: dest.minutos_por_la_49, u: "min", c: "#c2301a" },
               ].map((x) => (
-                <div key={x.k} className="rounded-2xl bg-superficie p-5 shadow-lg ring-1 ring-black/5">
+                <div key={x.k} className="rounded-2xl bg-superficie p-5 shadow-sm ring-1 ring-black/5">
                   <dt className="text-sm font-semibold text-tinta-suave">{x.k}</dt>
-                  <dd className="mt-1 text-[2.6rem] font-extrabold leading-none tabular-nums" style={{ color: x.c }}>
-                    <Cuenta hasta={x.v} decimales={1} activo duracion={900} /> <span className="text-lg font-bold">{x.u}</span>
+                  <dd className="mt-1 text-[2rem] font-semibold leading-none tabular-nums" style={{ color: x.c }}>
+                    <Cuenta hasta={x.v} decimales={1} activo duracion={900} /> <span className="text-lg font-semibold">{x.u}</span>
                   </dd>
                 </div>
               ))}
@@ -237,7 +237,7 @@ function Contenido({ d }: { d: Eje49 }) {
 
       {/* ------------------------------------------------------------------ tabla por barrio */}
       <Seccion id="t-barrios" titulo="Barrio por barrio" texto={`Minutos promedio hacia ${dest.nombre.toLowerCase()}, ponderados por las personas de cada manzana.`}>
-        <div className="overflow-x-auto rounded-2xl bg-superficie shadow-lg ring-1 ring-black/5">
+        <div className="overflow-x-auto rounded-2xl bg-superficie shadow-sm ring-1 ring-black/5">
           <table className="w-full min-w-[40rem] text-left text-base">
             <thead className="border-b border-nivel text-sm text-tinta-suave">
               <tr>
@@ -279,8 +279,8 @@ function Contenido({ d }: { d: Eje49 }) {
             { n: e.paradas_cerca, t: "paradas de bus a menos de 40 m", c: VERDE },
           ].map((x) => (
             <Revelar key={x.t}>
-              <div className="h-full rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
-                <p className="text-[3rem] font-extrabold leading-none tabular-nums" style={{ color: x.c }}><Cuenta hasta={x.n} activo /></p>
+              <div className="h-full rounded-2xl bg-superficie p-6 shadow-sm ring-1 ring-black/5">
+                <p className="text-[2.2rem] font-semibold leading-none tabular-nums" style={{ color: x.c }}><Cuenta hasta={x.n} activo /></p>
                 <p className="mt-2 text-base font-semibold">{x.t}</p>
               </div>
             </Revelar>
@@ -289,11 +289,11 @@ function Contenido({ d }: { d: Eje49 }) {
 
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
           <Revelar>
-            <div className="rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
-              <h3 className="text-lg font-bold">Siniestros por kilómetro</h3>
+            <div className="rounded-2xl bg-superficie p-6 shadow-sm ring-1 ring-black/5">
+              <h3 className="text-lg font-semibold">Siniestros por kilómetro</h3>
               <div className="mt-4 space-y-4">
                 <div>
-                  <div className="flex justify-between text-base"><span className="font-semibold">Carrera 49</span><span className="tabular-nums font-bold text-peligro">{dec(e.siniestros_por_km)}</span></div>
+                  <div className="flex justify-between text-base"><span className="font-semibold">Carrera 49</span><span className="tabular-nums font-semibold text-peligro">{dec(e.siniestros_por_km)}</span></div>
                   <Barra valor={e.siniestros_por_km} max={anchoMax} color="#c2301a" />
                 </div>
                 {e.siniestros_por_km_comuna != null && (
@@ -307,11 +307,11 @@ function Contenido({ d }: { d: Eje49 }) {
             </div>
           </Revelar>
           <Revelar retraso={120}>
-            <div className="h-full rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
-              <h3 className="text-lg font-bold">Andenes de la 49</h3>
+            <div className="h-full rounded-2xl bg-superficie p-6 shadow-sm ring-1 ring-black/5">
+              <h3 className="text-lg font-semibold">Andenes de la 49</h3>
               {e.ancho_andén_mediana_m != null ? (
                 <>
-                  <p className="mt-3 text-[3rem] font-extrabold leading-none tabular-nums text-peligro">{dec(e.ancho_andén_mediana_m)} m</p>
+                  <p className="mt-3 text-[2.2rem] font-semibold leading-none tabular-nums text-peligro">{dec(e.ancho_andén_mediana_m)} m</p>
                   <p className="mt-1 text-base font-semibold">ancho mediano del andén</p>
                   <p className="mt-3 text-lg"><strong>{dec(e.andenes_menores_1_5_m_pct)} %</strong> de los {num(e.andenes_tramos)} tramos miden menos de 1,5 m.</p>
                 </>
@@ -324,8 +324,8 @@ function Contenido({ d }: { d: Eje49 }) {
         </div>
 
         <Revelar className="mt-8">
-          <div className="rounded-2xl bg-superficie p-6 shadow-lg ring-1 ring-black/5">
-            <h3 className="text-lg font-bold">Líneas de bus que recorren la 49 (más de 200 m)</h3>
+          <div className="rounded-2xl bg-superficie p-6 shadow-sm ring-1 ring-black/5">
+            <h3 className="text-lg font-semibold">Líneas de bus que recorren la 49 (más de 200 m)</h3>
             <ul className="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
               {e.rutas_de_bus_sobre_el_eje.map((r) => (
                 <li key={r.nombre + r.codigo} className="flex items-baseline justify-between gap-3 border-b border-nivel/60 py-1.5">
@@ -344,7 +344,7 @@ function Contenido({ d }: { d: Eje49 }) {
         <div className="grid gap-6 lg:grid-cols-2">
           <Revelar>
             <div className="h-full rounded-2xl border-l-4 border-marca bg-menta-2 p-6">
-              <h3 className="text-lg font-bold">Lo que podemos afirmar</h3>
+              <h3 className="text-lg font-semibold">Lo que podemos afirmar</h3>
               <ul className="mt-3 list-disc space-y-2 pl-5 text-lg">
                 <li>A pie, la 49 no es la ruta más rápida para la comuna entera: a la mayoría de las manzanas no les queda de camino hacia ningún destino.</li>
                 <li>Sí es el camino natural de {mejores.map((b) => b.barrio).join(", ")}, y por ella van varias líneas de bus.</li>
@@ -389,7 +389,7 @@ export default function Corredor49() {
   return (
     <div className="relative isolate overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-papel" />
-      <div className="mx-auto max-w-6xl px-4 pb-24 pt-6 lg:px-8 lg:pt-8">
+      <div className="mx-auto max-w-5xl space-y-8 px-4 py-5 lg:px-8">
         <ConDatos estado={estado}>{(d) => <Contenido d={d} />}</ConDatos>
       </div>
     </div>

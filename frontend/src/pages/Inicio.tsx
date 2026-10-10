@@ -204,7 +204,7 @@ function Tarjeta({ retraso = 0, tono, children }: { retraso?: number; tono: stri
   const [ref, visto] = useVisto<HTMLDivElement>(0.2);
   return (
     <div ref={ref} className={`revelar h-full ${visto ? "visto" : ""}`} style={{ transitionDelay: `${retraso}ms` }}>
-      <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-4 bg-superficie p-6 shadow-lg ring-1 ring-black/5 lg:p-7" style={{ borderTopColor: tono }}>
+      <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-2 bg-superficie p-5 ring-1 ring-black/5" style={{ borderTopColor: tono }}>
         {children(visto)}
       </article>
     </div>
@@ -214,10 +214,10 @@ function Tarjeta({ retraso = 0, tono, children }: { retraso?: number; tono: stri
 function Cabecera({ icono, color, titulo }: { icono: string; color: string; titulo: string }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-white" style={{ background: color }}>
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg text-white" style={{ background: color }}>
         <IconoNav nombre={icono} className="h-7 w-7" />
       </span>
-      <h3 className="text-lg font-bold leading-snug">{titulo}</h3>
+      <h3 className="text-lg font-semibold leading-snug">{titulo}</h3>
     </div>
   );
 }
@@ -241,7 +241,7 @@ function PuntosHectarea({ n, activo }: { n: number; activo: boolean }) {
   }, [n]);
   return (
     <figure className="shrink-0">
-      <svg viewBox="0 0 100 100" className="h-[8.5rem] w-[8.5rem] rounded-lg bg-menta-2 ring-2 ring-marca/30" role="img" aria-label={`Una hectárea con ${num(Math.round(n))} puntos, uno por cada persona`}>
+      <svg viewBox="0 0 100 100" className="h-[6.5rem] w-[6.5rem] rounded-lg bg-menta-2 ring-2 ring-marca/30" role="img" aria-label={`Una hectárea con ${num(Math.round(n))} puntos, uno por cada persona`}>
         {[0, 1, 2, 3].map((gr) => (
           <g key={gr} style={{ opacity: activo ? 1 : 0, transition: "opacity 700ms ease", transitionDelay: `${300 + gr * 260}ms` }}>
             {puntos
@@ -320,8 +320,8 @@ function PulsoComuna() {
       <Revelar>
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 id="t-pulso" className="text-3xl font-bold tracking-tight">El pulso de la comuna</h2>
-            <p className="mt-3 max-w-2xl text-lg text-tinta-suave">Una cifra de cada módulo. Toca una y te lleva a ver cómo se calculó.</p>
+            <h2 id="t-pulso" className="text-2xl font-semibold tracking-tight">El pulso de la comuna</h2>
+            <p className="mt-2 max-w-2xl text-base text-tinta-suave">Una cifra de cada módulo. Toca una y te lleva a ver cómo se calculó.</p>
           </div>
           <span className="inline-flex items-center gap-2 rounded-full bg-superficie px-3 py-1.5 text-xs font-semibold text-tinta-suave ring-1 ring-nivel" title={r.origen === "api" ? "Los datos llegaron de la API" : "La API no está encendida, se leyó el archivo inicio.json"}>
             <span className={`h-2 w-2 rounded-full ${r.origen === "api" ? "bg-[#2d9a5a]" : "bg-[#e0a526]"}`} aria-hidden="true" />
@@ -334,7 +334,7 @@ function PulsoComuna() {
           <Revelar key={p.clave} retraso={(i % 3) * 70}>
             <Link to={p.ruta} className="vidrio group flex h-full flex-col rounded-2xl p-5" style={{ ["--glow" as string]: acentoDeRuta(p.ruta).vivo }}>
               <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-tinta-suave"><span className="h-2.5 w-2.5 rounded-full" style={{ background: acentoDeRuta(p.ruta).vivo }} />{p.modulo}</span>
-              <span className="mt-2 text-4xl font-bold tabular-nums text-marca">{p.valor == null ? "—" : String(p.valor).replace(".", ",")}</span>
+              <span className="mt-2 text-3xl font-semibold tabular-nums text-marca">{p.valor == null ? "—" : String(p.valor).replace(".", ",")}</span>
               <span className="mt-2 text-base leading-snug text-tinta-suave">{p.texto}</span>
               {p.nota && <span className="mt-1 text-xs text-tinta-tenue">{p.nota}</span>}
               <span className="mt-auto pt-3 text-sm font-semibold text-marca opacity-70 transition group-hover:opacity-100">Ver más →</span>
@@ -366,7 +366,7 @@ export default function Inicio() {
       <FondoHero />
       {/* ------------------------------------------------------------------ HERO */}
       <div className="relative">
-        <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pb-28 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:px-8 lg:pt-16">
+        <section className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pb-10 pt-6 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:px-8 lg:pt-10">
           <div>
             <Revelar>
               <p className="inline-flex items-center gap-2 rounded-full bg-superficie/80 px-4 py-1.5 text-sm font-semibold text-marca shadow-sm ring-1 ring-marca/15">
@@ -375,8 +375,8 @@ export default function Inicio() {
             </Revelar>
             <Revelar retraso={80}>
               <h1 className="mt-6 text-tinta">
-                <span className="block text-[2rem] font-light leading-[1.15] tracking-tight [text-wrap:balance] sm:text-[3rem]">¿Qué tan bien conectada está</span>
-                <span className="relative mt-1 inline-block text-[2.9rem] font-bold leading-[1.1] tracking-tight sm:text-[4rem]" style={{ color: VERDE }}>
+                <span className="block text-[1.7rem] font-light leading-[1.15] tracking-tight [text-wrap:balance] sm:text-[2.4rem]">¿Qué tan bien conectada está</span>
+                <span className="relative mt-1 inline-block text-[2.1rem] font-semibold leading-[1.1] tracking-tight sm:text-[3rem]" style={{ color: VERDE }}>
                   Santa Cruz?
                   <svg viewBox="0 0 330 18" className="subrayado absolute -bottom-3 left-0 w-full" aria-hidden="true">
                     <path d="M3 12 C 50 3, 105 17, 170 8 S 280 4, 327 11" fill="none" stroke="#6ab7ff" strokeWidth="6" strokeLinecap="round" pathLength="1" />
@@ -418,7 +418,7 @@ export default function Inicio() {
             </Revelar>
           </div>
           <Revelar retraso={200}>
-            <figure className="rounded-3xl bg-superficie/70 p-3 shadow-xl ring-1 ring-black/5 backdrop-blur">
+            <figure className="rounded-2xl bg-superficie/70 p-3 shadow-sm ring-1 ring-black/5 backdrop-blur">
               <DibujoComuna stats={stats} />
               <figcaption className="px-2 pb-1 pt-3 text-sm text-tinta-suave">
                 <strong className="text-tinta">Pase el mouse o toque un barrio.</strong> Las líneas que se mueven son el Metrocable y los
@@ -434,31 +434,31 @@ export default function Inicio() {
         {/* ------------------------------------------------------------------ DATOS */}
         <section className="mt-4 lg:mt-8" aria-labelledby="t-datos">
           <Revelar>
-            <h2 id="t-datos" className="text-3xl font-bold tracking-tight">
+            <h2 id="t-datos" className="text-2xl font-semibold tracking-tight">
               Lo que ya muestran los datos oficiales
             </h2>
-            <p className="mt-3 max-w-2xl text-lg text-tinta-suave">Tres cifras para entender la comuna. Todas salen de la Alcaldía de Medellín y del DANE.</p>
+            <p className="mt-2 max-w-2xl text-base text-tinta-suave">Tres cifras para entender la comuna. Todas salen de la Alcaldía de Medellín y del DANE.</p>
           </Revelar>
           {c ? (
             <>
-              <div className="mt-12 grid gap-6 md:grid-cols-3">
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
                 <Tarjeta tono={VERDE}>
                   {(v) => (
                     <>
                       <Cabecera icono="personas" color={VERDE} titulo="Cuántas personas viven aquí" />
-                      <p className="mt-6 text-lg text-tinta-suave">
+                      <p className="mt-3 text-base text-tinta-suave">
                         En{" "}
                         <strong className="text-tinta tabular-nums">
                           <Cuenta hasta={c.area_ha} decimales={1} activo={v} /> hectáreas
                         </strong>{" "}
                         vivían en 2018
                       </p>
-                      <p className="text-[2.4rem] font-bold leading-tight tabular-nums" style={{ color: VERDE }}>
+                      <p className="text-[1.7rem] font-semibold leading-tight tabular-nums" style={{ color: VERDE }}>
                         <Cuenta hasta={c.poblacion_2018} activo={v} /> <span className="text-xl font-semibold text-tinta">personas</span>
                       </p>
                       <div className="mt-6 flex items-end gap-5">
                         <div>
-                          <p className="text-[4rem] font-extrabold leading-none tabular-nums" style={{ color: VERDE }}>
+                          <p className="text-[1.9rem] font-semibold leading-none tabular-nums" style={{ color: VERDE }}>
                             <Cuenta hasta={Math.round(c.densidad_hab_ha ?? 0)} activo={v} />
                           </p>
                           <p className="mt-1 text-base font-semibold">personas por hectárea</p>
@@ -475,14 +475,14 @@ export default function Inicio() {
                     <>
                       <Cabecera icono="arbol" color={ROJO} titulo="Espacio público para cada persona" />
                       {ep == null ? (
-                        <p className="mt-6 text-lg font-semibold text-tinta-suave">Pendiente de datos</p>
+                        <p className="mt-3 text-base font-semibold text-tinta-suave">Pendiente de datos</p>
                       ) : (
                         <>
                       <div className="mt-7">
                         <div className="flex items-baseline justify-between gap-2">
                           <span className="font-semibold">Santa Cruz hoy</span>
-                          <span className="text-[2.6rem] font-extrabold leading-none tabular-nums" style={{ color: ROJO }}>
-                            <Cuenta hasta={ep} decimales={2} activo={v} /> <span className="text-lg font-bold">m²</span>
+                          <span className="text-[1.9rem] font-semibold leading-none tabular-nums" style={{ color: ROJO }}>
+                            <Cuenta hasta={ep} decimales={2} activo={v} /> <span className="text-lg font-semibold">m²</span>
                           </span>
                         </div>
                         <Barra pct={(ep / REFERENCIA_M2) * 100} color={ROJO} activo={v} />
@@ -490,8 +490,8 @@ export default function Inicio() {
                       <div className="mt-6">
                         <div className="flex items-baseline justify-between gap-2">
                           <span className="font-semibold">Referencia nacional</span>
-                          <span className="text-[2.6rem] font-extrabold leading-none tabular-nums text-ladera">
-                            <Cuenta hasta={REFERENCIA_M2} activo={v} /> <span className="text-lg font-bold">m²</span>
+                          <span className="text-[1.9rem] font-semibold leading-none tabular-nums text-marca">
+                            <Cuenta hasta={REFERENCIA_M2} activo={v} /> <span className="text-lg font-semibold">m²</span>
                           </span>
                         </div>
                         <Barra pct={100} color="#6a4fe0" activo={v} retraso={250} />
@@ -511,7 +511,7 @@ export default function Inicio() {
                   {(v) => (
                     <>
                       <Cabecera icono="alerta" color={ROJO} titulo="Personas atropelladas" />
-                      <p className="mt-6 text-[4.5rem] font-extrabold leading-none tabular-nums" style={{ color: ROJO }}>
+                      <p className="mt-6 text-[1.9rem] font-semibold leading-none tabular-nums" style={{ color: ROJO }}>
                         <Cuenta hasta={atropellos ?? 0} activo={v} />
                       </p>
                       <p className="mt-2 text-base font-semibold">atropellos entre 2019 y 2025</p>
@@ -527,7 +527,7 @@ export default function Inicio() {
                 </Tarjeta>
               </div>
 
-              <div className="mt-8 grid gap-4 md:grid-cols-3">
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
                 <Revelar>
                   <div className="flex h-full gap-4 rounded-2xl bg-superficie/70 p-5 ring-1 ring-black/5">
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-menta text-marca"><IconoNav nombre="tren" className="h-6 w-6" /></span>
@@ -564,12 +564,12 @@ export default function Inicio() {
         </section>
 
         {/* ------------------------------------------------------------------ MÓDULOS */}
-        <section className="mt-28 lg:mt-36" aria-labelledby="t-modulos">
+        <section className="mt-12 lg:mt-16" aria-labelledby="t-modulos">
           <Revelar>
-            <h2 id="t-modulos" className="text-3xl font-bold tracking-tight">
+            <h2 id="t-modulos" className="text-2xl font-semibold tracking-tight">
               Qué hay en la plataforma
             </h2>
-            <p className="mt-3 max-w-2xl text-lg text-tinta-suave">Toque cualquiera para entrar.</p>
+            <p className="mt-2 max-w-2xl text-base text-tinta-suave">Toque cualquiera para entrar.</p>
           </Revelar>
           <ul className="mt-10 space-y-4">
             {MODULOS.map((m, i) => (
@@ -583,7 +583,7 @@ export default function Inicio() {
                       <IconoNav nombre={m.icono} className="h-8 w-8" trazo={1.7} />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-xl font-bold leading-snug">{m.nombre}</span>
+                      <span className="block text-xl font-semibold leading-snug">{m.nombre}</span>
                       <span className="mt-0.5 block text-base text-tinta-suave">{m.texto}</span>
                     </span>
                     {m.pronto ? (
@@ -606,11 +606,11 @@ export default function Inicio() {
         </section>
 
         {/* ------------------------------------------------------------------ FUENTES */}
-        <section className="mt-28 lg:mt-36" aria-labelledby="t-fuentes">
+        <section className="mt-12 lg:mt-16" aria-labelledby="t-fuentes">
           <Revelar>
             <aside className="relative rounded-r-2xl border-l-4 border-marca bg-menta-2 px-6 py-8 sm:px-10">
-              <span aria-hidden="true" className="absolute right-6 top-2 select-none text-[6rem] font-bold leading-none text-marca/10">”</span>
-              <h2 id="t-fuentes" className="text-sm font-bold uppercase tracking-widest text-marca">
+              <span aria-hidden="true" className="absolute right-6 top-2 select-none text-[6rem] font-semibold leading-none text-marca/10">”</span>
+              <h2 id="t-fuentes" className="text-sm font-semibold uppercase tracking-widest text-marca">
                 Fuentes y calidad
               </h2>
               <p className="mt-3 max-w-3xl text-xl font-medium leading-relaxed text-tinta">

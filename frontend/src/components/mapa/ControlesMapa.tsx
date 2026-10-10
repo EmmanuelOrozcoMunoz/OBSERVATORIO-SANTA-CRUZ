@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import type { Map as MapaML } from "maplibre-gl";
 import { textoHora } from "../../lib/sol";
 
@@ -16,10 +16,12 @@ const ICONOS = {
   luna: svg(<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" />),
 };
 
+// Botones planos dentro de una sola barra: sin sombra propia ni saltos al pasar el mouse
 const boton =
+  "grid h-11 w-11 place-items-center text-tinta transition-[background-color,transform] duration-150 ease-out enabled:active:scale-[0.96] hover:bg-acento/10 focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-acento disabled:opacity-50";
   "grid h-12 w-12 place-items-center rounded-2xl bg-superficie/95 text-tinta shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:bg-superficie focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#3a2d8f] disabled:opacity-50";
 
-/** Sigue el giro y la inclinación del mapa para la brújula y el joystick. */
+/** Sigue el giro y la inclinación del mapa para la brújula. */
 function useCamara(mapa: MapaML | null) {
   const [cam, setCam] = useState({ giro: 0, inclinacion: 0 });
   useEffect(() => {
@@ -89,6 +91,7 @@ export async function capturarFoto(mapa: MapaML, noche: boolean): Promise<void> 
       if (x < 0 || y < 0 || x > W || y > H) return;
       g.shadowColor = noche ? "rgba(0,0,0,0.9)" : "rgba(255,255,255,1)";
       g.shadowBlur = 4 * k;
+      g.fillStyle = noche ? "#e8e6fb" : "#3d2fa8";
       g.fillStyle = noche ? "#e6e9ff" : "#3a2d8f";
       for (let i = 0; i < 3; i++) g.fillText(el.textContent ?? "", x, y);
     });
@@ -214,6 +217,10 @@ export function Brujula({ mapa }: { mapa: MapaML | null }) {
       onClick={() => mapa?.easeTo({ bearing: 0, duration: 700 })}
       disabled={!mapa}
     >
+      <svg viewBox="0 0 24 24" className="h-7 w-7" aria-hidden="true" style={{ transform: `rotate(${-cam.giro}deg)`, transition: "transform 80ms linear" }}>
+        <path d="M12 2 15.5 12H8.5z" className="fill-peligro" />
+        <path d="M12 22 8.5 12h7z" className="fill-marca" opacity="0.45" />
+        <text x="12" y="7.6" textAnchor="middle" fontSize="4.6" fontWeight="700" className="fill-white">N</text>
       <svg viewBox="0 0 24 24" className="h-8 w-8" aria-hidden="true" style={{ transform: `rotate(${-cam.giro}deg)`, transition: "transform 80ms linear" }}>
         <path d="M12 2 15.5 12H8.5z" fill="#c2463a" />
         <path d="M12 22 8.5 12h7z" fill="#3a2d8f" opacity="0.35" />
@@ -250,23 +257,24 @@ export function BotonesCamara({
       setTomando(false);
     }
   };
+  const raya = <span aria-hidden="true" className="mx-2 h-px bg-nivel/70" />;
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex flex-col overflow-hidden rounded-2xl bg-superficie/95 shadow-lg backdrop-blur">
-        <button type="button" aria-label="Acercar" title="Acercar" disabled={!mapa} onClick={() => mapa?.zoomIn()} className="grid h-12 w-12 place-items-center text-tinta hover:bg-papel-hondo">
-          {ICONOS.mas}
-        </button>
-        <span className="mx-2 h-px bg-nivel" />
-        <button type="button" aria-label="Alejar" title="Alejar" disabled={!mapa} onClick={() => mapa?.zoomOut()} className="grid h-12 w-12 place-items-center text-tinta hover:bg-papel-hondo">
-          {ICONOS.menos}
-        </button>
-      </div>
+    <div className="panel-mapa flex flex-col overflow-hidden rounded-2xl">
+      <button type="button" aria-label="Acercar" title="Acercar" disabled={!mapa} onClick={() => mapa?.zoomIn()} className={boton}>
+        {ICONOS.mas}
+      </button>
+      {raya}
+      <button type="button" aria-label="Alejar" title="Alejar" disabled={!mapa} onClick={() => mapa?.zoomOut()} className={boton}>
+        {ICONOS.menos}
+      </button>
+      {raya}
       <Brujula mapa={mapa} />
       {conNoche && onNoche && (
         <button type="button" className={`${boton} ${noche ? "!bg-[#141a38] !text-[#ffd66b]" : ""}`} aria-pressed={noche} aria-label={noche ? "Cambiar a día" : "Cambiar a noche"} title={noche ? "Ver de día" : "Ver de noche"} onClick={onNoche}>
           {noche ? ICONOS.luna : ICONOS.sol}
         </button>
       )}
+      {raya}
       <button type="button" className={boton} aria-label="Capturar foto HD del mapa" title="Capturar foto HD (PNG 2K)" disabled={!mapa || tomando} onClick={foto}>
         {tomando ? <span className="h-5 w-5 animate-spin rounded-full border-2 border-marca border-t-transparent" /> : ICONOS.camara}
       </button>
@@ -277,7 +285,7 @@ export function BotonesCamara({
 /** Deslizador de la hora del sol (mueve luz y sombras de los edificios). */
 export function HoraSol({ hora, onHora }: { hora: number; onHora: (h: number) => void }) {
   return (
-    <label className="flex items-center gap-2 rounded-2xl bg-superficie/95 px-3 py-2 text-sm font-semibold text-tinta shadow-lg backdrop-blur">
+    <label className="panel-mapa flex items-center gap-2 rounded-2xl px-3 py-2 text-sm font-semibold text-tinta">
       <span aria-hidden="true" className="text-[#c98a1a]">{ICONOS.sol}</span>
       <span className="w-[4.6rem] tabular-nums">{textoHora(hora)}</span>
       <input
@@ -288,7 +296,7 @@ export function HoraSol({ hora, onHora }: { hora: number; onHora: (h: number) =>
         value={hora}
         onChange={(e) => onHora(Number(e.target.value))}
         aria-label="Hora del sol para las sombras"
-        className="rango-verde w-28"
+        className="rango-verde w-24"
       />
     </label>
   );

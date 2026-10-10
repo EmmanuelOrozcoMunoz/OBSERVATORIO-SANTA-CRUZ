@@ -23,7 +23,7 @@ export default function FichaElemento({ def, props }: { def: DefCapa; props: Pro
     <article className="space-y-3">
       <header>
         <p className="text-sm text-tinta-suave">{def.nombre}</p>
-        <h2 className="text-2xl font-bold leading-tight [font-stretch:110%]">{def.titulo(props)}</h2>
+        <h2 className="text-2xl font-semibold leading-tight [font-stretch:110%]">{def.titulo(props)}</h2>
       </header>
 
       {filas.length > 0 ? (
@@ -50,7 +50,7 @@ export default function FichaElemento({ def, props }: { def: DefCapa; props: Pro
       )}
 
       <section className="border-t border-nivel pt-3 text-sm">
-        <h3 className="mb-1 font-bold">De dónde sale este dato</h3>
+        <h3 className="mb-1 font-semibold">De dónde sale este dato</h3>
         {fuente ? (
           <>
             <p>{fuente.nombre}</p>

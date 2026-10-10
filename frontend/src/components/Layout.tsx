@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import IconoNav from "./IconosNav";
 import Paleta from "./Paleta";
-import { acentoDeRuta } from "../lib/marca";
+import { ACENTOS } from "../lib/marca";
 
 const MODULOS: { ruta: string; nombre: string; icono: string; fase?: string }[] = [
   { ruta: "/", nombre: "Inicio", icono: "inicio" },
@@ -25,6 +25,12 @@ export function Logo({ className = "" }: { className?: string }) {
   // Curvas de nivel de una ladera con la línea de un cable aéreo encima.
   return (
     <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
+      <rect width="40" height="40" rx="8" fill="#3d2fa8" />
+      <path d="M2 34 C12 30 18 22 38 20" stroke="#a8cbb6" strokeWidth="1.6" fill="none" />
+      <path d="M2 38 C14 34 22 28 38 27" stroke="#a8cbb6" strokeWidth="1.6" fill="none" />
+      <path d="M4 26 L36 8" stroke="#f5f6f2" strokeWidth="1.6" />
+      <rect x="17" y="15" width="6" height="5" rx="1" fill="#f5f6f2" />
+      <path d="M20 13.5 V15" stroke="#f5f6f2" strokeWidth="1.4" />
       <defs><linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#6a4fe0" /><stop offset="1" stopColor="#1d4f9a" /></linearGradient></defs>
       <rect width="40" height="40" rx="9" fill="url(#logo-g)" />
       <path d="M2 34 C12 30 18 22 38 20" stroke="#c9c2ff" strokeWidth="1.6" fill="none" />
@@ -47,7 +53,7 @@ function Navegacion({ onNavegar, compacta = false }: { onNavegar?: () => void; c
           onClick={onNavegar}
           title={compacta ? m.nombre : undefined}
           aria-label={m.nombre}
-          style={({ isActive }) => (isActive ? { backgroundImage: `linear-gradient(135deg, ${acentoDeRuta(m.ruta).medio}, ${acentoDeRuta(m.ruta).vivo})` } : undefined)}
+          style={({ isActive }) => (isActive ? { backgroundImage: `linear-gradient(135deg, ${ACENTOS.violeta.medio}, ${ACENTOS.violeta.vivo})` } : undefined)}
           className={({ isActive }) =>
             `group relative flex items-center rounded-xl text-base transition-colors ${compacta ? "justify-center px-0 py-3" : "gap-3 px-3 py-2.5"} ${
               isActive ? "text-white shadow-md" : "text-tinta hover:bg-menta"
@@ -94,7 +100,27 @@ export function useTema() {
     }
     return () => clearTimeout(t);
   }, [noche]);
+  // Otras pantallas (el mapa) piden cambiar el tema con este evento, para que el sitio y el mapa siempre coincidan.
+  useEffect(() => {
+    const alternar = () => setNoche((v) => !v);
+    window.addEventListener("alternar-tema", alternar);
+    return () => window.removeEventListener("alternar-tema", alternar);
+  }, []);
   return [noche, setNoche] as const;
+}
+
+/** Dice si el sitio está en modo noche, sin importar quién lo cambió. */
+export function useNocheActiva() {
+  const [noche, setNoche] = useState(() => document.documentElement.classList.contains("noche"));
+  useEffect(() => {
+    const html = document.documentElement;
+    const leer = () => setNoche(html.classList.contains("noche"));
+    leer();
+    const o = new MutationObserver(leer);
+    o.observe(html, { attributes: true, attributeFilter: ["class"] });
+    return () => o.disconnect();
+  }, []);
+  return noche;
 }
 
 function BotonTema({ noche, onCambiar, compacta = false }: { noche: boolean; onCambiar: () => void; compacta?: boolean }) {

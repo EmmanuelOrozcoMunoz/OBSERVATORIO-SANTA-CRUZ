@@ -1,3 +1,4 @@
+import { Cabecera } from "../components/Pagina";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { CircleMarker, GeoJSON, MapContainer, TileLayer, useMapEvents } from "react-leaflet";
 import type { LatLngBoundsExpression } from "leaflet";
@@ -146,27 +147,21 @@ export default function Participacion() {
   const borrar = (id: string) => setReportes((rs) => rs.filter((r) => r.id !== id));
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 lg:px-8">
-      <header>
-        <p className="text-sm font-medium text-tinta-tenue">Prueba local, la versión con servidor llega en la Fase 4</p>
-        <h1 className="mt-1 text-3xl font-bold [font-stretch:115%]">Reportar un problema</h1>
-        <p className="mt-2 max-w-2xl text-tinta-suave">
-          Andenes dañados, puntos peligrosos, barreras de acceso, parques deteriorados o conexiones que hacen falta. Los
-          reportes servirán como insumo para el Presupuesto Participativo y las entidades, no como decisiones automáticas.
-        </p>
-        <p className="mt-3 max-w-2xl rounded-md bg-ambar-claro p-3 text-sm">
-          En esta versión de prueba los reportes se guardan solo en este navegador. No se envían a ninguna entidad ni los ven
-          otras personas.
+    <div className="mx-auto max-w-5xl space-y-8 px-4 py-5 lg:px-8">
+      <Cabecera etiqueta="Participación" icono="participacion" titulo="Reportar un problema"
+        texto="Andenes dañados, puntos peligrosos, barreras de acceso, parques deteriorados o conexiones que hacen falta. Los reportes servirán como insumo para el Presupuesto Participativo y las entidades, no como decisiones automáticas.">
+        <p className="w-full rounded-lg bg-ambar-claro px-3 py-2 text-sm text-tinta">
+          Prueba local, la versión con servidor llega en la Fase 4. Los reportes se guardan solo en este navegador: no se envían a ninguna entidad ni los ven otras personas.
         </p>
         {!almacenamiento && (
-          <p role="alert" className="mt-2 text-sm text-ladrillo">
+          <p role="alert" className="w-full text-sm text-ladrillo">
             Este navegador no permite guardar datos (modo privado o almacenamiento bloqueado). Los reportes se perderán al cerrar la página.
           </p>
         )}
-      </header>
+      </Cabecera>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1.1fr]">
-        <form onSubmit={enviar} noValidate className="space-y-4 rounded-lg border border-nivel bg-superficie p-4">
+        <form onSubmit={enviar} noValidate className="space-y-4 vidrio vidrio--quieto rounded-xl p-4">
           <div>
             <label htmlFor="categoria" className="block font-semibold">
               Tipo de problema
@@ -236,11 +231,11 @@ export default function Participacion() {
             </div>
           )}
 
-          <button type="submit" className="w-full rounded-md bg-ladera px-4 py-2.5 font-semibold text-papel hover:bg-ladera-hondo">
+          <button type="submit" className="w-full rounded-md bg-acento px-4 py-2.5 font-semibold text-white hover:bg-acento-hondo">
             Guardar reporte
           </button>
           {mensaje && (
-            <p role="status" className="text-sm text-ladera-hondo">
+            <p role="status" className="text-sm text-marca">
               {mensaje}
             </p>
           )}
@@ -272,7 +267,7 @@ export default function Participacion() {
       </div>
 
       <section>
-        <h2 className="text-xl font-bold">Reportes guardados en este navegador</h2>
+        <h2 className="text-lg font-semibold">Reportes guardados en este navegador</h2>
         <p className="mt-1 text-sm text-tinta-suave">
           Estados de seguimiento previstos: {ESTADOS.join(", ").toLowerCase()}. En la Fase 4 un equipo moderador revisará y validará cada reporte.
         </p>

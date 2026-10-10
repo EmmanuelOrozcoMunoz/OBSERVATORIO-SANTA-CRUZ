@@ -6,7 +6,7 @@ import { Cuenta, Revelar } from "../components/Animacion";
 import { ConDatos } from "../components/Estado";
 import IconoNav from "../components/IconosNav";
 import type { Coleccion, Indicadores } from "../lib/tipos";
-import { Cabecera, Relacionados } from "../components/Pagina";
+import { Cabecera, Relacionados, Seccion } from "../components/Pagina";
 
 const ROJO = "#c2301a";
 const VERDE = "#3a2d8f";
@@ -118,34 +118,35 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
   ] as Problema[]).filter((p) => p.id !== "vida" || imcv.posicion != null);
 
   return (
-    <div>
-      <Cabecera className="mb-10" etiqueta="Problemáticas reales de la comuna" icono="alerta" titulo="Lo que pasa en Santa Cruz, con datos"
+    <div className="space-y-8">
+      <Cabecera etiqueta="Problemáticas reales de la comuna" icono="alerta" titulo="Lo que pasa en Santa Cruz, con datos"
         texto="Ocho problemas. Cada número viene de una fuente oficial que puedes revisar, y cada uno se puede ver en el mapa." />
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
+      <Seccion id="t-p-ocho" titulo="Los ocho problemas" texto="Cada número viene de una fuente oficial que puedes revisar.">
+      <div className="grid gap-4 md:grid-cols-2">
         {problemas.map((p, i) => (
           <Revelar key={p.id} retraso={(i % 2) * 100}>
-            <article className="tarjeta-dato flex h-full flex-col rounded-2xl border-t-4 bg-superficie p-7 shadow-lg ring-1 ring-black/5" style={{ borderTopColor: p.color }}>
+            <article className="vidrio vidrio--quieto flex h-full flex-col rounded-xl p-5">
               <div className="flex items-center gap-3">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-white" style={{ background: p.color }}><IconoNav nombre={p.icono} className="h-7 w-7" trazo={1.9} /></span>
-                <h2 className="text-xl font-bold leading-snug">{p.titulo}</h2>
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg text-white" style={{ background: p.color }}><IconoNav nombre={p.icono} className="h-7 w-7" trazo={1.9} /></span>
+                <h2 className="text-base font-semibold leading-snug">{p.titulo}</h2>
               </div>
-              <p className="mt-5 text-[3.4rem] font-extrabold leading-none tabular-nums" style={{ color: p.color }}>
+              <p className="mt-4 text-[1.9rem] font-semibold leading-none tabular-nums" style={{ color: p.color }}>
                 <Cuenta hasta={p.numero} decimales={p.decimales ?? 0} activo />
               </p>
               <p className="mt-1 text-base font-semibold">{p.unidad}</p>
-              <p className="mt-4 text-lg leading-relaxed">{p.explica}</p>
+              <p className="mt-3 text-base leading-relaxed">{p.explica}</p>
               <p className="mt-3 text-base text-tinta-suave">{p.donde}</p>
               <div className="mt-auto pt-5">
                 <p className="text-sm text-tinta-tenue">Fuente: {p.fuente}. Reto: {p.reto}.</p>
                 <div className="mt-3 flex flex-wrap gap-3">
                   {p.mapa && (
-                    <Link to={`/mapa?capas=${p.mapa}`} className="inline-flex items-center gap-2 rounded-xl bg-menta px-4 py-2 text-base font-bold text-marca transition hover:brightness-95">
+                    <Link to={`/mapa?capas=${p.mapa}`} className="inline-flex items-center gap-2 rounded-xl bg-menta px-4 py-2 text-base font-semibold text-marca transition hover:brightness-95">
                       <IconoNav nombre="mapa" className="h-5 w-5" trazo={2} /> Verlo en el mapa
                     </Link>
                   )}
                   {p.enlace && (
-                    <Link to={p.enlace.a} className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-base font-bold text-marca underline underline-offset-4">
+                    <Link to={p.enlace.a} className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-base font-semibold text-marca underline underline-offset-4">
                       {p.enlace.texto} <IconoNav nombre="flecha" className="h-5 w-5" trazo={2} />
                     </Link>
                   )}
@@ -155,17 +156,18 @@ function Contenido({ ind, seg, eje, andenes }: { ind: Indicadores; seg: Segurida
           </Revelar>
         ))}
       </div>
+      </Seccion>
 
-      <Revelar className="mt-16">
-        <div className="rounded-r-2xl border-l-4 border-marca bg-menta-2 px-6 py-8 sm:px-10">
-          <h2 className="text-2xl font-bold" style={{ color: VERDE }}>Y qué se hace con esto</h2>
+      <Revelar>
+        <div className="rounded-xl bg-menta-2 px-5 py-5">
+          <h2 className="text-2xl font-semibold" style={{ color: VERDE }}>Y qué se hace con esto</h2>
           <p className="mt-2 max-w-3xl text-lg">La plataforma convierte estas problemáticas en obras posibles, con cuánta gente ayuda cada una y cuánto cuesta. Los costos quedan en blanco hasta que se registre una fuente.</p>
-          <Link to="/prioridades" className="mt-4 inline-flex items-center gap-2 text-lg font-bold underline underline-offset-4" style={{ color: VERDE }}>
+          <Link to="/prioridades" className="mt-4 inline-flex items-center gap-2 text-lg font-semibold underline underline-offset-4" style={{ color: VERDE }}>
             Ver prioridad de obras <IconoNav nombre="flecha" className="h-5 w-5" trazo={2} />
           </Link>
         </div>
       </Revelar>
-      <Relacionados className="mt-14" ids={["corredor", "accesibilidad", "prioridades"]} />
+      <Relacionados ids={["corredor", "accesibilidad", "prioridades"]} />
     </div>
   );
 }
@@ -178,7 +180,7 @@ export default function Problematicas() {
   return (
     <div className="relative isolate overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-papel" />
-      <div className="mx-auto max-w-6xl px-4 pb-24 pt-6 lg:px-8 lg:pt-8">
+      <div className="mx-auto max-w-5xl space-y-8 px-4 py-5 lg:px-8">
         <ConDatos estado={ind}>
           {(i) => <ConDatos estado={seg}>{(s) => <ConDatos estado={eje}>{(e) => <Contenido ind={i} seg={s} eje={e} andenes={and.estado === "listo" ? and.datos : null} />}</ConDatos>}</ConDatos>}
         </ConDatos>

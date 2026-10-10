@@ -300,15 +300,13 @@ html.letra-grande {
 .fila-modulo:focus-visible {
   background-color: rgb(var(--menta-2));
   border-color: rgb(var(--marca));
-  box-shadow: 0 10px 24px -10px rgb(var(--marca) / 0.35);
-}
+  }
 .fila-modulo-icono {
   transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
 }
 .fila-modulo:hover .fila-modulo-icono {
   background-color: rgb(var(--marca));
   color: rgb(var(--papel));
-  transform: scale(1.06);
 }
 /* Punto verde que late dentro de la insignia "Disponible" */
 .punto-vivo {
@@ -353,10 +351,9 @@ aside[data-cromo="lateral"][data-animar] {
 
 /* Tarjeta "vidrio": borde fino y, al pasar el mouse, un brillo del color de su dato. En modo noche es translúcida. */
 .vidrio {
-  background: rgb(var(--superficie) / 0.94);
-  border: 1px solid rgb(var(--nivel));
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
-  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  background: rgb(var(--superficie) / 0.9);
+  border: 1px solid rgb(var(--nivel) / 0.7);
+  transition: border-color 200ms ease, background-color 200ms ease;
 }
 .vidrio:hover {
   transform: translateY(-2px);
@@ -364,9 +361,7 @@ aside[data-cromo="lateral"][data-animar] {
   box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--glow, #6a4fe0) 60%, transparent);
 }
 .vidrio--quieto:hover {
-  transform: none;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
-  border-color: rgb(var(--nivel));
+  border-color: rgb(var(--nivel) / 0.7);
 }
 html.noche .vidrio {
   background: linear-gradient(160deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.02)), rgb(var(--superficie) / 0.8);

@@ -535,7 +535,7 @@ export interface Tema {
 
 /** Temas: botones grandes que prenden varias capas a la vez. */
 export const TEMAS: Tema[] = [
-  { id: "transporte", nombre: "Metro y buses", ayuda: "Estaciones, líneas y rutas", color: COLOR.cable, capas: ["lineas_transporte", "estaciones", "paradas"] },
+  { id: "transporte", nombre: "Metro y buses", ayuda: "Estaciones, líneas y rutas", color: COLOR.cable, capas: ["lineas_transporte", "rutas_bus", "estaciones", "paradas"] },
   { id: "caminar", nombre: "Andenes y escaleras", ayuda: "Ancho de andenes, escaleras, ciclorrutas", color: "#7a4e9b", capas: ["andenes", "escaleras_osm", "red_ciclista"] },
   { id: "colegios", nombre: "Colegios", ayuda: "Sedes educativas", color: "#3a6fd0", capas: ["sedes_educativas"] },
   { id: "comunidad", nombre: "Salud y comunidad", ayuda: "Centros de salud, sedes, policía", color: "#c2412d", capas: ["equipamientos"] },

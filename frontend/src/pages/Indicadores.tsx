@@ -19,7 +19,7 @@ import FichaBarrio from "../components/FichaBarrio";
 import { useDatos } from "../lib/datos";
 import { dec, fecha, num, pct, dec2 } from "../lib/formato";
 import type { FichaBarrio as Ficha, Indicadores as Ind } from "../lib/tipos";
-import { BotonCabecera, Cabecera, Relacionados } from "../components/Pagina";
+import { BotonCabecera, Cabecera, Kpi, Relacionados, Seccion } from "../components/Pagina";
 
 const C = {
   barra: "#6a4fe0",
@@ -40,21 +40,11 @@ const CLASES_SINIESTRO: [string, string][] = [
 
 function Panel({ titulo, descripcion, children }: { titulo: string; descripcion?: string; children: ReactNode }) {
   return (
-    <section className="rounded-lg border border-nivel bg-superficie p-4">
-      <h3 className="font-bold [font-stretch:108%]">{titulo}</h3>
+    <section className="vidrio vidrio--quieto rounded-xl p-4">
+      <h3 className="font-semibold [font-stretch:108%]">{titulo}</h3>
       {descripcion && <p className="mt-0.5 text-sm text-tinta-suave">{descripcion}</p>}
       <div className="mt-3">{children}</div>
     </section>
-  );
-}
-
-function Cifra({ valor, etiqueta, nota, pendiente }: { valor: string; etiqueta: string; nota?: string; pendiente?: boolean }) {
-  return (
-    <div className={`rounded-lg p-3 ${pendiente ? "border border-dashed border-nivel" : "bg-papel-hondo"}`}>
-      <p className={`text-2xl font-bold tabular-nums [font-stretch:105%] ${pendiente ? "text-tinta-tenue" : ""}`}>{valor}</p>
-      <p className="text-sm">{etiqueta}</p>
-      {nota && <p className="mt-0.5 text-xs text-tinta-tenue">{nota}</p>}
-    </div>
   );
 }
 
@@ -132,54 +122,51 @@ function Contenido({ d }: { d: Ind }) {
   const imcv = ecv.imcv;
 
   return (
-    <div className="mx-auto max-w-6xl space-y-6 px-4 py-6 lg:px-8">
+    <div className="mx-auto max-w-5xl space-y-8 px-4 py-5 lg:px-8">
       <Cabecera etiqueta="Indicadores" icono="indicadores" titulo="Indicadores de Santa Cruz"
         texto={<>Calculados con datos oficiales de la Alcaldía de Medellín y del DANE. Última actualización del cálculo: {fecha(d.generado)}.</>}>
         <BotonCabecera to="/mapa">Verlos en el mapa</BotonCabecera>
         <BotonCabecera to="/accesibilidad" claro>Accesibilidad</BotonCabecera>
       </Cabecera>
-      <div className="flex justify-end">
-        <label className="text-sm">
-          <span className="block font-semibold">Resaltar un barrio</span>
-          <select value={sel} onChange={(e) => setSel(e.target.value)} className="mt-1 rounded-md border border-nivel bg-superficie px-2 py-1.5">
-            <option value="">Toda la comuna</option>
-            {barrios.map((b) => (
-              <option key={b.codigo} value={b.codigo}>
-                {b.nombre}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
+      <nav aria-label="Resaltar un barrio" className="flex flex-wrap gap-2">
+        {[{ codigo: "", nombre: "Toda la comuna" }, ...barrios].map((x) => (
+          <button key={x.codigo || "todos"} type="button" onClick={() => setSel(x.codigo)} aria-pressed={x.codigo === sel}
+            className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${x.codigo === sel ? "bg-acento text-white" : "bg-superficie text-tinta ring-1 ring-nivel hover:bg-menta"}`}>
+            {x.nombre}
+          </button>
+        ))}
+      </nav>
 
-      <section aria-label="Cifras principales" className="grid grid-cols-2 gap-3 md:grid-cols-4">
-        <Cifra valor={num(comuna.poblacion_2018)} etiqueta="personas (Censo 2018)" nota={`${num(comuna.viviendas_2018)} viviendas`} />
-        <Cifra valor={`${num(Math.round(comuna.densidad_hab_ha ?? 0))}`} etiqueta="habitantes por hectárea" nota={`${dec(comuna.area_ha)} ha en total`} />
-        <Cifra valor={`${dec2(comuna.espacio_publico_m2_hab)} m²`} etiqueta="de espacio público por habitante" nota="Referencia nacional: 15 m²" />
-        <Cifra valor={num(comuna.equipamientos)} etiqueta="equipamientos colectivos" nota={`${comuna.sedes_educativas} sedes educativas, ${comuna.escenarios_deportivos} escenarios deportivos`} />
-        <Cifra
+      <Seccion id="t-i-cifras" titulo="Cifras principales" texto="Datos del Censo 2018, el POT y los inventarios oficiales de la comuna.">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        <Kpi valor={num(comuna.poblacion_2018)} texto="personas (Censo 2018)" nota={`${num(comuna.viviendas_2018)} viviendas`} />
+        <Kpi valor={`${num(Math.round(comuna.densidad_hab_ha ?? 0))}`} texto="habitantes por hectárea" nota={`${dec(comuna.area_ha)} ha en total`} />
+        <Kpi valor={`${dec2(comuna.espacio_publico_m2_hab)} m²`} texto="de espacio público por habitante" nota="Referencia nacional: 15 m²" />
+        <Kpi valor={num(comuna.equipamientos)} texto="equipamientos colectivos" nota={`${comuna.sedes_educativas} sedes educativas, ${comuna.escenarios_deportivos} escenarios deportivos`} />
+        <Kpi
           valor={String(comuna.estaciones_en_comuna.length)}
-          etiqueta={comuna.estaciones_en_comuna.length === 1 ? "estación de Metro o cable dentro de la comuna" : "estaciones de Metro o cable dentro de la comuna"}
+          texto={comuna.estaciones_en_comuna.length === 1 ? "estación de Metro o cable dentro de la comuna" : "estaciones de Metro o cable dentro de la comuna"}
           nota={comuna.estaciones_en_comuna.join(", ")}
         />
-        <Cifra valor={num(atropellos)} etiqueta="atropellos entre 2019 y 2025" nota={`${num(comuna.siniestros_total)} siniestros viales en total`} />
-        <Cifra
+        <Kpi valor={num(atropellos)} texto="atropellos entre 2019 y 2025" nota={`${num(comuna.siniestros_total)} siniestros viales en total`} />
+        <Kpi
           valor={d.infraestructura ? `${dec(d.infraestructura.andenes.km)} km` : "Sin dato"}
-          etiqueta="de andén en el inventario oficial"
+          texto="de andén en el inventario oficial"
           nota={d.infraestructura ? `Ancho mediano ${dec2(d.infraestructura.andenes.ancho_mediano_m)} m` : undefined}
         />
-        <Cifra
+        <Kpi
           valor={d.accesibilidad ? `${dec(d.accesibilidad.comuna.transporte_masivo_promedio_min)} min` : "Sin dato"}
-          etiqueta="caminando en promedio hasta una estación"
+          texto="caminando en promedio hasta una estación"
           nota="Estimación por la red de calles y con pendiente"
         />
-      </section>
+      </div>
+      </Seccion>
 
       {ficha && (
-        <section className="rounded-lg border border-nivel bg-superficie p-4">
+        <section className="vidrio vidrio--quieto rounded-xl p-4">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm text-tinta-suave">Ficha del barrio seleccionado</p>
-            <Link to={`/mapa?barrio=${ficha.codigo}`} className="rounded-md bg-ladera px-3 py-1.5 text-sm text-papel">
+            <Link to={`/mapa?barrio=${ficha.codigo}`} className="rounded-md bg-acento px-3 py-1.5 text-sm text-white">
               Ver {ficha.nombre} en el mapa
             </Link>
           </div>
@@ -189,6 +176,7 @@ function Contenido({ d }: { d: Ind }) {
         </section>
       )}
 
+      <Seccion id="t-i-barrios" titulo="Barrio frente a barrio" texto="La línea marca el promedio de la comuna. El barrio resaltado se ve más oscuro.">
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel
           titulo="Espacio público por habitante"
@@ -222,7 +210,10 @@ function Contenido({ d }: { d: Ind }) {
           <BarrasBarrio datos={barrios} clave="amenaza_alta_pct" unidad="%" seleccionado={sel} formato={(v) => dec(v)} />
         </Panel>
       </div>
+      </Seccion>
 
+      <Seccion id="t-i-tiempo" titulo="Con el paso del tiempo" texto="Siniestros viales y calidad de vida.">
+      <div className="space-y-4">
       <Panel
         titulo="Siniestros viales por año en la comuna"
         descripcion="Secretaría de Movilidad. La forma de clasificar cambia entre años y 2025 puede estar incompleto: compare con cuidado."
@@ -281,6 +272,10 @@ function Contenido({ d }: { d: Ind }) {
         </Panel>
       )}
 
+      </div>
+      </Seccion>
+
+      <Seccion id="t-i-tabla" titulo="Detalle por barrio" texto="Todas las cifras en una sola tabla.">
       <Panel titulo="Tabla por barrio" descripcion="Haga clic en el nombre de un barrio para abrir su ficha en el mapa.">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[760px] text-sm">
@@ -298,7 +293,7 @@ function Contenido({ d }: { d: Ind }) {
             </thead>
             <tbody>
               {barrios.map((b) => (
-                <tr key={b.codigo} className={`border-b border-nivel/70 ${b.codigo === sel ? "bg-ladera-claro" : ""}`}>
+                <tr key={b.codigo} className={`border-b border-nivel/70 ${b.codigo === sel ? "bg-menta" : ""}`}>
                   <td className="py-1.5 pr-3">
                     <Link to={`/mapa?barrio=${b.codigo}`} className="text-cable underline-offset-2 hover:underline">
                       {b.nombre}
@@ -319,9 +314,10 @@ function Contenido({ d }: { d: Ind }) {
           </table>
         </div>
       </Panel>
+      </Seccion>
 
-      <section className="rounded-lg border border-dashed border-nivel p-4">
-        <h2 className="font-bold">Indicadores que todavía no se pueden calcular</h2>
+      <section className="rounded-xl border border-dashed border-nivel p-4">
+        <h2 className="font-semibold">Indicadores que todavía no se pueden calcular</h2>
         <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-tinta-suave">
           <li>Estado de los andenes: el inventario oficial trae códigos sin diccionario publicado.</li>
           <li>Costos de obra: no hay precios unitarios públicos confiables; se pueden registrar con su fuente en Prioridad de obras.</li>

@@ -79,6 +79,7 @@ export default function Paleta({ abierta, onCerrar }: { abierta: boolean; onCerr
             <li key={o.id}>
               <button type="button" onMouseEnter={() => setSel(i)} onClick={() => abrir(o)}
                 className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left ${i === sel ? "bg-menta" : ""}`}>
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-acento/10 text-marca"><IconoNav nombre={o.icono} className="h-5 w-5" trazo={1.8} /></span>
                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#3a2d8f]/10 text-marca"><IconoNav nombre={o.icono} className="h-5 w-5" trazo={1.8} /></span>
                 <span className="min-w-0"><span className="block font-semibold leading-tight">{o.nombre}</span><span className="block text-sm text-tinta-suave">{o.detalle}</span></span>
               </button>

@@ -9,7 +9,7 @@ const META_EP = 15;
 function Seccion({ titulo, children }: { titulo: string; children: ReactNode }) {
   return (
     <section className="border-t border-nivel pt-3">
-      <h3 className="mb-2 text-lg font-bold [font-stretch:108%]">{titulo}</h3>
+      <h3 className="mb-2 text-lg font-semibold [font-stretch:108%]">{titulo}</h3>
       {children}
     </section>
   );
@@ -68,7 +68,7 @@ export default function FichaBarrio({ ficha, indicadores }: { ficha: Ficha; indi
     <article className="space-y-3">
       <header>
         <p className="text-sm text-tinta-suave">Barrio de la Comuna 2, código {ficha.codigo}</p>
-        <h2 className="text-3xl font-bold leading-tight [font-stretch:112%]">{ficha.nombre}</h2>
+        <h2 className="text-3xl font-semibold leading-tight [font-stretch:112%]">{ficha.nombre}</h2>
         <p className="text-sm text-tinta-suave">{dec(ficha.area_ha)} hectáreas</p>
       </header>
 
