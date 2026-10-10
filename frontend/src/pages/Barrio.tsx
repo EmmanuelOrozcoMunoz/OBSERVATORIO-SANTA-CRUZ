@@ -58,7 +58,7 @@ function Contenido({ ind, seg, eje }: { ind: Indicadores; seg: Seguridad | null;
       <nav aria-label="Elegir barrio" className="flex flex-wrap gap-2">
         {ind.barrios.map((x) => (
           <button key={x.codigo} type="button" onClick={() => ir(`/barrios/${x.codigo}`)} aria-pressed={x.codigo === b.codigo}
-            className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${x.codigo === b.codigo ? "bg-[#1a4d2e] text-white shadow" : "bg-superficie text-tinta ring-1 ring-nivel hover:bg-menta"}`}>
+            className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${x.codigo === b.codigo ? "bg-acento text-white shadow" : "bg-superficie text-tinta ring-1 ring-nivel hover:bg-menta"}`}>
             {x.nombre}
           </button>
         ))}

@@ -4,18 +4,21 @@
 
 /* ---------------------------------------------------------------- tokens de color (ver /identidad) */
 :root {
-  --papel: 245 246 242; --papel-hondo: 236 238 231; --superficie: 255 255 255; --nivel: 212 217 207;
-  --tinta: 29 43 42; --tinta-suave: 74 89 88; --tinta-tenue: 93 106 104;
-  --marca: 26 77 46; --menta: 227 241 230; --menta-2: 238 243 236;
+  --papel: 241 239 250; --papel-hondo: 232 229 245; --superficie: 255 255 255; --nivel: 214 210 232;
+  --tinta: 26 24 52; --tinta-suave: 72 70 104; --tinta-tenue: 94 92 124;
+  --acento: 61 47 168; --acento-hondo: 36 28 96;
+  --marca: 61 47 168; --menta: 233 229 250; --menta-2: 241 238 252;
   --aviso-fondo: 253 246 221; --aviso-borde: 232 217 168; --peligro: 194 48 26;
   --ladera: 45 106 79; --ladera-hondo: 31 77 57; --ladera-claro: 216 232 221; --cable: 36 89 138; --cable-claro: 219 230 241;
   --ladrillo: 168 69 43; --ladrillo-claro: 243 221 213; --ambar: 183 121 31; --ambar-claro: 246 231 200; --ambar-texto: 138 90 0;
   color-scheme: light;
 }
-html.noche {
-  --papel: 11 22 17; --papel-hondo: 22 38 30; --superficie: 19 36 28; --nivel: 44 68 57;
-  --tinta: 232 239 233; --tinta-suave: 169 187 178; --tinta-tenue: 138 160 149;
-  --marca: 143 208 168; --menta: 30 60 44; --menta-2: 25 47 36;
+html.noche,
+.mapa-noche {
+  --papel: 11 13 36; --papel-hondo: 20 22 52; --superficie: 20 24 56; --nivel: 46 50 96;
+  --tinta: 232 233 248; --tinta-suave: 170 174 208; --tinta-tenue: 140 144 184;
+  --acento: 90 74 214; --acento-hondo: 36 32 98;
+  --marca: 168 156 255; --menta: 36 36 84; --menta-2: 28 30 68;
   --aviso-fondo: 56 46 18; --aviso-borde: 98 80 34; --peligro: 255 140 114;
   --ladera: 111 194 147; --ladera-hondo: 168 222 190; --ladera-claro: 30 60 44; --cable: 128 182 230; --cable-claro: 22 44 66;
   --ladrillo: 236 146 118; --ladrillo-claro: 66 32 24; --ambar: 236 184 84; --ambar-claro: 62 46 16; --ambar-texto: 240 202 124;
@@ -69,7 +72,7 @@ html.noche {
   font-family: "Inter", system-ui, sans-serif;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(26, 77, 46, 0.18);
+  border: 1px solid rgba(61, 47, 168, 0.18);
 }
 .popup-tipo {
   display: block;
@@ -77,7 +80,7 @@ html.noche {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #4a8c6f;
+  color: #7a5be0;
 }
 
 /* ------------------------------------------------------------ mapa inmersivo */
@@ -91,7 +94,7 @@ html.noche {
 /* Niebla radial en los cuatro bordes + viñeta suave */
 .mapa-vineta {
   background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 58%, rgba(232, 240, 232, 0.5) 86%, rgba(232, 240, 232, 0.82) 100%);
-  box-shadow: inset 0 0 140px rgba(26, 77, 46, 0.14);
+  box-shadow: inset 0 0 140px rgba(61, 47, 168, 0.14);
   transition: background 600ms ease, box-shadow 600ms ease;
 }
 .es-noche .mapa-vineta {
@@ -104,7 +107,7 @@ html.noche {
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.01em;
-  color: #1a4d2e;
+  color: #3d2fa8;
   text-shadow: 0 1px 4px #fff, 0 0 2px #fff, 0 0 8px rgba(255, 255, 255, 0.9);
   white-space: nowrap;
   pointer-events: none;
@@ -115,36 +118,26 @@ html.noche {
   opacity: 1;
 }
 .es-noche .etiqueta-barrio {
-  color: #e8f3ec;
+  color: #e8e6fb;
   text-shadow: 0 1px 4px #000, 0 0 10px rgba(0, 0, 0, 0.8);
 }
-/* Tarjetas de temas: suben 4 px al pasar el mouse */
-.tarjeta-tema {
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
+/* Paneles del mapa: un solo estilo, plano y translúcido. Sin sombras fuertes ni saltos al pasar el mouse. */
+.panel-mapa {
+  color: rgb(var(--tinta));
+  background: rgb(var(--superficie) / 0.84);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(var(--nivel) / 0.6);
+  box-shadow: 0 1px 3px rgba(20, 16, 60, 0.1);
 }
-.tarjeta-tema:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(20, 48, 31, 0.16);
-}
-.tarjeta-tema:active {
-  transform: translateY(-1px) scale(0.98);
-}
-/* Joystick */
-.joystick {
-  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.97), rgba(232, 240, 232, 0.92));
-  box-shadow: 0 10px 28px rgba(20, 48, 31, 0.22), inset 0 -4px 10px rgba(26, 77, 46, 0.08);
-  cursor: grab;
-}
-.joystick:active {
-  cursor: grabbing;
-}
-.joystick-perilla {
-  background: radial-gradient(circle at 35% 30%, #5fa883, #1a4d2e 70%);
-  box-shadow: 0 6px 14px rgba(26, 77, 46, 0.45), inset 0 2px 3px rgba(255, 255, 255, 0.35);
+@media (hover: hover) {
+  button.panel-mapa:hover {
+    background: rgb(var(--superficie) / 0.96);
+  }
 }
 /* Deslizadores verdes */
 .rango-verde {
-  accent-color: #1a4d2e;
+  accent-color: #5a4ad6;
   height: 1.5rem;
 }
 /* Modo Solo Mapa: el menú lateral y la barra del celular se desvanecen en 300 ms */
@@ -289,7 +282,7 @@ html.letra-grande {
 }
 .tarjeta-dato:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 44px -12px rgba(26, 77, 46, 0.28);
+  box-shadow: 0 24px 44px -12px rgba(61, 47, 168, 0.28);
 }
 /* Filas de módulos: se ponen verde clarito y aparece "Explorar" */
 .fila-modulo {

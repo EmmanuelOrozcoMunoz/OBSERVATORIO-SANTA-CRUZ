@@ -6,6 +6,7 @@
 export type Acento = { id: string; nombre: string; oscuro: string; medio: string; vivo: string };
 
 export const ACENTOS: Record<string, Acento> = {
+  violeta: { id: "violeta", nombre: "Violeta", oscuro: "#241c60", medio: "#3d2fa8", vivo: "#7a5be0" },
   ladera: { id: "ladera", nombre: "Ladera", oscuro: "#0f2a1a", medio: "#1a4d2e", vivo: "#2d6a4f" },
   cable: { id: "cable", nombre: "Cable", oscuro: "#0f2a44", medio: "#1d4f7a", vivo: "#2d6a9a" },
   ambar: { id: "ambar", nombre: "Ámbar", oscuro: "#3d2604", medio: "#8a5a00", vivo: "#c98a1a" },
@@ -15,7 +16,7 @@ export const ACENTOS: Record<string, Acento> = {
   indigo: { id: "indigo", nombre: "Índigo", oscuro: "#131c40", medio: "#2a3a8a", vivo: "#4a5ab8" },
 };
 
-/** Qué acento tiene cada ruta. Lo que no aparece usa el verde de la marca. */
+/** Qué acento tiene cada ruta. Lo que no aparece usa el violeta de la marca. */
 const POR_RUTA: [string, keyof typeof ACENTOS][] = [
   ["/accesibilidad", "cable"],
   ["/corredor-49", "ambar"],
@@ -27,7 +28,7 @@ const POR_RUTA: [string, keyof typeof ACENTOS][] = [
 
 export function acentoDeRuta(pathname: string): Acento {
   const hallado = POR_RUTA.find(([r]) => pathname.startsWith(r));
-  return ACENTOS[hallado ? hallado[1] : "ladera"];
+  return ACENTOS[hallado ? hallado[1] : "violeta"];
 }
 
 /** Semáforo único del sitio: bien, ojo, mal. Siempre con texto además del color. */

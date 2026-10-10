@@ -9,7 +9,7 @@ import type { Coleccion, Indicadores } from "../lib/tipos";
 import { Cabecera, Relacionados } from "../components/Pagina";
 
 const ROJO = "#c2301a";
-const VERDE = "#1a4d2e";
+const VERDE = "#3d2fa8";
 const AMBAR = "#b7791f";
 
 interface Seguridad {

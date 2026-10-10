@@ -102,7 +102,7 @@ export function Relacionados({ ids, className = "" }: { ids: (keyof typeof RELAC
   return (
     <Revelar className={className}>
       <section aria-label="Sigue por aquí" className="vidrio vidrio--quieto rounded-3xl p-5">
-        <p className="text-sm font-semibold uppercase tracking-wider text-ladera">Sigue por aquí</p>
+        <p className="text-sm font-semibold uppercase tracking-wider text-marca">Sigue por aquí</p>
         <div className="mt-3 grid gap-3 sm:grid-cols-3">
           {ids.map((id) => {
             const r = RELACIONES[id];

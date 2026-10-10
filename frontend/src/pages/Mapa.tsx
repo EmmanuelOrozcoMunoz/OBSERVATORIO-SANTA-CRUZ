@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type TouchEvent } fr
 import { useSearchParams } from "react-router-dom";
 import type { Map as MapaML } from "maplibre-gl";
 import MapaVivo, { type FiltroSiniestros, type Modo } from "../components/mapa/MapaVivo";
-import { BotonesCamara, HoraSol, Joystick } from "../components/mapa/ControlesMapa";
+import { BotonesCamara, HoraSol } from "../components/mapa/ControlesMapa";
 import { horaColombia } from "../lib/sol";
 import PanelCapas from "../components/mapa/PanelCapas";
 import PanelRuteo from "../components/mapa/PanelRuteo";
@@ -112,7 +112,7 @@ function FichaComuna({ p, santaCruz, onVerSantaCruz }: { p: Props; santaCruz?: P
         sirven para ubicarse, no para comparar directamente.
       </p>
       {!p.es_santa_cruz && (
-        <button type="button" onClick={onVerSantaCruz} className="w-full rounded-xl bg-ladera px-4 py-3 text-lg font-semibold text-papel hover:bg-ladera-hondo">
+        <button type="button" onClick={onVerSantaCruz} className="w-full rounded-xl bg-acento px-4 py-3 text-lg font-semibold text-white hover:bg-acento-hondo">
           Volver a Santa Cruz
         </button>
       )}
@@ -123,7 +123,7 @@ function FichaComuna({ p, santaCruz, onVerSantaCruz }: { p: Props; santaCruz?: P
 /** Marca de "elegido": chulo blanco sobre círculo verde. */
 function Chulo() {
   return (
-    <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full bg-[#1a4d2e] text-white shadow">
+    <span aria-hidden="true" className="grid h-6 w-6 place-items-center rounded-full bg-acento text-white shadow">
       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
         <path d="m5 12.5 4.5 4.5L19 7.5" />
       </svg>
@@ -153,28 +153,32 @@ function BotonTema({ t, activo, soloComuna, onClick }: { t: Tema; activo: boolea
   );
 }
 
-/** Tarjeta cuadrada del tema: ícono grande y nombre corto. Al pasar el mouse sube 4 px; elegida, borde verde. */
+/** Fila compacta del tema: ícono pequeño y nombre. Elegida, queda teñida con su color; sin saltos ni sombras. */
 function TemaCuadro({ t, activo, soloComuna, onClick }: { t: Tema; activo: boolean; soloComuna: boolean; onClick: () => void }) {
   return (
-    <button
-      type="button"
-      aria-pressed={activo}
-      title={t.ayuda}
-      onClick={onClick}
-      className={`tarjeta-tema flex min-h-[5.6rem] flex-col items-start justify-between rounded-2xl border-2 p-3 text-left ${
-        activo ? "border-marca bg-superficie text-tinta shadow-lg" : "border-transparent bg-superficie/90 text-tinta shadow-sm"
-      }`}
-      style={activo ? { backgroundImage: `linear-gradient(160deg, ${t.color}1a, transparent 70%)` } : undefined}
-    >
-      <span className="flex w-full items-center justify-between">
-        <span className="icono-tema grid h-9 w-9 place-items-center rounded-xl transition-colors" style={{ background: activo ? t.color : `${t.color}1a`, color: activo ? "#fff" : t.color }}>
-          <Icono nombre={t.id} className="h-6 w-6" />
+    <li>
+      <button
+        type="button"
+        aria-pressed={activo}
+        title={t.ayuda}
+        onClick={onClick}
+        className={`flex w-full items-center gap-2.5 rounded-[10px] px-2 py-1.5 text-left text-sm font-medium transition-colors ${activo ? "text-tinta" : "text-tinta-suave hover:bg-acento/10 hover:text-tinta"}`}
+        style={activo ? { background: `${t.color}22` } : undefined}
+      >
+        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg" style={{ background: activo ? t.color : `${t.color}1f`, color: activo ? "#fff" : t.color }}>
+          <Icono nombre={t.id} className="h-5 w-5" />
         </span>
-        {activo && <Chulo />}
-      </span>
-      <span className="mt-2 block text-[1rem] font-semibold leading-tight">{t.nombre}</span>
-      {soloComuna && <span className="text-xs text-tinta-tenue">Solo Santa Cruz</span>}
-    </button>
+        <span className="min-w-0 flex-1 leading-tight">
+          {t.nombre}
+          {soloComuna && <span className="block text-xs font-normal text-tinta-tenue">Solo Santa Cruz</span>}
+        </span>
+        {activo && (
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-marca" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
+            <path d="m5 12.5 4.5 4.5L19 7.5" />
+          </svg>
+        )}
+      </button>
+    </li>
   );
 }
 
@@ -197,7 +201,7 @@ export default function Mapa() {
   const [colorBarrios, setColorBarrios] = useState("");
   const [filtroSin, setFiltroSin] = useState<FiltroSiniestros>({ clase: "Atropello", anio: "Todos" });
   const [masOpciones, setMasOpciones] = useState(false);
-  const [verLeyenda, setVerLeyenda] = useState(true);
+  const [verLeyenda, setVerLeyenda] = useState(false);
   const [ruteo, setRuteo] = useState(params.get("ruta") === "1");
   const [clicRuta, setClicRuta] = useState<{ lon: number; lat: number; n: number } | null>(null);
   const [rutas, setRutas] = useState<Coleccion | null>(null);
@@ -345,9 +349,9 @@ export default function Mapa() {
       ? [{
           titulo: "Edificaciones en 3D (catastro)",
           items: [
-            { color: "#d1e7d1", etiqueta: "1 piso", forma: "area" as const },
-            { color: "#4a8c6f", etiqueta: "2 pisos", forma: "area" as const },
-            { color: "#1a4d2e", etiqueta: "3 pisos o más", forma: "area" as const },
+            { color: "#d9d3f7", etiqueta: "1 piso", forma: "area" as const },
+            { color: "#7a5be0", etiqueta: "2 pisos", forma: "area" as const },
+            { color: "#3d2fa8", etiqueta: "3 pisos o más", forma: "area" as const },
           ],
           nota: "Altura = pisos × 3 m. Las sombras siguen la posición real del sol a la hora elegida. El relieve está exagerado 1,6 veces para que se note.",
         }]
@@ -372,9 +376,50 @@ export default function Mapa() {
     return def ? <FichaElemento def={def} props={seleccion.elemento.properties ?? {}} /> : null;
   })();
 
+  const btn = "flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-[background-color,transform] duration-150 ease-out enabled:active:scale-[0.96]";
+  const acciones = (
+    <div className={`flex items-center gap-2 ${solo ? "" : "pointer-events-auto"}`}>
+      <button
+        type="button"
+        aria-pressed={ruteo}
+        onClick={alternarRuteo}
+        className={`${btn} ${ruteo ? "bg-ambar text-white" : "bg-acento text-white hover:bg-acento-hondo"}`}
+      >
+        <Icono nombre="ruta" className="h-5 w-5" />
+        {ruteo ? "Salir de rutas" : "¿Cómo llego?"}
+      </button>
+      <button
+        type="button"
+        aria-pressed={vista3d}
+        onClick={() => setVista3d((v) => !v)}
+        className={`${btn} panel-mapa ${vista3d ? "!border-acento !bg-acento/15 text-marca" : "text-tinta hover:!bg-acento/10"}`}
+      >
+        <Icono nombre="3d" className="h-5 w-5" />
+        {vista3d ? "Ver en plano" : "Ver en 3D"}
+      </button>
+      <button
+        type="button"
+        onClick={() => setSolo(true)}
+        title="Esconder todo y ver solo el mapa (Esc para salir)"
+        className={`${btn} panel-mapa text-tinta hover:!bg-acento/10`}
+      >
+        Solo mapa <span aria-hidden="true" className="leading-none">⛶</span>
+      </button>
+      <button
+        type="button"
+        onClick={() => (recorrido ? setRecorrido(false) : iniciarRecorrido())}
+        title={recorrido ? "Detener recorrido" : "Recorrido automático por el mapa"}
+        className={`${btn} hidden sm:flex ${recorrido ? "bg-ambar text-white" : "panel-mapa text-tinta hover:!bg-acento/10"}`}
+      >
+        <Icono nombre="giro" className="h-5 w-5" />
+        <span className="sr-only">{recorrido ? "Detener recorrido" : "Recorrido"}</span>
+      </button>
+    </div>
+  );
+
   return (
     <div className="relative flex h-full bg-papel">
-      <div className="relative min-w-0 flex-1">
+      <div className={`relative min-w-0 flex-1 ${noche ? "mapa-noche" : ""}`}>
         <MapaVivo
           modo={modo}
           activas={activas}
@@ -400,7 +445,7 @@ export default function Mapa() {
 
         {/* Barra superior: modo, búsqueda y vista */}
         <div className={`pointer-events-none absolute inset-x-3 top-3 z-10 flex flex-wrap items-start gap-2 md:inset-x-4 md:top-4 md:gap-3 ${cromo}`}>
-          <div role="radiogroup" aria-label="Qué parte de la ciudad ver" className={`flex rounded-2xl bg-superficie/95 p-1.5 shadow-lg backdrop-blur ${solo ? "" : "pointer-events-auto"}`}>
+          <div role="radiogroup" aria-label="Qué parte de la ciudad ver" className={`panel-mapa flex rounded-2xl p-1 ${solo ? "" : "pointer-events-auto"}`}>
             {(
               [
                 ["comuna", "Santa Cruz"],
@@ -413,7 +458,7 @@ export default function Mapa() {
                 role="radio"
                 aria-checked={modo === id}
                 onClick={() => cambiarModo(id)}
-                className={`rounded-xl px-4 py-2.5 text-base font-semibold transition-colors md:px-5 md:text-lg ${modo === id ? "bg-tinta text-papel" : "text-tinta hover:bg-papel-hondo"}`}
+                className={`rounded-xl px-4 py-2 text-sm font-semibold transition-colors md:px-5 md:text-base ${modo === id ? "bg-acento text-white" : "text-tinta-suave hover:bg-acento/10 hover:text-tinta"}`}
               >
                 {nombre}
               </button>
@@ -422,107 +467,76 @@ export default function Mapa() {
           <div className={`order-last w-full md:order-none md:w-64 2xl:w-80 ${solo ? "" : "pointer-events-auto"}`}>
             <Buscador onElegir={elegirResultado} modo={modo} />
           </div>
-          <div className={`ml-auto flex gap-2 ${solo ? "" : "pointer-events-auto"}`}>
-            <button
-              type="button"
-              aria-pressed={ruteo}
-              onClick={alternarRuteo}
-              className={`flex items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg ${ruteo ? "bg-ambar text-white" : "bg-tinta text-papel"}`}
-            >
-              <Icono nombre="ruta" className="h-6 w-6" />
-              {ruteo ? "Salir de rutas" : "¿Cómo llego?"}
-            </button>
-            <button
-              type="button"
-              aria-pressed={vista3d}
-              onClick={() => setVista3d((v) => !v)}
-              className={`flex items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg ${vista3d ? "bg-ladera text-papel" : "bg-superficie/95 text-tinta"}`}
-            >
-              <Icono nombre="3d" className="h-6 w-6" />
-              {vista3d ? "Ver en plano" : "Ver en 3D"}
-            </button>
-            <button
-              type="button"
-              aria-pressed={solo}
-              onClick={() => setSolo(true)}
-              title="Esconder todo y ver solo el mapa (Esc para salir)"
-              className="flex items-center gap-2 rounded-2xl bg-[#1a4d2e] px-4 py-3 text-base font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
-            >
-              Solo Mapa <span aria-hidden="true" className="text-lg leading-none">⛶</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => (recorrido ? setRecorrido(false) : iniciarRecorrido())}
-              className={`hidden items-center gap-2 rounded-2xl px-4 py-3 text-base font-semibold shadow-lg sm:flex ${recorrido ? "bg-ambar text-white" : "bg-superficie/95 text-tinta"}`}
-            >
-              <Icono nombre="giro" className="h-6 w-6" />
-              <span className="sr-only 2xl:not-sr-only">{recorrido ? "Detener recorrido" : "Recorrido"}</span>
-            </button>
-          </div>
+          <div className="ml-auto xl:hidden">{acciones}</div>
         </div>
 
-        {/* Temas: qué quiere ver (computador) */}
+        {/* Acciones arriba a la derecha (pantallas anchas): en una columna para que no se encimen con la leyenda ni los controles */}
+        <div className={`absolute right-4 top-4 z-10 hidden xl:flex ${cromo}`}>{acciones}</div>
+
+        {/* Capas: qué quiere ver (computador). Lista compacta en un solo panel */}
         <nav
           aria-label="Qué quiere ver en el mapa"
-          className={`absolute left-4 top-24 z-10 w-[19rem] flex-col gap-2 overflow-y-auto pb-1 pr-1 pt-1 ${panelAbierto ? "bottom-4" : ""} ${ruteo ? "hidden" : "hidden lg:flex"} ${cromo}`}
+          className={`absolute left-4 top-[4.75rem] z-10 w-60 ${panelAbierto ? "bottom-4" : ""} ${ruteo ? "hidden" : "hidden lg:flex"} ${cromo}`}
         >
-          <button
-            type="button"
-            aria-expanded={panelAbierto}
-            onClick={() => setPanelAbierto((v) => !v)}
-            className="flex w-full items-center justify-between gap-3 rounded-2xl bg-[#14301f]/90 px-4 py-3 text-left text-papel shadow-md backdrop-blur transition hover:bg-[#14301f]"
-          >
-            <span>
-              <span className="block text-lg font-bold [font-stretch:110%]">¿Qué quiere ver?</span>
-              <span className="block text-sm text-papel/75">
-                {panelAbierto ? "Toque uno o varios. Se pueden combinar." : `${TEMAS.filter(temaActivo).length} temas encendidos`}
+          <div className="panel-mapa pointer-events-auto flex max-h-full min-h-0 w-full flex-col self-start overflow-hidden rounded-2xl">
+            <button
+              type="button"
+              aria-expanded={panelAbierto}
+              onClick={() => setPanelAbierto((v) => !v)}
+              className="flex w-full shrink-0 items-center justify-between gap-3 px-3.5 py-3 text-left transition-colors hover:bg-acento/10"
+            >
+              <span>
+                <span className="block text-base font-bold">¿Qué quiere ver?</span>
+                <span className="block text-xs text-tinta-suave">{panelAbierto ? "Toque para mostrar u ocultar" : `${TEMAS.filter(temaActivo).length} activos`}</span>
               </span>
-            </span>
-            <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-6 w-6 shrink-0 transition-transform duration-300 ${panelAbierto ? "" : "rotate-180"}`} fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round">
-              <path d="m6 15 6-6 6 6" />
-            </svg>
-            <span className="sr-only">{panelAbierto ? "Colapsar panel" : "Abrir panel"}</span>
-          </button>
-          {panelAbierto && (
-          <>
-          <div className="grid grid-cols-2 gap-2">
-            {TEMAS.map((t) => (
-              <TemaCuadro
-                key={t.id}
-                t={t}
-                activo={temaActivo(t)}
-                soloComuna={modo === "ciudad" && t.capas.every((c) => !capaPorId(c)?.archivoCiudad)}
-                onClick={() => alternarTema(t)}
-              />
-            ))}
+              <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-5 w-5 shrink-0 text-tinta-suave transition-transform duration-200 ${panelAbierto ? "" : "rotate-180"}`} fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round">
+                <path d="m6 15 6-6 6 6" />
+              </svg>
+              <span className="sr-only">{panelAbierto ? "Colapsar panel" : "Abrir panel"}</span>
+            </button>
+            {panelAbierto && (
+              <>
+                <ul className="min-h-0 flex-1 space-y-0.5 overflow-y-auto overscroll-contain px-1.5 pb-1.5">
+                  {TEMAS.map((t) => (
+                    <TemaCuadro
+                      key={t.id}
+                      t={t}
+                      activo={temaActivo(t)}
+                      soloComuna={modo === "ciudad" && t.capas.every((c) => !capaPorId(c)?.archivoCiudad)}
+                      onClick={() => alternarTema(t)}
+                    />
+                  ))}
+                </ul>
+                <div className="shrink-0 space-y-2 border-t border-nivel/60 px-3.5 py-2.5">
+                  <label className="block">
+                    <span className="flex items-baseline justify-between text-xs font-semibold text-tinta-suave">
+                      Opacidad de las capas
+                      <span className="tabular-nums">{opacidad}%</span>
+                    </span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={5}
+                      value={opacidad}
+                      onChange={(e) => setOpacidad(Number(e.target.value))}
+                      className="rango-verde mt-1 w-full"
+                      aria-describedby="ayuda-opacidad"
+                    />
+                    <span id="ayuda-opacidad" className="sr-only">Bájela para ver mejor el mapa de fondo.</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setMasOpciones(true)}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl py-1.5 text-sm font-semibold text-marca transition-colors hover:bg-acento/10"
+                  >
+                    <Icono nombre="capas" className="h-4 w-4" />
+                    Más opciones
+                  </button>
+                </div>
+              </>
+            )}
           </div>
-          <label className="block rounded-2xl bg-superficie/90 px-4 py-3 shadow-sm">
-            <span className="flex items-baseline justify-between text-sm font-semibold">
-              Opacidad de las capas
-              <span className="tabular-nums text-tinta-suave">{opacidad}%</span>
-            </span>
-            <input
-              type="range"
-              min={0}
-              max={100}
-              step={5}
-              value={opacidad}
-              onChange={(e) => setOpacidad(Number(e.target.value))}
-              className="rango-verde mt-2 w-full"
-              aria-describedby="ayuda-opacidad"
-            />
-            <span id="ayuda-opacidad" className="mt-1 block text-xs text-tinta-tenue">Bájela para admirar el mapa de fondo.</span>
-          </label>
-          <button
-            type="button"
-            onClick={() => setMasOpciones(true)}
-            className="flex items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-tinta/25 bg-superficie/85 px-3 py-3 text-base font-semibold hover:bg-superficie"
-          >
-            <Icono nombre="capas" className="h-5 w-5" />
-            Más opciones y leyenda
-          </button>
-          </>
-          )}
         </nav>
 
         {/* Temas en celular y tableta: fila deslizable abajo. Deslizar hacia arriba = Solo Mapa */}
@@ -544,14 +558,31 @@ export default function Mapa() {
         </div>
 
         {/* Controles de cámara: zoom, brújula, día/noche, foto HD */}
-        <div className={`absolute right-3 z-10 md:right-4 ${solo ? "top-4" : "top-[17rem] md:top-40 xl:top-24"}`}>
+        <div className={`absolute right-3 z-10 md:right-4 ${solo ? "top-4" : "top-[17rem] md:top-40 xl:top-[4.75rem]"}`}>
           <BotonesCamara mapa={mapaML} noche={noche} onNoche={() => setNoche((v) => !v)} conNoche={!solo} onAviso={setAviso} />
         </div>
 
-        {/* Control 3D (joystick) y hora del sol */}
-        <div className={`absolute right-3 z-10 flex flex-col items-end gap-2 md:right-4 ${solo ? "bottom-6" : ruteo ? "bottom-6" : "bottom-28 lg:bottom-6"}`}>
+        {/* Abajo a la derecha: hora del sol (3D de día) y leyenda plegada */}
+        <div className={`absolute right-3 z-10 flex flex-col items-end gap-2 md:right-4 ${solo ? "bottom-6" : ruteo ? "bottom-6" : "bottom-28 lg:bottom-8"}`}>
           {vista3d && !noche && !solo && <HoraSol hora={hora} onHora={setHora} />}
-          <Joystick mapa={mapaML} />
+          {leyenda.length > 0 && !ruteo && (
+            <div className={`panel-mapa hidden w-64 overflow-hidden rounded-2xl xl:block ${cromo}`}>
+              <button
+                type="button"
+                aria-expanded={verLeyenda}
+                onClick={() => setVerLeyenda((v) => !v)}
+                className="flex w-full items-center justify-between px-3.5 py-2.5 text-sm font-bold transition-colors hover:bg-acento/10"
+              >
+                Leyenda
+                <span className="text-xs font-medium text-tinta-suave">{verLeyenda ? "Ocultar" : "Ver"}</span>
+              </button>
+              {verLeyenda && (
+                <div className="max-h-[40vh] overflow-y-auto overscroll-contain px-3.5 pb-3">
+                  <Leyenda bloques={leyenda} />
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Solo Mapa: salir */}
@@ -571,29 +602,9 @@ export default function Mapa() {
 
         {/* Avisos cortos (foto descargada, etc.) */}
         {aviso && (
-          <p role="status" className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-[#14301f] px-5 py-2.5 text-base font-semibold text-white shadow-xl">
+          <p role="status" className="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-acento-hondo px-5 py-2.5 text-base font-semibold text-white shadow-xl">
             {aviso}
           </p>
-        )}
-
-        {/* Leyenda compacta (computador), arriba a la derecha junto a los controles */}
-        {leyenda.length > 0 && !ruteo && (
-          <div className={`absolute right-20 top-24 z-10 hidden w-64 rounded-2xl bg-superficie/95 shadow-lg backdrop-blur xl:block ${cromo}`}>
-            <button
-              type="button"
-              aria-expanded={verLeyenda}
-              onClick={() => setVerLeyenda((v) => !v)}
-              className="flex w-full items-center justify-between px-4 py-3 text-base font-bold"
-            >
-              Leyenda
-              <span className="text-sm font-medium text-tinta-suave">{verLeyenda ? "Ocultar" : "Mostrar"}</span>
-            </button>
-            {verLeyenda && (
-              <div className="max-h-[52vh] overflow-y-auto px-4 pb-4">
-                <Leyenda bloques={leyenda} />
-              </div>
-            )}
-          </div>
         )}
 
         {/* Ayuda la primera vez */}
@@ -605,7 +616,7 @@ export default function Mapa() {
               <li><strong>2.</strong> Toque un barrio o un punto para ver su información.</li>
               <li><strong>3.</strong> Use <strong>Ver en 3D</strong> para ver la montaña y <strong>Toda Medellín</strong> para comparar con otras comunas.</li>
             </ol>
-            <button type="button" onClick={cerrarAyuda} className="mt-6 w-full rounded-2xl bg-ladera px-4 py-3.5 text-lg font-semibold text-papel hover:bg-ladera-hondo">
+            <button type="button" onClick={cerrarAyuda} className="mt-6 w-full rounded-2xl bg-acento px-4 py-3.5 text-lg font-semibold text-white hover:bg-acento-hondo">
               Entendido, ver el mapa
             </button>
           </div>
@@ -613,7 +624,7 @@ export default function Mapa() {
 
         {/* Más opciones */}
         {masOpciones && (
-          <aside aria-label="Más opciones del mapa" className="absolute inset-y-0 left-0 z-30 w-full max-w-sm overflow-y-auto bg-papel p-5 shadow-2xl">
+          <aside aria-label="Más opciones del mapa" className="absolute inset-y-0 left-0 z-30 w-full max-w-sm overflow-y-auto overscroll-contain bg-papel p-5 shadow-2xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-2xl font-bold [font-stretch:110%]">Más opciones</h2>
               <button type="button" onClick={() => setMasOpciones(false)} className="flex items-center gap-1 rounded-xl border border-nivel bg-superficie px-3 py-2 text-base font-medium">
@@ -645,7 +656,7 @@ export default function Mapa() {
       {ruteo && (
         <aside
           aria-label="Rutas caminando"
-          className={`absolute inset-x-0 bottom-0 z-40 max-h-[62%] overflow-y-auto rounded-t-3xl bg-papel p-5 shadow-2xl md:static md:z-auto md:max-h-none md:w-[26rem] md:shrink-0 md:rounded-none md:border-l md:border-nivel md:shadow-none ${solo ? "!hidden" : ""}`}
+          className={`absolute inset-x-0 bottom-0 z-40 max-h-[62%] overflow-y-auto overscroll-contain rounded-t-3xl bg-papel p-5 shadow-2xl md:static md:z-auto md:max-h-none md:w-[26rem] md:shrink-0 md:rounded-none md:border-l md:border-nivel md:shadow-none ${solo ? "!hidden" : ""}`}
         >
           <PanelRuteo clic={clicRuta} onGeo={onGeoRuta} onEncuadrar={onEncuadrarRuta} onCerrar={alternarRuteo} />
         </aside>
@@ -655,7 +666,7 @@ export default function Mapa() {
       {!ruteo && contenidoFicha && (
         <aside
           aria-label="Ficha"
-          className={`absolute inset-x-0 bottom-0 z-40 max-h-[62%] overflow-y-auto rounded-t-3xl bg-papel p-5 shadow-2xl md:static md:z-auto md:max-h-none md:w-[26rem] md:shrink-0 md:rounded-none md:border-l md:border-nivel md:shadow-none ${solo ? "!hidden" : ""}`}
+          className={`absolute inset-x-0 bottom-0 z-40 max-h-[62%] overflow-y-auto overscroll-contain rounded-t-3xl bg-papel p-5 shadow-2xl md:static md:z-auto md:max-h-none md:w-[26rem] md:shrink-0 md:rounded-none md:border-l md:border-nivel md:shadow-none ${solo ? "!hidden" : ""}`}
         >
           <div className="mb-3 flex justify-end">
             <button type="button" onClick={cerrarFicha} className="flex items-center gap-1 rounded-xl border border-nivel bg-superficie px-3 py-2 text-base font-medium hover:bg-papel-hondo">

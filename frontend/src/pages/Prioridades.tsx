@@ -277,7 +277,7 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
           </div>
           <div role="group" aria-label="Filtrar por tipo" className="flex gap-2">
             {(["todos", "espacio_publico", "andenes"] as const).map((f) => (
-              <button key={f} type="button" aria-pressed={filtro === f} onClick={() => setFiltro(f)} className={`rounded-full border px-3 py-1.5 text-sm ${filtro === f ? "border-ladera bg-ladera text-papel" : "border-nivel bg-superficie"}`}>
+              <button key={f} type="button" aria-pressed={filtro === f} onClick={() => setFiltro(f)} className={`rounded-full border px-3 py-1.5 text-sm ${filtro === f ? "border-acento bg-acento text-white" : "border-nivel bg-superficie"}`}>
                 {f === "todos" ? "Todos" : f === "espacio_publico" ? "Espacio público" : "Andenes"}
               </button>
             ))}

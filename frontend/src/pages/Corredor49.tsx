@@ -10,7 +10,7 @@ import IconoNav from "../components/IconosNav";
 import type { Coleccion } from "../lib/tipos";
 import { BotonCabecera, Cabecera, Relacionados } from "../components/Pagina";
 
-const VERDE = "#1a4d2e";
+const VERDE = "#3d2fa8";
 const AMBAR = "#f5b82e";
 
 interface PorBarrio { barrio: string; personas: number; minutos_ruta_rapida: number; minutos_por_la_49: number; pct_49_en_el_camino: number }
@@ -113,7 +113,7 @@ function MapaEje({ tipo }: { tipo: string }) {
         ))}
       </svg>
       {tip && (
-        <div className="pointer-events-none absolute z-10 max-w-[14rem] -translate-x-1/2 -translate-y-full rounded-lg bg-[#1a4d2e] px-3 py-2 text-xs font-medium text-white shadow-lg" style={{ left: `${(tip.x / ANCHO) * 100}%`, top: `${(tip.y / ALTO) * 100 - 2}%` }}>
+        <div className="pointer-events-none absolute z-10 max-w-[14rem] -translate-x-1/2 -translate-y-full rounded-lg bg-acento px-3 py-2 text-xs font-medium text-white shadow-lg" style={{ left: `${(tip.x / ANCHO) * 100}%`, top: `${(tip.y / ALTO) * 100 - 2}%` }}>
           {tip.texto}
         </div>
       )}
@@ -121,7 +121,7 @@ function MapaEje({ tipo }: { tipo: string }) {
         {ESCALA.map((e) => (
           <li key={e.color} className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full" style={{ background: e.color }} />{e.texto}</li>
         ))}
-        <li className="flex items-center gap-1.5"><span className="h-1.5 w-6 rounded bg-[#1a4d2e]" />Carrera 49 existente</li>
+        <li className="flex items-center gap-1.5"><span className="h-1.5 w-6 rounded bg-acento" />Carrera 49 existente</li>
         <li className="flex items-center gap-1.5"><span className="h-1.5 w-6 rounded border-t-4 border-dotted border-[#f5b82e]" />Tramo proyectado en el POT</li>
         <li className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-full bg-[#24598a]" />Estación</li>
       </ul>
@@ -172,7 +172,7 @@ function Contenido({ d }: { d: Eje49 }) {
       <Revelar className="mt-10">
         <div className="grid gap-5 md:grid-cols-3">
           <div className="rounded-2xl border-l-4 border-marca bg-menta-2 p-6">
-            <p className="text-sm font-semibold uppercase tracking-wider text-ladera">Para toda la comuna</p>
+            <p className="text-sm font-semibold uppercase tracking-wider text-marca">Para toda la comuna</p>
             <p className="mt-2 text-lg">
               Al Metro, la ruta más rápida toma <strong>{dec(metro.minutos_ruta_rapida)} min</strong>. Obligando a caminar por la 49 sube a <strong>{dec(metro.minutos_por_la_49)} min</strong>.
             </p>
@@ -198,7 +198,7 @@ function Contenido({ d }: { d: Eje49 }) {
           {ORDEN.filter((o) => d.destinos[o.id]).map((o) => (
             <button
               key={o.id} role="tab" aria-selected={tipo === o.id} onClick={() => setTipo(o.id)}
-              className={`flex items-center gap-2 rounded-full px-4 py-2 text-base font-semibold transition ${tipo === o.id ? "bg-[#1a4d2e] text-white shadow-md" : "bg-superficie text-tinta ring-1 ring-black/10 hover:bg-menta"}`}
+              className={`flex items-center gap-2 rounded-full px-4 py-2 text-base font-semibold transition ${tipo === o.id ? "bg-acento text-white shadow-md" : "bg-superficie text-tinta ring-1 ring-black/10 hover:bg-menta"}`}
             >
               <IconoNav nombre={o.icono} className="h-5 w-5" />
               {o.corto}
@@ -374,7 +374,7 @@ function Contenido({ d }: { d: Eje49 }) {
           <p className="mt-3 text-sm text-tinta-tenue">Script: <code>data-pipeline/eje49.py</code>. Tramos del eje: {d.eje.tramos.map((t) => `${t.nombre} (${t.estado.toLowerCase()}, ${num(t.metros)} m)`).join("; ")}.</p>
         </details>
         <div className="mt-8">
-          <Link to="/mapa" className="inline-flex items-center gap-3 rounded-2xl bg-[#1a4d2e] px-7 py-4 text-xl font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl">
+          <Link to="/mapa" className="inline-flex items-center gap-3 rounded-2xl bg-acento px-7 py-4 text-xl font-bold text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl">
             <IconoNav nombre="mapa" className="h-6 w-6" trazo={2} /> Probar mi propia ruta en el mapa
           </Link>
         </div>

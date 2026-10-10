@@ -1,6 +1,7 @@
 /** Paleta "ladera": tomada del paisaje de la comuna (montaña, cable, ladrillo, curvas de nivel). */
 /** @type {import('tailwindcss').Config} */
 export default {
+  future: { hoverOnlyWhenSupported: true },
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
@@ -11,6 +12,7 @@ export default {
         superficie: "rgb(var(--superficie) / <alpha-value>)",
         nivel: "rgb(var(--nivel) / <alpha-value>)",
         marca: "rgb(var(--marca) / <alpha-value>)",
+        acento: { DEFAULT: "rgb(var(--acento) / <alpha-value>)", hondo: "rgb(var(--acento-hondo) / <alpha-value>)" },
         menta: { DEFAULT: "rgb(var(--menta) / <alpha-value>)", 2: "rgb(var(--menta-2) / <alpha-value>)" },
         aviso: { fondo: "rgb(var(--aviso-fondo) / <alpha-value>)", borde: "rgb(var(--aviso-borde) / <alpha-value>)" },
         peligro: "rgb(var(--peligro) / <alpha-value>)",

@@ -21,7 +21,7 @@ function Tabla({ fuentes }: { fuentes: Fuente[] }) {
             type="button"
             onClick={() => setTipo(t)}
             aria-pressed={tipo === t}
-            className={`rounded-full border px-3 py-1 text-sm ${tipo === t ? "border-ladera bg-ladera text-papel" : "border-nivel hover:bg-papel-hondo"}`}
+            className={`rounded-full border px-3 py-1 text-sm ${tipo === t ? "border-acento bg-acento text-white" : "border-nivel hover:bg-papel-hondo"}`}
           >
             {t === "todas" ? `Todas (${fuentes.length})` : `${t[0].toUpperCase()}${t.slice(1)} (${conteo(t)})`}
           </button>
@@ -69,7 +69,7 @@ function Tabla({ fuentes }: { fuentes: Fuente[] }) {
                   </td>
                   <td className="py-2 pr-3">
                     {f.estado === "ok" ? (
-                      <span className="text-ladera-hondo">Verificada</span>
+                      <span className="text-marca">Verificada</span>
                     ) : (
                       <span className="text-ladrillo" title={f.error ?? ""}>
                         {f.estado}

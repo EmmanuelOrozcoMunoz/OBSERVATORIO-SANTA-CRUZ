@@ -179,7 +179,7 @@ function Contenido({ d }: { d: Ind }) {
         <section className="rounded-lg border border-nivel bg-superficie p-4">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm text-tinta-suave">Ficha del barrio seleccionado</p>
-            <Link to={`/mapa?barrio=${ficha.codigo}`} className="rounded-md bg-ladera px-3 py-1.5 text-sm text-papel">
+            <Link to={`/mapa?barrio=${ficha.codigo}`} className="rounded-md bg-acento px-3 py-1.5 text-sm text-white">
               Ver {ficha.nombre} en el mapa
             </Link>
           </div>
@@ -298,7 +298,7 @@ function Contenido({ d }: { d: Ind }) {
             </thead>
             <tbody>
               {barrios.map((b) => (
-                <tr key={b.codigo} className={`border-b border-nivel/70 ${b.codigo === sel ? "bg-ladera-claro" : ""}`}>
+                <tr key={b.codigo} className={`border-b border-nivel/70 ${b.codigo === sel ? "bg-menta" : ""}`}>
                   <td className="py-1.5 pr-3">
                     <Link to={`/mapa?barrio=${b.codigo}`} className="text-cable underline-offset-2 hover:underline">
                       {b.nombre}

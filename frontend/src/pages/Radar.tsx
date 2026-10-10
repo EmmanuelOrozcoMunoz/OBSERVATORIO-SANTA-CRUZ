@@ -91,7 +91,7 @@ function Contenido({ r }: { r: Radar }) {
             <div className="flex flex-wrap gap-2">
               {Object.entries(r.por_barrio).map(([b, n]) => (
                 <button key={b} type="button" onClick={() => setBarrio(barrio === b ? "" : b)} aria-pressed={barrio === b}
-                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${barrio === b ? "bg-[#1a4d2e] text-white" : "bg-menta-2 hover:bg-menta"}`}>
+                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${barrio === b ? "bg-acento text-white" : "bg-menta-2 hover:bg-menta"}`}>
                   {b === "Santa Cruz" ? "Santa Cruz (barrio o comuna)" : b} <span className="opacity-70">{n}</span>
                 </button>
               ))}

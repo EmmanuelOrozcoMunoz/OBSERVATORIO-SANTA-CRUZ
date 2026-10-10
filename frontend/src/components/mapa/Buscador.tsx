@@ -97,7 +97,7 @@ export default function Buscador({ onElegir, modo = "comuna" }: { onElegir: (r: 
         aria-expanded={abierto && resultados.length > 0}
         aria-controls="resultados-busqueda"
         aria-autocomplete="list"
-        placeholder={indice ? "Buscar un barrio, colegio o estación" : "Preparando la búsqueda…"}
+        placeholder={indice ? "Buscar barrio, colegio…" : "Preparando la búsqueda…"}
         disabled={!indice}
         value={consulta}
         onChange={(e) => {
@@ -129,7 +129,7 @@ export default function Buscador({ onElegir, modo = "comuna" }: { onElegir: (r: 
               aria-selected={i === activo}
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => elegir(r)}
-              className={`cursor-pointer px-4 py-2.5 text-base ${i === activo ? "bg-ladera-claro" : ""}`}
+              className={`cursor-pointer px-4 py-2.5 text-base ${i === activo ? "bg-menta" : ""}`}
             >
               <span className="block">{r.nombre}</span>
               <span className="block text-sm text-tinta-suave">

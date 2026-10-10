@@ -236,11 +236,11 @@ export default function Participacion() {
             </div>
           )}
 
-          <button type="submit" className="w-full rounded-md bg-ladera px-4 py-2.5 font-semibold text-papel hover:bg-ladera-hondo">
+          <button type="submit" className="w-full rounded-md bg-acento px-4 py-2.5 font-semibold text-white hover:bg-acento-hondo">
             Guardar reporte
           </button>
           {mensaje && (
-            <p role="status" className="text-sm text-ladera-hondo">
+            <p role="status" className="text-sm text-marca">
               {mensaje}
             </p>
           )}

@@ -122,7 +122,7 @@ function Contenido({ d }: { d: Indicadores }) {
           <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Destino">
             {DESTINOS.map((x) => (
               <button key={x.id} type="button" onClick={() => setDestino(x.id)} aria-pressed={destino === x.id}
-                className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${destino === x.id ? "bg-[#1a4d2e] text-white shadow" : "bg-menta-2 text-tinta hover:bg-menta"}`}>
+                className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${destino === x.id ? "bg-acento text-white shadow" : "bg-menta-2 text-tinta hover:bg-menta"}`}>
                 {x.nombre.split(",")[0].replace("Metro", "Metro / Metrocable")}
               </button>
             ))}

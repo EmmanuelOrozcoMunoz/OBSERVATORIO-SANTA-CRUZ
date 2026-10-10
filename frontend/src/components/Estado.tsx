@@ -5,7 +5,7 @@ import type { TipoDato } from "../lib/tipos";
 export function Cargando({ texto = "Cargando datos" }: { texto?: string }) {
   return (
     <div role="status" className="flex items-center gap-3 p-6 text-tinta-suave">
-      <span className="h-3 w-3 animate-[suave_2.6s_ease-in-out_infinite] rounded-full bg-ladera" aria-hidden="true" />
+      <span className="h-3 w-3 animate-[suave_2.6s_ease-in-out_infinite] rounded-full bg-acento" aria-hidden="true" />
       {texto}
     </div>
   );
@@ -45,7 +45,7 @@ export function ConDatos<T>({ estado, children }: { estado: EstadoDatos<T>; chil
 }
 
 const ESTILO_TIPO: Record<TipoDato, string> = {
-  oficial: "bg-ladera-claro text-ladera-hondo",
+  oficial: "bg-menta text-marca",
   tercero: "bg-cable-claro text-cable",
   campo: "bg-ambar-claro text-ambar",
   demostrativo: "bg-ladrillo-claro text-ladrillo",

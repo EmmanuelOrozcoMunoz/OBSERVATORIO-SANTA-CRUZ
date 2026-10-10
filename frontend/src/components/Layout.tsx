@@ -25,7 +25,7 @@ export function Logo({ className = "" }: { className?: string }) {
   // Curvas de nivel de una ladera con la línea de un cable aéreo encima.
   return (
     <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <rect width="40" height="40" rx="8" fill="#1a4d2e" />
+      <rect width="40" height="40" rx="8" fill="#3d2fa8" />
       <path d="M2 34 C12 30 18 22 38 20" stroke="#a8cbb6" strokeWidth="1.6" fill="none" />
       <path d="M2 38 C14 34 22 28 38 27" stroke="#a8cbb6" strokeWidth="1.6" fill="none" />
       <path d="M4 26 L36 8" stroke="#f5f6f2" strokeWidth="1.6" />

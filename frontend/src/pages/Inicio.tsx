@@ -118,7 +118,7 @@ function DibujoComuna({ stats }: { stats: Stats }) {
             <rect width={ANCHO} height={ALTO} rx="20" />
           </clipPath>
           <filter id="brillo" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#1a4d2e" floodOpacity="0.45" />
+            <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#3d2fa8" floodOpacity="0.45" />
           </filter>
         </defs>
         <g clipPath="url(#marco)">
@@ -185,14 +185,14 @@ function DibujoComuna({ stats }: { stats: Stats }) {
         </g>
       </svg>
       {activo && (
-        <div role="status" className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[135%] whitespace-nowrap rounded-xl bg-[#14301f] px-4 py-2.5 text-white shadow-xl" style={{ left: `${izq}%`, top: `${(activo.centro[1] / ALTO) * 100}%` }}>
+        <div role="status" className="pointer-events-none absolute z-10 -translate-x-1/2 -translate-y-[135%] whitespace-nowrap rounded-xl bg-acento-hondo px-4 py-2.5 text-white shadow-xl" style={{ left: `${izq}%`, top: `${(activo.centro[1] / ALTO) * 100}%` }}>
           <p className="text-base font-bold leading-tight">{activo.nombre}</p>
           {st && (
             <p className="text-sm text-white/80">
               {st.poblacion != null ? num(st.poblacion) : "Sin dato de"} personas · {num(Math.round(st.densidad))} por hectárea
             </p>
           )}
-          <span aria-hidden="true" className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 -translate-y-1.5 rotate-45 bg-[#14301f]" />
+          <span aria-hidden="true" className="absolute left-1/2 top-full h-2.5 w-2.5 -translate-x-1/2 -translate-y-1.5 rotate-45 bg-acento-hondo" />
         </div>
       )}
     </div>
@@ -394,14 +394,14 @@ export default function Inicio() {
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <Link
                   to="/mapa"
-                  className="group inline-flex items-center gap-3 rounded-2xl bg-[#1a4d2e] px-8 py-4 text-xl font-semibold text-white shadow-lg shadow-[#1a4d2e]/30 transition duration-200 hover:scale-105 hover:bg-[#14301f] hover:shadow-xl"
+                  className="group inline-flex items-center gap-3 rounded-2xl bg-acento px-8 py-4 text-xl font-semibold text-white shadow-lg shadow-acento/30 transition duration-200 hover:scale-105 hover:bg-acento-hondo hover:shadow-xl"
                 >
                   <IconoNav nombre="mapa" className="h-7 w-7 transition-transform group-hover:-rotate-6" trazo={2} />
                   Abrir el mapa
                 </Link>
                 <Link
                   to="/indicadores"
-                  className="inline-flex items-center gap-2 rounded-2xl border-2 border-marca/40 bg-superficie/40 px-6 py-3.5 text-lg font-semibold text-marca transition hover:border-marca hover:bg-[#1a4d2e]/5"
+                  className="inline-flex items-center gap-2 rounded-2xl border-2 border-marca/40 bg-superficie/40 px-6 py-3.5 text-lg font-semibold text-marca transition hover:border-marca hover:bg-acento/5"
                 >
                   Ver indicadores
                 </Link>
@@ -490,7 +490,7 @@ export default function Inicio() {
                       <div className="mt-6">
                         <div className="flex items-baseline justify-between gap-2">
                           <span className="font-semibold">Referencia nacional</span>
-                          <span className="text-[2.6rem] font-extrabold leading-none tabular-nums text-ladera">
+                          <span className="text-[2.6rem] font-extrabold leading-none tabular-nums text-marca">
                             <Cuenta hasta={REFERENCIA_M2} activo={v} /> <span className="text-lg font-bold">m²</span>
                           </span>
                         </div>

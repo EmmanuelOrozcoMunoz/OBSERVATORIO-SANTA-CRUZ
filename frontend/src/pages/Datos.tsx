@@ -10,7 +10,7 @@ import type { Coleccion } from "../lib/tipos";
 import { LIMITE_BYTES, guardarConjuntos, leerCSV, leerConjuntos, leerGeoJSON, type ConjuntoPropio } from "../lib/misdatos";
 import { Cabecera, Relacionados } from "../components/Pagina";
 
-const VERDE = "#1a4d2e";
+const VERDE = "#3d2fa8";
 const MORADO = "#7a4e9b";
 const ANCHO = 560;
 const ALTO = 560;
@@ -156,7 +156,7 @@ function SubirDatos() {
         <p className="mt-4 text-2xl font-bold">Arrastra aquí tu archivo</p>
         <p className="mt-1 max-w-xl text-lg text-tinta-suave">CSV con columnas <code>lat</code> y <code>lon</code>, o un GeoJSON. Se lee en tu computador: no se manda a ningún servidor.</p>
         <div className="mt-5 flex flex-wrap justify-center gap-3">
-          <button type="button" onClick={() => input.current?.click()} className="rounded-2xl bg-[#1a4d2e] px-6 py-3 text-lg font-bold text-white shadow-lg transition hover:-translate-y-0.5">Elegir archivo</button>
+          <button type="button" onClick={() => input.current?.click()} className="rounded-2xl bg-acento px-6 py-3 text-lg font-bold text-white shadow-lg transition hover:-translate-y-0.5">Elegir archivo</button>
           <a href={`data:text/csv;charset=utf-8,${encodeURIComponent(PLANTILLA)}`} download="plantilla-mis-datos.csv" className="rounded-2xl border-2 border-marca/40 px-6 py-3 text-lg font-bold text-marca transition hover:bg-menta">Bajar plantilla CSV</a>
         </div>
         <input ref={input} type="file" accept=".csv,.txt,.json,.geojson,text/csv,application/json" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) void abrir(f); e.target.value = ""; }} />
@@ -215,7 +215,7 @@ function SubirDatos() {
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <button type="button" onClick={() => guardar(true)} className="inline-flex items-center gap-2 rounded-2xl bg-[#1a4d2e] px-6 py-3 text-lg font-bold text-white shadow-lg transition hover:-translate-y-0.5"><IconoNav nombre="mapa" className="h-6 w-6" trazo={2} /> Guardar y verlo en el mapa</button>
+              <button type="button" onClick={() => guardar(true)} className="inline-flex items-center gap-2 rounded-2xl bg-acento px-6 py-3 text-lg font-bold text-white shadow-lg transition hover:-translate-y-0.5"><IconoNav nombre="mapa" className="h-6 w-6" trazo={2} /> Guardar y verlo en el mapa</button>
               <button type="button" onClick={() => guardar(false)} className="rounded-2xl border-2 border-marca/40 px-6 py-3 text-lg font-bold text-marca transition hover:bg-menta">Solo guardar</button>
               <button type="button" onClick={() => setLectura(null)} className="rounded-2xl px-4 py-3 text-lg font-semibold text-tinta-suave hover:underline">Descartar</button>
             </div>
@@ -319,7 +319,7 @@ function ValleDeAburra() {
             { t: "Comparar entre municipios", d: "Con el mismo método se pueden poner lado a lado espacio público por habitante, tiempo al transporte masivo y atropellos por mil habitantes." },
           ].map((p, i) => (
             <li key={p.t} className="flex gap-4 rounded-2xl bg-superficie p-5 shadow ring-1 ring-black/5">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#1a4d2e] text-lg font-bold text-white">{i + 1}</span>
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-acento text-lg font-bold text-white">{i + 1}</span>
               <div><p className="text-lg font-bold">{p.t}</p><p className="mt-0.5 text-base text-tinta-suave">{p.d}</p></div>
             </li>
           ))}
