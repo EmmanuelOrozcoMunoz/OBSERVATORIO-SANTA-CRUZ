@@ -1,0 +1,338 @@
+{
+ "clases": {
+  "oficial_publicado": "Dato oficial publicado",
+  "procesado": "Dato descargado y procesado",
+  "derivado": "Cálculo derivado",
+  "estimacion": "Estimación"
+ },
+ "indicadores": [
+  {
+   "id": "poblacion",
+   "nombre": "Población residente",
+   "nombre_en": "Resident population",
+   "formula": "Σ personas de las manzanas del barrio o la comuna",
+   "unidad": "personas",
+   "fuentes": [
+    "manzanas_censo"
+   ],
+   "anio": "2018",
+   "metodo": "Suma de manzanas asignadas por su punto interior",
+   "clase": "Dato descargado y procesado",
+   "limitaciones": "Censo 2018; posible subconteo"
+  },
+  {
+   "id": "densidad",
+   "nombre": "Densidad de población",
+   "nombre_en": "Population density",
+   "formula": "Población ÷ área (ha)",
+   "unidad": "hab/ha",
+   "fuentes": [
+    "manzanas_censo",
+    "barrios"
+   ],
+   "anio": "2018",
+   "metodo": "Área en EPSG:9377",
+   "clase": "Cálculo derivado",
+   "limitaciones": "La comuna incluye el corredor del río, que baja la densidad"
+  },
+  {
+   "id": "espacio_publico_hab",
+   "nombre": "A. Espacio público por habitante",
+   "nombre_en": "Public open space per capita",
+   "formula": "Área total de espacio público existente (m²) ÷ población residente",
+   "unidad": "m²/persona",
+   "fuentes": [
+    "espacio_publico",
+    "manzanas_censo"
+   ],
+   "anio": "Espacio: sin fecha de corte; población: 2018",
+   "metodo": "Se suman todas las categorías de la capa de espacio público existente dentro del barrio. El espacio proyectado por el POT NO se suma",
+   "clase": "Cálculo derivado",
+   "limitaciones": "No es el indicador oficial de espacio público efectivo"
+  },
+  {
+   "id": "costo_m2",
+   "nombre": "B. Costo de intervención por metro cuadrado",
+   "nombre_en": "Cost per square meter",
+   "formula": "Costo total estimado (COP) ÷ área de intervención (m²)",
+   "unidad": "COP/m²",
+   "fuentes": [
+    "espacio_publico_proyectado",
+    "andenes"
+   ],
+   "anio": "Según el precio registrado",
+   "metodo": "Solo se calcula si hay un precio unitario con fuente registrado por el usuario",
+   "clase": "Estimación",
+   "limitaciones": "Pendiente de datos: no hay precios públicos confiables"
+  },
+  {
+   "id": "costo_beneficiario",
+   "nombre": "C. Inversión por persona beneficiada",
+   "nombre_en": "Cost per beneficiary",
+   "formula": "Costo total estimado (COP) ÷ personas beneficiadas estimadas",
+   "unidad": "COP/persona",
+   "fuentes": [
+    "manzanas_censo",
+    "vias",
+    "osm_caminos"
+   ],
+   "anio": "Según el precio registrado",
+   "metodo": "Beneficiarios por obra: espacio público = personas a 10 min caminando por la red; andenes = personas a 100 m de los tramos angostos",
+   "clase": "Estimación",
+   "limitaciones": "Pendiente de datos; los beneficiarios son estimaciones"
+  },
+  {
+   "id": "presupuesto_total",
+   "nombre": "D. Presupuesto total de intervención",
+   "nombre_en": "Total project cost",
+   "formula": "Cantidad de obra × precio unitario × (1 + % costos indirectos)",
+   "unidad": "COP",
+   "fuentes": [
+    "espacio_publico_proyectado",
+    "andenes"
+   ],
+   "anio": "Según el precio registrado",
+   "metodo": "Cantidad: m² del POT o largo de andén angosto × 1,2 m",
+   "clase": "Estimación",
+   "limitaciones": "Pendiente de datos; no incluye diseños, predios ni interventoría salvo que el % los cubra"
+  },
+  {
+   "id": "tiempo_caminata",
+   "nombre": "Tiempo de caminata al destino más cercano",
+   "nombre_en": "Network-based walking time",
+   "formula": "Σ (largo del tramo ÷ velocidad de Tobler según su pendiente) por la ruta más rápida",
+   "unidad": "minutos",
+   "fuentes": [
+    "vias",
+    "osm_caminos",
+    "puentes",
+    "calzadas",
+    "dem_terrarium"
+   ],
+   "anio": "Datos vigentes a la descarga",
+   "metodo": "Dijkstra multi-origen en grafo dirigido (red.py); en el navegador, Dijkstra desde el punto elegido",
+   "clase": "Estimación",
+   "limitaciones": "Velocidad teórica; no hay barreras, semáforos ni seguridad; red posiblemente incompleta"
+  },
+  {
+   "id": "poblacion_umbral",
+   "nombre": "Población dentro del umbral de acceso",
+   "nombre_en": "Population within access threshold",
+   "formula": "Personas de manzanas con tiempo ≤ umbral ÷ personas del barrio × 100",
+   "unidad": "%",
+   "fuentes": [
+    "manzanas_censo",
+    "vias",
+    "osm_caminos"
+   ],
+   "anio": "2018 (población)",
+   "metodo": "Umbrales de 5, 10 y 15 minutos",
+   "clase": "Estimación",
+   "limitaciones": "Hereda los supuestos del tiempo de caminata"
+  },
+  {
+   "id": "rodeo",
+   "nombre": "Índice de rodeo a la estación",
+   "nombre_en": "Route directness (detour) index",
+   "formula": "Distancia por la red ÷ distancia en línea recta a la estación más cercana",
+   "unidad": "veces",
+   "fuentes": [
+    "vias",
+    "osm_caminos",
+    "estaciones"
+   ],
+   "anio": "Vigente",
+   "metodo": "Mediana de manzanas con línea recta mayor a 50 m",
+   "clase": "Cálculo derivado",
+   "limitaciones": "—"
+  },
+  {
+   "id": "andenes_angostos",
+   "nombre": "Andén más angosto que 1,2 m",
+   "nombre_en": "Share of narrow sidewalks",
+   "formula": "Largo de andén con ancho < 1,2 m ÷ largo total de andén × 100",
+   "unidad": "% del largo",
+   "fuentes": [
+    "andenes"
+   ],
+   "anio": "Sin fecha de corte",
+   "metodo": "1,2 m como umbral de referencia (confirmar norma técnica aplicable)",
+   "clase": "Cálculo derivado",
+   "limitaciones": "Solo tramos con ancho registrado"
+  },
+  {
+   "id": "ancho_andenes",
+   "nombre": "Ancho mediano de andén",
+   "nombre_en": "Median sidewalk width",
+   "formula": "Mediana del campo ancho de los tramos",
+   "unidad": "m",
+   "fuentes": [
+    "andenes"
+   ],
+   "anio": "Sin fecha de corte",
+   "metodo": "Tramos dentro de cada barrio",
+   "clase": "Cálculo derivado",
+   "limitaciones": "—"
+  },
+  {
+   "id": "atropellos_mil",
+   "nombre": "Atropellos por cada mil habitantes",
+   "nombre_en": "Pedestrian crashes per 1,000 residents",
+   "formula": "Atropellos 2019–2025 en el barrio ÷ población 2018 × 1.000",
+   "unidad": "por mil habitantes (7 años)",
+   "fuentes": [
+    "siniestros_viales",
+    "manzanas_censo"
+   ],
+   "anio": "2019–2025",
+   "metodo": "Punto en polígono",
+   "clase": "Cálculo derivado",
+   "limitaciones": "Población de 2018; 2025 posiblemente incompleto"
+  },
+  {
+   "id": "amenaza_alta",
+   "nombre": "Área en amenaza alta por movimientos en masa",
+   "nombre_en": "High landslide hazard area share",
+   "formula": "Área en amenaza alta ÷ área del barrio × 100",
+   "unidad": "%",
+   "fuentes": [
+    "amenaza_movimiento_masa",
+    "barrios"
+   ],
+   "anio": "POT 2014 (actualización 2026 en la capa)",
+   "metodo": "Intersección de polígonos en EPSG:9377",
+   "clase": "Cálculo derivado",
+   "limitaciones": "—"
+  },
+  {
+   "id": "necesidad",
+   "nombre": "Necesidad territorial (modelo)",
+   "nombre_en": "Territorial need score",
+   "formula": "Σ peso × criterio normalizado (0–1) ÷ Σ pesos, solo criterios de necesidad",
+   "unidad": "puntaje 0–100",
+   "fuentes": [
+    "manzanas_censo",
+    "espacio_publico",
+    "siniestros_viales",
+    "andenes"
+   ],
+   "anio": "Varios",
+   "metodo": "Normalización mín–máx; la mejora se normaliza dentro de cada tipo de obra",
+   "clase": "Cálculo derivado",
+   "limitaciones": "Pesos propuestos por el equipo, no oficiales"
+  },
+  {
+   "id": "viabilidad",
+   "nombre": "Viabilidad económica preliminar (modelo)",
+   "nombre_en": "Preliminary economic feasibility score",
+   "formula": "1 − costo por beneficiario normalizado",
+   "unidad": "puntaje 0–100",
+   "fuentes": [
+    "andenes",
+    "espacio_publico_proyectado"
+   ],
+   "anio": "Según el precio registrado",
+   "metodo": "Solo con precio unitario registrado",
+   "clase": "Estimación",
+   "limitaciones": "Pendiente de datos"
+  },
+  {
+   "id": "prioridad",
+   "nombre": "Prioridad calculada por el modelo",
+   "nombre_en": "Model-based priority score",
+   "formula": "Σ peso × criterio normalizado ÷ Σ pesos (necesidad y viabilidad)",
+   "unidad": "puntaje 0–100",
+   "fuentes": [
+    "andenes",
+    "espacio_publico_proyectado",
+    "manzanas_censo"
+   ],
+   "anio": "Varios",
+   "metodo": "Incluye análisis de sensibilidad: 300 repeticiones con pesos ±50 %",
+   "clase": "Cálculo derivado",
+   "limitaciones": "No prueba causalidad ni es una decisión oficial"
+  },
+  {
+   "id": "imcv",
+   "nombre": "Índice Multidimensional de Condiciones de Vida",
+   "nombre_en": "Multidimensional Living Conditions Index",
+   "formula": "Publicado por la Alcaldía (Encuesta de Calidad de Vida)",
+   "unidad": "puntos (0–100)",
+   "fuentes": [
+    "indicadores_ecv"
+   ],
+   "anio": "2014–2024",
+   "metodo": "Se toma tal cual",
+   "clase": "Dato oficial publicado",
+   "limitaciones": "—"
+  },
+  {
+   "id": "precio_m2_oferta",
+   "nombre": "Mediana del precio pedido por m²",
+   "nombre_en": "Median asking price per square meter",
+   "formula": "Mediana de precio ÷ área de anuncios de venta de vivienda",
+   "unidad": "COP/m²",
+   "fuentes": [
+    "oferta_inmobiliaria"
+   ],
+   "anio": "2023",
+   "metodo": "Solo con 3 o más anuncios en el barrio",
+   "clase": "Cálculo derivado",
+   "limitaciones": "Precios pedidos, no avalúos"
+  }
+ ],
+ "glosario": [
+  {
+   "es": "Espacio público abierto",
+   "en": "Public open space"
+  },
+  {
+   "es": "Equipamientos públicos",
+   "en": "Public facilities"
+  },
+  {
+   "es": "Accesibilidad peatonal",
+   "en": "Pedestrian accessibility"
+  },
+  {
+   "es": "Andenes",
+   "en": "Sidewalks"
+  },
+  {
+   "es": "Escaleras peatonales",
+   "en": "Pedestrian stairs"
+  },
+  {
+   "es": "Ciclorrutas y vías ciclistas",
+   "en": "Bicycle lanes and bikeways"
+  },
+  {
+   "es": "Accesibilidad al transporte público",
+   "en": "Public transit accessibility"
+  },
+  {
+   "es": "Análisis de accesibilidad basado en redes",
+   "en": "Network-based accessibility analysis"
+  },
+  {
+   "es": "Costo por metro cuadrado",
+   "en": "Cost per square meter"
+  },
+  {
+   "es": "Costo por habitante beneficiado",
+   "en": "Cost per beneficiary"
+  },
+  {
+   "es": "Espacio público por habitante",
+   "en": "Public open space per capita"
+  },
+  {
+   "es": "Priorización de proyectos de infraestructura",
+   "en": "Infrastructure project prioritization"
+  },
+  {
+   "es": "Índice de rodeo",
+   "en": "Route directness index"
+  }
+ ]
+}

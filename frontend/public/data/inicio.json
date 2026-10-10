@@ -1,0 +1,66 @@
+{
+ "generado": "2026-10-10T16:51:11+00:00",
+ "comuna": {
+  "nombre": "Santa Cruz",
+  "poblacion_2018": 108252,
+  "viviendas_2018": 34782,
+  "barrios": 11,
+  "area_ha": 219.6,
+  "densidad_hab_ha": 493.0
+ },
+ "pulso": [
+  {
+   "clave": "espacio_publico",
+   "valor": 0.85,
+   "texto": "m² de espacio público por habitante (referencia nacional: 15)",
+   "modulo": "Problemáticas",
+   "ruta": "/problematicas",
+   "nota": null
+  },
+  {
+   "clave": "metro_10min",
+   "valor": 22.4,
+   "texto": "% de las personas llegan caminando al Metro o Metrocable en 10 min",
+   "modulo": "Accesibilidad",
+   "ruta": "/accesibilidad",
+   "nota": null
+  },
+  {
+   "clave": "minutos_49",
+   "valor": 19.7,
+   "texto": "min a la estación yendo por la 49 (la ruta más rápida: 12,2)",
+   "modulo": "Corredor Carrera 49",
+   "ruta": "/corredor-49",
+   "nota": null
+  },
+  {
+   "clave": "siniestros_km",
+   "valor": 188.4,
+   "texto": "siniestros por km en el eje de la 49 (comuna: 75,2)",
+   "modulo": "Corredor Carrera 49",
+   "ruta": "/corredor-49",
+   "nota": null
+  },
+  {
+   "clave": "andenes_angostos",
+   "valor": 16.6,
+   "texto": "% del andén inventariado es más angosto que 1,2 m",
+   "modulo": "Accesibilidad",
+   "ruta": "/accesibilidad",
+   "nota": null
+  },
+  {
+   "clave": "hurtos_2017",
+   "valor": 284,
+   "texto": "hurtos registrados en 2017, último año publicado",
+   "modulo": "Problemáticas",
+   "ruta": "/problematicas",
+   "nota": "Solo conteos por barrio"
+  }
+ ],
+ "datos": {
+  "fuentes": 46,
+  "capas": 44,
+  "calculo_indicadores": "2026-10-10T16:34:38+00:00"
+ }
+}

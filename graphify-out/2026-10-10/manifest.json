@@ -1,0 +1,308 @@
+{
+  "backend/app/__init__.py": {
+    "mtime": 1791590537.0756774,
+    "seen": 1791645270.2023327,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "backend/app/main.py": {
+    "mtime": 1791590553.2236784,
+    "seen": 1791645270.20234,
+    "ast_hash": "908182efe46e45dfac59b5efd25f5a54",
+    "semantic_hash": ""
+  },
+  "backend/tests/__init__.py": {
+    "mtime": 1791590537.0756774,
+    "seen": 1791645270.2023427,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": ""
+  },
+  "backend/tests/test_api.py": {
+    "mtime": 1791590559.3716786,
+    "seen": 1791645270.2023442,
+    "ast_hash": "29effb86d10acac9f1e7b6eb88dd09a8",
+    "semantic_hash": ""
+  },
+  "data-pipeline/descargar.py": {
+    "mtime": 1791603588.8405106,
+    "seen": 1791645270.2023456,
+    "ast_hash": "889a8edc962b0ad059addc94699f8922",
+    "semantic_hash": ""
+  },
+  "data-pipeline/documentar_fuentes.py": {
+    "mtime": 1791604641.5933535,
+    "seen": 1791645270.2023473,
+    "ast_hash": "f51e47a10cf32afd5e495394ed23e900",
+    "semantic_hash": ""
+  },
+  "data-pipeline/fuentes.py": {
+    "mtime": 1791604575.101352,
+    "seen": 1791645270.2023485,
+    "ast_hash": "19aea95ee80e8e092f72543c7c0af0ee",
+    "semantic_hash": ""
+  },
+  "data-pipeline/procesar.py": {
+    "mtime": 1791643138.5340698,
+    "seen": 1791645270.20235,
+    "ast_hash": "1b5a9754ad20e896af8c908e806abd44",
+    "semantic_hash": ""
+  },
+  "data-pipeline/red.py": {
+    "mtime": 1791604193.008844,
+    "seen": 1791645270.202351,
+    "ast_hash": "411a6121039f2451386c45ea4654afab",
+    "semantic_hash": ""
+  },
+  "frontend/package.json": {
+    "mtime": 1791591901.2356236,
+    "seen": 1791645270.2023523,
+    "ast_hash": "572d5abce8b84b7bd847873d6c890993",
+    "semantic_hash": ""
+  },
+  "frontend/postcss.config.js": {
+    "mtime": 1791589326.7552352,
+    "seen": 1791645270.2023537,
+    "ast_hash": "222a79a9879c7cd4d9980533b7639465",
+    "semantic_hash": ""
+  },
+  "frontend/pruebas/navegador.mjs": {
+    "mtime": 1791590588.2386801,
+    "seen": 1791645270.2023551,
+    "ast_hash": "0357c59bd8e33c60e030187347c6774c",
+    "semantic_hash": ""
+  },
+  "frontend/src/App.tsx": {
+    "mtime": 1791590032.7596474,
+    "seen": 1791645270.2023568,
+    "ast_hash": "15ce48ce89496e860a4acbbdb60ca72b",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/Estado.tsx": {
+    "mtime": 1791590491.6236305,
+    "seen": 1791645270.2023578,
+    "ast_hash": "3e75645247158030298d79b681cc6d44",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/FichaBarrio.tsx": {
+    "mtime": 1791604385.641249,
+    "seen": 1791645270.2023587,
+    "ast_hash": "9b18ef3a5cf10119423c83a5c1dc4eed",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/FichaElemento.tsx": {
+    "mtime": 1791592248.5281017,
+    "seen": 1791645270.2023604,
+    "ast_hash": "a5a5a3d213fc9803820549a5c2734996",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/Layout.tsx": {
+    "mtime": 1791643497.490091,
+    "seen": 1791645270.2023616,
+    "ast_hash": "5c8fd7aaa50eef07b5b3695f35e555de",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/mapa/Buscador.tsx": {
+    "mtime": 1791592154.2756388,
+    "seen": 1791645270.2023625,
+    "ast_hash": "ff12c1c70cf55628f0853c6a1a193178",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/mapa/ControlesMapa.tsx": {
+    "mtime": 1791643978.7061198,
+    "seen": 1791645270.202364,
+    "ast_hash": "431060d988ea64c86cc6c07ba0a89ff4",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/mapa/Iconos.tsx": {
+    "mtime": 1791604040.9139318,
+    "seen": 1791645270.2023652,
+    "ast_hash": "8cd59dd31e6482cdc457556ceebb4a54",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/mapa/Leyenda.tsx": {
+    "mtime": 1791589580.5156205,
+    "seen": 1791645270.202366,
+    "ast_hash": "de0dc8d1b7ea555af8f6d8c01c5f5e5c",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/mapa/MapaVivo.tsx": {
+    "mtime": 1791644339.3946276,
+    "seen": 1791645270.2023673,
+    "ast_hash": "1abf09e4049501c106d395f65bf6f52a",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/mapa/PanelCapas.tsx": {
+    "mtime": 1791592167.7076395,
+    "seen": 1791645270.202369,
+    "ast_hash": "a693d7bb452921600f57183f2446bbda",
+    "semantic_hash": ""
+  },
+  "frontend/src/components/mapa/PanelRuteo.tsx": {
+    "mtime": 1791603967.853339,
+    "seen": 1791645270.2023704,
+    "ast_hash": "214cff2f56d2c2a1c70e0ea24571e0a2",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/capas.ts": {
+    "mtime": 1791604032.5719407,
+    "seen": 1791645270.2023716,
+    "ast_hash": "d68d33bc7a5c3aebb02dc75e417e954e",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/datos.ts": {
+    "mtime": 1791589371.439608,
+    "seen": 1791645270.2023728,
+    "ast_hash": "4c4ed3b3e32b7352fef0dce4135c0b72",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/formato.ts": {
+    "mtime": 1791589375.8316083,
+    "seen": 1791645270.202374,
+    "ast_hash": "929811c6e0fbdf85f99e61cd2fbed4c1",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/geo.ts": {
+    "mtime": 1791589959.583643,
+    "seen": 1791645270.2023752,
+    "ast_hash": "05f631ddacd625a607f7f54f252caaca",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/ruteo.ts": {
+    "mtime": 1791603905.9699807,
+    "seen": 1791645270.2023764,
+    "ast_hash": "70e385d9da9dfe4dbc53af2f25d8ceff",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/sol.ts": {
+    "mtime": 1791643167.0620713,
+    "seen": 1791645270.2023778,
+    "ast_hash": "72f3b4d4258ca3f23ccb9a9dd4fd8a40",
+    "semantic_hash": ""
+  },
+  "frontend/src/lib/tipos.ts": {
+    "mtime": 1791640719.0066116,
+    "seen": 1791645270.202379,
+    "ast_hash": "2fcbe4dad53846134c5542d69a6cae96",
+    "semantic_hash": ""
+  },
+  "frontend/src/main.tsx": {
+    "mtime": 1791590040.311648,
+    "seen": 1791645270.2023807,
+    "ast_hash": "9307e5b630840493e401683495fa7b96",
+    "semantic_hash": ""
+  },
+  "frontend/src/pages/Accesibilidad.tsx": {
+    "mtime": 1791604338.1428363,
+    "seen": 1791645270.2023818,
+    "ast_hash": "a01ed9e567fefeb6e28fe996e61a64f1",
+    "semantic_hash": ""
+  },
+  "frontend/src/pages/Fuentes.tsx": {
+    "mtime": 1791640743.7199926,
+    "seen": 1791645270.202383,
+    "ast_hash": "2e396d5657ca702abc247b21c8d99168",
+    "semantic_hash": ""
+  },
+  "frontend/src/pages/Indicadores.tsx": {
+    "mtime": 1791604385.6426916,
+    "seen": 1791645270.2023842,
+    "ast_hash": "7eb62c340fa904906abb2827bb2be752",
+    "semantic_hash": ""
+  },
+  "frontend/src/pages/Inicio.tsx": {
+    "mtime": 1791604385.642306,
+    "seen": 1791645270.2023852,
+    "ast_hash": "2110b41378c917067c03507e1b247e53",
+    "semantic_hash": ""
+  },
+  "frontend/src/pages/Mapa.tsx": {
+    "mtime": 1791644372.9821432,
+    "seen": 1791645270.2023861,
+    "ast_hash": "8f8dc4cba7238f35ce82535669e3312d",
+    "semantic_hash": ""
+  },
+  "frontend/src/pages/Participacion.tsx": {
+    "mtime": 1791590283.1196046,
+    "seen": 1791645270.2023876,
+    "ast_hash": "74524ca15408f1a7aad76c6cbc282c8c",
+    "semantic_hash": ""
+  },
+  "frontend/src/pages/Prioridades.tsx": {
+    "mtime": 1791604288.789346,
+    "seen": 1791645270.2023885,
+    "ast_hash": "258d0fa7ebc12b226f7ea52d6d7726a1",
+    "semantic_hash": ""
+  },
+  "frontend/src/vite-env.d.ts": {
+    "mtime": 1791590049.9967937,
+    "seen": 1791645270.2023897,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": ""
+  },
+  "frontend/tailwind.config.js": {
+    "mtime": 1791589326.7566152,
+    "seen": 1791645270.2023911,
+    "ast_hash": "542d0a63970399eec03c873e00a6a8bc",
+    "semantic_hash": ""
+  },
+  "frontend/tsconfig.json": {
+    "mtime": 1791589326.752338,
+    "seen": 1791645270.2023923,
+    "ast_hash": "6b0318b9b75bbb74c7893a0e5ebfd76a",
+    "semantic_hash": ""
+  },
+  "frontend/vite.config.ts": {
+    "mtime": 1791592276.926851,
+    "seen": 1791645270.2023935,
+    "ast_hash": "5a27b95949b63cd161fdbb5d1a5f99ca",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1791640971.0740657,
+    "seen": 1791645270.2023964,
+    "ast_hash": "4334356c3249c6e90f0852c78d11f481",
+    "semantic_hash": ""
+  },
+  "backend/requirements.txt": {
+    "mtime": 1791590562.6214728,
+    "seen": 1791645270.2023973,
+    "ast_hash": "2504e03e595b08f14501d0cf7b7703dc",
+    "semantic_hash": ""
+  },
+  "data-pipeline/requirements.txt": {
+    "mtime": 1791603597.809331,
+    "seen": 1791645270.2023988,
+    "ast_hash": "a5da08848eae3953d8bc1fd546e99345",
+    "semantic_hash": ""
+  },
+  "docs/01_diseno_tecnico.md": {
+    "mtime": 1791640971.0734024,
+    "seen": 1791645270.2023997,
+    "ast_hash": "27880d47acbb0e08f620668cf3161660",
+    "semantic_hash": ""
+  },
+  "docs/02_fuentes_de_datos.md": {
+    "mtime": 1791640703.9750185,
+    "seen": 1791645270.2024012,
+    "ast_hash": "77e54505ac572496dfa3b95919262f08",
+    "semantic_hash": ""
+  },
+  "frontend/index.html": {
+    "mtime": 1791643531.6918077,
+    "seen": 1791645270.2024026,
+    "ast_hash": "a5c2a55886f5f27cba48eab44371fbfa",
+    "semantic_hash": ""
+  },
+  "plans/mapa-inmersivo-definitivo.md": {
+    "mtime": 1791643068.7780657,
+    "seen": 1791645270.2024035,
+    "ast_hash": "debdfde02b17c37a929d66ac8303e103",
+    "semantic_hash": ""
+  },
+  "plans/antes-despues.png": {
+    "mtime": 1791644595.134972,
+    "seen": 1791645270.202405,
+    "ast_hash": "3e5091366ec7a28ca1ee8d79d99f93f7",
+    "semantic_hash": ""
+  }
+}

@@ -1,0 +1,572 @@
+{
+ "generado": "2026-10-10T11:34:52",
+ "eje": {
+  "tramos": [
+   {
+    "nombre": "Carrera 49B",
+    "estado": "Existente",
+    "metros": 326
+   },
+   {
+    "nombre": "Carrera 49C",
+    "estado": "Existente",
+    "metros": 602
+   },
+   {
+    "nombre": "Carrera 49C",
+    "estado": "Proyectado",
+    "metros": 173
+   },
+   {
+    "nombre": "Venezuela (Carrera 49)",
+    "estado": "Existente",
+    "metros": 1020
+   }
+  ],
+  "metros_existente": 1948,
+  "metros_proyectado": 173,
+  "nodos_red": 67,
+  "metros_cierre_simulado": 241
+ },
+ "destinos": {
+  "transporte_masivo": {
+   "nombre": "Metro, Metrocable o Metroplús",
+   "personas": 108252,
+   "minutos_ruta_rapida": 12.2,
+   "minutos_por_la_49": 19.7,
+   "minutos_extra": 7.6,
+   "pct_49_en_el_camino": 16.7,
+   "pct_ruta_rapida_ya_usa_49": 11.3,
+   "minutos_por_la_49_si_se_cierra_tramo": 19.3,
+   "por_barrio": [
+    {
+     "barrio": "La Francia",
+     "personas": 14904,
+     "minutos_ruta_rapida": 10.5,
+     "minutos_por_la_49": 22.0,
+     "pct_49_en_el_camino": 2.3
+    },
+    {
+     "barrio": "Santa Cruz",
+     "personas": 13871,
+     "minutos_ruta_rapida": 11.8,
+     "minutos_por_la_49": 18.0,
+     "pct_49_en_el_camino": 17.1
+    },
+    {
+     "barrio": "Villa del Socorro",
+     "personas": 13533,
+     "minutos_ruta_rapida": 9.4,
+     "minutos_por_la_49": 18.3,
+     "pct_49_en_el_camino": 26.3
+    },
+    {
+     "barrio": "La Isla",
+     "personas": 12825,
+     "minutos_ruta_rapida": 16.6,
+     "minutos_por_la_49": 24.3,
+     "pct_49_en_el_camino": 10.7
+    },
+    {
+     "barrio": "Playón de Los Comuneros",
+     "personas": 10640,
+     "minutos_ruta_rapida": 17.9,
+     "minutos_por_la_49": 24.8,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Andalucía",
+     "personas": 8943,
+     "minutos_ruta_rapida": 7.3,
+     "minutos_por_la_49": 16.9,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Moscú No.1",
+     "personas": 8075,
+     "minutos_ruta_rapida": 12.3,
+     "minutos_por_la_49": 14.4,
+     "pct_49_en_el_camino": 68.4
+    },
+    {
+     "barrio": "La Rosa",
+     "personas": 7718,
+     "minutos_ruta_rapida": 11.2,
+     "minutos_por_la_49": 15.3,
+     "pct_49_en_el_camino": 39.2
+    },
+    {
+     "barrio": "Villa Niza",
+     "personas": 6946,
+     "minutos_ruta_rapida": 10.3,
+     "minutos_por_la_49": 16.5,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "La Frontera",
+     "personas": 5774,
+     "minutos_ruta_rapida": 12.6,
+     "minutos_por_la_49": 22.7,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Pablo VI",
+     "personas": 5023,
+     "minutos_ruta_rapida": 14.3,
+     "minutos_por_la_49": 20.8,
+     "pct_49_en_el_camino": 36.6
+    }
+   ]
+  },
+  "parada_bus": {
+   "nombre": "Parada de bus",
+   "personas": 108252,
+   "minutos_ruta_rapida": 2.5,
+   "minutos_por_la_49": 9.0,
+   "minutos_extra": 6.5,
+   "pct_49_en_el_camino": 1.8,
+   "pct_ruta_rapida_ya_usa_49": 1.4,
+   "minutos_por_la_49_si_se_cierra_tramo": 9.0,
+   "por_barrio": [
+    {
+     "barrio": "La Francia",
+     "personas": 14904,
+     "minutos_ruta_rapida": 3.5,
+     "minutos_por_la_49": 9.7,
+     "pct_49_en_el_camino": 4.9
+    },
+    {
+     "barrio": "Santa Cruz",
+     "personas": 13871,
+     "minutos_ruta_rapida": 1.9,
+     "minutos_por_la_49": 9.1,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Villa del Socorro",
+     "personas": 13533,
+     "minutos_ruta_rapida": 2.1,
+     "minutos_por_la_49": 8.8,
+     "pct_49_en_el_camino": 1.5
+    },
+    {
+     "barrio": "La Isla",
+     "personas": 12825,
+     "minutos_ruta_rapida": 3.4,
+     "minutos_por_la_49": 10.9,
+     "pct_49_en_el_camino": 1.4
+    },
+    {
+     "barrio": "Playón de Los Comuneros",
+     "personas": 10640,
+     "minutos_ruta_rapida": 3.2,
+     "minutos_por_la_49": 11.0,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Andalucía",
+     "personas": 8943,
+     "minutos_ruta_rapida": 2.9,
+     "minutos_por_la_49": 7.7,
+     "pct_49_en_el_camino": 7.2
+    },
+    {
+     "barrio": "Moscú No.1",
+     "personas": 8075,
+     "minutos_ruta_rapida": 1.8,
+     "minutos_por_la_49": 6.5,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "La Rosa",
+     "personas": 7718,
+     "minutos_ruta_rapida": 1.2,
+     "minutos_por_la_49": 8.1,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Villa Niza",
+     "personas": 6946,
+     "minutos_ruta_rapida": 2.1,
+     "minutos_por_la_49": 9.0,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "La Frontera",
+     "personas": 5774,
+     "minutos_ruta_rapida": 1.8,
+     "minutos_por_la_49": 8.8,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Pablo VI",
+     "personas": 5023,
+     "minutos_ruta_rapida": 3.7,
+     "minutos_por_la_49": 6.9,
+     "pct_49_en_el_camino": 3.8
+    }
+   ]
+  },
+  "colegio": {
+   "nombre": "Colegio",
+   "personas": 108252,
+   "minutos_ruta_rapida": 4.4,
+   "minutos_por_la_49": 9.9,
+   "minutos_extra": 5.5,
+   "pct_49_en_el_camino": 7.0,
+   "pct_ruta_rapida_ya_usa_49": 5.8,
+   "minutos_por_la_49_si_se_cierra_tramo": 9.9,
+   "por_barrio": [
+    {
+     "barrio": "La Francia",
+     "personas": 14904,
+     "minutos_ruta_rapida": 5.5,
+     "minutos_por_la_49": 10.4,
+     "pct_49_en_el_camino": 7.3
+    },
+    {
+     "barrio": "Santa Cruz",
+     "personas": 13871,
+     "minutos_ruta_rapida": 5.6,
+     "minutos_por_la_49": 10.0,
+     "pct_49_en_el_camino": 21.2
+    },
+    {
+     "barrio": "Villa del Socorro",
+     "personas": 13533,
+     "minutos_ruta_rapida": 4.8,
+     "minutos_por_la_49": 11.1,
+     "pct_49_en_el_camino": 2.3
+    },
+    {
+     "barrio": "La Isla",
+     "personas": 12825,
+     "minutos_ruta_rapida": 4.9,
+     "minutos_por_la_49": 10.9,
+     "pct_49_en_el_camino": 12.3
+    },
+    {
+     "barrio": "Playón de Los Comuneros",
+     "personas": 10640,
+     "minutos_ruta_rapida": 4.3,
+     "minutos_por_la_49": 11.0,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Andalucía",
+     "personas": 8943,
+     "minutos_ruta_rapida": 4.4,
+     "minutos_por_la_49": 10.3,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Moscú No.1",
+     "personas": 8075,
+     "minutos_ruta_rapida": 2.1,
+     "minutos_por_la_49": 7.1,
+     "pct_49_en_el_camino": 1.6
+    },
+    {
+     "barrio": "La Rosa",
+     "personas": 7718,
+     "minutos_ruta_rapida": 2.7,
+     "minutos_por_la_49": 8.9,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Villa Niza",
+     "personas": 6946,
+     "minutos_ruta_rapida": 3.8,
+     "minutos_por_la_49": 9.8,
+     "pct_49_en_el_camino": 3.5
+    },
+    {
+     "barrio": "La Frontera",
+     "personas": 5774,
+     "minutos_ruta_rapida": 2.6,
+     "minutos_por_la_49": 8.9,
+     "pct_49_en_el_camino": 4.8
+    },
+    {
+     "barrio": "Pablo VI",
+     "personas": 5023,
+     "minutos_ruta_rapida": 4.7,
+     "minutos_por_la_49": 7.3,
+     "pct_49_en_el_camino": 19.0
+    }
+   ]
+  },
+  "salud": {
+   "nombre": "Centro de salud",
+   "personas": 108252,
+   "minutos_ruta_rapida": 8.0,
+   "minutos_por_la_49": 12.5,
+   "minutos_extra": 4.5,
+   "pct_49_en_el_camino": 22.8,
+   "pct_ruta_rapida_ya_usa_49": 18.5,
+   "minutos_por_la_49_si_se_cierra_tramo": 12.5,
+   "por_barrio": [
+    {
+     "barrio": "La Francia",
+     "personas": 14904,
+     "minutos_ruta_rapida": 10.6,
+     "minutos_por_la_49": 12.4,
+     "pct_49_en_el_camino": 70.1
+    },
+    {
+     "barrio": "Santa Cruz",
+     "personas": 13871,
+     "minutos_ruta_rapida": 4.5,
+     "minutos_por_la_49": 16.1,
+     "pct_49_en_el_camino": 3.3
+    },
+    {
+     "barrio": "Villa del Socorro",
+     "personas": 13533,
+     "minutos_ruta_rapida": 6.7,
+     "minutos_por_la_49": 11.2,
+     "pct_49_en_el_camino": 8.9
+    },
+    {
+     "barrio": "La Isla",
+     "personas": 12825,
+     "minutos_ruta_rapida": 9.4,
+     "minutos_por_la_49": 12.4,
+     "pct_49_en_el_camino": 21.6
+    },
+    {
+     "barrio": "Playón de Los Comuneros",
+     "personas": 10640,
+     "minutos_ruta_rapida": 9.8,
+     "minutos_por_la_49": 12.5,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Andalucía",
+     "personas": 8943,
+     "minutos_ruta_rapida": 10.3,
+     "minutos_por_la_49": 10.7,
+     "pct_49_en_el_camino": 86.8
+    },
+    {
+     "barrio": "Moscú No.1",
+     "personas": 8075,
+     "minutos_ruta_rapida": 8.6,
+     "minutos_por_la_49": 12.0,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "La Rosa",
+     "personas": 7718,
+     "minutos_ruta_rapida": 4.6,
+     "minutos_por_la_49": 16.1,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Villa Niza",
+     "personas": 6946,
+     "minutos_ruta_rapida": 7.8,
+     "minutos_por_la_49": 12.1,
+     "pct_49_en_el_camino": 12.1
+    },
+    {
+     "barrio": "La Frontera",
+     "personas": 5774,
+     "minutos_ruta_rapida": 7.9,
+     "minutos_por_la_49": 10.3,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Pablo VI",
+     "personas": 5023,
+     "minutos_ruta_rapida": 6.6,
+     "minutos_por_la_49": 8.8,
+     "pct_49_en_el_camino": 23.6
+    }
+   ]
+  },
+  "parque": {
+   "nombre": "Parque o espacio público",
+   "personas": 108252,
+   "minutos_ruta_rapida": 2.2,
+   "minutos_por_la_49": 9.1,
+   "minutos_extra": 6.9,
+   "pct_49_en_el_camino": 2.5,
+   "pct_ruta_rapida_ya_usa_49": 2.5,
+   "minutos_por_la_49_si_se_cierra_tramo": 9.1,
+   "por_barrio": [
+    {
+     "barrio": "La Francia",
+     "personas": 14904,
+     "minutos_ruta_rapida": 2.3,
+     "minutos_por_la_49": 9.1,
+     "pct_49_en_el_camino": 2.4
+    },
+    {
+     "barrio": "Santa Cruz",
+     "personas": 13871,
+     "minutos_ruta_rapida": 2.5,
+     "minutos_por_la_49": 9.6,
+     "pct_49_en_el_camino": 3.3
+    },
+    {
+     "barrio": "Villa del Socorro",
+     "personas": 13533,
+     "minutos_ruta_rapida": 1.5,
+     "minutos_por_la_49": 9.2,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "La Isla",
+     "personas": 12825,
+     "minutos_ruta_rapida": 3.9,
+     "minutos_por_la_49": 11.1,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Playón de Los Comuneros",
+     "personas": 10640,
+     "minutos_ruta_rapida": 2.9,
+     "minutos_por_la_49": 11.2,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Andalucía",
+     "personas": 8943,
+     "minutos_ruta_rapida": 1.0,
+     "minutos_por_la_49": 7.2,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "Moscú No.1",
+     "personas": 8075,
+     "minutos_ruta_rapida": 1.0,
+     "minutos_por_la_49": 6.5,
+     "pct_49_en_el_camino": 7.4
+    },
+    {
+     "barrio": "La Rosa",
+     "personas": 7718,
+     "minutos_ruta_rapida": 2.0,
+     "minutos_por_la_49": 8.1,
+     "pct_49_en_el_camino": 6.6
+    },
+    {
+     "barrio": "Villa Niza",
+     "personas": 6946,
+     "minutos_ruta_rapida": 1.4,
+     "minutos_por_la_49": 9.2,
+     "pct_49_en_el_camino": 0.0
+    },
+    {
+     "barrio": "La Frontera",
+     "personas": 5774,
+     "minutos_ruta_rapida": 1.7,
+     "minutos_por_la_49": 9.0,
+     "pct_49_en_el_camino": 4.8
+    },
+    {
+     "barrio": "Pablo VI",
+     "personas": 5023,
+     "minutos_ruta_rapida": 2.3,
+     "minutos_por_la_49": 7.4,
+     "pct_49_en_el_camino": 10.9
+    }
+   ]
+  }
+ },
+ "estado_del_eje": {
+  "siniestros": 367,
+  "siniestros_por_km": 188.4,
+  "siniestros_por_km_comuna": 75.2,
+  "por_clase": {
+   "Choque": 165,
+   "Atropello": 94,
+   "Otro": 58,
+   "Volcamiento": 27,
+   "Caida ocupante": 23
+  },
+  "por_gravedad": {
+   "Heridos": 294,
+   "Daños": 73
+  },
+  "por_anio": {
+   "2019": 61,
+   "2020": 48,
+   "2021": 52,
+   "2022": 65,
+   "2023": 52,
+   "2024": 41,
+   "2025": 48
+  },
+  "muertes_viales": 2,
+  "andenes_tramos": 124,
+  "ancho_andén_mediana_m": 1.2,
+  "andenes_menores_1_5_m_pct": 76.7,
+  "paradas_cerca": 16,
+  "rutas_de_bus_sobre_el_eje": [
+   {
+    "nombre": "Popular N° 1",
+    "codigo": "23",
+    "tipo": "Directa Centro",
+    "empresa": "Transporte Aranjuez Santa Cruz",
+    "metros_sobre_el_eje": 1085
+   },
+   {
+    "nombre": "Popular Centro",
+    "codigo": "031 P-C",
+    "tipo": "Directa Centro",
+    "empresa": "Expreso Campo Valdés",
+    "metros_sobre_el_eje": 1044
+   },
+   {
+    "nombre": "Popular Ferrocarril",
+    "codigo": "031 P-F",
+    "tipo": "Directa Centro",
+    "empresa": "Expreso Campo Valdés",
+    "metros_sobre_el_eje": 1044
+   },
+   {
+    "nombre": "Popular Centro San Diego",
+    "codigo": "031 P-SD",
+    "tipo": "Directa Centro",
+    "empresa": "Expreso Campo Valdés",
+    "metros_sobre_el_eje": 1044
+   },
+   {
+    "nombre": "Santa Cruz - Terminal",
+    "codigo": "22",
+    "tipo": "Directa Centro",
+    "empresa": "Transporte Aranjuez Santa Cruz",
+    "metros_sobre_el_eje": 702
+   },
+   {
+    "nombre": "Aranjuez intermedia",
+    "codigo": "42",
+    "tipo": "Directa Centro",
+    "empresa": "Transporte Aranjuez Santa Cruz",
+    "metros_sobre_el_eje": 579
+   },
+   {
+    "nombre": "La Francia",
+    "codigo": "6",
+    "tipo": "Directa Centro",
+    "empresa": "Transconor",
+    "metros_sobre_el_eje": 565
+   }
+  ],
+  "camaras_cerca": 0,
+  "semaforos_cerca": 0,
+  "largo_km": 1.95,
+  "radio_m": "25 m para siniestros y muertes, 15 m andenes, 40 m paradas, cámaras y semáforos, 20 m rutas (≥200 m sobre el eje)",
+  "calles_km_comuna": 74.6
+ },
+ "supuestos": [
+  "Caminata a pie con la velocidad de Tobler sobre la red peatonal del proyecto (no es bus ni carro).",
+  "Origen: punto interior de cada manzana del Censo 2018, ponderado por sus personas. Destino: el más cercano por tiempo.",
+  "Ruta por la 49: entra al eje, recorre al menos 150 m de él y sale hacia el destino.",
+  "La 49 'queda en el camino' si cuesta a lo sumo 1 minuto más que la ruta más rápida.",
+  "Escenario del tramo proyectado: se une el hueco con una línea recta caminada a 1,4 m/s. Es una simulación, no una obra diseñada.",
+  "La ruta más rápida es el óptimo de la red: ninguna ruta forzada puede ser más rápida a pie; lo que se mide es cuánto cuesta preferir la 49 y a quién le queda de camino."
+ ]
+}

@@ -1,0 +1,15 @@
+# Graphify: qué no indexar (mismo formato que .gitignore)
+# Los datos geográficos pesan mucho y no son código; el grafo se enfoca en código y documentación.
+node_modules/
+frontend/dist/
+data/raw/
+frontend/public/data/
+*.geojson
+red.json
+.graph-indexer/
+__pycache__/
+.pytest_cache/
+.venv/
+graphify-out/cache/
+*.zip
+.claude/

@@ -1,0 +1,278 @@
+{
+ "nota": "Hurto y homicidio son del año 2017 (último año publicado en esa capa). Se muestran solo conteos por barrio, nunca puntos de víctimas.",
+ "hurto_2017": {
+  "total": 284,
+  "por_barrio": [
+   {
+    "nombre": "La Francia",
+    "n": 51
+   },
+   {
+    "nombre": "Villa del Socorro",
+    "n": 45
+   },
+   {
+    "nombre": "Andalucía",
+    "n": 29
+   },
+   {
+    "nombre": "La Rosa",
+    "n": 26
+   },
+   {
+    "nombre": "Santa Cruz",
+    "n": 25
+   },
+   {
+    "nombre": "Moscú No.1",
+    "n": 22
+   },
+   {
+    "nombre": "Playón de Los Comuneros",
+    "n": 21
+   },
+   {
+    "nombre": "La Frontera",
+    "n": 20
+   },
+   {
+    "nombre": "Villa Niza",
+    "n": 19
+   },
+   {
+    "nombre": "La Isla",
+    "n": 17
+   },
+   {
+    "nombre": "Pablo VI",
+    "n": 9
+   }
+  ],
+  "por_tipo": [
+   {
+    "nombre": "Hurto a persona",
+    "n": 120
+   },
+   {
+    "nombre": "Hurto a establecimiento comercial",
+    "n": 60
+   },
+   {
+    "nombre": "Hurto de moto",
+    "n": 59
+   },
+   {
+    "nombre": "Hurto a residencia",
+    "n": 36
+   },
+   {
+    "nombre": "Hurto de carro",
+    "n": 9
+   }
+  ]
+ },
+ "homicidio_2017": {
+  "total": 16,
+  "por_barrio": [
+   {
+    "nombre": "Santa Cruz",
+    "n": 3
+   },
+   {
+    "nombre": "Playón de Los Comuneros",
+    "n": 3
+   },
+   {
+    "nombre": "La Francia",
+    "n": 2
+   },
+   {
+    "nombre": "Villa del Socorro",
+    "n": 2
+   },
+   {
+    "nombre": "Andalucía",
+    "n": 2
+   },
+   {
+    "nombre": "Moscú No.1",
+    "n": 1
+   },
+   {
+    "nombre": "Pablo VI",
+    "n": 1
+   },
+   {
+    "nombre": "La Frontera",
+    "n": 1
+   },
+   {
+    "nombre": "Villa Niza",
+    "n": 1
+   }
+  ],
+  "por_tipo": [
+   {
+    "nombre": "Arma de fuego",
+    "n": 9
+   },
+   {
+    "nombre": "Cortopunzante",
+    "n": 3
+   },
+   {
+    "nombre": "Ahorcamiento o estrangulamiento",
+    "n": 3
+   },
+   {
+    "nombre": "Contundente",
+    "n": 1
+   }
+  ]
+ },
+ "mortalidad_vial": {
+  "total": 32,
+  "por_anio": [
+   {
+    "anio": "2019",
+    "n": 5
+   },
+   {
+    "anio": "2020",
+    "n": 3
+   },
+   {
+    "anio": "2021",
+    "n": 1
+   },
+   {
+    "anio": "2022",
+    "n": 8
+   },
+   {
+    "anio": "2023",
+    "n": 5
+   },
+   {
+    "anio": "2024",
+    "n": 10
+   }
+  ],
+  "por_clase": [
+   {
+    "nombre": "Atropello",
+    "n": 19
+   },
+   {
+    "nombre": "Choque",
+    "n": 13
+   }
+  ],
+  "por_barrio": [
+   {
+    "nombre": "Andalucía",
+    "n": 5
+   },
+   {
+    "nombre": "Villa del Socorro",
+    "n": 5
+   },
+   {
+    "nombre": "La Rosa",
+    "n": 4
+   },
+   {
+    "nombre": "Playón de Los Comuneros",
+    "n": 3
+   },
+   {
+    "nombre": "La Isla",
+    "n": 3
+   },
+   {
+    "nombre": "Villa Niza",
+    "n": 3
+   },
+   {
+    "nombre": "Moscú No.1",
+    "n": 3
+   },
+   {
+    "nombre": "Santa Cruz",
+    "n": 2
+   },
+   {
+    "nombre": "La Francia",
+    "n": 2
+   },
+   {
+    "nombre": "La Frontera",
+    "n": 1
+   },
+   {
+    "nombre": "Pablo VI",
+    "n": 1
+   }
+  ]
+ },
+ "camaras": {
+  "total": 11,
+  "por_tipo": [
+   {
+    "nombre": "Camaras PTZ o Fijas",
+    "n": 9
+   },
+   {
+    "nombre": "Camaras LPR",
+    "n": 2
+   }
+  ],
+  "por_barrio": [
+   {
+    "nombre": "Andalucía",
+    "n": 3
+   },
+   {
+    "nombre": "La Frontera",
+    "n": 2
+   },
+   {
+    "nombre": "La Isla",
+    "n": 1
+   },
+   {
+    "nombre": "La Rosa",
+    "n": 1
+   },
+   {
+    "nombre": "Moscú No.1",
+    "n": 1
+   },
+   {
+    "nombre": "Villa del Socorro",
+    "n": 1
+   },
+   {
+    "nombre": "La Francia",
+    "n": 1
+   },
+   {
+    "nombre": "Playón de Los Comuneros",
+    "n": 1
+   }
+  ]
+ },
+ "semaforos": {
+  "total": 1
+ },
+ "pot_complementario": {
+  "centralidades": [
+   "Villa del Socorro",
+   "La Frontera"
+  ],
+  "areas_intervencion": [
+   "BUR Nororiental",
+   "RíoNorte"
+  ]
+ }
+}

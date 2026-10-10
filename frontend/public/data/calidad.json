@@ -1,0 +1,88 @@
+{
+ "por_verificar": [
+  {
+   "fuente": "OpenStreetMap vía Overpass API",
+   "donde": "https://overpass-api.de/api/interpreter",
+   "para": "Atributos completos de los caminos (iluminación, rampas, barandas)",
+   "estado": "Sin conexión desde el entorno de trabajo ni desde el equipo del proyecto. Se usaron las teselas de OpenFreeMap, que traen menos atributos."
+  },
+  {
+   "fuente": "Diccionario de códigos del inventario de andenes",
+   "donde": "Secretaría de Infraestructura Física / Movilidad",
+   "para": "Saber qué significan los códigos de estado y material",
+   "estado": "No publicado en el servicio. Solicitarlo a la Alcaldía."
+  },
+  {
+   "fuente": "Sedes de Buen Comienzo / hogares infantiles",
+   "donde": "Por identificar (Secretaría de Educación, ICBF)",
+   "para": "Destinos de primera infancia",
+   "estado": "La capa de equipamientos solo registra 1 en la comuna."
+  },
+  {
+   "fuente": "Red de salud (Metrosalud e IPS)",
+   "donde": "Por identificar (Secretaría de Salud, REPS)",
+   "para": "Destinos de salud completos",
+   "estado": "La capa de equipamientos registra pocos en la comuna."
+  },
+  {
+   "fuente": "Precios unitarios de obra",
+   "donde": "Por identificar (licitaciones de la Alcaldía, SIF, EDU)",
+   "para": "Costos B, C y D",
+   "estado": "No se encontró una fuente pública confiable; la plataforma permite registrarlos con su fuente."
+  },
+  {
+   "fuente": "Licencias de construcción",
+   "donde": "https://www.medellin.gov.co/servidormapas/rest/services/vivienda_ciudad_terri/VM_Licencias/MapServer",
+   "para": "Cambios en el territorio",
+   "estado": "La consulta espacial respondió con error."
+  },
+  {
+   "fuente": "Avalúos catastrales por predio",
+   "donde": "Subsecretaría de Catastro",
+   "para": "Valor oficial del suelo",
+   "estado": "No son públicos por predio."
+  }
+ ],
+ "notas": [
+  {
+   "tema": "Población",
+   "nota": "Censo Nacional de Población y Vivienda 2018 (DANE), el último dato oficial por manzana. Cada manzana se asigna al barrio que contiene su punto interior."
+  },
+  {
+   "tema": "Equipamientos",
+   "nota": "La capa oficial no trae el tipo de muchos equipamientos. El grupo (Educación, Salud, etc.) se asigna con una regla por palabras del nombre (procesar.py). Es una clasificación del equipo."
+  },
+  {
+   "tema": "Espacio público",
+   "nota": "Se suman todas las categorías de espacio público existente. No es el indicador oficial de espacio público efectivo."
+  },
+  {
+   "tema": "Andenes",
+   "nota": "El inventario oficial de andenes trae el ancho de cada tramo (unos 78 km en la comuna). Sus códigos de estado y material no tienen diccionario publicado, por eso no se usan."
+  },
+  {
+   "tema": "Tiempos de caminata",
+   "nota": "Son estimaciones con la velocidad de Tobler sobre la red de calles oficiales, caminos de OpenStreetMap y puentes peatonales. No se modelan semáforos, rejas ni seguridad."
+  },
+  {
+   "tema": "Pendiente",
+   "nota": "Donde hay calzada inventariada se usa la pendiente oficial; en el resto, un modelo de elevación de ~10 m que difiere de la oficial (ver la validación en Accesibilidad)."
+  },
+  {
+   "tema": "Siniestros viales",
+   "nota": "La clasificación cambia entre años y 2025 puede estar incompleto."
+  },
+  {
+   "tema": "Oferta inmobiliaria (OIME)",
+   "nota": "Precios pedidos en internet en 2023, no avalúos. Se excluyen teléfono, inmobiliaria y descripción."
+  },
+  {
+   "tema": "Costos",
+   "nota": "Ningún precio viene precargado. Los costos solo aparecen si alguien registra un precio unitario con su fuente."
+  },
+  {
+   "tema": "Primera infancia y salud",
+   "nota": "La capa de equipamientos registra muy pocos jardines infantiles y centros de salud en la comuna."
+  }
+ ]
+}

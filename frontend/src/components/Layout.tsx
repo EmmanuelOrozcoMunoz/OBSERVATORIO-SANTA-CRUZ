@@ -1,0 +1,237 @@
+import { useEffect, useState, type ReactNode } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import IconoNav from "./IconosNav";
+import Paleta from "./Paleta";
+
+const MODULOS: { ruta: string; nombre: string; icono: string; fase?: string }[] = [
+  { ruta: "/", nombre: "Inicio", icono: "inicio" },
+  { ruta: "/mapa", nombre: "Mapa territorial", icono: "mapa" },
+  { ruta: "/barrios", nombre: "Mi barrio", icono: "personas" },
+  { ruta: "/problematicas", nombre: "Problemáticas", icono: "alerta" },
+  { ruta: "/corredor-49", nombre: "Corredor Carrera 49", icono: "corredor" },
+  { ruta: "/indicadores", nombre: "Indicadores", icono: "indicadores" },
+  { ruta: "/accesibilidad", nombre: "Accesibilidad", icono: "accesibilidad" },
+  { ruta: "/prioridades", nombre: "Prioridad de obras", icono: "prioridades" },
+  { ruta: "/participacion", nombre: "Participación", icono: "participacion", fase: "Pronto" },
+  { ruta: "/datos", nombre: "Mis datos", icono: "subir" },
+  { ruta: "/fuentes", nombre: "Fuentes y calidad", icono: "fuentes" },
+];
+
+export function Logo({ className = "" }: { className?: string }) {
+  // Curvas de nivel de una ladera con la línea de un cable aéreo encima.
+  return (
+    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
+      <rect width="40" height="40" rx="8" fill="#1a4d2e" />
+      <path d="M2 34 C12 30 18 22 38 20" stroke="#a8cbb6" strokeWidth="1.6" fill="none" />
+      <path d="M2 38 C14 34 22 28 38 27" stroke="#a8cbb6" strokeWidth="1.6" fill="none" />
+      <path d="M4 26 L36 8" stroke="#f5f6f2" strokeWidth="1.6" />
+      <rect x="17" y="15" width="6" height="5" rx="1" fill="#f5f6f2" />
+      <path d="M20 13.5 V15" stroke="#f5f6f2" strokeWidth="1.4" />
+    </svg>
+  );
+}
+
+function Navegacion({ onNavegar, compacta = false }: { onNavegar?: () => void; compacta?: boolean }) {
+  return (
+    <nav aria-label="Módulos" className="flex flex-col gap-1">
+      {MODULOS.map((m) => (
+        <NavLink
+          key={m.ruta}
+          to={m.ruta}
+          end={m.ruta === "/"}
+          onClick={onNavegar}
+          title={compacta ? m.nombre : undefined}
+          aria-label={m.nombre}
+          className={({ isActive }) =>
+            `group relative flex items-center rounded-xl text-base transition-colors ${compacta ? "justify-center px-0 py-3" : "gap-3 px-3 py-2.5"} ${
+              isActive ? "bg-[#1a4d2e] text-white shadow-md" : "text-tinta hover:bg-[#e3f1e6]"
+            }`
+          }
+        >
+          {({ isActive }) => (
+            <>
+              <IconoNav nombre={m.icono} className="h-7 w-7 shrink-0" trazo={isActive ? 2 : 1.7} />
+              {!compacta && <span className={`flex-1 ${isActive ? "font-semibold" : ""}`}>{m.nombre}</span>}
+              {m.fase && !compacta && (
+                <span className={`rounded-full px-2 py-0.5 text-[0.7rem] font-semibold ${isActive ? "bg-white/20 text-white" : "bg-[#fdf1c7] text-[#8a5a00]"}`}>{m.fase}</span>
+              )}
+              {m.fase && compacta && <span aria-hidden="true" className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-[#f5b82e]" />}
+            </>
+          )}
+        </NavLink>
+      ))}
+    </nav>
+  );
+}
+
+// ------------------------------------------------------------------ tamaño de la letra (A- / A+)
+const CLAVE_NIVEL = "observatorio-santa-cruz:letra-nivel";
+const CLAVE_LETRA_VIEJA = "observatorio-santa-cruz:letra-grande";
+const CLAVE_BARRA = "observatorio-santa-cruz:barra-colapsada";
+/** Porcentaje del tamaño de letra en cada nivel. */
+const NIVELES = [100, 112, 124, 138];
+
+function useLetra() {
+  const [nivel, setNivel] = useState(() => {
+    try {
+      const n = localStorage.getItem(CLAVE_NIVEL);
+      if (n != null) return Math.min(NIVELES.length - 1, Math.max(0, Number(n) || 0));
+      return localStorage.getItem(CLAVE_LETRA_VIEJA) === "1" ? 2 : 0; // venía del botón anterior
+    } catch {
+      return 0;
+    }
+  });
+  useEffect(() => {
+    const html = document.documentElement;
+    html.classList.remove("letra-grande");
+    html.style.fontSize = nivel === 0 ? "" : `${NIVELES[nivel]}%`;
+    try {
+      localStorage.setItem(CLAVE_NIVEL, String(nivel));
+    } catch {
+      /* sin almacenamiento */
+    }
+  }, [nivel]);
+  return [nivel, setNivel] as const;
+}
+
+/** Botones A- y A+. Flotante en casi todas las páginas; dentro del menú en el mapa, donde esa esquina está ocupada. */
+function LetraTamano({ nivel, onNivel, variante }: { nivel: number; onNivel: (n: number) => void; variante: "flotante" | "barra" }) {
+  const base = "grid place-items-center rounded-full font-bold transition hover:bg-[#e3f1e6] disabled:opacity-35 disabled:hover:bg-transparent";
+  const botones = (
+    <>
+      <button type="button" aria-label="Hacer la letra más pequeña" title="Letra más pequeña" disabled={nivel === 0} onClick={() => onNivel(nivel - 1)} className={`${base} h-11 w-11 text-base`}>
+        <span aria-hidden="true">A−</span>
+      </button>
+      <button type="button" aria-label="Hacer la letra más grande" title="Letra más grande" disabled={nivel === NIVELES.length - 1} onClick={() => onNivel(nivel + 1)} className={`${base} h-11 w-11 text-xl`}>
+        <span aria-hidden="true">A+</span>
+      </button>
+    </>
+  );
+  if (variante === "barra")
+    return (
+      <div role="group" aria-label="Tamaño de la letra" className="flex items-center justify-between rounded-2xl border border-nivel bg-white px-3 py-1">
+        <span className="text-sm font-semibold text-tinta-suave">Letra</span>
+        <div className="flex items-center gap-1">{botones}</div>
+      </div>
+    );
+  return (
+    <div role="group" aria-label="Tamaño de la letra" className="fixed bottom-4 right-4 z-[1200] flex items-center gap-1 rounded-full bg-white/95 py-1 pl-4 pr-1.5 shadow-lg ring-1 ring-black/10 backdrop-blur">
+      <span className="mr-1 text-sm font-semibold text-tinta-suave">Letra</span>
+      {botones}
+    </div>
+  );
+}
+
+export default function Layout({ children }: { children: ReactNode }) {
+  const [menuAbierto, setMenuAbierto] = useState(false);
+  const { pathname } = useLocation();
+  const [buscar, setBuscar] = useState(false);
+  useEffect(() => {
+    const f = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setBuscar((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", f);
+    return () => window.removeEventListener("keydown", f);
+  }, []);
+  const esMapa = pathname === "/mapa";
+  const [nivel, setNivel] = useLetra();
+  const [colapsada, setColapsada] = useState(() => {
+    try {
+      return localStorage.getItem(CLAVE_BARRA) === "1";
+    } catch {
+      return false;
+    }
+  });
+  useEffect(() => {
+    try {
+      localStorage.setItem(CLAVE_BARRA, colapsada ? "1" : "0");
+    } catch {
+      /* sin almacenamiento */
+    }
+  }, [colapsada]);
+
+  useEffect(() => setMenuAbierto(false), [pathname]);
+
+  return (
+    <div className="flex h-[100dvh] flex-col bg-papel text-tinta lg:flex-row">
+      <a href="#contenido" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[2000] focus:rounded focus:bg-papel focus:px-3 focus:py-2">
+        Saltar al contenido
+      </a>
+
+      {/* Barra lateral en computador: se puede encoger a solo íconos */}
+      <aside
+        data-cromo="lateral"
+        data-animar={esMapa ? undefined : ""}
+        className={`hidden shrink-0 flex-col overflow-y-auto overflow-x-hidden border-r border-nivel bg-papel py-5 lg:flex ${colapsada ? "w-[5.5rem] px-2.5" : "w-64 px-3"}`}
+      >
+        <div className={`mb-6 flex items-center gap-3 ${colapsada ? "justify-center" : "px-2"}`}>
+          <Logo className="h-10 w-10 shrink-0" />
+          {!colapsada && (
+            <div className="leading-tight">
+              <p className="font-bold">Observatorio Santa Cruz</p>
+              <p className="text-sm text-tinta-suave">Comuna 2, Medellín</p>
+            </div>
+          )}
+        </div>
+        <button type="button" onClick={() => setBuscar(true)} title="Buscar (Ctrl + K)" aria-label="Buscar un módulo o barrio"
+          className={`mb-3 flex items-center rounded-xl border border-nivel bg-white py-2 text-sm text-tinta-suave transition hover:border-[#1a4d2e] hover:text-tinta ${colapsada ? "justify-center px-0" : "gap-2 px-3"}`}>
+          <IconoNav nombre="lupa" className="h-5 w-5 shrink-0" trazo={2} />
+          {!colapsada && <><span className="flex-1 text-left">Buscar…</span><kbd className="rounded bg-papel px-1.5 py-0.5 text-[0.7rem] font-semibold">Ctrl K</kbd></>}
+        </button>
+        <Navegacion compacta={colapsada} />
+        <div className="mt-auto space-y-2 pt-4">
+          {esMapa && !colapsada && <LetraTamano nivel={nivel} onNivel={setNivel} variante="barra" />}
+          <button
+            type="button"
+            onClick={() => setColapsada((v) => !v)}
+            aria-expanded={!colapsada}
+            aria-label={colapsada ? "Mostrar el menú completo" : "Contraer el menú"}
+            title={colapsada ? "Mostrar el menú completo" : "Contraer el menú"}
+            className={`flex w-full items-center rounded-xl py-2.5 text-base font-medium text-tinta-suave transition hover:bg-[#e3f1e6] hover:text-tinta ${colapsada ? "justify-center" : "gap-3 px-3"}`}
+          >
+            <IconoNav nombre={colapsada ? "derecha" : "izquierda"} className="h-6 w-6 shrink-0" trazo={2} />
+            {!colapsada && "Contraer menú"}
+          </button>
+        </div>
+        {!colapsada && (
+          <p className="mt-2 px-3 text-xs text-tinta-tenue">Prototipo de la Fase 2 para Territorio INN 2026. Reto #4: espacios públicos, equipamientos y movilidad.</p>
+        )}
+      </aside>
+
+      {/* Barra superior en celular y tableta */}
+      <header data-cromo="cabecera" className="relative z-[1100] flex items-center justify-between border-b border-nivel bg-papel px-4 py-2.5 lg:hidden">
+        <div className="flex items-center gap-2.5">
+          <Logo className="h-8 w-8" />
+          <p className="font-bold">Observatorio Santa Cruz</p>
+        </div>
+        <button
+          type="button"
+          onClick={() => setMenuAbierto((v) => !v)}
+          aria-expanded={menuAbierto}
+          aria-controls="menu-movil"
+          className="rounded-md border border-nivel px-3 py-1.5 text-sm font-medium"
+        >
+          {menuAbierto ? "Cerrar" : "Menú"}
+        </button>
+        {menuAbierto && (
+          <div id="menu-movil" className="absolute inset-x-0 top-full border-b border-nivel bg-papel p-3 shadow-lg">
+            <Navegacion onNavegar={() => setMenuAbierto(false)} />
+            <div className="mt-3">
+              <LetraTamano nivel={nivel} onNivel={setNivel} variante="barra" />
+            </div>
+          </div>
+        )}
+      </header>
+
+      <main id="contenido" className={`min-h-0 flex-1 ${esMapa ? "overflow-hidden" : "overflow-y-auto"}`}>
+        <div key={pathname} className={esMapa ? "h-full" : "animate-[entrar-suave_450ms_ease-out_backwards]"}>{children}</div>
+      </main>
+
+      <Paleta abierta={buscar} onCerrar={() => setBuscar(false)} />
+      {!esMapa && <LetraTamano nivel={nivel} onNivel={setNivel} variante="flotante" />}
+    </div>
+  );
+}

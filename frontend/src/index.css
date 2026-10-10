@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+    font-variation-settings: normal;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-papel text-tinta;
+    line-height: 1.6;
+  }
+  p,
+  li {
+    line-height: 1.6;
+  }
+  :focus-visible {
+    outline: 3px solid #24598a;
+    outline-offset: 2px;
+  }
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Mapa: tipografía y detalles de Leaflet acordes con la interfaz */
+.leaflet-container {
+  font-family: "Inter", system-ui, sans-serif;
+  background: #eceee7;
+}
+.leaflet-container a {
+  color: #24598a;
+}
+.popup-mapa .maplibregl-popup-content {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d2b2a;
+  padding: 8px 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(29, 43, 42, 0.18);
+}
+.popup-mapa .maplibregl-popup-tip {
+  display: none;
+}
+.popup-mapa .maplibregl-popup-content {
+  font-family: "Inter", system-ui, sans-serif;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(26, 77, 46, 0.18);
+}
+.popup-tipo {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4a8c6f;
+}
+
+/* ------------------------------------------------------------ mapa inmersivo */
+.mapa-lienzo {
+  background: linear-gradient(160deg, #f8f6f1 0%, #e8f0e8 100%);
+  transition: background 600ms ease;
+}
+.mapa-lienzo.es-noche {
+  background: linear-gradient(160deg, #0b1310 0%, #12201a 100%);
+}
+/* Niebla radial en los cuatro bordes + viñeta suave */
+.mapa-vineta {
+  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 58%, rgba(232, 240, 232, 0.5) 86%, rgba(232, 240, 232, 0.82) 100%);
+  box-shadow: inset 0 0 140px rgba(26, 77, 46, 0.14);
+  transition: background 600ms ease, box-shadow 600ms ease;
+}
+.es-noche .mapa-vineta {
+  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 55%, rgba(5, 10, 8, 0.45) 85%, rgba(5, 10, 8, 0.8) 100%);
+  box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.5);
+}
+/* Nombres de barrio: Inter 600 con halo blanco, aparecen al acercarse */
+.etiqueta-barrio {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: #1a4d2e;
+  text-shadow: 0 1px 4px #fff, 0 0 2px #fff, 0 0 8px rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+.etiqueta-barrio.visible {
+  opacity: 1;
+}
+.es-noche .etiqueta-barrio {
+  color: #e8f3ec;
+  text-shadow: 0 1px 4px #000, 0 0 10px rgba(0, 0, 0, 0.8);
+}
+/* Tarjetas de temas: suben 4 px al pasar el mouse */
+.tarjeta-tema {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+.tarjeta-tema:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(20, 48, 31, 0.16);
+}
+.tarjeta-tema:active {
+  transform: translateY(-1px) scale(0.98);
+}
+/* Joystick */
+.joystick {
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.97), rgba(232, 240, 232, 0.92));
+  box-shadow: 0 10px 28px rgba(20, 48, 31, 0.22), inset 0 -4px 10px rgba(26, 77, 46, 0.08);
+  cursor: grab;
+}
+.joystick:active {
+  cursor: grabbing;
+}
+.joystick-perilla {
+  background: radial-gradient(circle at 35% 30%, #5fa883, #1a4d2e 70%);
+  box-shadow: 0 6px 14px rgba(26, 77, 46, 0.45), inset 0 2px 3px rgba(255, 255, 255, 0.35);
+}
+/* Deslizadores verdes */
+.rango-verde {
+  accent-color: #1a4d2e;
+  height: 1.5rem;
+}
+/* Modo Solo Mapa: el menú lateral y la barra del celular se desvanecen en 300 ms */
+/* Primero se desvanece (300 ms) y luego el mapa se agranda de un solo paso: así el mapa no se redibuja en
+   cada cuadro de la animación. Al salir es al revés: el espacio vuelve de una vez y el menú aparece con fundido. */
+[data-cromo="lateral"],
+[data-cromo="cabecera"] {
+  transition: opacity 300ms ease, width 0s, padding 0s, max-height 0s, border-width 0s;
+}
+html[data-solo-mapa] [data-cromo="lateral"],
+html[data-solo-mapa] [data-cromo="cabecera"] {
+  transition: opacity 300ms ease, width 0s 300ms, padding 0s 300ms, max-height 0s 300ms, border-width 0s 300ms;
+}
+[data-cromo="cabecera"] {
+  max-height: 6rem;
+}
+html[data-solo-mapa] [data-cromo="lateral"] {
+  width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  border-right-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+html[data-solo-mapa] [data-cromo="cabecera"] {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+html[data-solo-mapa] .maplibregl-ctrl-bottom-right {
+  opacity: 0.55;
+}
+.salida-limpia {
+  animation: entrar-suave 300ms ease both;
+}
+@keyframes entrar-suave {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+.maplibregl-ctrl-attrib,
+.maplibregl-ctrl-scale {
+  font-family: "Inter", system-ui, sans-serif;
+}
+html.letra-grande {
+  font-size: 118%;
+}
+.base-clara {
+  filter: grayscale(1) brightness(1.06) contrast(0.82);
+}
+.tooltip-mapa {
+  border: 1px solid #d4d9cf;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(29, 43, 42, 0.15);
+  font-size: 13px;
+  padding: 4px 8px;
+  color: #1d2b2a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------ página de Inicio */
+/* Aparecer subiendo al llegar a la pantalla */
+.revelar {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.revelar.visto {
+  opacity: 1;
+  transform: none;
+}
+/* Trazo amarillo que se dibuja bajo "Santa Cruz?" */
+.subrayado path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: dibujar 1.1s 0.7s ease-out forwards;
+}
+@keyframes dibujar {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+/* Mapa del hero: estaciones que laten y líneas de cable con movimiento */
+.pulso-estacion {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulso-estacion 4.5s ease-out infinite;
+}
+@keyframes pulso-estacion {
+  0% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.flujo-linea {
+  stroke-dasharray: 9 15;
+  animation: flujo-linea 4s linear infinite;
+}
+.flujo-inverso {
+  animation-direction: reverse;
+}
+@keyframes flujo-linea {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.barrio-resalte {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: levantar 220ms ease-out both;
+}
+@keyframes levantar {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-3px) scale(1.012);
+  }
+}
+/* Tarjetas de datos: se levantan al pasar el mouse */
+.tarjeta-dato {
+  transition: transform 250ms ease, box-shadow 250ms ease;
+}
+.tarjeta-dato:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 44px -12px rgba(26, 77, 46, 0.28);
+}
+/* Filas de módulos: se ponen verde clarito y aparece "Explorar" */
+.fila-modulo {
+  transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+.fila-modulo:hover,
+.fila-modulo:focus-visible {
+  background-color: #f0f7f0;
+  border-color: #1a4d2e;
+  box-shadow: 0 10px 24px -10px rgba(26, 77, 46, 0.3);
+}
+.fila-modulo-icono {
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+.fila-modulo:hover .fila-modulo-icono {
+  background-color: #1a4d2e;
+  color: #ffffff;
+  transform: scale(1.06);
+}
+/* Punto verde que late dentro de la insignia "Disponible" */
+.punto-vivo {
+  position: relative;
+  display: inline-block;
+  height: 0.65rem;
+  width: 0.65rem;
+  border-radius: 9999px;
+  background: #1f9d55;
+}
+.punto-vivo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: #1f9d55;
+  animation: latido 3.2s ease-out infinite;
+}
+@keyframes latido {
+  0% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+/* Barra lateral: el ancho se anima solo fuera del mapa (en el mapa redibujaría todo en cada cuadro) */
+aside[data-cromo="lateral"][data-animar] {
+  transition: width 250ms ease, padding 250ms ease, opacity 300ms ease;
+}
+
+/* Espera suave: sin giros ni parpadeos bruscos */
+@keyframes suave {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulso-estacion, .punto-vivo::after, .flujo-linea { animation: none; }
+}

@@ -1,0 +1,14 @@
+node_modules/
+frontend/dist/
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+data/raw/*
+!data/raw/.gitkeep
+
+.env
+.env.*
+graphify-out/cache/
+.graph-indexer/
+*.log
