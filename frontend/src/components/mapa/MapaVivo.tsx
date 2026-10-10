@@ -59,8 +59,8 @@ const VERDE_HONDO = "#3d2fa8";
 export const ZOOM_ETIQUETAS = 13.2;
 
 // Edificios: más pisos, verde más intenso
-const COLOR_PISOS: ExpressionSpecification = ["interpolate", ["linear"], ["get", "p"], 1, "#d9d3f7", 2, "#7a5be0", 3, VERDE_HONDO];
-const COLOR_OSM: ExpressionSpecification = ["interpolate", ["linear"], ["coalesce", ["get", "render_height"], 6], 3, "#d9d3f7", 6, "#7a5be0", 9, VERDE_HONDO];
+const COLOR_PISOS: ExpressionSpecification = ["interpolate", ["linear"], ["get", "p"], 1, "#b7a9ee", 2, "#6a49d6", 3, VERDE_HONDO];
+const COLOR_OSM: ExpressionSpecification = ["interpolate", ["linear"], ["coalesce", ["get", "render_height"], 6], 3, "#b7a9ee", 6, "#6a49d6", 9, VERDE_HONDO];
 const ALTURA = (barrio: string | null): ExpressionSpecification =>
   barrio ? ["+", ["*", ["get", "p"], 3], ["case", ["==", ["get", "b"], barrio], 5, 0]] : ["*", ["get", "p"], 3];
 
@@ -100,6 +100,36 @@ function colorNoche(id: string, tipo: string): Record<string, string> | null {
   const color = agua ? NOCHE.agua : verde ? NOCHE.verde : edificio ? NOCHE.edificio : mayor ? NOCHE.viaMayor : via ? NOCHE.via : limite ? NOCHE.limite : NOCHE.suelo;
   if (tipo === "fill") return edificio ? { "fill-color": color, "fill-outline-color": NOCHE.via } : { "fill-color": color };
   if (tipo === "line") return { "line-color": /casing/.test(t) ? NOCHE.fondo : color };
+  return null;
+}
+
+/** Paleta de día de alto contraste: calles delineadas, etiquetas casi negras con halo blanco, agua y parques bien distintos. */
+const DIA = {
+  fondo: "#e9e6f4", agua: "#9cc3e8", verde: "#bfe3c6", suelo: "#e4e0f1", edificio: "#c9c1ea", edificioBorde: "#8d84bd",
+  calle: "#8a90b0", calleMayor: "#ffffff", borde: "#5b6288", texto: "#14122b", halo: "#ffffff", limite: "#6b7194",
+};
+function colorDia(id: string, tipo: string): Record<string, string | number> | null {
+  const t = id.toLowerCase();
+  if (tipo === "symbol") return { "text-color": DIA.texto, "text-halo-color": DIA.halo, "text-halo-width": 2 };
+  const agua = /water|ocean|river/.test(t);
+  const verde = /park|landcover|wood|grass|forest|green/.test(t);
+  const edificio = /building/.test(t);
+  const mayor = /motorway|trunk|primary|major/.test(t);
+  const via = /road|highway|tunnel|bridge|transport|rail|path|street|aeroway/.test(t);
+  if (tipo === "fill") {
+    if (edificio) return { "fill-color": DIA.edificio, "fill-outline-color": DIA.edificioBorde };
+    if (agua) return { "fill-color": DIA.agua };
+    if (verde) return { "fill-color": DIA.verde };
+    if (/landuse/.test(t)) return { "fill-color": DIA.suelo };
+    return null;
+  }
+  if (tipo === "line") {
+    if (agua) return { "line-color": DIA.agua };
+    if (/boundary/.test(t)) return { "line-color": DIA.limite };
+    if (!via) return null;
+    if (/casing/.test(t)) return { "line-color": DIA.borde };
+    return { "line-color": mayor ? DIA.calleMayor : DIA.calle };
+  }
   return null;
 }
 
@@ -361,6 +391,12 @@ export default function MapaVivo(o: Opciones) {
       pintar("park", "fill-color", "#d7e8d7");
       pintar("landuse_residential", "fill-color", "#ecebe6");
       pintar("landuse_residential", "fill-opacity", 0.35);
+      // Contraste de día: se pinta una vez aquí; el modo noche guarda estos valores y los devuelve al volver
+      for (const id of capasBase.current) {
+        const capa = m.getLayer(id);
+        if (!capa || id === "background" || id === "relieve" || id === "edificios-3d") continue;
+        for (const [prop, valor] of Object.entries(colorDia(id, capa.type) ?? {})) m.setPaintProperty(id, prop, valor);
+      }
 
       // Relieve: sombras siempre, montaña real en 3D
       m.addSource("dem-sombra", { type: "raster-dem", tiles: [DEM], encoding: "terrarium", tileSize: 256, maxzoom: 14 });
@@ -427,7 +463,7 @@ export default function MapaVivo(o: Opciones) {
         m.addLayer({ id: "barrios-relleno", type: "fill", source: "barrios", paint: { "fill-color": "#ffffff", "fill-opacity": ["case", ["boolean", ["feature-state", "encima"], false], 0.35, 0.01] } }, "ancla-poligonos");
         // Borde doble: brillo exterior de 12 px + separación clara + línea interior de 3 px
         m.addLayer({ id: "comuna-halo", type: "line", source: "comuna", paint: { "line-color": VERDE_HONDO, "line-width": 12, "line-opacity": 0.32, "line-blur": 8 } }, "ancla-mascara");
-        m.addLayer({ id: "barrios-borde", type: "line", source: "barrios", paint: { "line-color": "#7a5be0", "line-width": 1.2, "line-opacity": 0.7, "line-dasharray": [3, 2] } }, "ancla-mascara");
+        m.addLayer({ id: "barrios-borde", type: "line", source: "barrios", paint: { "line-color": "#5a3fd0", "line-width": 1.6, "line-opacity": 0.9, "line-dasharray": [3, 2] } }, "ancla-mascara");
         m.addLayer({ id: "comuna-separador", type: "line", source: "comuna", paint: { "line-color": "#ffffff", "line-width": 6, "line-opacity": 0.85 } }, "ancla-mascara");
         m.addLayer({ id: "comuna-borde", type: "line", source: "comuna", paint: { "line-color": VERDE_HONDO, "line-width": 3 } }, "ancla-mascara");
 

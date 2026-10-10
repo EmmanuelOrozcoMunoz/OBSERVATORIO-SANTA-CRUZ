@@ -5,7 +5,7 @@
 /* ---------------------------------------------------------------- tokens de color (ver /identidad) */
 :root {
   --papel: 241 239 250; --papel-hondo: 232 229 245; --superficie: 255 255 255; --nivel: 214 210 232;
-  --tinta: 26 24 52; --tinta-suave: 72 70 104; --tinta-tenue: 94 92 124;
+  --tinta: 26 24 52; --tinta-suave: 58 56 90; --tinta-tenue: 78 76 108;
   --acento: 61 47 168; --acento-hondo: 36 28 96;
   --marca: 61 47 168; --menta: 233 229 250; --menta-2: 241 238 252;
   --aviso-fondo: 253 246 221; --aviso-borde: 232 217 168; --peligro: 194 48 26;
@@ -107,8 +107,9 @@ html.noche,
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.01em;
-  color: #3d2fa8;
-  text-shadow: 0 1px 4px #fff, 0 0 2px #fff, 0 0 8px rgba(255, 255, 255, 0.9);
+  color: #2a1f80;
+  font-weight: 700;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 6px #fff, 0 0 8px rgba(255, 255, 255, 0.95);
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
@@ -124,11 +125,11 @@ html.noche,
 /* Paneles del mapa: un solo estilo, plano y translúcido. Sin sombras fuertes ni saltos al pasar el mouse. */
 .panel-mapa {
   color: rgb(var(--tinta));
-  background: rgb(var(--superficie) / 0.84);
+  background: rgb(var(--superficie) / 0.97);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: 1px solid rgb(var(--nivel) / 0.6);
-  box-shadow: 0 1px 3px rgba(20, 16, 60, 0.1);
+  border: 1px solid rgb(var(--tinta) / 0.32);
+  box-shadow: 0 1px 4px rgba(20, 16, 60, 0.18);
 }
 @media (hover: hover) {
   button.panel-mapa:hover {
