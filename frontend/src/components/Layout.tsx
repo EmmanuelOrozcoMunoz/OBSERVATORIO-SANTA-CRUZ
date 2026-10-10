@@ -10,10 +10,12 @@ const MODULOS: { ruta: string; nombre: string; icono: string; fase?: string }[] 
   { ruta: "/problematicas", nombre: "Problemáticas", icono: "alerta" },
   { ruta: "/corredor-49", nombre: "Corredor Carrera 49", icono: "corredor" },
   { ruta: "/indicadores", nombre: "Indicadores", icono: "indicadores" },
+  { ruta: "/radar", nombre: "Radar de noticias", icono: "radar" },
   { ruta: "/accesibilidad", nombre: "Accesibilidad", icono: "accesibilidad" },
   { ruta: "/prioridades", nombre: "Prioridad de obras", icono: "prioridades" },
   { ruta: "/participacion", nombre: "Participación", icono: "participacion", fase: "Pronto" },
   { ruta: "/datos", nombre: "Mis datos", icono: "subir" },
+  { ruta: "/propuesta", nombre: "Propuesta de valor", icono: "corazon" },
   { ruta: "/fuentes", nombre: "Fuentes y calidad", icono: "fuentes" },
 ];
 

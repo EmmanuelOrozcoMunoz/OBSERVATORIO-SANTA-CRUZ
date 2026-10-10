@@ -6,9 +6,3 @@ __pycache__/
 *.pyc
 data/raw/*
 !data/raw/.gitkeep
-
-.env
-.env.*
-graphify-out/cache/
-.graph-indexer/
-*.log

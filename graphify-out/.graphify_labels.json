@@ -17,19 +17,5 @@
   "15": "app/__init__.py",
   "16": "tests/__init__.py",
   "17": "postcss.config.js",
-  "18": "vite-env.d.ts",
-  "19": "Corredor49.tsx",
-  "20": "useDatos",
-  "21": "Datos.tsx",
-  "22": "03_modelo_de_datos.sql",
-  "23": "capas.ts",
-  "24": "eje49.py",
-  "25": "ControlesMapa.tsx",
-  "26": "PanelCapas.tsx",
-  "27": "fuentes.py",
-  "28": "Plan: rediseño de la página de Inicio",
-  "29": "Plan: rutas por la Carrera 49, más datos, problemáticas reales y escalado al Valle de Aburrá",
-  "30": "Leyenda.tsx",
-  "31": "Plan: mapa inmersivo definitivo",
-  "32": "CLAUDE.md"
+  "18": "vite-env.d.ts"
 }

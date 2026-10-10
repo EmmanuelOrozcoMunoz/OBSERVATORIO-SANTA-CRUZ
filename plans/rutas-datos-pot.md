@@ -43,3 +43,8 @@ Resultado: 14 capas nuevas probadas desde el PC (ver `fuentes.py`).
 - Backend Inicio: GET /api/inicio (resumen desde indicadores, seguridad, eje49) y frontend lo intenta y cae al JSON estático.
 - Enlaces cruzados: cada página termina con "Sigue por aquí" a 3 módulos relacionados.
 - Hecho: Accesibilidad, Pagina.tsx, /api/inicio, PulsoComuna, Mi barrio (/barrios/:codigo), buscador Ctrl+K, transición de página.
+
+## Ronda 4: Radar y propuesta de valor
+- Radar de noticias (data-pipeline/radar.py): Google News RSS (público, solo titular, fuente, fecha y enlace; no se copia el artículo), consultas por comuna y por barrio, filtro de relevancia (menciona Medellín/Antioquia y el barrio o la comuna), clasificación por palabras clave en 7 temas, barrios detectados. Salida frontend/public/data/radar.json.
+- Redes sociales: no se hace scraping de TikTok/Facebook (términos de servicio y Ley 1581 de datos personales). Alternativas documentadas: reportes ciudadanos con foto, ReportesMED, imágenes a nivel de calle (por verificar), APIs oficiales para investigación (por verificar).
+- Páginas nuevas: /radar y /propuesta (necesidades, qué existe, qué falta, qué lo hace distinto, quién pagaría, datos, cómo detectamos aceras/huecos/basura, qué NO afirmamos).

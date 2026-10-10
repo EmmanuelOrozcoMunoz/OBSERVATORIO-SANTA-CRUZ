@@ -300,11 +300,13 @@ const MODULOS: { ruta: string; icono: string; nombre: string; texto: string; pro
   { ruta: "/mapa", icono: "mapa", nombre: "Mapa territorial", texto: "Capas oficiales de movilidad, equipamientos, riesgo y POT, con ficha por barrio." },
   { ruta: "/problematicas", icono: "alerta", nombre: "Problemáticas", texto: "Lo que pasa en Santa Cruz, con datos oficiales: espacio público, atropellos, andenes, riesgo." },
   { ruta: "/corredor-49", icono: "corredor", nombre: "Corredor Carrera 49", texto: "¿Conviene ir por la 49? Minutos a pie, andenes, buses y siniestros del eje." },
+  { ruta: "/radar", icono: "radar", nombre: "Radar de noticias", texto: "Lo que dicen los medios de la comuna, por tema y barrio, recogido solo." },
   { ruta: "/indicadores", icono: "indicadores", nombre: "Indicadores", texto: "Población, espacio público, siniestros y calidad de vida de cada barrio." },
   { ruta: "/accesibilidad", icono: "accesibilidad", nombre: "Accesibilidad", texto: "Minutos caminando al Metro, al colegio, a salud y a los parques, con pendientes." },
   { ruta: "/prioridades", icono: "prioridades", nombre: "Prioridad de obras", texto: "Un puntaje claro para ordenar qué obra ayuda a más personas." },
   { ruta: "/participacion", icono: "participacion", nombre: "Participación", texto: "Reportes de la comunidad sobre andenes dañados y puntos peligrosos.", pronto: true },
   { ruta: "/datos", icono: "subir", nombre: "Mis datos", texto: "Sube tu archivo y míralo en el mapa; mira qué más se puede bajar y cómo llevarlo al Valle de Aburrá." },
+  { ruta: "/propuesta", icono: "corazon", nombre: "Propuesta de valor", texto: "Qué necesita la comuna, qué existe, qué falta y cómo se detectan los daños." },
   { ruta: "/fuentes", icono: "fuentes", nombre: "Fuentes y calidad", texto: "De dónde sale cada dato, cuándo se descargó y qué falta por verificar." },
 ];
 

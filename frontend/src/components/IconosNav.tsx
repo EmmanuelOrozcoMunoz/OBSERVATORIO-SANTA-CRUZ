@@ -54,6 +54,7 @@ const TRAZOS: Record<string, ReactNode> = {
   subir: <path d="M12 16V4M7.5 8.5 12 4l4.5 4.5M4 15v5h16v-5" />,
   corredor: <path d="M4 21 9 3M20 21 15 3M12 6v3M12 12v3M12 18v3" />,
   problematicas: <path d="M12 3 2 20h20zM12 10v4M12 17h.01" />,
+  radar: <path d="M12 12 19 5M3 12a9 9 0 0 1 9-9M7 12a5 5 0 0 1 5-5M12 12v.01M3 12a9 9 0 0 0 9 9 9 9 0 0 0 9-9" />,
   lupa: <path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4" />,
   izquierda: <path d="m15 6-6 6 6 6" />,
   derecha: <path d="m9 6 6 6-6 6" />,

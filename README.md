@@ -105,15 +105,3 @@ backend/         API (FastAPI)
 ## Fuentes principales
 
 Geoportal de la Alcaldía de Medellín (servicios ArcGIS REST de cartografía base, POT Acuerdo 48 de 2014, Movilidad, Educación, INDER, Bibliotecas, Observatorio Inmobiliario de Medellín y Encuesta de Calidad de Vida) y Geoportal del DANE (Censo Nacional de Población y Vivienda 2018 por manzana). El detalle está en `docs/02_fuentes_de_datos.md`. Antes de publicar la plataforma en internet hay que confirmar las condiciones de uso de cada entidad.
-
-
-## Trabajar en equipo (GitHub)
-
-Repositorio: https://github.com/simonva11/OBSERVATORIO-SANTA-CRUZ
-
-1. Primera vez: `git clone https://github.com/simonva11/OBSERVATORIO-SANTA-CRUZ.git` y luego `cd frontend && npm install`.
-2. Antes de empezar a trabajar: `git pull`.
-3. Cuando termines algo: `.\scripts\sincronizar.ps1 "quÃ© cambiaste"` (en Windows), que trae lo de los demÃ¡s, guarda tus cambios y los sube.
-4. Si dos personas tocaron el mismo archivo, git avisa del conflicto y hay que resolverlo a mano antes de subir.
-
-Los datos crudos (`data/raw`) no se suben porque pesan y se vuelven a bajar con `data-pipeline/descargar.py`. Los datos ya procesados sÃ­ estÃ¡n en `frontend/public/data`.

@@ -14,6 +14,8 @@ const Fuentes = lazy(() => import("./pages/Fuentes"));
 const Corredor49 = lazy(() => import("./pages/Corredor49"));
 const Problematicas = lazy(() => import("./pages/Problematicas"));
 const Datos = lazy(() => import("./pages/Datos"));
+const Radar = lazy(() => import("./pages/Radar"));
+const Propuesta = lazy(() => import("./pages/Propuesta"));
 const Barrio = lazy(() => import("./pages/Barrio"));
 
 function NoEncontrada() {
@@ -50,6 +52,8 @@ export default function App() {
             <Route path="/corredor-49" element={<Corredor49 />} />
             <Route path="/problematicas" element={<Problematicas />} />
             <Route path="/datos" element={<Datos />} />
+            <Route path="/radar" element={<Radar />} />
+            <Route path="/propuesta" element={<Propuesta />} />
             <Route path="/barrios" element={<Barrio />} />
             <Route path="/barrios/:codigo" element={<Barrio />} />
             <Route path="*" element={<NoEncontrada />} />

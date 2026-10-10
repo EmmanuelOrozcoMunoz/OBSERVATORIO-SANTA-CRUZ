@@ -1,0 +1,494 @@
+{
+ "generado": "2026-10-10T17:16:02+00:00",
+ "fuente": "Google News (RSS público). Solo titular, medio, fecha y enlace.",
+ "aviso": "El tema y el barrio se asignan por palabras clave del titular y pueden estar mal. Revise siempre la noticia original.",
+ "consultas": [
+  "\"comuna 2\" Santa Cruz Medellín",
+  "barrio \"Santa Cruz\" Medellín",
+  "\"Santa Cruz\" Medellín Metrocable Línea K",
+  "\"Santa Cruz\" Medellín cierre vial",
+  "\"Santa Cruz\" Medellín seguridad",
+  "\"Santa Cruz\" Medellín obras andenes",
+  "\"Santa Cruz\" Medellín basuras",
+  "\"Santa Cruz\" Medellín deslizamiento riesgo",
+  "\"La Rosa\" Medellín comuna 2",
+  "\"Moscú\" Medellín comuna 2",
+  "\"Villa del Socorro\" Medellín",
+  "\"La Francia\" Medellín comuna 2",
+  "\"Andalucía\" Medellín comuna 2",
+  "\"Pablo VI\" Medellín comuna 2",
+  "\"Playón de los Comuneros\" Medellín",
+  "\"La Isla\" Medellín comuna 2",
+  "\"Villa Niza\" Medellín"
+ ],
+ "total": 36,
+ "por_tema": {
+  "Riesgo y clima": 14,
+  "Servicios públicos": 10,
+  "Otros": 9,
+  "Movilidad y transporte": 5,
+  "Basuras y aseo": 3,
+  "Espacio público y comunidad": 2,
+  "Vías y huecos": 2,
+  "Andenes y escaleras": 1
+ },
+ "por_barrio": {
+  "Santa Cruz": 28,
+  "Andalucía": 4,
+  "Villa Niza": 3,
+  "La Rosa": 2,
+  "Playón de Los Comuneros": 1,
+  "La Francia": 1
+ },
+ "no_listadas_por_respeto": {
+  "total": 10,
+  "nota": "Noticias sobre crímenes o víctimas individuales: se cuentan pero no se muestran sus titulares ni nombres."
+ },
+ "noticias": [
+  {
+   "titulo": "Qué cochinada: la basura se está comiendo esta esquina en Santa Cruz | Q´HUBO Medellín",
+   "medio": "Qhubo Medellín",
+   "fecha": "2026-10-09",
+   "enlace": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPWUxBcmFnOXFkTVZBNmdCSnZKTFY3Z05CcGV1a05TdEtQTnRHTmstSGhXYjJPTnA5X1ZuMlE3OEdRYnhoMmJ5dXljWGFoNHpCTFJpazdxZ1M5RDFESFhYTk03b1BheXZFY1JiR0VQNF80TFJidmRjdS1fT2tBRDZielpaTDF6U3NVN0xaZUxINEJ6SzM5dFBIUllVNi1tM3pEaVRpQ1M1dEtZZkhjUHVqODFnN1J3Y2fSAcIBQVVfeXFMTzFWN1NOQWdwWlkxNzhvOEdKbUtNM3hHejdqS2ZtOUhMWXRYeFlCU21kUk9mZ1ExQUV3WnpjUTJZck02NHExS3JfTnU1d3pzRW1xNk5QVGZBcnowNHJ2WjV4UWg3bHZua21CVm9KZDlnTlVGcktPUExhU0lqeG1LMFRqZjRjS01Scm5hOVZvQWViNVBTYjM4T2tJODVzTkhGQUdTWmxRRDZ3bzhpNGt5d3hpR0VYNTFEZTBodkZtRFhFZVE?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Basuras y aseo"
+   ]
+  },
+  {
+   "titulo": "EN VIDEO | En el barrio El Playón de los Comuneros de Medellín, un árbol se cayó al lado de una tienda durante el fuerte aguacero",
+   "medio": "Hora 13 Noticias",
+   "fecha": "2026-10-07",
+   "enlace": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5WOWJCRFVkN3dXV1JaZjU5cTZOOWNLTGpwN1B2MnJTOGFmMld0VUtGVmk4cmd2UnlNSWhjNF9DNklYMEtCeDdYV29CZUxMOUhlRmxZRTBKM0hac1dK?oc=5",
+   "barrios": [
+    "Playón de Los Comuneros"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "Agresión a la Misión Médica en Medellín: golpean a profesional de salud en urgencias de Santa Cruz",
+   "medio": "Alerta",
+   "fecha": "2026-10-06",
+   "enlace": "https://news.google.com/rss/articles/CBMingFBVV95cUxNTVU0X3dGOEJ1WVZCenEtbTJ0V1JOeGlWaTdoMEQ4QlR2LTEwQ2NaeU5rLW1iZ0RRWEJsT1pSQjk2ZVZtT08tbGV3RWdQNEx0cTNZWGsxOGVNWXUySE9RaERJOFZUYWM4U3VmR2d3bGFwQzlUNWRIT2VjNkg3VHZMN2swREgzTVdkWlRFdHZnUDVIUzVVU2JnNFlJdDFnd9IBogFBVV95cUxPRFNSTGpjdy1DdjFZNXlWd2JqM0gtc19CUDR3UVpGdlBSVDdjWHZJcDFMTU1Fa1BROE9saXpIY2NyaG4wcjRJNlJBVTJXNnhhQlY0clZFN3Y5MllUMlpwem03MmlpWWU1aEo1OU9YNkdRckUxOVAtbWhJLVFvMXBBRk5xVTJrdEZYZW1HRWdzV19JYzlYYzdKS0JvcW5yYldQUUE?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "Metrosalud denuncia agresión contra personal de urgencias en la Unidad Hospitalaria de Santa Cruz, en Medellín",
+   "medio": "Teleantioquia",
+   "fecha": "2026-10-06",
+   "enlace": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQZWNlclVJUjh0XzgxdlBhR2txZC1ZaGo0a0dhOTdDS05FeWRFSUZ3ZGhDR1gxaHJuSjJBQmo2d3hwLTZTVUJDV3ZhdkRlN0lIZ0t5azk1blZoWXlvMXNZWFppTUltclRCb2Z0VzNTTDh6QTFmUk9ZdlFTUUtZWlR3M1VoZkJ2bVlKWDhaa0NvTS1RcTBEUkpKdUh0TUE5UjEzMGE2M3h3SE9PejhyVXk5NzBjeEZRR3ZmMUdGZzJwMV9yR2JLLW91NDNuQ29MY1dGYjhrNGNaLUNNMldMUTlmY3RjcVZJRS1FUkHSAfYBQVVfeXFMTUxBR3Zqdk5DdU9OTWFKSWZLaGVRMFc0ei1XT1dXR0xBOWExU2llUnVna0Z2bkFuMElZMlNEcnRqMWhoSXcyaXA4X09QbmtFV0t2WncwbzZfV0VVc2oxc0hHTXo4T0RRblNnVDl2QXNfbVVmTlRZRkFJdGZjUTBHYWs5cWREc2MyNlJjci02Ynk1Ty1iakhYY2dscS1nYzRiTXBVWFowM1RxRDBFREhtYkhSOVlhOVBZMHNJZXRHa2h6bHRkVlVSaFpKSFB6NDhQVE9aREtfT2pQX0xyRHpTMnBoeGloempTN1I2UUx6dmxPT1R0OEF3?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "Villa Niza florece: un punto crítico de residuos, transformado para el encuentro, la lectura, el arte y la diversión en Medellín",
+   "medio": "Alcaldía de Medellín",
+   "fecha": "2026-09-26",
+   "enlace": "https://news.google.com/rss/articles/CBMijAJBVV95cUxPcnBCMWpkZU8yZ1N1WnpiWXh5TERhdjVnTWZzYVlQVnhGUmlubEFJZHluV05TeDZYSHdRc3EzR3dCLXduN2k3TXQtcTZ6all6cmtqa1RVZENIYlZ4bGFzX3B4YUJtamRYU1FueG9ZVVRmaGt6REViNXpfWHZmQk9wTUFFcEs2aUtnRlEzWkdtaHUzZkQwRFI5X1NhQUlLdkJCa2JQbzNwRTBkUGltNkxnWWlXRVpFRG9QTk1Sa3NINGloTldYMlBqNi1ZbmJQbkl6TUEwRi1MSkpjNGRGRHlWUzZJVkswZkZhcVBDemhISTFuR3pkN3ZiRWNHOHY2MUt5dndlUU9TR0QyMlJp?oc=5",
+   "barrios": [
+    "Villa Niza"
+   ],
+   "temas": [
+    "Basuras y aseo"
+   ]
+  },
+  {
+   "titulo": "Accidente múltiple en Villa Niza dejó a un joven de 28 años muerto | Q´HUBO Medellín",
+   "medio": "Qhubo Medellín",
+   "fecha": "2026-08-23",
+   "enlace": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOQWhoa042eldieURGTU5DSWVCRi03c3lLMy11dkN2cFlxa05hd0QyMHhhUjhmQnExeXhHZkkzQUU0XzlwVG5sOUE2M0F1RURWek0xTU1YeFExNVhxOWxNTUNDTUc1WWxjaWIzSkwyMndlX0l0Vmt0NE1OSlNxU01rNDNNM3J4eTdqSE5TQXBfWkVnd2J60gGfAUFVX3lxTE1HcmVFVFRmbTdLWUxLaEotNnIxaU94ckV6eW9JcjhEZWxvZUYwZzFVLVZFcEtWYUEwYjVjMmtnYW5yOVAzaURmS3Q2ei1fVVBPdXRoc2VobTkzMzRTOFljd3VLNmRXT196cDRXMXB1TEFRUmpSWkFrZ3N0V01hOGhFU1RSbVdHcFBvOFZCTVh1elFib3V3WVBnaXVoSHR1MA?oc=5",
+   "barrios": [
+    "Villa Niza"
+   ],
+   "temas": [
+    "Movilidad y transporte"
+   ]
+  },
+  {
+   "titulo": "En el parque Primavera Norte de Medellín ya comenzó la construcción de la cancha sintética Villa Niza",
+   "medio": "Alcaldía de Medellín",
+   "fecha": "2026-07-02",
+   "enlace": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxObkxPdGNjSmlWam1wV19xQUhxTlFHVDIzRG5xWEtFYVFaXzVtNUVad29tcy1keEZKWFpoZlU2cDFmUFViSkZRTF9IdWh2aUhMUGFDLUo0cFBSdFRUZG9PZWludkdjTHB1V2dzLVhkMjFzcEI3ZUZiNHpPSTZOZ05YbjRmTWFrTXNpQmk5T1JzaW1XUkJNQnNDWFZMdFJvdDZkeW96cVVjVGJJcHR4MmM2Y01Tc0J4M1VyWDU3RFFzSk9DYnpQbXY5eDdMZmx2cHYxMFN3RExfY3NSWk9oaGMtcVRQNWFzT3NmWEZpTGl3?oc=5",
+   "barrios": [
+    "Villa Niza"
+   ],
+   "temas": [
+    "Espacio público y comunidad"
+   ]
+  },
+  {
+   "titulo": "Tragedia en el Nororiente de Medellín: Hombre falleció electrocutado en Andalucía, ¿qué pasó? | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2026-03-24",
+   "enlace": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQc2NDSF9vdXFmV0Z0aUtLdUEwNDdSN20xZjlLZnR4UXVzNnhlVlZzeUtXZUluT0w4c1A2b3RZMy0tX3BIc2hKRkprSGNVRTFBVjJldzdSQ0l5ME9sS0V4V3IzQjljazlYZ2dJRkZRd3hPRWprNnpUTWpPTFZYbXRLS3hqZVhyeUlQNHByUmx4VWpSdnBQZFJTQkRMUk8zc3VGZm1LNEpMOErSAa4BQVVfeXFMTVByenBFVDJZNV9vT2JNbnZ4bHZIQWFWWU9meGRJYmhMakNabTJFTTJIdTlQMld5Vm5lNEE2bm9lMk1MT3ZMcnZIZC0tSHBiRkpzNVNzZVhDYWZRQUR1aXVxdG9UaGJEZ25NM3JReG5TX2N6enFZNmZ6aW9pbXU3UGsxam9xSVVmTEtSVm40UDZId0dSaVVGX05McXYyNUl1aU5RUEhncVQ4NUtFMUxR?oc=5",
+   "barrios": [
+    "Andalucía"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "Accidente en Santa Cruz: furgón quedó atravesado en la vía tras chocar con un taxi | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2026-03-05",
+   "enlace": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNMjJzNDhFM1FRaHpRSWJsY21IUWtVMXFxdUxzcVRFbjd4a3p4Q19pZWNRMG5feEFxMXBMU1dLenU4RnRpVVpIWFZNYUhmdHZ3LUtQdkZSYkFUZ0ZkbXRtaGFnUDdzZElSQjJXZXlUSUhxSHhQU1J3cHd4cV9LN1oxNmNNV0xqck91UkZKb0dNcnlxbEVNR2RhQmdobVh4amxrU3fSAacBQVVfeXFMTldwRV9DMDI0R21NR3BnY2F6YmNwLURTV0Y0bV9jTE5qV1huQ0hXTk5KbEpuU2JBbHB4LWM2dzBwc1ZmczFrNk5LcHNSNk1taVZUT1pzMS1oV29abGhkMXlscjZya0pJbk1CSWtHRlJWeUphd1BTS3dwQTVkZ0hXYTEwaWo1M0xYQktLUFl4MHN0Ri1pVF94N3puU3RSLVU4bldMTDd1LXM?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Vías y huecos",
+    "Movilidad y transporte"
+   ]
+  },
+  {
+   "titulo": "EN VIDEO | Denuncian vertimiento de escombros en la quebrada La Rosa en plena temporada de lluvias en Medellín",
+   "medio": "Teleantioquia",
+   "fecha": "2026-02-16",
+   "enlace": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNaXpDNGJmUDhBYjlDaVpLLTlualZRc01XUnhzZUV4UzlIRGNUYkNQaGJvSWd2OXEwQ0JhUHE3UkRDQldiRmdhYi1MQ2pkQnk1al9qaGtvRWpodU1xMjlYdXJMRE9xZXlZUW5fTlpiZ0NXcFNmdVFfUFBQbzNmbE1RaUd5TlZaaDdNX1dxYTFHQTI5cDZWWXU4bUFyaVZiSl9iUFQ1Q0tVaUd3NUtCS1BQMEJNYmhPMW5ma0RIaE5vYi1rN2xOSllXUHhDeGVseWxjN1ZGemtyaFp0Qy0xS3FQUEJ6bFIwWFJm0gH0AUFVX3lxTE1HMk9hV2VSLWs4SGZtZGszYzJBSVF5Ym5SQzVQTXJ2cEhOOWFwRllqajRucHAtdmxlT2tuTWtzSXNpTTdxSHgyZXdiSW4ycm1mTmVQVzQxMUN6ZGtnRFdTZkxFMFl2U0RBdFcxc0U5UHJLb2pKSGFrbF9zYVJZaTVzZVdSd1FCZGd3MGNEaHBPTzZkSXd4THFzYzNsaDFWcFUxTjVoTldzRHROWF9sZ1RKLUtHc1hiakFvbWRvY19ic3Y1R1lqUVdTYkJpNVdwakYzR2FJSFE3b2tmdVdvQTZoNGQ3Vjg5TW5rRUsxaVNVcm5qSFI?oc=5",
+   "barrios": [
+    "La Rosa"
+   ],
+   "temas": [
+    "Basuras y aseo",
+    "Riesgo y clima"
+   ]
+  },
+  {
+   "titulo": "Un paciente psiquiátrico habría iniciado el incendio que consumió varias casas en el barrio Andalucía del nororiente de Medellín: esto se sabe",
+   "medio": "El Tiempo",
+   "fecha": "2026-02-01",
+   "enlace": "https://news.google.com/rss/articles/CBMiogJBVV95cUxPdW1vam5CeFJIWFFkTzdsWGIzZHhBc0s1QVRQdGFWRHUydVU3WUdlaFZsUHNQN29GMzN4Mm05Rm9xeDhHME1nbzRJQ0R5TFhiQzdJZnYtLUo5M0VsZ3JLNkZqU2dmOGlES28xZkxhRUJhUGlIVXp4NEFRd2N3cnhkYnJ6YlRTMjcxWGlzdW1mWVNMR1VBZXNVZWRfVUlHekhIQ3JrVGV6MjllV3JLMjM0dmUzM2J2WXJQUGtPY0ZLdDY4WlZJQmRvbEFFRk8wLW53WWVQN0doVXdQVTB3eDNkTE1rSV9mbmtSWjhZRnFZaUhFNnF4OXBocUNwa0h6aFhkWjQyNVBCTlJld3JvR3dlcHFmZ3EwbF9tc1hkNjZHUWNQUdIBpwJBVV95cUxNWkx2QXprTnluTmV6bkVSazdPWXJXZUpYbjM5TVFQbXI3cy13bVBlclZ4WV8yUjM2TXFYRWJpcnlBSnNPZGJOSmI2dUFwQ1YtOUFVWEhvTmdUdVFma0dWbTNqLTN4RUpNZV9uaFliUnRXVjB5aVRLeTl1aTVyb01MQTVOMXVWdkFNVFVSVWl6ekVJNXoxNExIQzlKT2VOalhMd3IwazlFcnA2ME5Xb1JUWWY2S0ZiWmJDYTQxTkt6YTNCTVVGTVhmUjl6SkFfRm9SQ2dSOEcxb2hTNEk1OWMyN1dEYk8zc0F3QVhfdXdJRW5Sa0Q4ajVrVnlreWw0R2JGYVY5ZTBJWEMtbjNtMHBtRnU5S1EyYkw2UFJpeGFURUJULVlMX2xF?oc=5",
+   "barrios": [
+    "Andalucía"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "EN IMÁGENES: Incendio en Andalucía dejó, por lo menos, cuatro viviendas destruidas | Q´HUBO Medellín",
+   "medio": "Qhubo Medellín",
+   "fecha": "2026-02-01",
+   "enlace": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQN1ZKRC04eTRPRkE4N0N5djZacjYzbTduTVpTVmpRV3RNNWM5aHpiZ3RlUjNGUjFveDVQdGhyVFZ3LS1Yd0g3b0ExNFFkQUcySDI0aEVvZS1rcDBaakpFOFc2aDJyRmNSbFlIMFNZLVdGYXBfNlJpdXI0YlhZM3Fubk01blVIamZSUXBPVWlvU1NHZjgwNWlvRTVEb1U4bUthRGRQZmhlY2k1N0pzd2U5cHgwVkZnVVU3cHNSa2N0NXF1WEZ3WGh1MTZBa2lrd9IB2AFBVV95cUxOSVVpakk2bWx1UkJmR3dSay1ybWVHTTNibGZwUkFmc1UzSThNNWJxLUxwTHhvZG1ZczlHRHBWNDlTUFoxTGIybmstQV9tTmZCc0JGTm5TS2t4YVVtNnozZHZ5VGRNQnJkdnJRMUo1TU9RTF9OM3Fvb0N1cDdOU1p6b0M4ZGVxVm5id2xldE5wRU1wNE5udHF3UHNRNkV2aTFtQ2hzdE9Gb3lpY0RjRmVyZm5KUzVxdldTMXVqTDlPaGNRekFraThsaFliRXd0S1ZiYXVFMDMyVzU?oc=5",
+   "barrios": [
+    "Andalucía"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "Iniciaron las licitaciones y primeras obras para la construcción, en Santa Cruz, del parque 'Primavera Norte', un proyecto estratégico para Medellín",
+   "medio": "El Tiempo",
+   "fecha": "2025-07-15",
+   "enlace": "https://news.google.com/rss/articles/CBMinwJBVV95cUxNQmgyWkplcFktUVNCemxxRnRPZHY4WW5EQ0JyX1BOSWI5LVBSM3MwOVZ5ekpVVUxsM0Iyb3lNUTZMNW9YamlFNXdXclRJN0JFTnRLeEQ0ZFRQRG9ySHNRMUVEQ3Y0VVp5el9lZ0lTN3hqa0pUUGdscUxhODJWMlFrV016QkNnMUtab2hSNFJWRWQweXd6c2cxWW5PTWF5X0E3UzEyYlZQV3BjYVJ3Zkw4Rkc5RXRBQ3JKWUxraFFKTlNNV1FNLVBmTUMwQTF5aE5nNG4zNEpEbUViVzVFMzljSnFmaVR5ZXh1UXdCVzFHQVdSWnJDd2d5OHpkTXB4Q0RyNGhacHE4bm92b3Q5V2kzMWI0Ymp3bXRWZHVyRHpwc9IBpAJBVV95cUxNZWFMWF93TmpwSFNHU0tuTjIzV2FaTDcteGl2eXV3R2gtTWt3WEo4U3pkSzdDX3V1M2dScE8wUHJPcXJmNmNydTBsZVdNTWx6SzZzSlZtRmRfdTVwZ0pvekluRDAwRVZKRnJpRjV1bzhiLWFDUDU1bVlPQzlvc1VQS0dTeEV5YkxpVzczNWF0MXZudFc2RWFqWWs3ZmNETGFYeVZBNGVjMU0xdFFnVXNpSTJnRTNBQ2Z1a0lFUXdrcmtCTmFFLV9wd0UtUWxJbU8zQzJQTE5UZHJ6NHFZMTRvNmVaakdxcHIxWmdkb0lOc3FNSHh5b2xOX2htb094bWVLRHE3ay1ZNGtvRkZtMW1DWF9IRnpGUEZMYkgxdVZqR1g5Q1Jy?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Espacio público y comunidad"
+   ]
+  },
+  {
+   "titulo": "Dos personas muertas dejó deslizamiento en Santa Cruz La Rosa, Medellín | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2025-04-15",
+   "enlace": "https://news.google.com/rss/articles/CBMingFBVV95cUxNTG9ka0ZucHUwQXFFamN1TUNLNWVsamNDMjhjQUJ6Nks1WC10TkZxSnFuUmlvMG1XakpEaUZHcUt6UHZDVmtYdHpxTm1DNmNyMTV3cDRLLVpFTjhFakxIeFBIVFhyN21YNmhuMkRHRUk3bzdfTWFUem41Ym8zRUtPUGlUTWtHbFVSbEVDRjNLcWJ0SW5WZHdEdmJzMkxZd9IBowFBVV95cUxPeFJ4TUFMV213LVZKanFEZDdMZWJfSXBwMW5HanpJTlk0Q0Z2Y1ZId3FMLTFTUjM4S3dkTjY1cnNISWc2NGQxNXZrQzc3N3MzUnRienZhQXBiQ0hrS05BUHpndTA1RWdOT0txYUpMT08zNUxnSkRuNHhmNE9yVTI2anVjN0prZGlrcmtmWE5jWnhqRmQ5aGhoQnlRam1wR2YyUTJZ?oc=5",
+   "barrios": [
+    "Santa Cruz",
+    "La Rosa"
+   ],
+   "temas": [
+    "Riesgo y clima"
+   ]
+  },
+  {
+   "titulo": "El alcalde Federico Gutiérrez llega con la oferta institucional a Andalucía La Francia, en la comuna 2-Santa Cruz",
+   "medio": "Alcaldía de Medellín",
+   "fecha": "2025-03-04",
+   "enlace": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQbW45amtWdTdDZ1ZVMHN5aUxOUEF4RktscEVleUp3QjhSOWVLVkpUWEVFaDVFSk9KODN3RU94ZlBMYlFHdjVtNm8zQVJZV3VZWUplQTI5Mi1BMTNKY2FuRFFBT1FFWkh2d2lpM3d5WTlBWFdLTVdBTEx5X0ZiTm9yMDhtelZNRjg5VXdUOWhzUFowb0phTHpxRFgyRWRPUExqRlFMRDUzTnBYWWxXbHFneXBJenRCZ3FGalU5Y045ZnZVTzJxcF8ycEpSTk05bjJ4UURzbWcxbnh6TnZMYi1RQXRTd280T3g1YlkxT1dSWTIyUVhWbVJxVQ?oc=5",
+   "barrios": [
+    "La Francia",
+    "Andalucía",
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "Ampliarán sede de Metrosalud de Santa Cruz",
+   "medio": "Telemedellín",
+   "fecha": "2025-02-21",
+   "enlace": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5MNmV2SVp2cURfMFRrRk1EZktlNVdITkp3TWFmZ3JYWUtwazBrc09KeGxGMXExdWJucXRiMUd4Z05PVVJqMnVlaEtCX0RIRUpBT1NpVkw5LWlacndYSVlpZDlhYWN6UXZTWkxVRm9PUUtmVkItckE?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "(Video) Vehículo sin frenos embistió a cinco peatones en el barrio Santa Cruz de Medellín",
+   "medio": "Alerta",
+   "fecha": "2025-02-09",
+   "enlace": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNRDRjdVBjX0VFSmVEd0xBdURoQURnMFhQdG1Iak5wLXFhREV2ZUxoSFlsZWpSMFRUYktZbGFhTGljeEczVTc0QW9wVGRxVTRfazNUanFXdUp1bWNUeFg2MmE0Vk1lcXJwZ1ZUeGFTN3RGVHBpbVlWSGVIUHU0QmllbTJoMVlsQzl2WWd4elJIWmYwRFUwaWhJdmw4cWJ2elQ4MnhFMTlxdEJDLUF5dmlqQW1CZnFqTnVqdzU00gG_AUFVX3lxTE0tTVBkeEQwUlhDalo1Z2F2c0hSMVQtT0pGbGFoYm8zRE0xTUd1Vld3VHB0WmtjNnY5T1F3TTVES3Awam9uR2h0dHB3Y2ZZVFZZU3UtakZVSVhRaFZER3FrcFZnN3pSV2xjNmFMSkhTZXk3WnNjdm9lNE9Mc1Y5NkxvVjl2dFRKSExfNWl6RkhPZUpsMjVmR3F6dU9QWjBqRHktTlcwLTI2YnBpVk5XekhyNEVDNEd2elN6Tk91cHlR?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Movilidad y transporte"
+   ]
+  },
+  {
+   "titulo": "Accidente de moto que se estrelló contra una casa en el barrio Santa Cruz, de Medellín, dejó una segunda víctima | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2024-11-29",
+   "enlace": "https://news.google.com/rss/articles/CBMingFBVV95cUxPRWZENWxXcTBoY2xOY3RkRzh5d1ZtWFlvbndyaDMwWmlaaUY4WFJjbl9tRnZFdFdjWXA0VDF2TGJfT3EtU1JEX2JfQ29RZmVwaXJLMW9QdTRJVENPVm1hR1NwcmFfYUttaTZQRlVDVGx0eHhmeDJlS0JOdDNGenJOTmo0M2pxcUdkYnZEejFDQThTdDd2cEtTWnpUYjQ2UdIBowFBVV95cUxNZWNCdUdmSUw5SEszcnNSNnRsNGowOVFTWDEyVEpfbFpuWURnampHZzhYZEZ3WnNtRF9FNlJDeE80V3kyQ3JYQndNUnZKN3NudFJ1WnZkQkdodDQteDNBdTZGblAzVlNfdldsLUprRlJIY1RTMTZCVTVzdWRsWWZqaXg1Xy02WWNyWk9idW1feEdDd0hMNzhNek9vRlBPblJFZldJ?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Movilidad y transporte"
+   ]
+  },
+  {
+   "titulo": "El Sinaí, en Santa Cruz, debe ser zona de difícil gestión",
+   "medio": "Teleantioquia",
+   "fecha": "2024-11-28",
+   "enlace": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQMC1oRlptanRJR2s3UUtNdzdFdFV6UlItWXR3aXM2Tzc3Z2VRMm1OMlJmbnp3MUZidUdGYXRtX2pFR3paN184V3pZR1FibVVJNWFXTENjOGVDdHFhWGhPLTZDWV9fdGdyemdGUF93QV81QThXV0cxblBHRE5HNWZJMFFKOEZnVkhxX3hQN3VQOE9CYVdpWjlUX9IBrgFBVV95cUxOdkh0ZGVzWWF0d0U4T2E0V01FODA1WXBZR1NEQjE4QzNBRW5BZkR0ZDlyNll5QXNmOGlNUW5fYWJnYXBxV0RaVVMyRHZFUlo5OFVsdmR3QVRRaU83bFBuVVRHbXVoTGVrdUFDUEZ1RGE5NXlOUHg5TXJpQXV2am1aNmFuNXlneHVEdUhKak9NeDBpbDZLM0hyVkVVUl9LY1ZKZEprRnp4eTZyOHplcXc?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Otros"
+   ]
+  },
+  {
+   "titulo": "Accidente de moto que choca con una casa y cae por unas escaleras en Santa Cruz dejó un muerto y dos heridos | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2024-11-27",
+   "enlace": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOR25xOFd5NF9kUzdVTGlOVWJMeWtoVXRBVDZkMWdUc2ExWlZPY3MwQ0QyWUlOelVCMW0yN05rTmNJT0lQVUJ6TzhlQXVqV1hkZXlvOW5yT2RtblZJWDVnRWFHUTdHM0VheGJGT1A1bjR1ZzBLd1RUUFlMaXctcHZNd3FCeklPWnFFYUtEaVV0ZkxuZV9PY2E1SFBJdnY2M24yeTZiaFhrNy1oc0VxLVhLU1l4QXVYc3NfbXJ4TXYxbTBUY2R3SXfSAcsBQVVfeXFMT0l1a2dCSy00d0FRdWFqNHV5MTdwZnRaMnVUV25fWWd6c2pFUGdVWFZqajlrTlBOSTNlelh2VXVyMmdXa0wtanJFcGwtTmlaNUR2RXE4V2VrTlBKMWtzWHlwaDVLNUpGMXNMcEY3dUZKcFZDQ2NITGNGQklZUWVfSjdVS0twOFVPVnNSZ3RCVVpRckpSWlF2dGhqV0FqTVdMWGRxNFF0eW1YenhLSTg4aHZ5UWZhSjNIdS1sSWxsS1pSa0dyQ0E4UVJ3N3M?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Andenes y escaleras",
+    "Movilidad y transporte"
+   ]
+  },
+  {
+   "titulo": "Pilas: por reparaciones en Santa Cruz otra vez se fue el agua en varios barrios del oriente de Medellín | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2024-11-15",
+   "enlace": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQWXlHNTRaQWpBSGVzWERQVEFERFRTWmVNQkp5enc4VUx0YjZYT2ZRU0NON0xGbVczXy1QSmN1NDFJSm56bUN5a0Jrc1NzOWZkRGZ2a3E0MlpLYk0zVFJYc2ZCVWRFU25SQ18tZ0hVNVBuZWpEVnZwdDh6dHh1ZUpocHEwOXozWFBNa1ZhSEZacFNkZHJuN0ItdHdMZHA2MGxyWFU3OTZOTC02Zjg10gGyAUFVX3lxTFBRX1MtbXh0WmFQSFJyNXlQX19WaVdUQjhOWGN4QUNBSlkzTUkwdzF2aE5CRjlJVlVJclJPa2dSS0lqd2Y4aUZfZFFQRFdOYkRkRjFqaVlhb0NNc2dtLTB3MG0xS3cwOWVRc0QxT25wT0h3VnVWQ1pmcEM5a1U4YkdaVEt4eWNlWW1BUEhTelFEY2VyMmROempOSHlINUJKekRpci1mV2NKekNnbVZnODhLaHc?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "En atención de la emergencia ocurrida en Santa Cruz se interrumpirá el servicio de acueducto en sectores del nororiente y centro-oriente de Medellín",
+   "medio": "Portal EPM",
+   "fecha": "2024-11-13",
+   "enlace": "https://news.google.com/rss/articles/CBMixgFBVV95cUxORVcwbkwwNzBiRTNsTFpMUnhtX3BmN3pqbnZyeVIxb3R2N0s1NGt5OGY5aWhidS1yWTZDTUk5REp2OGJSSFpwVy0yS2czTFloVVdPOVNTSzkwWlhRcExmTlB2TzZBTWlhUkh0djRVb1V2MUNWTm0wdjZONmNIUWFNcE9weWRQQ1NGb2dKbTZFSGFYUTRfTU1RR19WLVltcU9Ra055dWw1dDNxRDI5N3piVVQxVlNLTWMwSEdBeHF0QnZUYXM3dnc?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima",
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "Casi 96.000 personas están sin agua en varios barrios de Medellín por reparación en daño tras emergencia en Santa Cruz | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2024-11-13",
+   "enlace": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdmdUcm5ERy1iQVpOd1d4NFA1Vm4zbU9WeHV2SmRNd3RzTFdVV2hnRFk3cHFuMnpVQTd0dk9EQi1LenRHV1ZpVjhaRmV4SHZJeXZkU1FJWkJkQThsMXB1T3hQTy1VQ0Z1MXJfVGtWV2FZMF9OM2xsd2NWU0piem1oSVduYnVHVnNDTmtvNVBnN2M1SldINGlEN2txZFRQQXVhYUZlTnE3N3FtY0RQY0HSAbMBQVVfeXFMUHhyMmZLc0FhLUN4WHFOWDBYbVhOdXFiZ0JkWDVrVGZ6NjY3WjlORXp6YTBxZ0g3c2xLS2hYbVNfazdkV0FZOGVtM3lBVU1xSDFXX1lWUkIyZVFFVm9RNktCMm9rLVFmYlg3MGg5QTJWa2JENVpjM3hvU3R0WnFQeWt2alBBeU9Sai1vY0hGbTB5QmZrRXl0eDlsNm8zdmpfRmM4Y3FpRWhTWHp2Ukp5TEZibmM?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima",
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "Cierre vial indefinido en Santa Cruz, en Medellín, tras emergencia: vías alternas",
+   "medio": "El Espectador",
+   "fecha": "2024-11-12",
+   "enlace": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPOU5nTGVVaWN6bV9BVlBIeEJ2N2QtU1JUUkpvbERUWnZ1N0t4RkQ2VmNTUWIxNnJ5RnlIeFNFbzFyWWdpeGJuMUNJRS1OQ2NPbkF5WVBsVXVMX2tEeFljUXRTaE9BWXhsRGV1OXktaktkSHFhaVNERzZMU04zZmZ2aDVtMlZKWHVhUFlhd05PWWdMaTVRQkVOX0Z5ZTZKVWZKeHk1R1ROMUxhdVZsNWxUVjgxQ09DTW9jZjFvS3lGRFrSAdQBQVVfeXFMTndOQTBraUlsX2d5cFNoOFB6VVhIYUpVNDhBcnVDajk2QnEyYVhqUnR2a1dZek5qTlEyeExaMnBfLUx3OGtYZk5OVXVRLVM5b2l3VUYtRjJVVERpcTd3LVcyNllWZUVhR0RFZzRjaDNWVUMzNEZIRldSNnJaOGtEY1oyYXlhOGVjLTBQYVRraG0wMzVkRktKQVQ2Tlo0UDdhcXlRbUJGa2ZJbWlsa19QelhLNEt1NXR1bDJ0LUtTUGJuUWhKeEtveEp6WXl1Y3ltZThOcUs?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Vías y huecos",
+    "Riesgo y clima"
+   ]
+  },
+  {
+   "titulo": "Habrá cortes de agua para 17.000 personas para avanzar en reparación en Santa Cruz",
+   "medio": "Caracol Radio",
+   "fecha": "2024-11-12",
+   "enlace": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNVjhRWnlnQUkya0h3OGlUN0xhVlJ5R0d0WW15UzBTZS1YYjhNOGpmeE1RLVlWYy1McFhWY0xCblN6dUdSbVpXRlRsb2VmcHdqNEUxaDRlUzJBZTFtTmhFV2lrdnMzRDlfMGpOYmpOeVFkLTV2TzNmTl93WVdmQ0JzYTItc1lZMktFRE9UeDBGYVVBelQ0Nl9MT1FDWFdDUkxObHdWWUx4dGluMHgxYzYzMDJOSG5xcGPSAcsBQVVfeXFMUDlyRXRzTlJobXM3TWdpTnBPLUJLS1ZtY1REaVlBUnV5REZxWUs5TVpYYndSUG9nWEt5TE5oVjJIaGJHQ2I3bzFXU0plMFM3V041Szl2M1JvMkVLbk1IQXpKVkVUdVJnMm5zRXNnZTZxcDlWNUlWWWtKUFROMDBfZVVpclZUd3JWWDktaDhUWHNtSThMME93d2xCeC1nWHA2M2hmQ01FTEY0WUZ4SWcyd1Z2ZG02NzdscXdTMlpwYmVyTnlHWEJlZ3NLbTA?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "Más de 700 damnificados deja inundación en el barrio Santa Cruz de Medellín",
+   "medio": "El País",
+   "fecha": "2024-11-12",
+   "enlace": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQdUdYS29EdmU5TlJvdzJ1bFVWcFJBT295VjM2cXlZODc5XzlpVGJjeDVjbzU2TGthRXd5ZkcxS1dMbzNTbWh0b0lvYWRTcll4M05wbms5cWdBc1hlTk5PSHFfZk95cG92bTI5Q0Y4cm5pUjk0cnRia25hWGJKYllSRWdqWEZXbTFpQVFfWXQ5SUxxY2JsamtsRW5ncjFtcTNNb0ItbHc4TWdiTHd1Z25fZ1RkZ2lpZFZ6cFlvZNIBwgFBVV95cUxPakxpbGRTaHZjQjRfUVZGZjNkb25fX0ZlTHlQc3B3UkVQSzY3aXZEWjJIQVdOdnhSbG52ZWxFTS1NRDVUMXpYVnU1Qk16MTlNMV9ycERDdU1mWHAwb0lVSVdrN0pxUkJRRkZTc0E3TlVON2ZieFppTFA5SF9GT3hONGdJWGpyYXlWNUx3QW9HN0tBT0p4YmdkUFIxMXdLMjhwdXhEV3RWWDZhVmRpdW5ZcWpGU3U1RU1YRWVrMEZXd3dEZw?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima"
+   ]
+  },
+  {
+   "titulo": "¡Pilas! por la emergencia en Santa Cruz se fue el agua en estos otros sectores de Medellín | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2024-11-12",
+   "enlace": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOSzNzMWFLQjYxeVBZbDBqMmxzYnJpMkg3QW01YlJCb05PTFctcXgzZmJZYkNmempPY25wWE1wWjluZW10OXhCMFdIckpoS3RLYWxxR0RybmM1VUNnT3dTRXdmd1V6UGE4STVmcHdLamtweU9qemgtSDhKT3NRcnpldmJkWUdBejFFQkcyS3ZTSUZDYW_SAZgBQVVfeXFMT2czR1IwZWVnamp3QzhRT1Z4TGRlYU8td2VQZDF2TDFPR2hDQ2NLNklXamg5c2NiOVN6NW1VUVVHQ1dQSXFsWW5TODlBdVJld1hqWXljR2ppZGlZRGpoa3p3aGlYVkttekdVaUU0VjNQMkgyOVEyZzhRMlpncFg3R3N4cWZEcHVjVVZRS3BXR08wX3c0aUNDS3E?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima",
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "Así avanzan los trabajos de reparación el tubo reventado que causó emergencia en Santa Cruz | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2024-11-12",
+   "enlace": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOYXY4Q1gxRWt5MGJFSGhFQ01wNGdnR2lpV2xnblBXak5wTmRaWExpUjdTSlZlOWd1eGhfZUFtSUJQT3h5VUt3eXBxZkpNU25nTFc2VzkzNDV6bWl4TDQtc3lGUkR3NWVuZDZYR0oyQTVibG53QUYwNF9yY0xpeXlzYXc1UDRFdnd1aVh2VU5vcWJ5Ym0teWxzcW43c3JSb1M2SGZINEQ5RVk0cGwyUlY2bWFlaTM0d9IBuwFBVV95cUxPR2NnUkpyekpJTlFvMmlqWHRqYTV5UjdGQVFzZElxdHdIUWFmUjl0TVNSMVpNVEpNOF9DS0piYW5Jb2pyVF9MRmdSXzJTV2NEQkN1S1ZJLW8tcWFVei1oS2dZZ1Q0QjVTVGtTeERlMzRkMDFYcHhDSnhPVmM3ZEVaX29ZQmk5ekQwYjBtVXBfU3NtRndHN1ViSzVTWEZGU2pBVDB1Umw5ZkotUVR6cWd1QnAtNzdjQWxvems0?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima",
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "Más de 17.000 usuarios tendrán cortes de agua por emergencia con tubo madre en Santa Cruz",
+   "medio": "Blu Radio",
+   "fecha": "2024-11-12",
+   "enlace": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNUm44eXltbWZVUTFDRnF2MlhIYkxlaDllMjgzclk3ckVjVlJPYjNEamdNbEstNEVJSm0zaDQzNEZibWlxNEJjMGVuVE12LWVqdnZmdGtUZkNYUTB4eDI4Vl9oVERUVXNjYmFqZXNaYUJMa1JMTXc2QnhHZkNQMVEyQTVGemg1a0JjR2JRZkI4WVNKeDhaMmxrWWQ3SDNhRm5peGV2T1FuSjVUY29ySHNxaWhOQkkyQ01ERVRSM090X3JCLTRDUWVQYmtyMl9WUTdBQTIwY9IB4gFBVV95cUxNbXNuN1Q2S25xUHU1cFdzRGZrZ01XQ2dsT3dFdHpFQkhvQ2dUT2xLazllVHZSUzlSZVlYYUJlVWpWUTFWQU1hb3dDS0Q0aGNwQWhCT1drWWhVRmFoUjNOdDdud0RhS28xNVVyVTV2SkdxaDNIc0Z3dDBNZTdET1RTNXNpdnpCeE83VG9JVzdfLUN1VUhuNGtlWkV0N01zRERaQWRZUy1lMWRadUtHVllUUkhuVlNpdS1XNHdCMEpVeUJ0U2QzcjZYODZlY0lCQ1lWSmFQV2Z2SEFycS0tWm9ReTRn?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima",
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "Emergencia en Medellín: alrededor de 700 personas afectadas y 13 viviendas con daño estructural por inundación en Santa Cruz",
+   "medio": "Revista Semana",
+   "fecha": "2024-11-11",
+   "enlace": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxQbklDTVJRLWJDd2p5LTV1Tm9ieFRrcEEyaEt5aVVEN1hZTi1JMlZmTFRsU25yZlMyamU2OEljcDBadmVMazZMZHdvenZnTjVhTGNsalZoSWszSE8tZWo1aVFWa1ZxUExJb0RQek9jd1pGaXNhVFEyZjQ4YlJVbV9xV245NEJHTmM1S2pWanVDd3F5Q04wcUdCNV80MVpkOE5iay14Ym1aRkszdEw1OFNNYUVKbXBNbTFNMG1pTTJ2UUZydEMwVGxMUDltMUVlbVE3ejVvNll0V1lkcXJ0a25RTGdPbmo5WWxlbzFKWVFjakItT0ZQWW9zSDRxZGhzczQ?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima"
+   ]
+  },
+  {
+   "titulo": "Decenas de familias lo perdieron todo luego de daño en tubo madre en barrio Santa Cruz de Medellín",
+   "medio": "Infobae",
+   "fecha": "2024-11-11",
+   "enlace": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQY1EzSnVEVUoyVmtiQThhV0UxRmNvdURZOXdhTWdVM3ZlWnhnTlFoSGlMaVRxcGRjY1I1dXhfeldycDA2UW5QR1BoV2tpWW5sS3VoNzFUYVZtb24wQlRtUlVocWJaRmNNVUJ5TF9IQTZFRXZLeTE4ZUdwWktWeldrZnFOYlJ6UnlEMmYxQms5OVRNUjFSYkExTEJpckFxQzZiUzk3eElPbXJqTm9HX3NSR0N6NTJqX295bmJwMlBBVnc1dHNiRUVJOUIwbmFMY09QemlpLS1STm1NTU3SAfYBQVVfeXFMTjRlR3dJRUNzcE1ZRHBYNWMwa3dFWnFiNGxXdk1PTkNWM2hnYk1ueGVWVmUwWGpHOWk1OWVtZGNCaW8tazV6YjhMM3ZfVWFsazBSVVZ2Mm96YWhabFJNUFY0NEd6TjdYeEpMcTZiVHRaODFKOThKRE9qRnB4TnY0NDNsMWZFVzZRb2NKaGtfbEpHUENGRlZnTl9JU2ZqZ0NvRmlweWl1bDVsVmh6YzBrNUVlR1c4dEJydlQ2bDR3ZlVzVVZwbTZkdHdSV194NXI1WW9ub3RWZ19lUzhEZWdBb0JfdXFncXRaU1g5QVdwUUVOdjlxdkNn?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "Emergencia en red de acueducto en Santa Cruz dejó 457 personas damnificadas en el territorio | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2024-11-11",
+   "enlace": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNSW5ZN1U5alF6YUY5bVdkYzVHYXphaWszdGpLT1FQdWdidU02cVN3a0lMWGVORlFfdWNpeGFLNWhTYkp3MEFVM2NheTM1RDFZdXNucW83anJ0dGhvaDRRaHNydmpxSnVtdjVUQzdGck8xb0l6cjRDcW9qbDM0Q1hvNUZjT1V5X3hfRlBsRWxHb1dtd21vNFd5MVhwNm5UVFZ5aU9FcURkeWVWVTdBRGRxOXN4ZVZCdjNVR2tZZGlNZUU3QzVtMExOWnp1eVPSAdIBQVVfeXFMUHJob3ZzRXlSRTZvdDU2NHNiR2xQUHdFWlZvYnNpOFAtQ3N6S2lVTEt3b2JzWXAzNm9QOTFFQ3VsZERBcXVYc2hMeDVxTlo0ZDU3Mlh3NHp2LURRMDlRNDVmUERiMm5CS1FRR2pYOXROaHg2bXp3dVlMTEVPMWdTM0NPcUhSWnlhcEt1ZFNFV2hENDhFUUtsanRwa0FmbG5raUJOT2E3RXpaM0sxcUJlUldqWV82TnZSeHotT3FSR2JTdzFmbEZBVDViVWc3ZUIwT3pB?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima",
+    "Servicios públicos"
+   ]
+  },
+  {
+   "titulo": "¿Quiere ayudar a las 174 familias damnificadas por las inundaciones en Santa Cruz? Aquí puede donar",
+   "medio": "Teleantioquia",
+   "fecha": "2024-11-11",
+   "enlace": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOR0pUNXJabGdYblc5OE9fSzdnSndIYWgzeE02R3BfUldmU1ZUM2pHUE4xNDktWEQ4OVB0cklhTzl1dGpyR0NfTzJMU3hDUUZwSXpyRlE0U2dsXzlFQ2FXdmVhbEJGWW9YWG9jNlQ5Wkwtd1dqTnYxRExHY2NmMTk4bzJETjREZ3NQUUJzZG5tOXluOG9kVzZIaGo3NmRVRXdScktFZ3NZWXBmRnRzcEUtVl9lekd1S1dFeHNDc19NQjJrVmpidE82U19BUXBXVVJO0gHmAUFVX3lxTFAxSkFsYVZVeVItZzktSVJGNXEwcXJTR0l3UGpxLVBZVTJ1aGstQXlwQ3gtU0paNk9iVk1hS3FEREFfLVVJano2VkVPZlVQMnNpMUxlaUFVdmYyN0NfaFg2aXlkbHZ4b2JyWlBmU2FENnBhZUltZkdSNUM5MGJfNV9FaDFzZWR6WUU5NG90MlI3cy1jOElqTThVWE9CSnBEbVc0Q0FnaTRDS00zdUVBQWl6ZWxQdlpic1pYR2lLSmlUM1B2SURpVmhKbXZmZmN2QnFEaTNYWWowbFRFQmZQcmFSa0dBSzhn?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima"
+   ]
+  },
+  {
+   "titulo": "Video: La dramática situación de 631 damnificados tras inundaciones en el barrio Santa Cruz, ¡lo perdieron todo!",
+   "medio": "Teleantioquia",
+   "fecha": "2024-11-11",
+   "enlace": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQakZzcHVaeTJTNlJOdk5FYzRmbVAxVExkVnZqUVBhYklpbDdIcHlWZGtXcEZEOVRjSkpWOEJXZnF0ZUdZVEpPZHhMRFdVT2RuWUdUOUZMZ3V4YV9sNDFsOUgtdnVXQ2JWT2hReG5DdEVkTU80dXlZQnZNMEtGSHg0MWw2ZWg1TEwteFBXVmg5Y3FXTWJWQWtxZG5pT3hDVE81UWJ4MnpvdVFmdlpPSV9oOV9RYW96c09DS0pXMk9nTGxNTkdkUHlua01maV96QVZSR0NVTXRQMURnTmhod2Jz0gH0AUFVX3lxTE1nY015S1Z1Ukh6Q0F0ZmlZVmVmRjRNZjZwa2lmQ2JMOU1sR2d1N05KbEdrTXJPdDdDemN2cVVyQ2lKZGFSOV9Oa3pveG9QRndsaGNMUmVoMXJMZHJ4SFdMUG5IWjVHWXBHNDU4MHZMTEU3c0kxa3ZtVDVZdVJPZFlFRzM2UTF1MjlsT3pWUEVRWEFoZmlNcUJWdDV2TG5PaUEyYV81WFR5dXZfZnVwT1FoQjFNM1U4Mm4tMU1nWkEwREpMQ29nR08tM1d1YmhhcTBfY2ZnaVN1dTBSSXlHdy0wOWlHc3BFenZwNGxqVGJ5SnBoc2U?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima"
+   ]
+  },
+  {
+   "titulo": "“Más de 100 familias estarían damnificadas”: así vivieron la inundación los habitantes de Santa Cruz | El Colombiano",
+   "medio": "El Colombiano",
+   "fecha": "2024-11-10",
+   "enlace": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOMDk4dG1aUFZ1LW1LX3Z1bi1hbHBUbHkycDdmS1JEMFhiM294NzFfYy1FVmVMNHplYmpNRVJJbjBPTmdJQmJGS2FFMXB2YWRNbGZJSm9aM29NV3ZvWVhqQk5iTnVudnRiS3F1QkpETDY2bEtYbi1mVkNnRGhRSGg5TVJjWkJoaWQ1RFlhelBJamFUYlJOWXdOM2pNWDRLVzA2Nkh3b2F6bEEzTndO0gGyAUFVX3lxTE9sc05pTVRnS1Y4cjRjVUlMbXVtSkg3ZkJPdFNqMno4cHMtV0xIMG80YjExNFZRNGpzcngwUHFRU1BMNGRXdXN4blVONTN5dUVnM1JWXzFINVBlVEloNjFfUzg3MGNNUF85YklveklPQ3Rpa3BBV3lRamQtSzJ3bkd1XzR4UDNPUUEzODFLZ0l2QjdOUDNoWjI3SEVqMVItZUk5NDFlMlNaTUhxZ0kyaGIxOVE?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Riesgo y clima"
+   ]
+  },
+  {
+   "titulo": "VIDEO: Tubo roto en Santa Cruz, Medellín provoca inundaciones y afectaciones en el sector",
+   "medio": "Teleantioquia",
+   "fecha": "2024-11-10",
+   "enlace": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxORzBEckMxbjkwUlQxWlIzMXdkalFlcWJLZ1JHR3FadEI4UG80cE1QYUNycmtROElmTEdrb2NaeW96ZzNQdk1XcVBaMUxZRTNDTVI3R2RyU0pXaVowSVlrX01kUWYwR1Z5UWV0WF9wYWRaSHRZWWwwcmN6WjNuMExCNE52RExmZ0xQTVNxQnVDMUJJZUVYTkJ2eHdOQ0NEcFRrckp6dnZmVUtMNmdWekJjSkNBTGw3bkFodjU00gHQAUFVX3lxTE5RUU5MOU9ocC1vbVQxQmxOSjZlNmZ1d1c0V3pHWXdUaUZscmY4UnU2SERjUjllZlJMZXRzZ2Y3X004MDhjTW90bnpvYWV6V3hnTFNWU1Jra2VyZDVKM2c1UTg1cXVuVmpJRi15NkljckNWQ3hkQWJnUEcwd2tudFFIWjZOS2lJVktiRXdRTmJiRVk2M01oX1NHMG1aUTRIQzJWWWZUN2ZhOE5nTXdEalpHLUdtUFp6ZV9UV3dueFFJN3B6Y1VNeDBkclNhRXNfazE?oc=5",
+   "barrios": [
+    "Santa Cruz"
+   ],
+   "temas": [
+    "Servicios públicos"
+   ]
+  }
+ ]
+}

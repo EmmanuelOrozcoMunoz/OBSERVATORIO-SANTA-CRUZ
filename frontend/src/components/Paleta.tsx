@@ -14,6 +14,8 @@ const FIJAS: Opcion[] = [
   { id: "indicadores", nombre: "Indicadores", detalle: "Cifras por barrio", icono: "indicadores", ruta: "/indicadores" },
   { id: "accesibilidad", nombre: "Accesibilidad", detalle: "Minutos caminando", icono: "accesibilidad", ruta: "/accesibilidad" },
   { id: "prioridades", nombre: "Prioridad de obras", detalle: "Dónde intervenir primero", icono: "prioridades", ruta: "/prioridades" },
+  { id: "radar", nombre: "Radar de noticias", detalle: "Lo que dicen los medios", icono: "radar", ruta: "/radar" },
+  { id: "propuesta", nombre: "Propuesta de valor", detalle: "Por qué existe el observatorio", icono: "corazon", ruta: "/propuesta" },
   { id: "datos", nombre: "Mis datos", detalle: "Sube y mira tus datos", icono: "subir", ruta: "/datos" },
   { id: "fuentes", nombre: "Fuentes y calidad", detalle: "De dónde sale cada dato", icono: "fuentes", ruta: "/fuentes" },
   { id: "m-seg", nombre: "Mapa: seguridad", detalle: "Atajo a las capas de seguridad", icono: "mapa", ruta: "/mapa?capas=mortalidad_vial,camaras_cctv,semaforos" },
