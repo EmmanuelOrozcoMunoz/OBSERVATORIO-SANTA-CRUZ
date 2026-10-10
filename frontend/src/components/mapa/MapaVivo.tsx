@@ -248,7 +248,10 @@ function estilos(id: string): Capa[] {
     case "red_peatonal_pot":
       return [{ id, type: "line", paint: { "line-width": 3, "line-color": ["case", ["==", ["get", "estado"], "Proyectado"], "#a99bd0", "#5b4a8a"], "line-opacity": 0.85 } }];
     case "rutas_bus":
-      return [{ id, type: "line", paint: { "line-color": "#4f86b8", "line-width": 2, "line-opacity": 0.45 } }];
+      return [
+        { id: `${id}-borde`, type: "line", paint: { "line-color": "#ffffff", "line-width": radio(4, 8), "line-opacity": 0.85 }, layout: { "line-cap": "round", "line-join": "round" } },
+        { id, type: "line", paint: { "line-color": "#2f6fb0", "line-width": radio(2, 4.5), "line-opacity": 0.95 }, layout: { "line-cap": "round", "line-join": "round" } },
+      ];
     case "sedes_educativas":
       return [{ id, type: "circle", paint: { "circle-radius": radio(4, 10), "circle-color": ["case", ["==", ["get", "sector"], "Oficial"], COLOR.cable, "#7fa6cc"], "circle-stroke-color": "#ffffff", "circle-stroke-width": 2 } }];
     case "equipamientos":

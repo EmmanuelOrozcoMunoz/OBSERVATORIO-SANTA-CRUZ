@@ -369,7 +369,7 @@ export default function Datos() {
   return (
     <div className="relative isolate overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-papel" />
-      <div className="mx-auto max-w-6xl px-4 pb-24 pt-6 lg:px-8 lg:pt-8">
+      <div className="mx-auto max-w-5xl space-y-8 px-4 py-5 lg:px-8">
         <Cabecera className="mb-10" etiqueta="Mis datos y descargas" icono="subir" titulo="Todo lo que bajes, aquí se ve"
           texto="Sube un archivo y míralo al instante sobre la comuna, mira qué otros datos se pueden bajar y de dónde, y entiende cómo llevar esto a todo el Valle de Aburrá." />
         <Seccion id="t-subir" titulo="Sube tus datos" texto="Pueden ser encuestas, recorridos de campo, puntos de obras, lo que tengas con una ubicación.">

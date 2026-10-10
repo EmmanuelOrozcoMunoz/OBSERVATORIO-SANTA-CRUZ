@@ -186,7 +186,7 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
     });
 
   return (
-    <div className="mx-auto max-w-6xl space-y-10 px-4 py-6 lg:px-8">
+    <div className="mx-auto max-w-5xl space-y-8 px-4 py-5 lg:px-8">
       <Cabecera etiqueta="Prioridad de obras" icono="prioridades" titulo="Dónde intervenir primero"
         texto="Escenarios de intervención evaluados con datos verificables: espacios públicos que ya propone el POT y ampliación de andenes angostos. Son propuestas del modelo para discutir, no obras aprobadas ni contratadas." >
         <BotonCabecera to="/mapa">Verlo en el mapa</BotonCabecera>
@@ -194,7 +194,7 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
       </Cabecera>
 
       <section aria-labelledby="t-ind">
-        <h2 id="t-ind" className="text-xl font-semibold">Cuatro indicadores distintos, cada uno con su unidad</h2>
+        <h2 id="t-ind" className="text-lg font-semibold">Cuatro indicadores distintos, cada uno con su unidad</h2>
         <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           <Formula letra="A" nombre="Espacio público por habitante" formula="Área de espacio público existente (m²) ÷ población residente" unidad="m²/persona" nota="Solo espacio existente de la capa oficial; lo proyectado por el POT no se suma. Población: Censo 2018." />
           <Formula letra="B" nombre="Costo por metro cuadrado" formula="Costo total estimado (COP) ÷ área de intervención (m²)" unidad="COP/m²" nota="Solo cuando hay un precio unitario registrado con su fuente." />
@@ -203,8 +203,8 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
         </div>
       </section>
 
-      <section aria-labelledby="t-precios" className="rounded-2xl border border-nivel bg-superficie p-5">
-        <h2 id="t-precios" className="text-xl font-semibold">Precios unitarios</h2>
+      <section aria-labelledby="t-precios" className="vidrio vidrio--quieto rounded-xl p-4">
+        <h2 id="t-precios" className="text-lg font-semibold">Precios unitarios</h2>
         <p className="mt-1 max-w-3xl text-sm text-tinta-suave">
           La plataforma no trae precios porque no se encontró una fuente pública confiable para estas obras en Medellín. Si el equipo
           consigue uno (por ejemplo, de una licitación o de la base de precios de la Alcaldía), regístrelo con su fuente. Se guarda solo
@@ -242,8 +242,8 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
         </div>
       </section>
 
-      <section aria-labelledby="t-pesos" className="rounded-2xl border border-nivel bg-superficie p-5">
-        <h2 id="t-pesos" className="text-xl font-semibold">Pesos del modelo</h2>
+      <section aria-labelledby="t-pesos" className="vidrio vidrio--quieto rounded-xl p-4">
+        <h2 id="t-pesos" className="text-lg font-semibold">Pesos del modelo</h2>
         <p className="mt-1 max-w-3xl text-sm text-tinta-suave">
           Son pesos propuestos por el equipo, no oficiales. Cámbielos y la lista se reordena. Cada criterio se normaliza de 0 a 1 antes
           de sumar, para no mezclar unidades.
@@ -267,7 +267,7 @@ function Contenido({ escenarios }: { escenarios: Escenario[] }) {
       <section aria-labelledby="t-lista">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 id="t-lista" className="text-xl font-semibold">Escenarios ordenados</h2>
+            <h2 id="t-lista" className="text-lg font-semibold">Escenarios ordenados</h2>
             <p className="mt-1 max-w-3xl text-sm text-tinta-suave">
               Tres resultados por separado: <strong>necesidad territorial</strong>, <strong>viabilidad económica preliminar</strong> (solo con
               precio) y <strong>prioridad del modelo</strong>. La columna "Puesto" muestra entre qué posiciones se mueve cada escenario

@@ -120,7 +120,7 @@ export const CAPAS: DefCapa[] = [
     geometria: "linea",
     titulo: (p) => `Ruta ${texto(p.codigo)}: ${texto(p.nombre)}`,
     campos: [["codigo", "Código"], ["tipo", "Tipo"], ["empresa", "Empresa"]],
-    leyenda: [{ color: "#4f86b8", etiqueta: "Ruta de bus", forma: "linea" }],
+    leyenda: [{ color: "#2f6fb0", etiqueta: "Ruta de bus", forma: "linea" }],
   },
   {
     id: "paradas",
@@ -535,7 +535,7 @@ export interface Tema {
 
 /** Temas: botones grandes que prenden varias capas a la vez. */
 export const TEMAS: Tema[] = [
-  { id: "transporte", nombre: "Metro y buses", ayuda: "Estaciones, líneas y rutas", color: COLOR.cable, capas: ["lineas_transporte", "estaciones", "paradas"] },
+  { id: "transporte", nombre: "Metro y buses", ayuda: "Estaciones, líneas y rutas", color: COLOR.cable, capas: ["lineas_transporte", "rutas_bus", "estaciones", "paradas"] },
   { id: "caminar", nombre: "Andenes y escaleras", ayuda: "Ancho de andenes, escaleras, ciclorrutas", color: "#7a4e9b", capas: ["andenes", "escaleras_osm", "red_ciclista"] },
   { id: "colegios", nombre: "Colegios", ayuda: "Sedes educativas", color: "#3b6fa8", capas: ["sedes_educativas"] },
   { id: "comunidad", nombre: "Salud y comunidad", ayuda: "Centros de salud, sedes, policía", color: "#c2412d", capas: ["equipamientos"] },

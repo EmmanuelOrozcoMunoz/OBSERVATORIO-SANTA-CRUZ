@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import IconoNav from "./IconosNav";
 import Paleta from "./Paleta";
-import { acentoDeRuta } from "../lib/marca";
+import { ACENTOS } from "../lib/marca";
 
 const MODULOS: { ruta: string; nombre: string; icono: string; fase?: string }[] = [
   { ruta: "/", nombre: "Inicio", icono: "inicio" },
@@ -46,7 +46,7 @@ function Navegacion({ onNavegar, compacta = false }: { onNavegar?: () => void; c
           onClick={onNavegar}
           title={compacta ? m.nombre : undefined}
           aria-label={m.nombre}
-          style={({ isActive }) => (isActive ? { backgroundImage: `linear-gradient(135deg, ${acentoDeRuta(m.ruta).medio}, ${acentoDeRuta(m.ruta).vivo})` } : undefined)}
+          style={({ isActive }) => (isActive ? { backgroundImage: `linear-gradient(135deg, ${ACENTOS.violeta.medio}, ${ACENTOS.violeta.vivo})` } : undefined)}
           className={({ isActive }) =>
             `group relative flex items-center rounded-xl text-base transition-colors ${compacta ? "justify-center px-0 py-3" : "gap-3 px-3 py-2.5"} ${
               isActive ? "text-white shadow-md" : "text-tinta hover:bg-menta"
