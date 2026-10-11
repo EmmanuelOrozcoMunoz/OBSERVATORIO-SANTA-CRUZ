@@ -288,8 +288,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Logo className="h-10 w-10 shrink-0" />
           {!colapsada && (
             <div className="leading-tight">
-              <p className="font-bold">Observatorio Santa Cruz</p>
-              <p className="text-sm text-tinta-suave">Comuna 2, Medellín</p>
+              <p className="text-lg font-bold tracking-tight">Otea</p>
+              <p className="text-sm text-tinta-suave">Observatorio Santa Cruz · Comuna 2</p>
             </div>
           )}
         </div>
@@ -323,7 +323,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <header data-cromo="cabecera" className="relative z-[1100] flex items-center justify-between border-b border-nivel bg-papel px-4 py-2.5 lg:hidden">
         <div className="flex items-center gap-2.5">
           <Logo className="h-8 w-8" />
-          <p className="font-bold">Observatorio Santa Cruz</p>
+          <p className="font-bold">Otea · Santa Cruz</p>
         </div>
         <button
           type="button"

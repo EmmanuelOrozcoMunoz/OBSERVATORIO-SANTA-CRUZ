@@ -1,5 +1,5 @@
 /**
- * Identidad del Observatorio Santa Cruz: un color de acento por módulo.
+ * Identidad de Otea, el observatorio de Santa Cruz: un color de acento por módulo.
  * Cada acento trae tres tonos (oscuro, medio, vivo) que se usan en la cabecera, el menú y los chips.
  * Todos cumplen contraste de texto blanco sobre el tono medio de al menos 6,7:1 (se muestra en /identidad).
  */
