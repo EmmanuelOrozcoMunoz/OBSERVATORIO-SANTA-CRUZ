@@ -20,6 +20,8 @@ const POR_RUTA: [string, keyof typeof ACENTOS][] = [
   ["/accesibilidad", "azul"],
   ["/corredor-49", "indigo"],
   ["/problematicas", "magenta"],
+  ["/riesgo", "magenta"],
+  ["/inmobiliario", "cielo"],
   ["/radar", "cielo"],
   ["/barrios", "orquidea"],
   ["/datos", "ultramar"],

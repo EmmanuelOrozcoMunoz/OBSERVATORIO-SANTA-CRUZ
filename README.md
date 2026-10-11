@@ -60,6 +60,7 @@ pip install -r requirements.txt        # en Windows: py -m pip install -r requir
 python descargar.py                    # descarga de los geoportales a data/raw/ (unos 2 minutos)
 python procesar.py                     # recorta, calcula y escribe frontend/public/data/
 python red.py                          # red peatonal, tiempos caminando y escenarios de obra
+python riesgo.py                        # personas y viviendas en amenaza por movimientos en masa, por barrio
 python documentar_fuentes.py           # trazabilidad: fuentes.json, metodologia.json y docs/02
 ```
 

@@ -101,7 +101,7 @@ function Navegacion({ onNavegar, compacta = false }: { onNavegar?: () => void; c
                 aria-expanded={abierto}
                 aria-controls={`grupo-${g.id}`}
                 onClick={() => alternar(g.id)}
-                className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-tinta-tenue transition-colors hover:text-tinta"
+                className="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-1.5 text-left text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-tinta-tenue transition-colors hover:text-tinta"
               >
                 {g.titulo}
                 <svg viewBox="0 0 24 24" aria-hidden="true" className={`h-4 w-4 transition-transform duration-200 ${abierto ? "" : "-rotate-90"}`} fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">

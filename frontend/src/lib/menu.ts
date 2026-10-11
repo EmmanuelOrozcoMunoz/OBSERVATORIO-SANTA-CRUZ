@@ -1,7 +1,7 @@
 /**
  * Estructura del menú del sitio: cinco categorías con sus módulos.
  * La barra lateral, el menú del celular y el buscador rápido (Ctrl + K) leen de aquí, así que para agregar un módulo
- * nuevo (por ejemplo "Mercado inmobiliario y POT" o "Riesgo de movimiento en masa") basta con sumarlo a su grupo.
+ * nuevo basta con sumarlo a su grupo.
  * Una categoría sin módulos no se muestra.
  */
 export type ModuloMenu = { ruta: string; nombre: string; icono: string; detalle: string; fase?: string };
@@ -33,7 +33,16 @@ export const GRUPOS: GrupoMenu[] = [
       { ruta: "/prioridades", nombre: "Prioridad de obras", icono: "prioridades", detalle: "Dónde intervenir primero" },
     ],
   },
-  // Pendientes (ver el plan de funcionalidades): "Inmobiliario y norma" y "Riesgo y ladera".
+  {
+    id: "inmobiliario",
+    titulo: "Inmobiliario y norma",
+    modulos: [{ ruta: "/inmobiliario", nombre: "Mercado inmobiliario y POT", icono: "cubo", detalle: "Oferta observada y norma del POT por barrio" }],
+  },
+  {
+    id: "riesgo",
+    titulo: "Riesgo y ladera",
+    modulos: [{ ruta: "/riesgo", nombre: "Riesgo de movimiento en masa", icono: "alerta", detalle: "Gente y viviendas en zonas de amenaza" }],
+  },
   {
     id: "comunidad",
     titulo: "Comunidad",
