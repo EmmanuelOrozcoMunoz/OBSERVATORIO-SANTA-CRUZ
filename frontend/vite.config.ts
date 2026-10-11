@@ -35,10 +35,13 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Solo el cascarón (código, estilos, fuentes, íconos): los datos pesados se guardan al usarlos.
-        globPatterns: ["**/*.{js,css,html,woff2,svg,png}"],
-        globIgnores: ["data/**", "**/inter-cyrillic*", "**/inter-greek*", "**/inter-vietnamese*"],
+        // Cascarón (código, estilos, fuentes, íconos) y los datos de hasta 1,2 MB (unos 5 MB en total): así la
+        // primera visita ya deja todo listo para usar sin conexión. Lo más pesado se guarda al usarlo.
+        globPatterns: ["**/*.{js,css,html,woff2,svg,png}", "data/**/*.{json,geojson}"],
+        globIgnores: ["data/edificios.geojson", "data/red.json", "data/espacio_publico_ciudad.geojson", "data/equipamientos_ciudad.geojson", "**/inter-cyrillic*", "**/inter-greek*", "**/inter-vietnamese*"],
         maximumFileSizeToCacheInBytes: 1_200_000,
+        // El service worker toma el control de la página en cuanto se activa (sin esperar a la siguiente visita).
+        clientsClaim: true,
         navigateFallback: "index.html",
         cleanupOutdatedCaches: true,
         runtimeCaching: [
