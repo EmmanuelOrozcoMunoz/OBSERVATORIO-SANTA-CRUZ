@@ -1,6 +1,6 @@
-# Otea
+# OTEA
 
-Observatorio inmobiliario y territorial de Santa Cruz (Comuna 2, Medellín). *Otea*, del verbo otear: observar desde lo alto, como se mira la ciudad desde la ladera.
+Observatorio inmobiliario y territorial de Santa Cruz (Comuna 2, Medellín). *OTEA*, del verbo otear: observar desde lo alto, como se mira la ciudad desde la ladera.
 
 Plataforma web para entender qué tan bien conectados están los barrios de la Comuna 2 (Santa Cruz) de Medellín, dónde faltan andenes, escaleras, equipamientos y espacio público, y qué obras beneficiarían a más personas.
 
